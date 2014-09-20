@@ -1,0 +1,27 @@
+d:\users\atif sheikh\documents\visual studio 2012\Projects\firebirdtest\firebirdtest\bin\Debug\firebirdtest.exe.config
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\obj\Debug\firebirdtest.csprojResolveAssemblyReference.cache
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\obj\Debug\firebirdtest.Form1.resources
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\obj\Debug\firebirdtest.Properties.Resources.resources
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\obj\Debug\firebirdtest.csproj.GenerateResource.Cache
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\bin\Debug\firebirdtest.exe
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\bin\Debug\firebirdtest.pdb
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\obj\Debug\firebirdtest.exe
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\obj\Debug\firebirdtest.pdb
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\obj\Debug\firebirdtest.Home.resources
+D:\Users\Atif Sheikh\Documents\Visual Studio 2012\Projects\firebirdtest\firebirdtest\obj\Debug\firebirdtest.UI.AddCustomer.resources
+M:\OMER\firebirdtest\firebirdtest\bin\Debug\firebirdtest.exe.config
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.exe
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.pdb
+M:\OMER\firebirdtest\firebirdtest\bin\Debug\firebirdtest.exe
+M:\OMER\firebirdtest\firebirdtest\bin\Debug\firebirdtest.pdb
+M:\OMER\firebirdtest\firebirdtest\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.csprojResolveAssemblyReference.cache
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.UI.AddCustomer.resources
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.Form1.resources
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.Home.resources
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.Properties.Resources.resources
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.csproj.GenerateResource.Cache
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.UI.AddItem.resources
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.UI.EditItem.resources
+M:\OMER\firebirdtest\firebirdtest\obj\Debug\firebirdtest.UI.AddConsignment.resources

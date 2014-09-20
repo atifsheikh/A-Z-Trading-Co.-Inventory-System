@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D892FE3-7146-4B82-9E0C-89E1E8A477A3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>firebirdtest</RootNamespace>
+    <AssemblyName>A-Z Inventory</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.5.2.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\RandomAlgos.cs" />
+    <Compile Include="Classes\DatabaseCalls.cs" />
+    <Compile Include="DataSets\CustomerAccountDataSet.cs">
+      <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\CustomerAccountDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DataSet2.cs">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ItemHistoryDataSource.cs">
+      <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\ItemInventory_DataSet1.cs">
+      <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\ItemInventory_DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\LedgerReport_DataSet.cs">
+      <DependentUpon>LedgerReport_DataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\LedgerReport_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LedgerReport_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\ItemHistoryDataSource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AddConsignmentAdvanced.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddConsignmentAdvanced.Designer.cs">
+      <DependentUpon>AddConsignmentAdvanced.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Add Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Add Bill.Designer.cs">
+      <DependentUpon>Add Bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Not in use\ItemHistoryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Not in use\ItemHistoryReport.Designer.cs">
+      <DependentUpon>ItemHistoryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ItemHistoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ItemHistoryView.Designer.cs">
+      <DependentUpon>ItemHistoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Not in use\AddConsignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Not in use\AddConsignment.Designer.cs">
+      <DependentUpon>AddConsignment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Not in use\AddConsignmentDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Not in use\AddConsignmentDetail.Designer.cs">
+      <DependentUpon>AddConsignmentDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddCustomer.Designer.cs">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AddItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddItem.Designer.cs">
+      <DependentUpon>AddItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DebitorSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DebitorSummary.Designer.cs">
+      <DependentUpon>DebitorSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DeleteBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DeleteBill.Designer.cs">
+      <DependentUpon>DeleteBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Not in use\EditItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Not in use\EditItem.Designer.cs">
+      <DependentUpon>EditItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BillPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BillPrint.Designer.cs">
+      <DependentUpon>BillPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Not in use\ItemHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Not in use\ItemHistory.Designer.cs">
+      <DependentUpon>ItemHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LedgerReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LedgerReports.Designer.cs">
+      <DependentUpon>LedgerReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LedgerStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LedgerStatement.Designer.cs">
+      <DependentUpon>LedgerStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ListConsignmentDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ListConsignmentDetails.Designer.cs">
+      <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Not in use\ListConsignments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Not in use\ListConsignments.Designer.cs">
+      <DependentUpon>ListConsignments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Not in use\ListCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Not in use\ListCustomers.Designer.cs">
+      <DependentUpon>ListCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ListInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ListInventory.Designer.cs">
+      <DependentUpon>ListInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Not in use\ListItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Not in use\ListItems.Designer.cs">
+      <DependentUpon>ListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogueBoxes\SelectCustomerName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DialogueBoxes\SelectCustomerName.Designer.cs">
+      <DependentUpon>SelectCustomerName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogueBoxes\SelectItemCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DialogueBoxes\SelectItemCode.Designer.cs">
+      <DependentUpon>SelectItemCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Variables.cs" />
+    <Compile Include="UI\DialogueBoxes\VoucherPaymentModification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DialogueBoxes\VoucherPaymentModification.Designer.cs">
+      <DependentUpon>VoucherPaymentModification.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Reports\CustomerDebitSummeryReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Add Bill.resx">
+      <DependentUpon>Add Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\ItemHistoryReport.resx">
+      <DependentUpon>ItemHistoryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ItemHistoryView.resx">
+      <DependentUpon>ItemHistoryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\AddConsignment.resx">
+      <DependentUpon>AddConsignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AddConsignmentAdvanced.resx">
+      <DependentUpon>AddConsignmentAdvanced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\AddConsignmentDetail.resx">
+      <DependentUpon>AddConsignmentDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AddCustomer.resx">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AddItem.resx">
+      <DependentUpon>AddItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\CustomerVoucher.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DebitorSummary.resx">
+      <DependentUpon>DebitorSummary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DeleteBill.resx">
+      <DependentUpon>DeleteBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\EditItem.resx">
+      <DependentUpon>EditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BillPrint.resx">
+      <DependentUpon>BillPrint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CustomerBill.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\ItemHistory.resx">
+      <DependentUpon>ItemHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LedgerReports.resx">
+      <DependentUpon>LedgerReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LedgerStatement.resx">
+      <DependentUpon>LedgerStatement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ListConsignmentDetails.resx">
+      <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\ListConsignments.resx">
+      <DependentUpon>ListConsignments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\ListCustomers.resx">
+      <DependentUpon>ListCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ListInventory.resx">
+      <DependentUpon>ListInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Not in use\ListItems.resx">
+      <DependentUpon>ListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\LeadgerReport1.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ItemInventoyrReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogueBoxes\SelectCustomerName.resx">
+      <DependentUpon>SelectCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogueBoxes\SelectItemCode.resx">
+      <DependentUpon>SelectItemCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogueBoxes\VoucherPaymentModification.resx">
+      <DependentUpon>VoucherPaymentModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ItemHistory.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="DataSets\CustomerAccountDataSet.xsc">
+      <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\CustomerAccountDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CustomerAccountDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\CustomerAccountDataSet.xss">
+      <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemInventory_DataSet1.xsc">
+      <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemInventory_DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemInventory_DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\ItemInventory_DataSet1.xss">
+      <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\LedgerReport_DataSet.xsc">
+      <DependentUpon>LedgerReport_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\LedgerReport_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LedgerReport_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\LedgerReport_DataSet.xss">
+      <DependentUpon>LedgerReport_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemHistoryDataSource.xsc">
+      <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ItemHistoryDataSource.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemHistoryDataSource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\ItemHistoryDataSource.xss">
+      <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AccountsIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <None Include="Resources\home2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExcelParse\ExcelReader.csproj">
+      <Project>{E214FD66-D235-40DE-8D34-3A4798E9F0F1}</Project>
+      <Name>ExcelReader</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
