@@ -50,7 +50,7 @@ namespace firebirdtest.UI
                     {
                         if (CustomerDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(BillDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == true)
                         {
-                            BillDataSet.Tables[0].Rows[loop]["CUSTOMER_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(BillDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString(), BillDataSet.Tables[0].Rows[loop][0].ToString());
+//                            BillDataSet.Tables[0].Rows[loop]["CUSTOMER_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(BillDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString(), BillDataSet.Tables[0].Rows[loop][0].ToString());
                             BillDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString();
                             break;
                         }
@@ -65,6 +65,11 @@ namespace firebirdtest.UI
 
 
                 BillDataGridView.Columns["Customer_ID"].Visible = false;
+                BillDataGridView.Columns["AMOUNT"].Visible = false;
+                BillDataGridView.Columns["REMARKS"].Visible = false;
+                //BillDataGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
+                BillDataGridView.Columns["NAME"].Visible = false;
+
                 BillDataGridView.Columns["Customer"].DisplayIndex = 1;
                 BillDataGridView.Update();
                 //                BillDataGridView.Columns["Customer_ID"].HeaderText = "Customer";
@@ -281,6 +286,8 @@ namespace firebirdtest.UI
             {
                 if (PrintBatch_CB.Checked == false)
                 {
+                    this.reportViewer1.LocalReport.DisplayName = BillDataGridView.CurrentRow.Cells["NAME"].Value.ToString() + " - " + BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
+                    //CustomerNameSearch_txt.Text = BillDataGridView.CurrentRow.Cells["NAME"].Value.ToString();
                     BillNumberSearch_txt.Text = BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
                 }
                 BillNumberSearch_txt.DroppedDown = false;

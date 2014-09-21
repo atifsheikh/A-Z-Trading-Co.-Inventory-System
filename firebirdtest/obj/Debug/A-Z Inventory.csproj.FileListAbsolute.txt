@@ -154,3 +154,42 @@ E:\Development\A-Z Trading Co. Inventory System\A-Z Trading Co. Inventory System
 E:\Development\A-Z Trading Co. Inventory System\A-Z Trading Co. Inventory System\firebirdtest\obj\Debug\RdlCompile.compiled
 E:\Development\A-Z Trading Co. Inventory System\A-Z Trading Co. Inventory System\firebirdtest\obj\Debug\A-Z Inventory.exe
 E:\Development\A-Z Trading Co. Inventory System\A-Z Trading Co. Inventory System\firebirdtest\obj\Debug\A-Z Inventory.pdb
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.exe.config
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.exe
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.pdb
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.csprojResolveAssemblyReference.cache
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddBill.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ItemHistoryReport.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ItemHistoryView.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddConsignment.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddConsignmentAdvanced.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddConsignmentDetail.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddCustomer.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddItem.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.DebitorSummary.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.DeleteBill.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.EditItem.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.BillPrint.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.Home.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.Properties.Resources.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ItemHistory.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.LedgerReports.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.LedgerStatement.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ListConsignmentDetails.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ListConsignments.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ListCustomers.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ListInventory.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ListItems.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.SelectCustomerName.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.SelectItemCode.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.VoucherPaymentModification.resources
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.csproj.GenerateResource.Cache
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\RdlCompile.cache
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\RdlCompile.compiled
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.exe
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.pdb
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\ExcelParse.exe
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Interop.Microsoft.Office.Interop.Excel.dll
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Interop.VBIDE.dll
+E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\ExcelParse.pdb

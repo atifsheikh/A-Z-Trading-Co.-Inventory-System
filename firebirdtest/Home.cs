@@ -441,6 +441,14 @@ namespace firebirdtest
         {
             try
             {
+                _AddBill.Dispose();
+                _AddBill.Close();
+            }
+            catch (Exception ex)
+            { }
+
+            try
+            {
                 if (_LedgerStatement.IsDisposed)
                     _LedgerStatement = new LedgerStatement();
                 Home.Home_pnl.Visible = false;

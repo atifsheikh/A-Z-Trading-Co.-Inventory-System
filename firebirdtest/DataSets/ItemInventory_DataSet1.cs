@@ -5,3 +5,10 @@
     }
 }
 
+
+namespace firebirdtest.DataSets.ItemInventory_DataSet1TableAdapters {
+    
+    
+    public partial class ITEMINVENTORYTableAdapter {
+    }
+}

@@ -104,5 +104,15 @@ namespace firebirdtest.UI
         {
 
         }
+
+        private void itemInventoryDataSet1BindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iTEMINVENTORYBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

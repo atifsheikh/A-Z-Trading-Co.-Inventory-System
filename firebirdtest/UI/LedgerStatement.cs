@@ -20,21 +20,20 @@ namespace firebirdtest.UI
 
         static DataSet LedgerDataSet = new DataSet();
         static DataSet CustomerDataSet = new DataSet();
-        private void LedgerStatement_Load(object sender, EventArgs e)
+
+        public void RefreshCustomerData()
         {
-            try
-            {
-                System.Drawing.Icon ico = new System.Drawing.Icon("favicon.ico");
-                this.Icon = ico;
-            }
-            catch (Exception ex)
-            { }
             //get customers
             try
             {
                 CustomerDataSet = DatabaseCalls.GetCustomers();
                 CustomerNameDataGridView.DataSource = CustomerDataSet.Tables[0];
-
+                CustomerNameDataGridView.Columns["ID"].Visible = false;
+                CustomerNameDataGridView.Columns["OPENING_BALANCE"].Visible = false;
+                CustomerNameDataGridView.Columns["ADDRESS"].Visible = false;
+                CustomerNameDataGridView.Columns["EMAIL"].Visible = false;
+                CustomerNameDataGridView.Columns["PHONE"].Visible = false;
+                CustomerNameDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
                 //foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
                 //{
                 //    CustomerName_txt.Items.Add(GridViewColumn.ItemArray[1]);
@@ -46,7 +45,19 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
             }
+        }
+        private void LedgerStatement_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Drawing.Icon ico = new System.Drawing.Icon("favicon.ico");
+                this.Icon = ico;
+            }
+            catch (Exception ex)
+            { }
 
+            //get customers
+            RefreshCustomerData();
             //Bill Detail
             try
             {
@@ -86,26 +97,19 @@ namespace firebirdtest.UI
 
                 LedgerGridView.Columns.Clear();
                 LedgerGridView.DataSource = LedgerDataSet.Tables[0];
-                
                 LedgerGridView.Columns["Customer_ID"].Visible = false;
                 LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
                 LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
-                LedgerGridView.CurrentCell = null;
-                foreach (DataGridViewRow DR in LedgerGridView.Rows)
-                {
-                    try
-                    {
-                        DR.Visible = false;
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                }
-
-                //for (int loop1 = LedgerGridView.Rows.Count - 2; loop1 >= 0; loop1--)
+                //LedgerGridView.CurrentCell = null;
+                //foreach (DataGridViewRow DR in LedgerGridView.Rows)
                 //{
-                    
-                //    LedgerGridView.Rows[loop1].Visible = false;
+                //    try
+                //    {
+                //        DR.Visible = false;
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //    }
                 //}
                 LedgerGridView.Visible = true;
             }
@@ -158,8 +162,10 @@ namespace firebirdtest.UI
                 //            CustomerName_txt.Text = "";
                 //            CustomerName_txt_Enter(sender, e);
                 //            CustomerID_txt.Text = "";
-                
-                
+
+
+                //get customers
+                RefreshCustomerData();
 
                 CustomerName_txt.Focus();
             }
@@ -250,11 +256,13 @@ namespace firebirdtest.UI
                 decimal CustomerNewBalance = Convert.ToDecimal(CustomerDataSet1.Tables[0].Rows[0]["AMOUNT"]);
                 CustomerNewBalance += UpdateAmount;
 
+
+                //atif work here
                 DatabaseCalls.ModifyCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value), CustomerNewBalance);
                 //CustomerDataSet1 = DatabaseCalls.GetCustomers();//.GetCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value));
                 DatabaseCalls.ModifyVoucher(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["BillNo"].Value), NewAmount, CustomerNewBalance);
                 LedgerGridView.Rows[e.RowIndex].Cells["Amount"].Value = NewAmount;
-                //RemainingBalance_txt.Text =  CustomerBalance_txt.Text = CustomerNewBalance.ToString();
+                RemainingBalance_txt.Text =  CustomerBalance_txt.Text = CustomerNewBalance.ToString();
                 VoucherRemarks_txt.Focus();
                 //Bill Detail
                 try
@@ -402,7 +410,10 @@ namespace firebirdtest.UI
                         CustomerNameDataGridView.Visible = false;
                         CustomerName_txt.Text = CustomerNameDataGridView.Rows[SelectedRowIndex].Cells["Name"].Value.ToString().Trim();
                         CustomerID_txt.Text = CustomerNameDataGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString().Trim();
-                        CustomerID_txt.Focus();
+                        CustomerBalance_txt.Text = CustomerNameDataGridView.Rows[SelectedRowIndex].Cells["AMOUNT"].Value.ToString().Trim();
+
+
+                        Voucher_DTPicker.Focus();
                     }
                 }
                 else if (e.KeyCode == Keys.Escape)
@@ -513,7 +524,7 @@ namespace firebirdtest.UI
                 {
                     if (CustomerName_txt.Text == "")
                     {
-                        CustomerID_txt.Focus();
+                        //CustomerID_txt.Focus();
                         return;
                     }
                     if (CustomerNameDataGridView.SelectedRows.Count <= 0)
@@ -524,7 +535,8 @@ namespace firebirdtest.UI
                             {
                                 CustomerName_txt.Text = CustomerNameDataGridView.Rows[loop].Cells["Name"].Value.ToString().Trim();
                                 CustomerID_txt.Text = CustomerNameDataGridView.Rows[loop].Cells["ID"].Value.ToString().Trim();
-                                CustomerID_txt.Focus();
+                                CustomerBalance_txt.Text = CustomerNameDataGridView.Rows[loop].Cells["AMOUNT"].Value.ToString().Trim();
+                                Voucher_DTPicker.Focus();
                                 break;
                             }
                         }
@@ -536,6 +548,21 @@ namespace firebirdtest.UI
                 Variables.NotificationStatus = true;
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            LedgerGridView.CurrentCell = null;
+            foreach (DataGridViewRow DR in LedgerGridView.Rows)
+            {
+                try
+                {
+                    DR.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                }
             }
         }
     }
