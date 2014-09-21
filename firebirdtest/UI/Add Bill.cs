@@ -1400,16 +1400,20 @@ namespace firebirdtest.UI
                         if (BillDetailDataGridView.Rows[loop].Cells["ITEM_CODE"].Value != null && BillDetailDataGridView.Rows[loop].Cells["ITEM_CODE"].Value.Equals(ItemCode_txt.Text))
                         {
                             BillDetailDataGridView.Rows.RemoveAt(loop);
+
                             //                            Variables.NotificationStatus = true;
                             //                            Variables.NotificationMessageTitle = this.Name;
                             //                            Variables.NotificationMessageText = "Item is already added in bill...";
-                            ItemCode_txt.Focus();
+                            
                             //     Added = true;
                             break;
                         }
                     }
                     if (Added == false)
+                    {
                         EnterDataInGrid(sender, e);
+                        ItemCode_txt.Focus();
+                    }
                 }
             }
             catch (Exception ex)
