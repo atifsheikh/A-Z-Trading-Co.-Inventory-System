@@ -1086,7 +1086,7 @@ namespace firebirdtest.DataSets.ItemInventory_DataSet1TableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, QTY_BOX, SALECTN, SHIPCTN, PRICE, SALEQUANTITY, SHIPMENTQUANTIT" +
                 "Y, CODE, MODEL\r\nFROM            ITEMINVENTORY\r\nWHERE        (((SALEQUANTITY+SHIP" +
-                "MENTQUANTITY)/QTY_BOX) > 0)";
+                "MENTQUANTITY)/QTY_BOX) != 0)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[1].Connection = this.Connection;

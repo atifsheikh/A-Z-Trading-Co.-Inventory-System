@@ -14,7 +14,7 @@
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, QTY_BOX, SALECTN, SHIPCTN, PRICE, SALEQUANTITY, SHIPMENTQUANTITY, CODE, MODEL
 FROM            ITEMINVENTORY
-WHERE        (((SALEQUANTITY+SHIPMENTQUANTITY)/QTY_BOX) &gt; 0)</CommandText>
+WHERE        (((SALEQUANTITY+SHIPMENTQUANTITY)/QTY_BOX) != 0)</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -54,7 +54,7 @@ WHERE        (ID = ?)</CommandText>
   <xs:element name="ItemInventory_DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ItemInventory_DataSet1" msprop:Generator_UserDSName="ItemInventory_DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ITEMINVENTORY" msprop:Generator_TableClassName="ITEMINVENTORYDataTable" msprop:Generator_TableVarName="tableITEMINVENTORY" msprop:Generator_TablePropName="ITEMINVENTORY" msprop:Generator_RowDeletingName="ITEMINVENTORYRowDeleting" msprop:Generator_RowChangingName="ITEMINVENTORYRowChanging" msprop:Generator_RowEvHandlerName="ITEMINVENTORYRowChangeEventHandler" msprop:Generator_RowDeletedName="ITEMINVENTORYRowDeleted" msprop:Generator_UserTableName="ITEMINVENTORY" msprop:Generator_RowChangedName="ITEMINVENTORYRowChanged" msprop:Generator_RowEvArgName="ITEMINVENTORYRowChangeEvent" msprop:Generator_RowClassName="ITEMINVENTORYRow">
+        <xs:element name="ITEMINVENTORY" msprop:Generator_TableClassName="ITEMINVENTORYDataTable" msprop:Generator_TableVarName="tableITEMINVENTORY" msprop:Generator_RowChangedName="ITEMINVENTORYRowChanged" msprop:Generator_TablePropName="ITEMINVENTORY" msprop:Generator_RowDeletingName="ITEMINVENTORYRowDeleting" msprop:Generator_RowChangingName="ITEMINVENTORYRowChanging" msprop:Generator_RowEvHandlerName="ITEMINVENTORYRowChangeEventHandler" msprop:Generator_RowDeletedName="ITEMINVENTORYRowDeleted" msprop:Generator_RowClassName="ITEMINVENTORYRow" msprop:Generator_UserTableName="ITEMINVENTORY" msprop:Generator_RowEvArgName="ITEMINVENTORYRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
