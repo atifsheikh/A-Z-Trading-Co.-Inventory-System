@@ -133,15 +133,15 @@ namespace firebirdtest.UI
                     Variables.NotificationStatus = true;
                     return;
                 }
-                int CustomerID = -1;
-                foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                {
-                    if (GridViewColumn.ItemArray[1].ToString() == CustomerName_txt.Text)
-                    {
-                        CustomerID = Convert.ToInt32(GridViewColumn.ItemArray[0]);
-                        break;
-                    }
-                }
+                int CustomerID = Convert.ToInt32(CustomerID_txt.Text);
+                //foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
+                //{
+                //    if (GridViewColumn.ItemArray[1].ToString() == CustomerName_txt.Text)
+                //    {
+                //        CustomerID = Convert.ToInt32(GridViewColumn.ItemArray[0]);
+                //        break;
+                //    }
+                //}
                 decimal VoucherAmount = Convert.ToDecimal(VoucherAmount_txt.Text) * (-1);
 
                 //Add Bill Number
