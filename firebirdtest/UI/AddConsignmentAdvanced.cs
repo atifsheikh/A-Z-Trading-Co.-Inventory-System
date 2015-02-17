@@ -612,6 +612,7 @@ namespace firebirdtest.UI
                 TQuantity_txt.Text = "0";
                 QtyPerBox_txt.Text = "0";
                 Price_txt.Text = "0";
+                System.IO.File.Delete("Consignment.txt");
             }
             catch (Exception ex)
             {
