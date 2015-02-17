@@ -186,7 +186,7 @@ namespace firebirdtest.Classes
             try
             {
                 // Compose a string that consists of three lines.
-                string lines = SrNo + ";" + ItemName + ";" + Description + ";" + QtyPerBox + ";" + Ctn + ";" + TQuantity + ";" + Price + ";" + SubTotal + "\r\n<>\r\n" + ConsignmentNumber + ";" + textBox8 + ";" + textBox7 + ";" + CostAmount + ";\r\n";
+                string lines = SrNo + ";" + ItemName + ";" + Description + ";" + Ctn + ";" + QtyPerBox + ";" + TQuantity + ";" + Price + ";" + SubTotal + "\r\n<>\r\n" + ConsignmentNumber + ";" + textBox8 + ";" + textBox7 + ";" + CostAmount + ";\r\n";
                 // Write the string to a file.
                 System.IO.StreamWriter file = new System.IO.StreamWriter("Consignment.txt", true);
                 file.WriteLine(lines);
