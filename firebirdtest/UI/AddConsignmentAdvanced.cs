@@ -698,6 +698,16 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ItemDataSet = DatabaseCalls.GetItems();
+            ItemCode_txt.Items.Clear();
+            foreach (DataRow asdf in ItemDataSet.Tables[0].Rows)
+            {
+                ItemCode_txt.Items.Add(asdf["CODE"]);
+            }
         } 
     }
 }

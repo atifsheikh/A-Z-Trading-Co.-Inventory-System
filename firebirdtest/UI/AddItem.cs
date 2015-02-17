@@ -29,7 +29,7 @@ namespace firebirdtest.UI
             string Result = "";
             try
             {
-                if (ItemName_txt.Text == "")
+                if (ItemNewName_txt.Text == "")
                     return;
                 if (ItemPictureBox.ImageLocation == null || ItemPictureBox.ImageLocation == "")
                 {
@@ -40,10 +40,6 @@ namespace firebirdtest.UI
                     else if (File.Exists("ItemImages\\" + ItemNewName_txt.Text + ".JPEG") == true)
                     {
                         ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemNewName_txt.Text + ".JPEG";
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Image Found in the folder");
                     }
                 }
                 Result = DatabaseCalls.AddItem(ItemNewName_txt.Text,ItemModel_txt.Text,Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text),ItemPictureBox.ImageLocation,ItemCategory_txt.Text);
@@ -178,10 +174,6 @@ namespace firebirdtest.UI
                 else if (File.Exists("ItemImages\\" + ItemNewName_txt.Text + ".JPEG") == true)
                 {
                     ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemNewName_txt.Text + ".JPEG";
-                }
-                else
-                {
-                    MessageBox.Show("No Image Found in the folder");
                 }
             }
 

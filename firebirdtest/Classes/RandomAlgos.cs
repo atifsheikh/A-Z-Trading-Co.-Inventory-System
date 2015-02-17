@@ -16,7 +16,7 @@ namespace firebirdtest.Classes
             {
                 try
                 {
-                    if(combo.Items.Count <= 0)
+                    if(combo.Items.Count < 0)
                         combo.DroppedDown = false;
                 }
                 catch (Exception ex)
@@ -27,7 +27,7 @@ namespace firebirdtest.Classes
                     return combo;
                 }
                 originalList = (object[])combo.Tag;
-                if (originalList == null)
+                if (originalList == null || originalList.Length < combo.Items.Count)
                 {
                     // backup original list
                     originalList = new object[combo.Items.Count];
@@ -74,8 +74,8 @@ namespace firebirdtest.Classes
                             combo.Items.AddRange(newList.ToArray());
                             combo.DroppedDown = true;
                         }
-                        else
-                            combo.DroppedDown = false;
+                        //else if (combo.DroppedDown != false)
+                        //    combo.DroppedDown = false;
                     }
                     catch (Exception ex)
                     {

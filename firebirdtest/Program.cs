@@ -46,6 +46,7 @@ namespace firebirdtest
                 Variables.NotificationStatus = true;
                 Variables.NotificationMessageTitle = "PROGRAM.CS";
                 Variables.NotificationMessageText = ex.Message;
+                MessageBox.Show(ex.Message);
             }
         }
     }

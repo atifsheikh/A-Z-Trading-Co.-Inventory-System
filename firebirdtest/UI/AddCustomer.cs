@@ -13,6 +13,7 @@ namespace firebirdtest.UI
     {
         public AddCustomer()
         {
+            //MessageBox.Show("init");
             InitializeComponent();
         }
 

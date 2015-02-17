@@ -62,7 +62,10 @@ namespace firebirdtest.UI
 
         private void ItemSearchName_txt_TextChanged(object sender, EventArgs e)
         {
-            
+            Total_CTN_txt.Text = "0";
+            Total_SUBTOTAL_txt.Text = "0";
+            Total_T_QUANTITY_txt.Text = "0";
+
             //Customer Detail
             try
             {
@@ -70,6 +73,12 @@ namespace firebirdtest.UI
                 {
                     if (ItemsDataGridView.Rows[loop].Cells["SHIP_ID"].Value.ToString().Contains(ItemSearchName_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
                     {
+                        Total_CTN_txt.Text = (Convert.ToInt32(Total_CTN_txt.Text) + Convert.ToInt32(ItemsDataGridView.Rows[loop].Cells["CTN"].Value)).ToString();
+                        
+                        Total_SUBTOTAL_txt.Text = (Convert.ToInt32(Total_SUBTOTAL_txt.Text) + Convert.ToInt32(ItemsDataGridView.Rows[loop].Cells["SUBTOTAL"].Value)).ToString();
+
+                        Total_T_QUANTITY_txt.Text = (Convert.ToInt32(Total_T_QUANTITY_txt.Text) + Convert.ToInt32(ItemsDataGridView.Rows[loop].Cells["T_QUANTITY"].Value)).ToString();
+                        
                         ItemsDataGridView.Rows[loop].Visible = true;
                     }
                     else
