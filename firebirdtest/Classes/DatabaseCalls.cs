@@ -1518,5 +1518,28 @@ namespace firebirdtest
 
             throw new NotImplementedException();
         }
+
+        internal static DataSet Get_Ctn_Bill()
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+                FbDataAdapter myDataAdapter = new FbDataAdapter();
+                myDataAdapter = new FbDataAdapter("Select * from CTN_BILL_SUM", myConnection1);
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
     }
 }

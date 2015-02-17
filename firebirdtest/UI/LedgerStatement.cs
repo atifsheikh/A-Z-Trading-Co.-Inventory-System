@@ -18,6 +18,7 @@ namespace firebirdtest.UI
             InitializeComponent();
         }
 
+        static DataSet Ctn_Bill_DataSet = new DataSet();
         static DataSet LedgerDataSet = new DataSet();
         static DataSet CustomerDataSet = new DataSet();
 
@@ -61,10 +62,12 @@ namespace firebirdtest.UI
             //Bill Detail
             try
             {
+                Ctn_Bill_DataSet = DatabaseCalls.Get_Ctn_Bill();
                 LedgerDataSet = DatabaseCalls.GetLedger("All");
                 LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "BillNo";
 
                 LedgerDataSet.Tables[0].Columns.Add("Customer");
+                LedgerDataSet.Tables[0].Columns.Add("TotalCtn");
 
                 for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
                 {
@@ -85,6 +88,20 @@ namespace firebirdtest.UI
                         LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Error";
                 }
 
+
+                for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
+                {
+                    for (int loop1 = 0; loop1 < Ctn_Bill_DataSet.Tables[0].Rows.Count; loop1++)
+                    {
+                        if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["BillNo"]) == Convert.ToInt32(Ctn_Bill_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
+                        {
+                            if (LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"].ToString() != Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"].ToString())
+                                LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"] = Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"];
+                            break;
+                        }
+                    }
+                }
+
                 //for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
                 //{
                 //    string asdf=DatabaseCalls.GetCustomerName(Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()));
@@ -99,6 +116,7 @@ namespace firebirdtest.UI
                 LedgerGridView.DataSource = LedgerDataSet.Tables[0];
                 LedgerGridView.Columns["Customer_ID"].Visible = false;
                 LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
+                LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
                 LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
                 //LedgerGridView.CurrentCell = null;
                 //foreach (DataGridViewRow DR in LedgerGridView.Rows)
@@ -299,6 +317,7 @@ namespace firebirdtest.UI
 
                     LedgerGridView.Columns["Customer_ID"].Visible = false;
                     LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
+                    LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
                     LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
                 }
                 catch (Exception ex)
