@@ -196,7 +196,7 @@ namespace firebirdtest.UI
                 if (CustomerID_txt.Text == "")
                     return;
                 Int64 calculator = 0;
-                for (int loop1 = 0; loop1 < LedgerGridView.Rows.Count-1; loop1++)
+                for (int loop1 = LedgerGridView.Rows.Count - 2; loop1 >= 0; loop1--)
                 {
                     try
                     {
@@ -208,12 +208,15 @@ namespace firebirdtest.UI
                         else
                         {
                             LedgerGridView.Rows[loop1].Visible = true;
-                            calculator += Convert.ToInt64(LedgerGridView.Rows[loop1].Cells["AMOUNT"].Value);
-                            LedgerGridView.Rows[loop1].Cells["Calculator"].Value = calculator;
                         }
                     }
                     catch (Exception ex)
                     { }
+                } 
+                for (int loop1 = 0; loop1 < LedgerGridView.Rows.Count - 1; loop1++)
+                {
+                    calculator += Convert.ToInt64(LedgerGridView.Rows[loop1].Cells["AMOUNT"].Value);
+                    LedgerGridView.Rows[loop1].Cells["Calculator"].Value = calculator;
                 }
             }
             catch (Exception ex)
