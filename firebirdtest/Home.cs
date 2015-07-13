@@ -246,6 +246,32 @@ namespace firebirdtest
         {
             try
             {
+                if (_LedgerReports!=null&&!_LedgerReports.IsDisposed)
+                    _LedgerReports.Dispose();
+                if (_LedgerStatement != null && !_LedgerStatement.IsDisposed)
+                    _LedgerStatement.Dispose();
+                if (_ListConsignmentDetails!= null && !_ListConsignmentDetails.IsDisposed)
+                    _ListConsignmentDetails.Dispose();
+                if (_ListConsignments!= null && !_ListConsignments.IsDisposed)
+                    _ListConsignments.Dispose();
+                if (_ListCustomers!= null && !_ListCustomers.IsDisposed)
+                    _ListCustomers.Dispose();
+                if (_ListInventory!= null && !_ListInventory.IsDisposed)
+                    _ListInventory.Dispose();
+                if (_AddConsignmentAdvanced!= null && !_AddConsignmentAdvanced.IsDisposed)
+                    _AddConsignmentAdvanced.Dispose();
+                if (_AddCustomer!= null && !_AddCustomer.IsDisposed)
+                    _AddCustomer.Dispose();
+                if (_AddItems!= null && !_AddItems.IsDisposed)
+                    _AddItems.Dispose();
+                if (_DebitorSummary!= null && !_DebitorSummary.IsDisposed)
+                    _DebitorSummary.Dispose();           
+                if (_DeleteBill!= null && !_DeleteBill.IsDisposed)
+                    _DeleteBill.Dispose();
+                if (_ItemHistoryReport != null && !_ItemHistoryReport.IsDisposed)
+                    _ItemHistoryReport.Dispose();
+
+
                 if (_AddBill.IsDisposed)
                     _AddBill = new AddBill();
 

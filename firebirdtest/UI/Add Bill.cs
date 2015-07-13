@@ -18,6 +18,7 @@ namespace firebirdtest.UI
             try
             {
                 InitializeComponent();
+                
             }
             catch (Exception ex)
             {

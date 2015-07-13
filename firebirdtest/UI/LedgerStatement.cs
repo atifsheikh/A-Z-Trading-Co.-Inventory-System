@@ -68,6 +68,7 @@ namespace firebirdtest.UI
 
                 LedgerDataSet.Tables[0].Columns.Add("Customer");
                 LedgerDataSet.Tables[0].Columns.Add("TotalCtn");
+                LedgerDataSet.Tables[0].Columns.Add("Calculator");
 
                 for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
                 {
@@ -81,6 +82,15 @@ namespace firebirdtest.UI
                                     LedgerDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"];
                             }
                         }
+
+                        for (int loop1 = 0; loop1 < Ctn_Bill_DataSet.Tables[0].Rows.Count; loop1++)
+                        {
+                            if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["BillNo"]) == Convert.ToInt32(Ctn_Bill_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
+                            {
+                                if (LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"].ToString() != Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"].ToString())
+                                    LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"] = Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"];
+                            }
+                        }
                     }
                     else if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == -1)
                         LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Admin";
@@ -89,46 +99,16 @@ namespace firebirdtest.UI
                 }
 
 
-                for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
-                {
-                    for (int loop1 = 0; loop1 < Ctn_Bill_DataSet.Tables[0].Rows.Count; loop1++)
-                    {
-                        if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["BillNo"]) == Convert.ToInt32(Ctn_Bill_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
-                        {
-                            if (LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"].ToString() != Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"].ToString())
-                                LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"] = Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"];
-                            break;
-                        }
-                    }
-                }
-
-                //for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
-                //{
-                //    string asdf=DatabaseCalls.GetCustomerName(Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()));
-                //    if (LedgerDataSet.Tables[0].Rows[loop]["Customer"] .ToString() != asdf)
-                //    {//LedgerDataSet.Tables[0].Rows[loop]["Customer"] = DatabaseCalls.GetCustomerName(Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()));
-                //    }
-                //}
-
                 LedgerGridView.Visible = false;
 
                 LedgerGridView.Columns.Clear();
                 LedgerGridView.DataSource = LedgerDataSet.Tables[0];
                 LedgerGridView.Columns["Customer_ID"].Visible = false;
+                LedgerGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
                 LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
                 LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
                 LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
-                //LedgerGridView.CurrentCell = null;
-                //foreach (DataGridViewRow DR in LedgerGridView.Rows)
-                //{
-                //    try
-                //    {
-                //        DR.Visible = false;
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //    }
-                //}
+                
                 LedgerGridView.Visible = true;
             }
             catch (Exception ex)
@@ -213,15 +193,27 @@ namespace firebirdtest.UI
             //if (CustomerID_txt.Text != "")
             try
             {
-                for (int loop1 = LedgerGridView.Rows.Count -2; loop1 >= 0 ; loop1--)
+                if (CustomerID_txt.Text == "")
+                    return;
+                Int64 calculator = 0;
+                for (int loop1 = 0; loop1 < LedgerGridView.Rows.Count-1; loop1++)
                 {
-                    LedgerGridView.CurrentCell = null;
-                    if (LedgerGridView.Rows[loop1].Cells["Customer_ID"].Value.ToString() != (CustomerID_txt.Text))
+                    try
                     {
-                        LedgerGridView.Rows[loop1].Visible = false;
+                        LedgerGridView.CurrentCell = null;
+                        if (LedgerGridView.Rows[loop1].Cells["Customer_ID"].Value.ToString() != (CustomerID_txt.Text))
+                        {
+                            LedgerGridView.Rows[loop1].Visible = false;
+                        }
+                        else
+                        {
+                            LedgerGridView.Rows[loop1].Visible = true;
+                            calculator += Convert.ToInt64(LedgerGridView.Rows[loop1].Cells["AMOUNT"].Value);
+                            LedgerGridView.Rows[loop1].Cells["Calculator"].Value = calculator;
+                        }
                     }
-                    else
-                        LedgerGridView.Rows[loop1].Visible = true;
+                    catch (Exception ex)
+                    { }
                 }
             }
             catch (Exception ex)
@@ -374,9 +366,13 @@ namespace firebirdtest.UI
 
         private void CustomerName_txt_Enter(object sender, EventArgs e)
         {
-
             try
             {
+                for (int loop = 0; loop < CustomerNameDataGridView.Rows.Count; loop++)
+                {
+                        CustomerNameDataGridView.Rows[loop].Visible = true;
+                }
+                
                 CustomerID_txt.Text = "";
                 CustomerNameDataGridView.Visible = true;
             }
@@ -467,13 +463,12 @@ namespace firebirdtest.UI
         }
 
         private void CustomerName_txt_TextChanged_1(object sender, EventArgs e)
-        {
-            //Customer Detail
+        {                        //Customer Detail
             try
             {
                 for (int loop = 0; loop < CustomerNameDataGridView.Rows.Count; loop++)
                 {
-                    if (CustomerNameDataGridView.Rows[loop].Cells["NAME"].Value.ToString().Contains(CustomerName_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
+                    if (CustomerNameDataGridView.Rows[loop].Cells["NAME"].Value.ToString().Contains(CustomerName_txt.Text))
                     {
                         CustomerNameDataGridView.Rows[loop].Visible = true;
                     }
@@ -490,8 +485,6 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
             }
-
-
         }
 
         private void CustomerName_txt_Leave(object sender, EventArgs e)

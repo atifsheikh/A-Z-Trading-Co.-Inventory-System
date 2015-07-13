@@ -26,21 +26,21 @@ namespace firebirdtest.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("User=SYSDBA; Password=masterkey;Database=Atif-PC:D:\\A-Z.FDB;DataSource=localhost;" +
-            "Port=3050;Dialect=3;Charset=NONE;\n")]
-        public string ConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=Firebird DNS;uid=sysdba;pwd=masterkey")]
+        public string AZ_FireBirdDB {
             get {
-                return ((string)(this["ConnectionString"]));
+                return ((string)(this["AZ_FireBirdDB"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=Firebird DNS;uid=sysdba;pwd=masterkey")]
-        public string AZ_FireBirdDB {
+        [global::System.Configuration.DefaultSettingValueAttribute("User=SYSDBA; Password=masterkey;Database=Atif-PC:D:\\A-Z.FDB;DataSource=localhost;" +
+            "Port=3050;Dialect=3;Charset=NONE;\n")]
+        public string ConnectionString {
             get {
-                return ((string)(this["AZ_FireBirdDB"]));
+                return ((string)(this["ConnectionString"]));
             }
         }
     }
