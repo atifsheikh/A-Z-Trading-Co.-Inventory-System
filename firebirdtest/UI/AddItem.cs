@@ -42,7 +42,7 @@ namespace firebirdtest.UI
                         ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemNewName_txt.Text + ".JPEG";
                     }
                 }
-                Result = DatabaseCalls.AddItem(ItemNewName_txt.Text,ItemModel_txt.Text,Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text),ItemPictureBox.ImageLocation,ItemCategory_txt.Text);
+                Result = DatabaseCalls.AddItem(ItemNewName_txt.Text, ItemModel_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text);
                 Variables.NotificationStatus = true;
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = Result;
@@ -177,7 +177,7 @@ namespace firebirdtest.UI
                 }
             }
 
-            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemNewName_txt.Text, ItemModel_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemPictureBox, ItemCategory_txt.Text,Convert.ToInt32(TQUANTITY_txt.Text));
+            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemNewName_txt.Text, ItemModel_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, ItemPictureBox, ItemCategory_txt.Text, Convert.ToInt32(TQUANTITY_txt.Text));
             if (Result.StartsWith("Item modified") != true)
             {
                 Variables.NotificationStatus = true;

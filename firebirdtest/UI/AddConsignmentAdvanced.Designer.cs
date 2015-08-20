@@ -91,11 +91,13 @@
             this.ConsignmentNumber_txt = new System.Windows.Forms.TextBox();
             this.ConsignmentDate_txt = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.ItemCostPrice_txt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDataGridView)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).BeginInit();
@@ -108,7 +110,7 @@
             // 
             this.ItemCode_txt.FormattingEnabled = true;
             this.ItemCode_txt.Location = new System.Drawing.Point(103, 54);
-            this.ItemCode_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemCode_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemCode_txt.Name = "ItemCode_txt";
             this.ItemCode_txt.Size = new System.Drawing.Size(160, 24);
             this.ItemCode_txt.TabIndex = 0;
@@ -143,7 +145,7 @@
             // 
             this.QtyPerBox_txt.Enabled = false;
             this.QtyPerBox_txt.Location = new System.Drawing.Point(422, 54);
-            this.QtyPerBox_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QtyPerBox_txt.Margin = new System.Windows.Forms.Padding(4);
             this.QtyPerBox_txt.Name = "QtyPerBox_txt";
             this.QtyPerBox_txt.Size = new System.Drawing.Size(148, 22);
             this.QtyPerBox_txt.TabIndex = 1;
@@ -153,7 +155,7 @@
             // Description_txt
             // 
             this.Description_txt.Location = new System.Drawing.Point(103, 87);
-            this.Description_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Description_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Description_txt.Name = "Description_txt";
             this.Description_txt.Size = new System.Drawing.Size(160, 22);
             this.Description_txt.TabIndex = 2;
@@ -174,7 +176,7 @@
             // Ctn_txt
             // 
             this.Ctn_txt.Location = new System.Drawing.Point(103, 119);
-            this.Ctn_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Ctn_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Ctn_txt.Name = "Ctn_txt";
             this.Ctn_txt.Size = new System.Drawing.Size(160, 22);
             this.Ctn_txt.TabIndex = 3;
@@ -194,7 +196,7 @@
             // TQuantity_txt
             // 
             this.TQuantity_txt.Location = new System.Drawing.Point(355, 119);
-            this.TQuantity_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TQuantity_txt.Margin = new System.Windows.Forms.Padding(4);
             this.TQuantity_txt.Name = "TQuantity_txt";
             this.TQuantity_txt.Size = new System.Drawing.Size(160, 22);
             this.TQuantity_txt.TabIndex = 4;
@@ -215,7 +217,7 @@
             // Price_txt
             // 
             this.Price_txt.Location = new System.Drawing.Point(572, 119);
-            this.Price_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Price_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Price_txt.Name = "Price_txt";
             this.Price_txt.Size = new System.Drawing.Size(160, 22);
             this.Price_txt.TabIndex = 5;
@@ -261,7 +263,7 @@
             this.SUBTOTAL});
             this.ConsignmentDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
             this.ConsignmentDataGridView.Location = new System.Drawing.Point(13, 151);
-            this.ConsignmentDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ConsignmentDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.ConsignmentDataGridView.Name = "ConsignmentDataGridView";
             this.ConsignmentDataGridView.Size = new System.Drawing.Size(1433, 462);
             this.ConsignmentDataGridView.TabIndex = 65;
@@ -312,6 +314,8 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.Gold;
+            this.panel2.Controls.Add(this.label23);
+            this.panel2.Controls.Add(this.ItemCostPrice_txt);
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.ItemCategory_txt);
             this.panel2.Controls.Add(this.label11);
@@ -332,15 +336,15 @@
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.ItemPrice_txt);
             this.panel2.Location = new System.Drawing.Point(1457, 37);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(335, 807);
             this.panel2.TabIndex = 2;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(284, 164);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Location = new System.Drawing.Point(284, 192);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(29, 28);
             this.button5.TabIndex = 5;
@@ -353,8 +357,8 @@
             this.ItemCategory_txt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ItemCategory_txt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ItemCategory_txt.FormattingEnabled = true;
-            this.ItemCategory_txt.Location = new System.Drawing.Point(115, 165);
-            this.ItemCategory_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemCategory_txt.Location = new System.Drawing.Point(115, 193);
+            this.ItemCategory_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemCategory_txt.Name = "ItemCategory_txt";
             this.ItemCategory_txt.Size = new System.Drawing.Size(160, 24);
             this.ItemCategory_txt.TabIndex = 4;
@@ -366,7 +370,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(29, 169);
+            this.label11.Location = new System.Drawing.Point(29, 197);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 17);
@@ -388,7 +392,7 @@
             // ItemNewName_txt
             // 
             this.ItemNewName_txt.Location = new System.Drawing.Point(115, 37);
-            this.ItemNewName_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemNewName_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemNewName_txt.Name = "ItemNewName_txt";
             this.ItemNewName_txt.Size = new System.Drawing.Size(157, 22);
             this.ItemNewName_txt.TabIndex = 0;
@@ -396,8 +400,8 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(33, 470);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Location = new System.Drawing.Point(33, 498);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
             this.button4.TabIndex = 6;
@@ -407,8 +411,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(141, 470);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Location = new System.Drawing.Point(141, 498);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 28);
             this.button3.TabIndex = 7;
@@ -420,7 +424,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(29, 514);
+            this.label9.Location = new System.Drawing.Point(29, 542);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 17);
@@ -429,8 +433,8 @@
             // 
             // PicPath_txt
             // 
-            this.PicPath_txt.Location = new System.Drawing.Point(76, 506);
-            this.PicPath_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PicPath_txt.Location = new System.Drawing.Point(76, 534);
+            this.PicPath_txt.Margin = new System.Windows.Forms.Padding(4);
             this.PicPath_txt.Name = "PicPath_txt";
             this.PicPath_txt.Size = new System.Drawing.Size(236, 22);
             this.PicPath_txt.TabIndex = 8;
@@ -441,7 +445,7 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(12, 196);
+            this.label12.Location = new System.Drawing.Point(12, 224);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(71, 25);
@@ -463,8 +467,8 @@
             // 
             this.ItemPictureBox.BackColor = System.Drawing.Color.Transparent;
             this.ItemPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ItemPictureBox.Location = new System.Drawing.Point(33, 224);
-            this.ItemPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemPictureBox.Location = new System.Drawing.Point(33, 252);
+            this.ItemPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.ItemPictureBox.Name = "ItemPictureBox";
             this.ItemPictureBox.Size = new System.Drawing.Size(281, 239);
             this.ItemPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -474,7 +478,7 @@
             // ItemModel_txt
             // 
             this.ItemModel_txt.Location = new System.Drawing.Point(115, 69);
-            this.ItemModel_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemModel_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemModel_txt.Name = "ItemModel_txt";
             this.ItemModel_txt.Size = new System.Drawing.Size(157, 22);
             this.ItemModel_txt.TabIndex = 1;
@@ -495,8 +499,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(219, 543);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(219, 571);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 9;
@@ -507,7 +511,7 @@
             // ItemQuantity_txt
             // 
             this.ItemQuantity_txt.Location = new System.Drawing.Point(115, 101);
-            this.ItemQuantity_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemQuantity_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemQuantity_txt.Name = "ItemQuantity_txt";
             this.ItemQuantity_txt.Size = new System.Drawing.Size(157, 22);
             this.ItemQuantity_txt.TabIndex = 2;
@@ -539,7 +543,7 @@
             // ItemPrice_txt
             // 
             this.ItemPrice_txt.Location = new System.Drawing.Point(115, 133);
-            this.ItemPrice_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemPrice_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemPrice_txt.Name = "ItemPrice_txt";
             this.ItemPrice_txt.Size = new System.Drawing.Size(157, 22);
             this.ItemPrice_txt.TabIndex = 3;
@@ -550,7 +554,7 @@
             // 
             this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBox7.Location = new System.Drawing.Point(121, 620);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(49, 22);
             this.textBox7.TabIndex = 6;
@@ -573,7 +577,7 @@
             // 
             this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBox8.Location = new System.Drawing.Point(355, 620);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(77, 22);
             this.textBox8.TabIndex = 7;
@@ -596,7 +600,7 @@
             // 
             this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox9.Location = new System.Drawing.Point(1304, 620);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(141, 22);
             this.textBox9.TabIndex = 8;
@@ -627,7 +631,7 @@
             this.panel1.Controls.Add(this.ConsignmentNumber_txt);
             this.panel1.Controls.Add(this.ConsignmentDate_txt);
             this.panel1.Location = new System.Drawing.Point(0, 37);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1457, 126);
             this.panel1.TabIndex = 0;
@@ -731,7 +735,7 @@
             // 
             this.ConsignmentNumber_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ConsignmentNumber_txt.Location = new System.Drawing.Point(167, 79);
-            this.ConsignmentNumber_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ConsignmentNumber_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ConsignmentNumber_txt.Name = "ConsignmentNumber_txt";
             this.ConsignmentNumber_txt.Size = new System.Drawing.Size(265, 22);
             this.ConsignmentNumber_txt.TabIndex = 0;
@@ -741,7 +745,7 @@
             // 
             this.ConsignmentDate_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ConsignmentDate_txt.Location = new System.Drawing.Point(575, 79);
-            this.ConsignmentDate_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ConsignmentDate_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ConsignmentDate_txt.Name = "ConsignmentDate_txt";
             this.ConsignmentDate_txt.Size = new System.Drawing.Size(265, 22);
             this.ConsignmentDate_txt.TabIndex = 1;
@@ -777,16 +781,28 @@
             this.panel3.Controls.Add(this.TQuantity_txt);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Location = new System.Drawing.Point(0, 162);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1457, 686);
             this.panel3.TabIndex = 1;
+            // 
+            // button6
+            // 
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.Location = new System.Drawing.Point(271, 54);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(22, 24);
+            this.button6.TabIndex = 7;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBox1.Location = new System.Drawing.Point(528, 620);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(111, 22);
             this.textBox1.TabIndex = 74;
@@ -821,24 +837,32 @@
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.Location = new System.Drawing.Point(4, 4);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(47, 33);
             this.button2.TabIndex = 6;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // button6
+            // label23
             // 
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(271, 54);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(22, 24);
-            this.button6.TabIndex = 7;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.Location = new System.Drawing.Point(29, 167);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(80, 17);
+            this.label23.TabIndex = 46;
+            this.label23.Text = "Cost Price :";
+            // 
+            // ItemCostPrice_txt
+            // 
+            this.ItemCostPrice_txt.Location = new System.Drawing.Point(115, 163);
+            this.ItemCostPrice_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.ItemCostPrice_txt.Name = "ItemCostPrice_txt";
+            this.ItemCostPrice_txt.Size = new System.Drawing.Size(157, 22);
+            this.ItemCostPrice_txt.TabIndex = 45;
+            this.ItemCostPrice_txt.Text = "0";
             // 
             // AddConsignmentAdvanced
             // 
@@ -850,7 +874,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddConsignmentAdvanced";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddConsignmentAdvanced";
@@ -940,5 +964,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox ItemCostPrice_txt;
     }
 }

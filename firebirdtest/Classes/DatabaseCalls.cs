@@ -214,7 +214,7 @@ namespace firebirdtest
         }
 
         //Item
-        internal static string AddItem(string Name, String Model, int QTY_Box, decimal Price, String ImagePath, string ItemCategory)
+        internal static string AddItem(string Name, String Model, int QTY_Box, decimal Price, decimal CostPrice, String ImagePath, string ItemCategory)
         {
             try
             {
@@ -268,6 +268,7 @@ namespace firebirdtest
                     myCommand.Parameters.Add("@MODEL", FbDbType.VarChar).Value = Model;
                     myCommand.Parameters.Add("@QTY_BOX", FbDbType.Integer).Value = QTY_Box;
                     myCommand.Parameters.Add("@PRICE", FbDbType.Decimal).Value = Price;
+                    myCommand.Parameters.Add("@COSTPRICE", FbDbType.Decimal).Value = CostPrice;
                     if (_image1 != null)
                         content = _image1.ToArray();
                     myCommand.Parameters.Add("@IMAGE", FbDbType.Binary).Value = content;
@@ -336,7 +337,7 @@ namespace firebirdtest
             }
         }
 
-        internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, System.Windows.Forms.PictureBox ReplaceImage, string ItemCategory, int T_Quantity)
+        internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, System.Windows.Forms.PictureBox ReplaceImage, string ItemCategory, int T_Quantity)
         {
             try
             {
@@ -376,6 +377,7 @@ namespace firebirdtest
                     myCommand.Parameters.Add("@MODEL", FbDbType.Integer).Value = ReplaceModel;
                     myCommand.Parameters.Add("@QTY_BOX", FbDbType.Integer).Value = ReplaceQuantity;
                     myCommand.Parameters.Add("@PRICE", FbDbType.Decimal).Value = ReplacePrice;
+                    myCommand.Parameters.Add("@COSTPRICE", FbDbType.Decimal).Value = ReplaceCostPrice;
                     if (_image1 != null)
                         content = _image1.ToArray();
                     myCommand.Parameters.Add("@IMAGE", FbDbType.Binary).Value = content;

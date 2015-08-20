@@ -62,8 +62,8 @@ namespace firebirdtest.UI
             string Result = "";
             try
             {
-                
-                Result = DatabaseCalls.AddItem(ItemNewName_txt.Text, ItemModel_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text);
+
+                Result = DatabaseCalls.AddItem(ItemNewName_txt.Text, ItemModel_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text);
                 if (Result.StartsWith("Item Added with") != true)
                 {
                     Variables.NotificationStatus = true;
@@ -402,7 +402,7 @@ namespace firebirdtest.UI
                                             {
                                                 ItemCode = ItemCode + "(" + GridViewRow.Cells["QtyPerBox"].Value.ToString() + "P)";
                                                 GridViewRow.Cells[1].Value = ItemCode;
-                                                result = DatabaseCalls.AddItem(ItemCode, GridViewRow.Cells["Description"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["QtyPerBox"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), "", "Toys");
+                                                result = DatabaseCalls.AddItem(ItemCode, GridViewRow.Cells["Description"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["QtyPerBox"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["CostPrice"].Value), "", "Toys");
                                             }
                                             catch (Exception ex)
                                             {
@@ -557,7 +557,7 @@ namespace firebirdtest.UI
                                 {
                                     try
                                     {
-                                        Result = DatabaseCalls.AddItem(ItemCode_txt.Text, Description_txt.Text, Convert.ToInt32(QtyPerBox_txt.Text), Convert.ToDecimal(Price_txt.Text), ItemPictureBox.ImageLocation, "Toys");
+                                        Result = DatabaseCalls.AddItem(ItemCode_txt.Text, Description_txt.Text, Convert.ToInt32(QtyPerBox_txt.Text), Convert.ToDecimal(Price_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, "Toys");
                                         Variables.NotificationStatus = true;
                                         Variables.NotificationMessageTitle = this.Name;
                                         Variables.NotificationMessageText = Result;
