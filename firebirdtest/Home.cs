@@ -1017,6 +1017,27 @@ namespace firebirdtest
             }
 
         }
+
+        public AddVendor _AddVendor = new AddVendor();
+
+        private void addVendorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_AddVendor.IsDisposed)
+                    _AddVendor = new AddVendor();
+                Home.Home_pnl.Visible = false;
+                _AddVendor.MdiParent = this;
+                _AddVendor.WindowState = FormWindowState.Maximized;
+                _AddVendor.Show();
+                _AddVendor.Focus();
+            }
+            catch (Exception ex)
+            {
+                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            }
+
+        }
     }
 }
 //

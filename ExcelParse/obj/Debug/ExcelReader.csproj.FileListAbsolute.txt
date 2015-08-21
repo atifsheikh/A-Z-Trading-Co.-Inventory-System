@@ -80,7 +80,6 @@ E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\bin\Debug\ExcelP
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\bin\Debug\Office.dll
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\bin\Debug\Interop.Microsoft.Office.Interop.Excel.dll
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\bin\Debug\Interop.VBIDE.dll
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csprojResolveAssemblyReference.cache
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\Interop.Microsoft.Office.Interop.Excel.dll
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\Interop.VBIDE.dll
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csproj.ResolveComReference.cache
@@ -89,3 +88,4 @@ E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelR
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csproj.GenerateResource.Cache
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelParse.exe
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelParse.pdb
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csprojResolveAssemblyReference.cache

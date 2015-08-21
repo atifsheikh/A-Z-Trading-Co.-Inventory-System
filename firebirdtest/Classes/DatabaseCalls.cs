@@ -5,78 +5,153 @@ using System.IO;
 using System.Text;
 using FirebirdSql.Data.FirebirdClient;
 using System.Windows.Forms;
+using System.Net;
 
 namespace firebirdtest
 {
     class DatabaseCalls
     {
+            public static string POST(string url, string attributes)
+            {
+                string response = "";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Credentials = CredentialCache.DefaultCredentials;
+                request.Method = "POST";
+                Stream postStream = request.GetRequestStream();
+                var bytes1 = System.Text.Encoding.UTF8.GetBytes(attributes);
+                postStream.Write(bytes1, 0, bytes1.Length);
+                postStream.Close();
+
+                // Get the response.
+                WebResponse response1 = request.GetResponse();
+                Stream dataStream = response1.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+
+                response = reader.ReadToEnd();
+
+                reader.Close();
+                response1.Close();
+                return response;
+            }
+            public static string GET(string url)
+            {
+                string response = "";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Credentials = CredentialCache.DefaultCredentials;
+                request.Method = "GET";
+                WebResponse response1 = request.GetResponse();
+                Stream dataStream = response1.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+
+                response = reader.ReadToEnd();
+
+                reader.Close();
+                response1.Close();
+                return response;
+            }
+
+            public static string PUT(string url, string attributes)
+            {
+                string response = "";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Credentials = CredentialCache.DefaultCredentials;
+                request.Method = "PUT";
+                Stream postStream = request.GetRequestStream();
+                var bytes1 = System.Text.Encoding.UTF8.GetBytes(attributes);
+                postStream.Write(bytes1, 0, bytes1.Length);
+                postStream.Close();
+
+                // Get the response.
+                WebResponse response1 = request.GetResponse();
+                Stream dataStream = response1.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+
+                response = reader.ReadToEnd();
+
+                reader.Close();
+                response1.Close();
+                return response;
+            }
+
+
+        internal static string GetVendors()
+        {
+            return POST("http://localhost:8080/ThePrimeBaby/GetVendor","");
+        }
+            
+        internal static string AddVendor(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
+        {
+            return POST("http://localhost:8080/ThePrimeBaby/AddVendor/" + Name + "/" + address + "/" + phone + "/" + email, "");
+        }
+
         //Customer
 
         internal static string AddCustomer(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
         {
-            try{
-            FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-
-            myConnection1.Open();
-
-            //4. create a new DataSet
-            DataSet myDataSet = new DataSet();
-
-            //5. Declare an Adapter to interface with our Table in Firebird
-            FbDataAdapter myDataAdapter = new FbDataAdapter("Select MAX(ID) from Customers", myConnection1);
-
-            //6. Fill the Dataset
-            myDataAdapter.Fill(myDataSet);
-            int MaxCustomerID = 0;
             try
             {
-                MaxCustomerID = Convert.ToInt32(myDataSet.Tables[0].Rows[0].ItemArray[0]);
-            }
-            catch (Exception ex)
-            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+
+                myConnection1.Open();
+
+                //4. create a new DataSet
+                DataSet myDataSet = new DataSet();
+
+                //5. Declare an Adapter to interface with our Table in Firebird
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select MAX(ID) from Customers", myConnection1);
+
+                //6. Fill the Dataset
+                myDataAdapter.Fill(myDataSet);
+                int MaxCustomerID = 0;
                 try
                 {
-                    MaxCustomerID = 0;
+                    MaxCustomerID = Convert.ToInt32(myDataSet.Tables[0].Rows[0].ItemArray[0]);
                 }
-                catch (Exception ex1)
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        MaxCustomerID = 0;
+                    }
+                    catch (Exception ex1)
+                    {
+                        myConnection1.Close();
+                        return ex1.Message.ToString();
+                    }
+                }
+                //myConnection1.Close();
+
+                try
+                {
+
+                    FbTransaction myTransaction = myConnection1.BeginTransaction();
+
+                    FbCommand myCommand = new FbCommand();
+
+                    myCommand.CommandText = "INSERT INTO CUSTOMERS (ID, NAME, ADDRESS, EMAIL, BALANCE_LIMIT,OPENING_BALANCE ,AMOUNT ,PHONE)VALUES(@ID, @NAME, @ADDRESS, @EMAIL, @BALANCE_LIMIT,@OPENING_BALANCE ,@AMOUNT ,@PHONE)";
+                    myCommand.Connection = myConnection1;
+                    myCommand.Transaction = myTransaction;
+
+
+                    myCommand.Parameters.Add("@ID", FbDbType.Integer).Value = ++MaxCustomerID;
+                    myCommand.Parameters.Add("@NAME", FbDbType.VarChar).Value = Name;
+                    myCommand.Parameters.Add("@ADDRESS", FbDbType.Integer).Value = address;
+                    myCommand.Parameters.Add("@EMAIL", FbDbType.Integer).Value = email;
+                    myCommand.Parameters.Add("@BALANCE_LIMIT", FbDbType.Integer).Value = ballance_limit;
+                    myCommand.Parameters.Add("@OPENING_BALANCE", FbDbType.Integer).Value = opening_balance;
+                    myCommand.Parameters.Add("@AMOUNT", FbDbType.Integer).Value = opening_balance;
+                    myCommand.Parameters.Add("@PHONE", FbDbType.VarChar).Value = phone;
+                    myCommand.ExecuteNonQuery();
+                    myTransaction.Commit();
+                    myCommand.Dispose();
+                    myConnection1.Close();
+                    return "Customer Added with ID = " + MaxCustomerID.ToString();
+                }
+                catch (Exception ex)
                 {
                     myConnection1.Close();
-                    return ex1.Message.ToString();
+                    return ex.Message.ToString();
                 }
-            }
-            //myConnection1.Close();
-
-            try
-            {
-
-                FbTransaction myTransaction = myConnection1.BeginTransaction();
-
-                FbCommand myCommand = new FbCommand();
-
-                myCommand.CommandText = "INSERT INTO CUSTOMERS (ID, NAME, ADDRESS, EMAIL, BALANCE_LIMIT,OPENING_BALANCE ,AMOUNT ,PHONE)VALUES(@ID, @NAME, @ADDRESS, @EMAIL, @BALANCE_LIMIT,@OPENING_BALANCE ,@AMOUNT ,@PHONE)";
-                myCommand.Connection = myConnection1;
-                myCommand.Transaction = myTransaction;
-
-
-                myCommand.Parameters.Add("@ID", FbDbType.Integer).Value = ++MaxCustomerID;
-                myCommand.Parameters.Add("@NAME", FbDbType.VarChar).Value = Name;
-                myCommand.Parameters.Add("@ADDRESS", FbDbType.Integer).Value = address;
-                myCommand.Parameters.Add("@EMAIL", FbDbType.Integer).Value = email;
-                myCommand.Parameters.Add("@BALANCE_LIMIT", FbDbType.Integer).Value = ballance_limit;
-                myCommand.Parameters.Add("@OPENING_BALANCE", FbDbType.Integer).Value = opening_balance;
-                myCommand.Parameters.Add("@AMOUNT", FbDbType.Integer).Value = opening_balance;
-                myCommand.Parameters.Add("@PHONE", FbDbType.VarChar).Value = phone;
-                myCommand.ExecuteNonQuery();
-                myTransaction.Commit();
-                myCommand.Dispose();
-                myConnection1.Close();
-                return "Customer Added with ID = " + MaxCustomerID.ToString();
-            }
-            catch (Exception ex)
-            {
-                myConnection1.Close();
-                return ex.Message.ToString();
-            }
             }
             catch (Exception ex)
             {
@@ -142,6 +217,27 @@ namespace firebirdtest
             }
         }
 
+        internal static string ModifyCustomer(int CustomerID, decimal NewBalance)
+        {
+            try
+            {
+                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
+                deleteConnection.Open();
+
+                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
+                FbCommand deleteCommand = new FbCommand("Update Customers set AMOUNT = '" + NewBalance + "' where ID = " + "'" + CustomerID + "'", deleteConnection, deleteTransaction);
+
+                deleteCommand.ExecuteNonQuery();
+                deleteTransaction.Commit();
+                deleteConnection.Close();
+                return "Customer Balance Updated to " + NewBalance;
+            }
+            catch (Exception x)
+            {
+                return x.Message.ToString();
+            }
+        }
+
         internal static string DeleteCustomer(string Name)
         {
             try
@@ -198,6 +294,57 @@ namespace firebirdtest
                 DataSet myDataSet = new DataSet();
 
                 FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from Customers Where NAME = '" + Name + "'", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static string GetCustomerName(int ID)
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select NAME from CUSTOMERS WHERE ID = '" + ID.ToString() + "'", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+                if (myDataSet.Tables[0].Rows[0].ItemArray[0].ToString() == "")
+                    return "";
+                return myDataSet.Tables[0].Rows[0].ItemArray[0].ToString();
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static DataSet GetCustomer(int ID)
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from CUSTOMERS WHERE ID = '" + ID.ToString() + "'", myConnection1);
 
                 myDataAdapter.Fill(myDataSet);
                 myConnection1.Close();
@@ -453,6 +600,329 @@ namespace firebirdtest
             return null;
         }
 
+        internal static DataSet GetCategory()
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select CATEGORYNAME from ITEMCATEGORY", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static string AddCategory(System.Windows.Forms.ComboBox ItemCategory_txt)
+        {
+            FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+            try
+            {
+                myConnection1.Open();
+                FbTransaction myTransaction = myConnection1.BeginTransaction();
+                FbCommand myCommand = new FbCommand();
+
+                myCommand.CommandText = "INSERT INTO ITEMCATEGORY (CATEGORYNAME)VALUES(@CATEGORYNAME)";
+                myCommand.Connection = myConnection1;
+                myCommand.Transaction = myTransaction;
+
+
+                myCommand.Parameters.Add("@CATEGORYNAME", FbDbType.VarChar).Value = ItemCategory_txt.Text;
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myCommand.Dispose();
+                myConnection1.Close();
+                return "Category added " + ItemCategory_txt.Text.ToString() + " Added ";
+            }
+            catch (Exception ex)
+            {
+                myConnection1.Close();
+                return ex.Message.ToString();
+            }
+        }
+
+        internal static DataSet GetItemDetails(string FindTable, string FindString)
+        {
+            FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+            DataSet myDataSet = new DataSet();
+            try
+            {
+
+                myConnection1.Open();
+
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from Item where " + FindTable + " = '" + FindString + "'", myConnection1);
+                myDataAdapter.Fill(myDataSet);
+                //myDataSet.Tables[0].Columns["NAME"].ColumnName = "Item Code";
+                myConnection1.Close();
+            }
+            catch (Exception ex)
+            {
+                myConnection1.Close();
+                return null;
+            }
+            return myDataSet;
+        }
+
+        internal static string AddItemQutantity(string ItemName, int ItemQuantity)
+        {
+            try
+            {
+                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
+                deleteConnection.Open();
+
+                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
+                FbCommand deleteCommand = new FbCommand("Update Item set T_QUANTITY = " + ItemQuantity + " where CODE = " + "'" + ItemName + "'", deleteConnection, deleteTransaction);
+
+                deleteCommand.ExecuteNonQuery();
+                deleteTransaction.Commit();
+                deleteConnection.Close();
+                return "Item Quantity Modified to " + ItemQuantity.ToString();
+            }
+            catch (Exception x)
+            {
+                return x.Message.ToString();
+            }
+        }
+
+        internal static DataSet GetItemHistory(string ItemCode)
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from ITEMHISTORY where ITEM_CODE = '" + ItemCode + "'", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static DataSet GetItemSaleHistory(string p)
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT SALE.ID, SALE.QTY, SALE.BILL_ID, SALE.ITEM_CODE, SALE.ITEM_NAME, SALE.PCS_CTN, SALE.T_QUANTITY, SALE.UNITPRICE, SALE.SUBTOTAL, CUSTOMERS.NAME , BILL.DATED from SALE,CUSTOMERS,BILL where ITEM_CODE = '" + p + "' AND CUSTOMERS.ID = SALE.CUSTOMER_ID AND SALE.BILL_ID > 0 AND SALE.BILL_ID = BILL.ID", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static DataSet GetItemShipmentHistory(string p)
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select a.ID, a.SHIP_ID, a.ITEM_CODE, a.T_QUANTITY, a.QTY_PER_BOX, a.MODEL, a.CTN, a.PRICE, a.SUBTOTAL ,b.SHIP_DATE from SHIPMENT_DETAIL a,SHIPMENT b where ITEM_CODE = '" + p + "' AND a.SHIP_ID = b.ID", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static DataSet GetItemsForSale()
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT a.ID, a.QTY_BOX, a.PRICE, ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)) as Quantity, ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)/a.QTY_BOX) as CTN_LEFT, a.CODE, a.MODEL FROM ITEMINVENTORY a where ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)/a.QTY_BOX) > 0", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+
+
+            throw new NotImplementedException();
+        }
+
+        internal static DataSet GetItemsForBill()
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT a.ID, a.QTY_BOX, a.PRICE, a.SHIPCTN, a.SALECTN, a.MODEL, a.CODE FROM ITEMINVENTORY a where (a.SHIPCTN-a.SALECTN) > 0", myConnection1);
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+
+
+            throw new NotImplementedException();
+        }
+
+        internal static int GetItemCount(string ItemCode)
+        {
+            FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+            try
+            {
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT SALECTN, SHIPCTN, SALEQUANTITY, SHIPMENTQUANTITY FROM ITEMINVENTORY WHERE (CODE = '" + ItemCode + "')", myConnection1);
+                //"Select SALEQUANTITY,SHIPMENTQUANTITY from ITEMINVENTORY where CODE = '" + p + "'", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();//=Fields!SHIPCTN.Value- Fields!SALECTN.Value
+                return Convert.ToInt32(myDataSet.Tables[0].Rows[0]["SHIPCTN"]) - Convert.ToInt32(myDataSet.Tables[0].Rows[0]["SALECTN"]);
+            }
+            catch (Exception ex)
+            {
+                myConnection1.Close();
+                return 0;
+            }
+        }
+
+        internal static string ModifyItemPrice(string ItemName, decimal ItemPrice)
+        {
+            try
+            {
+                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
+                deleteConnection.Open();
+
+                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
+                FbCommand deleteCommand = new FbCommand("Update Item set PRICE = " + ItemPrice + " where CODE = " + "'" + ItemName + "'", deleteConnection, deleteTransaction);
+
+                deleteCommand.ExecuteNonQuery();
+                deleteTransaction.Commit();
+                deleteConnection.Close();
+                return "Item Price Modified to " + ItemPrice.ToString();
+            }
+            catch (Exception x)
+            {
+                return x.Message.ToString();
+            }
+        }
+
+        internal static DataSet GetInventoryDetails()
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet ItemDataSet = new DataSet();
+                FbDataAdapter ItemDataAdapter = new FbDataAdapter("Select * from ITEM", myConnection1);
+                ItemDataAdapter.Fill(ItemDataSet);
+                ItemDataSet.Tables[0].Columns.Add("Total Quantity", typeof(string));
+                ItemDataSet.Tables[0].Columns[7].SetOrdinal(2);
+
+                DataSet SaleDataSet = new DataSet();
+                FbDataAdapter SaleDataAdapter = new FbDataAdapter("Select ITEM_CODE, QTY from SALE", myConnection1);// WHERE ITEM_CODE = '" + asdf.ItemArray[1] + "'", myConnection1);
+                SaleDataAdapter.Fill(SaleDataSet);
+
+                DataSet ShipmentDataSet = new DataSet();
+                FbDataAdapter ShipmentDataAdapter = new FbDataAdapter("Select ITEM_CODE, T_QUANTITY from SHIPMENT_DETAIL", myConnection1);// WHERE ITEM_CODE = '" + asdf.ItemArray[1] + "'", myConnection1);
+                ShipmentDataAdapter.Fill(ShipmentDataSet);
+                myConnection1.Close();
+
+                for (int loop = 0; loop < ItemDataSet.Tables[0].Rows.Count; loop++)// DataRow ItemDataRow in ItemDataSet.Tables[0].Rows)
+                {
+                    string SalesCount = "0";
+                    foreach (DataRow SalesRow in SaleDataSet.Tables[0].Rows)
+                    {
+                        if (SalesRow["ITEM_CODE"].Equals(ItemDataSet.Tables[0].Rows[loop]["CODE"]))
+                            SalesCount = SalesRow["QTY"].ToString();
+                    }
+
+                    string ShipmentCount = "0";
+                    foreach (DataRow ShipmentRow in ShipmentDataSet.Tables[0].Rows)
+                    {
+                        if (ShipmentRow["ITEM_CODE"].Equals(ItemDataSet.Tables[0].Rows[loop]["CODE"]))
+                            ShipmentCount = ShipmentRow["T_QUANTITY"].ToString();
+                    }
+
+                    int TotalCount = Convert.ToInt32(ShipmentCount) - Convert.ToInt32(SalesCount);
+                    ItemDataSet.Tables[0].Rows[loop]["Total Quantity"] = TotalCount.ToString();
+                }
+                return ItemDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
         //Consignments
         internal static DataSet GetConsignments()
         {
@@ -539,60 +1009,7 @@ namespace firebirdtest
                 return ex.Message.ToString();
             }
         }
-
-        internal static DataSet GetCategory()
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select CATEGORYNAME from ITEMCATEGORY", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static string AddCategory(System.Windows.Forms.ComboBox ItemCategory_txt)
-        {
-            FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-            try
-            {
-                myConnection1.Open();
-                FbTransaction myTransaction = myConnection1.BeginTransaction();
-                FbCommand myCommand = new FbCommand();
-
-                myCommand.CommandText = "INSERT INTO ITEMCATEGORY (CATEGORYNAME)VALUES(@CATEGORYNAME)";
-                myCommand.Connection = myConnection1;
-                myCommand.Transaction = myTransaction;
-
-
-                myCommand.Parameters.Add("@CATEGORYNAME", FbDbType.VarChar).Value = ItemCategory_txt.Text;
-                myCommand.ExecuteNonQuery();
-                myTransaction.Commit();
-                myCommand.Dispose();
-                myConnection1.Close();
-                return "Category added " + ItemCategory_txt.Text.ToString() + " Added ";
-            }
-            catch (Exception ex)
-            {
-                myConnection1.Close();
-                return ex.Message.ToString();
-            }
-        }
-
+        
         internal static DataSet GetConsignmentDetails()
         {
             try
@@ -679,6 +1096,7 @@ namespace firebirdtest
             }
         }
 
+        //Bill
         internal static int GetNewBillNumber()
         {
             try
@@ -739,6 +1157,166 @@ namespace firebirdtest
             }
         }
 
+        internal static DataSet GetBills()
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT a.ID, b.NAME, a.DATED, a.AMOUNT, a.REMARKS, a.CUSTOMER_BALANCE,a.CUSTOMER_ID  FROM BILL a,CUSTOMERS b where a.CUSTOMER_ID = b.ID ORDER BY ID DESC", myConnection1);//"Select * from BILL ORDER BY ID DESC", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static DataSet GetBill(string BillNumber)
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from BILL where ID = '" + BillNumber + "'", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static string DeleteBill(string BillNumber)
+        {
+            try
+            {
+                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
+                deleteConnection.Open();
+                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
+                FbCommand deleteCommand = new FbCommand("Update BILL set AMOUNT = '" + 0 + "' where ID = " + "'" + BillNumber + "'", deleteConnection, deleteTransaction);
+                deleteCommand.ExecuteNonQuery();
+                deleteTransaction.Commit();
+                deleteConnection.Close();
+                return "Bill Deleted...";
+            }
+            catch (Exception x)
+            {
+                return x.Message.ToString();
+            }
+        }
+
+        internal static string DeleteBillDetails(string BillNumber)
+        {
+            try
+            {
+                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
+                deleteConnection.Open();
+
+                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
+                FbCommand deleteCommand = new FbCommand("Delete From SALE where BILL_ID = " + "'" + BillNumber + "'", deleteConnection, deleteTransaction);
+
+                deleteCommand.ExecuteNonQuery();
+                deleteTransaction.Commit();
+                deleteConnection.Close();
+                return "Bill detail Deleted...";
+            }
+            catch (Exception x)
+            {
+                return x.Message.ToString();
+            }
+        }
+
+        internal static DataSet GetBillsbyCustomer(string CustomerID)
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from BILL where CUSTOMER_ID = '" + CustomerID + "'", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        internal static string ModifyBillAmmount(int BillNumber, decimal CustomerBalance)
+        {
+            try
+            {
+                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
+                deleteConnection.Open();
+                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
+                FbCommand deleteCommand = new FbCommand("Update BILL set AMOUNT = '" + CustomerBalance.ToString() + "',CUSTOMER_BALANCE = '" + CustomerBalance.ToString() + "' where ID = " + "'" + BillNumber.ToString() + "'", deleteConnection, deleteTransaction);
+                deleteCommand.ExecuteNonQuery();
+                deleteTransaction.Commit();
+                deleteConnection.Close();
+                return "Bill Modified...";
+            }
+            catch (Exception x)
+            {
+                return x.Message.ToString();
+            }
+        }
+
+        internal static DataSet GetBillDetails(string BillNumber)
+        {
+            try
+            {
+                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
+                myConnection1.Open();
+
+                DataSet myDataSet = new DataSet();
+
+                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from BILL where ID = '" + BillNumber + "'", myConnection1);
+
+                myDataAdapter.Fill(myDataSet);
+                myConnection1.Close();
+
+                return myDataSet;
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            }
+            return null;
+        }
+
+        //Sale
         internal static string AddSale(decimal UnitPrice, int QTY, int BILL_ID, decimal SUBTOTAL, String ITEM_CODE, string ITEM_NAME, int PCS_CTN, int QUANT, int CUSTOMER_ID)
         {
             try
@@ -816,75 +1394,6 @@ namespace firebirdtest
             return null;
         }
 
-        internal static string ModifyCustomer(int CustomerID, decimal NewBalance)
-        {
-            try
-            {
-                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
-                deleteConnection.Open();
-
-                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
-                FbCommand deleteCommand = new FbCommand("Update Customers set AMOUNT = '" + NewBalance + "' where ID = " + "'" + CustomerID + "'", deleteConnection, deleteTransaction);
-
-                deleteCommand.ExecuteNonQuery();
-                deleteTransaction.Commit();
-                deleteConnection.Close();
-                return "Customer Balance Updated to " + NewBalance;
-            }
-            catch (Exception x)
-            {
-                return x.Message.ToString();
-            }
-        }
-
-        internal static DataSet GetItemDetails(string FindTable, string FindString)
-        {
-            FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-            DataSet myDataSet = new DataSet();
-            try
-            {
-
-                myConnection1.Open();
-
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from Item where " + FindTable + " = '" + FindString + "'", myConnection1);
-                myDataAdapter.Fill(myDataSet);
-                //myDataSet.Tables[0].Columns["NAME"].ColumnName = "Item Code";
-                myConnection1.Close();
-            }
-            catch (Exception ex)
-            {
-                myConnection1.Close();
-                return null;
-            }
-            return myDataSet;
-        }
-
-        internal static DataSet GetBills()
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT a.ID, b.NAME, a.DATED, a.AMOUNT, a.REMARKS, a.CUSTOMER_BALANCE,a.CUSTOMER_ID  FROM BILL a,CUSTOMERS b where a.CUSTOMER_ID = b.ID ORDER BY ID DESC", myConnection1);//"Select * from BILL ORDER BY ID DESC", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
         internal static DataSet GetSale(string Bill_ID)
         {
             try
@@ -910,175 +1419,6 @@ namespace firebirdtest
             return null;
         }
 
-        internal static string GetCustomerName(int ID)
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select NAME from CUSTOMERS WHERE ID = '" + ID.ToString() + "'", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-                if (myDataSet.Tables[0].Rows[0].ItemArray[0].ToString() == "")
-                    return "";
-                return myDataSet.Tables[0].Rows[0].ItemArray[0].ToString();
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static DataSet GetCustomer(int ID)
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from CUSTOMERS WHERE ID = '" + ID.ToString() + "'", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static DataSet GetBill(string BillNumber)
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from BILL where ID = '" + BillNumber + "'", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static DataSet GetInventoryDetails()
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet ItemDataSet = new DataSet();
-                FbDataAdapter ItemDataAdapter = new FbDataAdapter("Select * from ITEM", myConnection1);
-                ItemDataAdapter.Fill(ItemDataSet);
-                ItemDataSet.Tables[0].Columns.Add("Total Quantity", typeof(string));
-                ItemDataSet.Tables[0].Columns[7].SetOrdinal(2);
-
-                DataSet SaleDataSet = new DataSet();
-                FbDataAdapter SaleDataAdapter = new FbDataAdapter("Select ITEM_CODE, QTY from SALE", myConnection1);// WHERE ITEM_CODE = '" + asdf.ItemArray[1] + "'", myConnection1);
-                SaleDataAdapter.Fill(SaleDataSet);
-
-                DataSet ShipmentDataSet = new DataSet();
-                FbDataAdapter ShipmentDataAdapter = new FbDataAdapter("Select ITEM_CODE, T_QUANTITY from SHIPMENT_DETAIL", myConnection1);// WHERE ITEM_CODE = '" + asdf.ItemArray[1] + "'", myConnection1);
-                ShipmentDataAdapter.Fill(ShipmentDataSet);
-                myConnection1.Close();
-
-                for (int loop = 0; loop < ItemDataSet.Tables[0].Rows.Count; loop++)// DataRow ItemDataRow in ItemDataSet.Tables[0].Rows)
-                {
-                    string SalesCount = "0";
-                    foreach (DataRow SalesRow in SaleDataSet.Tables[0].Rows)
-                    {
-                        if (SalesRow["ITEM_CODE"].Equals(ItemDataSet.Tables[0].Rows[loop]["CODE"]))
-                            SalesCount = SalesRow["QTY"].ToString();
-                    }
-
-                    string ShipmentCount = "0";
-                    foreach (DataRow ShipmentRow in ShipmentDataSet.Tables[0].Rows)
-                    {
-                        if (ShipmentRow["ITEM_CODE"].Equals(ItemDataSet.Tables[0].Rows[loop]["CODE"]))
-                            ShipmentCount = ShipmentRow["T_QUANTITY"].ToString();
-                    }
-
-                    int TotalCount = Convert.ToInt32(ShipmentCount) - Convert.ToInt32(SalesCount);
-                    ItemDataSet.Tables[0].Rows[loop]["Total Quantity"] = TotalCount.ToString();
-                }
-                return ItemDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static string ModifyItemPrice(string ItemName, decimal ItemPrice)
-        {
-            try
-            {
-                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
-                deleteConnection.Open();
-
-                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
-                FbCommand deleteCommand = new FbCommand("Update Item set PRICE = " + ItemPrice + " where CODE = " + "'" + ItemName + "'", deleteConnection, deleteTransaction);
-
-                deleteCommand.ExecuteNonQuery();
-                deleteTransaction.Commit();
-                deleteConnection.Close();
-                return "Item Price Modified to " + ItemPrice.ToString();
-            }
-            catch (Exception x)
-            {
-                return x.Message.ToString();
-            }
-        }
-
-        internal static string AddItemQutantity(string ItemName, int ItemQuantity)
-        {
-            try
-            {
-                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
-                deleteConnection.Open();
-
-                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
-                FbCommand deleteCommand = new FbCommand("Update Item set T_QUANTITY = " + ItemQuantity + " where CODE = " + "'" + ItemName + "'", deleteConnection, deleteTransaction);
-
-                deleteCommand.ExecuteNonQuery();
-                deleteTransaction.Commit();
-                deleteConnection.Close();
-                return "Item Quantity Modified to " + ItemQuantity.ToString();
-            }
-            catch (Exception x)
-            {
-                return x.Message.ToString();
-            }
-        }
         internal static string AddVoucherPayment(int CustomerID, DateTime BillDate, Decimal BillTotal, string Remarks, Decimal CustomerBalance)
         {
             int VoucherID = GetNewVoucherNumber();
@@ -1204,69 +1544,6 @@ namespace firebirdtest
             return null;
         }
 
-        internal static string DeleteBill(string BillNumber)
-        {
-            try
-            {
-                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
-                deleteConnection.Open();
-                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
-                FbCommand deleteCommand = new FbCommand("Update BILL set AMOUNT = '" + 0 + "' where ID = " + "'" + BillNumber + "'", deleteConnection, deleteTransaction);
-                deleteCommand.ExecuteNonQuery();
-                deleteTransaction.Commit();
-                deleteConnection.Close();
-                return "Bill Deleted...";
-            }
-            catch (Exception x)
-            {
-                return x.Message.ToString();
-            }
-        }
-
-        internal static string DeleteBillDetails(string BillNumber)
-        {
-            try
-            {
-                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
-                deleteConnection.Open();
-
-                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
-                FbCommand deleteCommand = new FbCommand("Delete From SALE where BILL_ID = " + "'" + BillNumber + "'", deleteConnection, deleteTransaction);
-
-                deleteCommand.ExecuteNonQuery();
-                deleteTransaction.Commit();
-                deleteConnection.Close();
-                return "Bill detail Deleted...";
-            }
-            catch (Exception x)
-            {
-                return x.Message.ToString();
-            }
-        }
-
-        internal static int GetItemCount(string ItemCode)
-        {
-            FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-            try
-            {
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT SALECTN, SHIPCTN, SALEQUANTITY, SHIPMENTQUANTITY FROM ITEMINVENTORY WHERE (CODE = '"+ItemCode+"')", myConnection1);
-                //"Select SALEQUANTITY,SHIPMENTQUANTITY from ITEMINVENTORY where CODE = '" + p + "'", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();//=Fields!SHIPCTN.Value- Fields!SALECTN.Value
-                return Convert.ToInt32(myDataSet.Tables[0].Rows[0]["SHIPCTN"]) - Convert.ToInt32(myDataSet.Tables[0].Rows[0]["SALECTN"]);
-            }
-            catch (Exception ex)
-            {
-                myConnection1.Close();
-                return 0;
-            }
-        }
-
         internal static string ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE)
         {
             try
@@ -1284,31 +1561,6 @@ namespace firebirdtest
             {
                 return x.Message.ToString();
             }
-        }
-
-        internal static DataSet GetItemHistory(string ItemCode)
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from ITEMHISTORY where ITEM_CODE = '" + ItemCode + "'", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
         }
 
         internal static decimal GetCurrentRowBalance(string CustomerID, string Billnumber)
@@ -1345,180 +1597,6 @@ namespace firebirdtest
                 Variables.NotificationStatus = true;
             } return CalulateBalance;
             //            throw new NotImplementedException();
-        }
-
-        internal static DataSet GetBillsbyCustomer(string CustomerID)
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from BILL where CUSTOMER_ID = '" + CustomerID + "'", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static string ModifyBillAmmount(int BillNumber, decimal CustomerBalance)
-        {
-            try
-            {
-                FbConnection deleteConnection = new FbConnection(Variables.DatabaseConnectString);
-                deleteConnection.Open();
-                FbTransaction deleteTransaction = deleteConnection.BeginTransaction();
-                FbCommand deleteCommand = new FbCommand("Update BILL set AMOUNT = '" + CustomerBalance.ToString() + "',CUSTOMER_BALANCE = '" + CustomerBalance.ToString() + "' where ID = " + "'" + BillNumber.ToString() + "'", deleteConnection, deleteTransaction);
-                deleteCommand.ExecuteNonQuery();
-                deleteTransaction.Commit();
-                deleteConnection.Close();
-                return "Bill Modified...";
-            }
-            catch (Exception x)
-            {
-                return x.Message.ToString();
-            }
-        }
-
-        internal static DataSet GetBillDetails(string BillNumber)
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select * from BILL where ID = '" + BillNumber + "'", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static DataSet GetItemSaleHistory(string p)
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT SALE.ID, SALE.QTY, SALE.BILL_ID, SALE.ITEM_CODE, SALE.ITEM_NAME, SALE.PCS_CTN, SALE.T_QUANTITY, SALE.UNITPRICE, SALE.SUBTOTAL, CUSTOMERS.NAME , BILL.DATED from SALE,CUSTOMERS,BILL where ITEM_CODE = '" + p + "' AND CUSTOMERS.ID = SALE.CUSTOMER_ID AND SALE.BILL_ID > 0 AND SALE.BILL_ID = BILL.ID", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static DataSet GetItemShipmentHistory(string p)
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("Select a.ID, a.SHIP_ID, a.ITEM_CODE, a.T_QUANTITY, a.QTY_PER_BOX, a.MODEL, a.CTN, a.PRICE, a.SUBTOTAL ,b.SHIP_DATE from SHIPMENT_DETAIL a,SHIPMENT b where ITEM_CODE = '" + p + "' AND a.SHIP_ID = b.ID", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-        }
-
-        internal static DataSet GetItemsForSale()
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT a.ID, a.QTY_BOX, a.PRICE, ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)) as Quantity, ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)/a.QTY_BOX) as CTN_LEFT, a.CODE, a.MODEL FROM ITEMINVENTORY a where ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)/a.QTY_BOX) > 0", myConnection1);
-
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-
-
-            throw new NotImplementedException();
-        }
-
-        internal static DataSet GetItemsForBill()
-        {
-            try
-            {
-                FbConnection myConnection1 = new FbConnection(Variables.DatabaseConnectString);
-                myConnection1.Open();
-
-                DataSet myDataSet = new DataSet();
-
-                FbDataAdapter myDataAdapter = new FbDataAdapter("SELECT a.ID, a.QTY_BOX, a.PRICE, a.SHIPCTN, a.SALECTN, a.MODEL, a.CODE FROM ITEMINVENTORY a where (a.SHIPCTN-a.SALECTN) > 0", myConnection1);
-                myDataAdapter.Fill(myDataSet);
-                myConnection1.Close();
-
-                return myDataSet;
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = "DB Call";
-                Variables.NotificationStatus = true;
-            }
-            return null;
-
-
-            throw new NotImplementedException();
         }
 
         internal static DataSet Get_Ctn_Bill()

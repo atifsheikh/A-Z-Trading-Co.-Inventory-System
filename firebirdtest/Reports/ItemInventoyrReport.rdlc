@@ -213,7 +213,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>CTN LEFT</Value>
+                              <Value>QTY LEFT</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>11pt</FontSize>
@@ -468,7 +468,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=((Fields!SALEQUANTITY.Value)+(Fields!SHIPMENTQUANTITY.Value))/(Fields!QTY_BOX.Value)</Value>
+                              <Value>=((Fields!SALEQUANTITY.Value)+(Fields!SHIPMENTQUANTITY.Value))</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                               </Style>
@@ -571,7 +571,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Fields!SHIPCTN.Value - Fields!SALECTN.Value) *  Fields!QTY_BOX.Value * Fields!PRICE.Value</Value>
+                              <Value>=(Fields!SHIPMENTQUANTITY.Value - Fields!SALEQUANTITY.Value) * Fields!PRICE.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -680,7 +680,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Total CTN</Value>
+                              <Value>Total QTY</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -715,7 +715,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(((Fields!SALEQUANTITY.Value)+(Fields!SHIPMENTQUANTITY.Value))/(Fields!QTY_BOX.Value))</Value>
+                              <Value>=Sum((Fields!SALEQUANTITY.Value)+(Fields!SHIPMENTQUANTITY.Value))</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>14pt</FontSize>
@@ -822,7 +822,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=SUM(Fields!QTY_BOX.Value*Fields!PRICE.Value*(Fields!SHIPCTN.Value-Fields!SALECTN.Value))</Value>
+                              <Value>=SUM((Fields!SHIPMENTQUANTITY.Value - Fields!SALEQUANTITY.Value) * Fields!PRICE.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>14pt</FontSize>

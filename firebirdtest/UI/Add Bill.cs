@@ -97,7 +97,7 @@ namespace firebirdtest.UI
                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Trim();
                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop].Cells["Model"].Value.ToString().Trim();
                                 Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
-                                RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CTN_LEFT"].Value.ToString();
+                                //RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CTN_LEFT"].Value.ToString();
                                 //Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["INNER_BOX"].Value.ToString();
                                 //Qty_txt.Text = 
                                 //Quant_txt.Text = ItemsDataGridView.Rows[loop].Cells["T_QUANTITY"].Value.ToString();
@@ -880,12 +880,12 @@ namespace firebirdtest.UI
                                     if (ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Equals(ItemCode) == true)
                                     {
                                         MatchFound = true;                //item
-                                        RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Quantity"].Value.ToString();
+                                        //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Quantity"].Value.ToString();
                                         ItemCode_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Trim();
                                         UnitPrice_txt.Text = ItemsDataGridView.Rows[loop2].Cells["PRICE"].Value.ToString().Trim();
                                         ItemName_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Model"].Value.ToString().Trim();
                                         Qty_txt.Text = ItemsDataGridView.Rows[loop2].Cells["QTY_BOX"].Value.ToString();
-                                        RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CTN_LEFT"].Value.ToString();
+                                        //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CTN_LEFT"].Value.ToString();
                                         Ctn_txt.Text = ItemQuantity;
 
                                         EnterDataInGrid(sender, null);
@@ -914,12 +914,12 @@ namespace firebirdtest.UI
                                             if (ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Equals(ItemCode_txt.Text) == true)
                                             {
                                                 MatchFound = true;                //item
-                                                RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Quantity"].Value.ToString();
+                                                //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Quantity"].Value.ToString();
                                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Trim();
                                                 UnitPrice_txt.Text = ItemsDataGridView.Rows[loop2].Cells["PRICE"].Value.ToString().Trim();
                                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Model"].Value.ToString().Trim();
                                                 Qty_txt.Text = ItemsDataGridView.Rows[loop2].Cells["QTY_BOX"].Value.ToString();
-                                                RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CTN_LEFT"].Value.ToString();
+                                                //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CTN_LEFT"].Value.ToString();
                                                 Ctn_txt.Text = ItemQuantity;
 
                                                 EnterDataInGrid(sender, null);
@@ -1673,13 +1673,13 @@ namespace firebirdtest.UI
                         ItemsDataGridView.Visible = false;
                         Ctn_txt.Focus();
                         //                        ItemsDataGridView.Rows
-                        RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["Quantity"].Value.ToString();
+                        //RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["Quantity"].Value.ToString();
                         ItemCode_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CODE"].Value.ToString().Trim();
 
                         UnitPrice_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["PRICE"].Value.ToString().Trim();
                         ItemName_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["Model"].Value.ToString().Trim();
                         Qty_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["QTY_BOX"].Value.ToString();
-                        RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CTN_LEFT"].Value.ToString();
+                        //RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CTN_LEFT"].Value.ToString();
                         //SHIPMENT_ITEM_ID = ItemsDataGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString().Trim();
                     }
                     else

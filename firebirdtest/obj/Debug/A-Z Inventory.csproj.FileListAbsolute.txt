@@ -193,18 +193,9 @@ E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\FirebirdS
 E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Interop.Microsoft.Office.Interop.Excel.dll
 E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Interop.VBIDE.dll
 E:\Development\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\ExcelParse.pdb
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.exe.config
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.exe
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.pdb
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.exe
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.pdb
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\ExcelParse.exe
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Interop.Microsoft.Office.Interop.Excel.dll
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Interop.VBIDE.dll
-E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\ExcelParse.pdb
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.csprojResolveAssemblyReference.cache
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddBill.resources
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddVendor.resources
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ItemHistoryReport.resources
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.ItemHistoryView.resources
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\firebirdtest.UI.AddConsignment.resources
@@ -232,3 +223,16 @@ E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\fire
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.csproj.GenerateResource.Cache
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\RdlCompile.cache
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\RdlCompile.compiled
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.exe.config
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.exe
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\A-Z Inventory.pdb
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\ExcelParse.exe
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Interop.Microsoft.Office.Interop.Excel.dll
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Interop.VBIDE.dll
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\ExcelParse.pdb
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.exe
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Debug\A-Z Inventory.pdb
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Newtonsoft.Json.dll
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Newtonsoft.Json.pdb
+E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\firebirdtest\bin\Debug\Newtonsoft.Json.xml

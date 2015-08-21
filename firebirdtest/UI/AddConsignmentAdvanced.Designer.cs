@@ -53,6 +53,8 @@
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SUBTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.ItemCostPrice_txt = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.ItemCategory_txt = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -96,8 +98,8 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
-            this.ItemCostPrice_txt = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDataGridView)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).BeginInit();
@@ -216,7 +218,7 @@
             // 
             // Price_txt
             // 
-            this.Price_txt.Location = new System.Drawing.Point(572, 119);
+            this.Price_txt.Location = new System.Drawing.Point(821, 119);
             this.Price_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Price_txt.Name = "Price_txt";
             this.Price_txt.Size = new System.Drawing.Size(160, 22);
@@ -227,7 +229,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(524, 123);
+            this.label8.Location = new System.Drawing.Point(773, 123);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 17);
@@ -340,6 +342,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(335, 807);
             this.panel2.TabIndex = 2;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.Location = new System.Drawing.Point(29, 167);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(80, 17);
+            this.label23.TabIndex = 46;
+            this.label23.Text = "Cost Price :";
+            // 
+            // ItemCostPrice_txt
+            // 
+            this.ItemCostPrice_txt.Location = new System.Drawing.Point(115, 163);
+            this.ItemCostPrice_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.ItemCostPrice_txt.Name = "ItemCostPrice_txt";
+            this.ItemCostPrice_txt.Size = new System.Drawing.Size(157, 22);
+            this.ItemCostPrice_txt.TabIndex = 45;
+            this.ItemCostPrice_txt.Text = "0";
             // 
             // button5
             // 
@@ -757,6 +779,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(150)))));
+            this.panel3.Controls.Add(this.textBox2);
+            this.panel3.Controls.Add(this.label24);
             this.panel3.Controls.Add(this.button6);
             this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.label22);
@@ -844,25 +868,24 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // label23
+            // textBox2
             // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(29, 167);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(80, 17);
-            this.label23.TabIndex = 46;
-            this.label23.Text = "Cost Price :";
+            this.textBox2.Location = new System.Drawing.Point(605, 120);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(160, 22);
+            this.textBox2.TabIndex = 76;
             // 
-            // ItemCostPrice_txt
+            // label24
             // 
-            this.ItemCostPrice_txt.Location = new System.Drawing.Point(115, 163);
-            this.ItemCostPrice_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.ItemCostPrice_txt.Name = "ItemCostPrice_txt";
-            this.ItemCostPrice_txt.Size = new System.Drawing.Size(157, 22);
-            this.ItemCostPrice_txt.TabIndex = 45;
-            this.ItemCostPrice_txt.Text = "0";
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Transparent;
+            this.label24.Location = new System.Drawing.Point(525, 123);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(72, 17);
+            this.label24.TabIndex = 77;
+            this.label24.Text = "Cost Price";
             // 
             // AddConsignmentAdvanced
             // 
@@ -966,5 +989,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox ItemCostPrice_txt;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label24;
     }
 }
