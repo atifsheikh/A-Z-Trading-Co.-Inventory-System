@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Base\Category.cs" />
     <Compile Include="Database\Base\Concept.cs" />
     <Compile Include="Database\Sale\BillDetail.cs" />
     <Compile Include="Database\Purchase\Vendor.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="Database\Purchase\ShipmentDetail.cs" />
     <Compile Include="Database\Purchase\Shipment.cs" />
     <Compile Include="Database\Sale\Bill.cs" />
-    <Compile Include="Database\Item.cs" />
+    <Compile Include="Database\Base\Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Starcounter;
+using System;
 
 namespace ThePrimeBaby.Database
 {
@@ -13,5 +14,26 @@ namespace ThePrimeBaby.Database
         public decimal AMOUNT;
         public decimal OPENNING_BALANCE;
         public decimal BALANCE_LIMIT;
+
+        internal static bool AddVendor(string Name, string address, string phone, string email)
+        {
+            try
+            {
+                Db.Transact(() =>
+                {
+                    Vendor vendor = new Vendor();
+                    vendor.NAME = Name;
+                    vendor.ADDRESS = address;
+                    vendor.PHONE = phone;
+                    vendor.EMAIL = email;
+                    vendor.OPENNING_BALANCE = 0;
+                    vendor.BALANCE_LIMIT = 0;
+                });
+                return true;
+            }
+            catch (Exception ex)
+            { return false; }
+
+        }
     }
 }

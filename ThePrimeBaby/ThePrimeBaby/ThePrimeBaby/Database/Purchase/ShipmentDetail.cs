@@ -1,4 +1,6 @@
 ﻿using Starcounter;
+using System;
+using ThePrimeBaby.Database.Base;
 
 namespace ThePrimeBaby.Database
 {
@@ -12,5 +14,18 @@ namespace ThePrimeBaby.Database
         public int CTN;
         public int PRICE;
         public decimal SUBTOTAL;
+
+
+        internal static bool AddConsignmentDetail(string ItemName, string ShipID, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
+        {
+            try
+            {
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
