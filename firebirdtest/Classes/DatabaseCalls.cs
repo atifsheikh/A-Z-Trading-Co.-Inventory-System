@@ -74,12 +74,12 @@ namespace firebirdtest
 
         internal static string GetVendors()
         {
-            return POST("http://localhost:8080/ThePrimeBaby/GetVendor","");
+            return POST("http://OMER:9090/ThePrimeBaby/GetVendor","");
         }
             
         internal static string AddVendor(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
         {
-            return POST("http://localhost:8080/ThePrimeBaby/AddVendor/" + Name + "/" + address + "/" + phone + "/" + email, "");
+            return POST("http://OMER:9090/ThePrimeBaby/AddVendor/" + Name + "/" + address + "/" + phone + "/" + email, "");
         }
 
         //Customer

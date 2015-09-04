@@ -78,18 +78,6 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        internal static bool ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE)
-        {
-            try
-            {
                 Bill BillVoucher = Db.SQL<Bill>("SELECT b FROM Bill b WHERE b.ID = ?", ID).First;
                 Db.Transact(() =>
                 {
