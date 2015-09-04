@@ -1,0 +1,11 @@
+{
+	CustomerVouchers : [{
+		"NAME" : "",
+		"ADDRESS" :"",
+		"PHONE" :"",
+		"EMAIL" :"",
+		"OPENING_BALANCE" :0,
+		"AMOUNT" : 0,
+		"BALANCE_LIMIT" : 0
+	}]
+}

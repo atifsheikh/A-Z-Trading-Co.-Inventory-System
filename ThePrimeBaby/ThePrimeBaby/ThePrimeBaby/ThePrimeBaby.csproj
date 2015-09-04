@@ -77,9 +77,58 @@
     <Compile Include="Database\Base\Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\Handler\Bill.cs" />
+    <Compile Include="Server\Handler\BillDetail.cs" />
+    <Compile Include="Server\Handler\Customer.cs" />
+    <Compile Include="Server\Handler\CustomerVoucher.cs" />
+    <Compile Include="Server\Handler\Item.cs" />
+    <Compile Include="Server\Handler\Shipment.cs" />
+    <Compile Include="Server\Handler\ShipmentDetail.cs" />
+    <Compile Include="Server\Handler\Vendor.cs" />
+    <Compile Include="Server\Handler\VendorVoucher.cs" />
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="CustomerVendor.json">
+    <TypedJSON Include="Server\Partials\CustomerJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\Partials\BillJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\Partials\BillDetailJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\Partials\CustomerVoucherJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\Partials\ItemJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\Partials\ShipmentJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\Partials\ShipmentDetailJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\Partials\VendorVoucherJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\Partials\VendorJson.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

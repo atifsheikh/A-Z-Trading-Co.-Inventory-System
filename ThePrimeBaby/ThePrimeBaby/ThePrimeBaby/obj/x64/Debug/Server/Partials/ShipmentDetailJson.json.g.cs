@@ -1,4 +1,4 @@
-// This is a system generated file (G2). It reflects the Starcounter App Template defined in the file "CustomerVendor.json"
+// This is a system generated file (G2). It reflects the Starcounter App Template defined in the file "Server\Partials\ShipmentDetailJson.json"
 // DO NOT MODIFY DIRECTLY - CHANGES WILL BE OVERWRITTEN
 
 using System;
@@ -16,45 +16,45 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __CuCustomer2__ = global::CustomerVendor.CustomersVendorsElementJson.Input;
-using __Customer1__ = global::CustomerVendor.JsonByExample;
-using __TArray__ = global::Starcounter.Templates.TArray<global::CustomerVendor.CustomersVendorsElementJson>;
-using __CCuBALANCE___ = global::CustomerVendor.CustomersVendorsElementJson.Input.BALANCE_LIMIT;
-using __CCuAMOUNT__ = global::CustomerVendor.CustomersVendorsElementJson.Input.AMOUNT;
-using __CCuOPENING___ = global::CustomerVendor.CustomersVendorsElementJson.Input.OPENING_BALANCE;
-using __CCuEMAIL__ = global::CustomerVendor.CustomersVendorsElementJson.Input.EMAIL;
-using __CCuPHONE__ = global::CustomerVendor.CustomersVendorsElementJson.Input.PHONE;
-using __CCuADDRESS__ = global::CustomerVendor.CustomersVendorsElementJson.Input.ADDRESS;
-using __CCuNAME__ = global::CustomerVendor.CustomersVendorsElementJson.Input.NAME;
-using __Arr__ = global::Starcounter.Arr<global::CustomerVendor.CustomersVendorsElementJson>;
-using __Customer2__ = global::CustomerVendor.Input;
+using __ShShipment2__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input;
+using __Shipment1__ = global::ShipmentDetailJson.JsonByExample;
+using __TArray__ = global::Starcounter.Templates.TArray<global::ShipmentDetailJson.ShipmentDetailsElementJson>;
+using __SShBALANCE___ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.BALANCE_LIMIT;
+using __SShAMOUNT__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.AMOUNT;
+using __SShOPENING___ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.OPENING_BALANCE;
+using __SShEMAIL__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.EMAIL;
+using __SShPHONE__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.PHONE;
+using __SShADDRESS__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.ADDRESS;
+using __SShNAME__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.NAME;
+using __Arr__ = global::Starcounter.Arr<global::ShipmentDetailJson.ShipmentDetailsElementJson>;
+using __Shipment2__ = global::ShipmentDetailJson.Input;
 using __TLong__ = global::Starcounter.Templates.TLong;
 using __TString__ = global::Starcounter.Templates.TString;
-using __CCuSchema__ = global::CustomerVendor.CustomersVendorsElementJson.JsonByExample.Schema;
-using __CuCustomer__ = global::CustomerVendor.CustomersVendorsElementJson;
-using __CuSchema__ = global::CustomerVendor.JsonByExample.Schema;
+using __SShSchema__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.JsonByExample.Schema;
+using __ShShipment__ = global::ShipmentDetailJson.ShipmentDetailsElementJson;
+using __ShSchema__ = global::ShipmentDetailJson.JsonByExample.Schema;
 using __Json1__ = global::Starcounter.Json.JsonByExample;
 using __TObject__ = global::Starcounter.Templates.TObject;
 using __Json__ = global::Starcounter.Json;
-using __Customer__ = global::CustomerVendor;
-using __CuCustomer1__ = global::CustomerVendor.CustomersVendorsElementJson.JsonByExample;
+using __Shipment__ = global::ShipmentDetailJson;
+using __ShShipment1__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.JsonByExample;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
-public class CustomerVendor : __Json__ {
+public class ShipmentDetailJson : __Json__ {
     #line hidden
     [_GEN2_("Starcounter","2.0")]
-    public static __CuSchema__ DefaultTemplate = new __CuSchema__();
+    public static __ShSchema__ DefaultTemplate = new __ShSchema__();
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public CustomerVendor() { }
+    public ShipmentDetailJson() { }
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public CustomerVendor(__CuSchema__ template) { Template = template; }
+    public ShipmentDetailJson(__ShSchema__ template) { Template = template; }
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     protected override _ScTemplate_ GetDefaultTemplate() { return DefaultTemplate; }
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public new __CuSchema__ Template { get { return (__CuSchema__)base.Template; } set { base.Template = value; } }
+    public new __ShSchema__ Template { get { return (__ShSchema__)base.Template; } set { base.Template = value; } }
     public override bool IsCodegenerated { get { return true; } }
-    private __Arr__ __bf__CustomersVendors__;
+    private __Arr__ __bf__ShipmentDetails__;
     #line default
     
     #line hidden
@@ -65,45 +65,45 @@ public class CustomerVendor : __Json__ {
         public class Schema : __TObject__ {
             public Schema()
                 : base() {
-                InstanceType = typeof(__Customer__);
-                ClassName = "CustomerVendor";
+                InstanceType = typeof(__Shipment__);
+                ClassName = "ShipmentDetailJson";
                 Properties.ClearExposed();
-                CustomersVendors = Add<__TArray__>("CustomersVendors");
-                CustomersVendors.SetCustomGetElementType((arr) => { return __CuCustomer__.DefaultTemplate;});
-                CustomersVendors.SetCustomAccessors((_p_) => { return ((__Customer__)_p_).__bf__CustomersVendors__; }, (_p_, _v_) => { ((__Customer__)_p_).__bf__CustomersVendors__ = (__Arr__)_v_; }, false);
+                ShipmentDetails = Add<__TArray__>("ShipmentDetails");
+                ShipmentDetails.SetCustomGetElementType((arr) => { return __ShShipment__.DefaultTemplate;});
+                ShipmentDetails.SetCustomAccessors((_p_) => { return ((__Shipment__)_p_).__bf__ShipmentDetails__; }, (_p_, _v_) => { ((__Shipment__)_p_).__bf__ShipmentDetails__ = (__Arr__)_v_; }, false);
             }
-            public override object CreateInstance(s.Json parent) { return new __Customer__(this) { Parent = parent }; }
-            public __TArray__ CustomersVendors;
+            public override object CreateInstance(s.Json parent) { return new __Shipment__(this) { Parent = parent }; }
+            public __TArray__ ShipmentDetails;
         }
         #line default
     }
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
-    public __Arr__ CustomersVendors {
-#line 11 "CustomerVendor.json"
+    public __Arr__ ShipmentDetails {
+#line 11 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
-        return Template.CustomersVendors.Getter(this); }
-#line 11 "CustomerVendor.json"
+        return Template.ShipmentDetails.Getter(this); }
+#line 11 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
-        Template.CustomersVendors.Setter(this, value); } }
+        Template.ShipmentDetails.Setter(this, value); } }
 #line default
 
     
     #line hidden
-    public class CustomersVendorsElementJson : __Json__ {
+    public class ShipmentDetailsElementJson : __Json__ {
         #line hidden
         [_GEN2_("Starcounter","2.0")]
-        public static __CCuSchema__ DefaultTemplate = new __CCuSchema__();
+        public static __SShSchema__ DefaultTemplate = new __SShSchema__();
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public CustomersVendorsElementJson() { }
+        public ShipmentDetailsElementJson() { }
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public CustomersVendorsElementJson(__CCuSchema__ template) { Template = template; }
+        public ShipmentDetailsElementJson(__SShSchema__ template) { Template = template; }
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         protected override _ScTemplate_ GetDefaultTemplate() { return DefaultTemplate; }
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public new __CCuSchema__ Template { get { return (__CCuSchema__)base.Template; } set { base.Template = value; } }
+        public new __SShSchema__ Template { get { return (__SShSchema__)base.Template; } set { base.Template = value; } }
         public override bool IsCodegenerated { get { return true; } }
         private System.String __bf__NAME__;
         private System.String __bf__ADDRESS__;
@@ -122,32 +122,32 @@ public class CustomerVendor : __Json__ {
             public class Schema : __TObject__ {
                 public Schema()
                     : base() {
-                    InstanceType = typeof(__CuCustomer__);
-                    ClassName = "CustomersVendorsElementJson";
+                    InstanceType = typeof(__ShShipment__);
+                    ClassName = "ShipmentDetailsElementJson";
                     Properties.ClearExposed();
                     NAME = Add<__TString__>("NAME");
                     NAME.DefaultValue = "";
-                    NAME.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
+                    NAME.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
                     ADDRESS = Add<__TString__>("ADDRESS");
                     ADDRESS.DefaultValue = "";
-                    ADDRESS.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__ADDRESS__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__ADDRESS__ = (System.String)_v_; }, false);
+                    ADDRESS.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__ADDRESS__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__ADDRESS__ = (System.String)_v_; }, false);
                     PHONE = Add<__TString__>("PHONE");
                     PHONE.DefaultValue = "";
-                    PHONE.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__PHONE__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__PHONE__ = (System.String)_v_; }, false);
+                    PHONE.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__PHONE__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__PHONE__ = (System.String)_v_; }, false);
                     EMAIL = Add<__TString__>("EMAIL");
                     EMAIL.DefaultValue = "";
-                    EMAIL.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__EMAIL__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__EMAIL__ = (System.String)_v_; }, false);
+                    EMAIL.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__EMAIL__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__EMAIL__ = (System.String)_v_; }, false);
                     OPENING_BALANCE = Add<__TLong__>("OPENING_BALANCE");
                     OPENING_BALANCE.DefaultValue = 0L;
-                    OPENING_BALANCE.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__OPENING_BALANCE__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__OPENING_BALANCE__ = (System.Int64)_v_; }, false);
+                    OPENING_BALANCE.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__OPENING_BALANCE__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__OPENING_BALANCE__ = (System.Int64)_v_; }, false);
                     AMOUNT = Add<__TLong__>("AMOUNT");
                     AMOUNT.DefaultValue = 0L;
-                    AMOUNT.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__AMOUNT__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__AMOUNT__ = (System.Int64)_v_; }, false);
+                    AMOUNT.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__AMOUNT__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__AMOUNT__ = (System.Int64)_v_; }, false);
                     BALANCE_LIMIT = Add<__TLong__>("BALANCE_LIMIT");
                     BALANCE_LIMIT.DefaultValue = 0L;
-                    BALANCE_LIMIT.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__BALANCE_LIMIT__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__BALANCE_LIMIT__ = (System.Int64)_v_; }, false);
+                    BALANCE_LIMIT.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__BALANCE_LIMIT__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__BALANCE_LIMIT__ = (System.Int64)_v_; }, false);
                 }
-                public override object CreateInstance(s.Json parent) { return new __CuCustomer__(this) { Parent = parent }; }
+                public override object CreateInstance(s.Json parent) { return new __ShShipment__(this) { Parent = parent }; }
                 public __TString__ NAME;
                 public __TString__ ADDRESS;
                 public __TString__ PHONE;
@@ -161,11 +161,11 @@ public class CustomerVendor : __Json__ {
         #line default
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String NAME {
-#line 3 "CustomerVendor.json"
+#line 3 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.NAME.Getter(this); }
-#line 3 "CustomerVendor.json"
+#line 3 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.NAME.Setter(this, value); } }
@@ -173,11 +173,11 @@ public class CustomerVendor : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String ADDRESS {
-#line 4 "CustomerVendor.json"
+#line 4 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.ADDRESS.Getter(this); }
-#line 4 "CustomerVendor.json"
+#line 4 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.ADDRESS.Setter(this, value); } }
@@ -185,11 +185,11 @@ public class CustomerVendor : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String PHONE {
-#line 5 "CustomerVendor.json"
+#line 5 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.PHONE.Getter(this); }
-#line 5 "CustomerVendor.json"
+#line 5 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.PHONE.Setter(this, value); } }
@@ -197,11 +197,11 @@ public class CustomerVendor : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String EMAIL {
-#line 6 "CustomerVendor.json"
+#line 6 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.EMAIL.Getter(this); }
-#line 6 "CustomerVendor.json"
+#line 6 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.EMAIL.Setter(this, value); } }
@@ -209,11 +209,11 @@ public class CustomerVendor : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 OPENING_BALANCE {
-#line 7 "CustomerVendor.json"
+#line 7 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.OPENING_BALANCE.Getter(this); }
-#line 7 "CustomerVendor.json"
+#line 7 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.OPENING_BALANCE.Setter(this, value); } }
@@ -221,11 +221,11 @@ public class CustomerVendor : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 AMOUNT {
-#line 8 "CustomerVendor.json"
+#line 8 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.AMOUNT.Getter(this); }
-#line 8 "CustomerVendor.json"
+#line 8 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.AMOUNT.Setter(this, value); } }
@@ -233,11 +233,11 @@ public class CustomerVendor : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 BALANCE_LIMIT {
-#line 10 "CustomerVendor.json"
+#line 10 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.BALANCE_LIMIT.Getter(this); }
-#line 10 "CustomerVendor.json"
+#line 10 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.BALANCE_LIMIT.Setter(this, value); } }
@@ -249,37 +249,37 @@ public class CustomerVendor : __Json__ {
         public static class Input {
             
             #line hidden
-            public class NAME : Input<__CuCustomer__, __TString__, string> {
+            public class NAME : Input<__ShShipment__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class ADDRESS : Input<__CuCustomer__, __TString__, string> {
+            public class ADDRESS : Input<__ShShipment__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class PHONE : Input<__CuCustomer__, __TString__, string> {
+            public class PHONE : Input<__ShShipment__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class EMAIL : Input<__CuCustomer__, __TString__, string> {
+            public class EMAIL : Input<__ShShipment__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class OPENING_BALANCE : Input<__CuCustomer__, __TLong__, long> {
+            public class OPENING_BALANCE : Input<__ShShipment__, __TLong__, long> {
             }
             #line default
             
             #line hidden
-            public class AMOUNT : Input<__CuCustomer__, __TLong__, long> {
+            public class AMOUNT : Input<__ShShipment__, __TLong__, long> {
             }
             #line default
             
             #line hidden
-            public class BALANCE_LIMIT : Input<__CuCustomer__, __TLong__, long> {
+            public class BALANCE_LIMIT : Input<__ShShipment__, __TLong__, long> {
             }
             #line default
         }

@@ -1,5 +1,5 @@
 {
-	CustomersVendors : [{
+	BillDetails : [{
 		"NAME" : "",
 		"ADDRESS" :"",
 		"PHONE" :"",
