@@ -9,6 +9,11 @@ namespace ThePrimeBaby.Database.Base
         {
             try
             {
+                Db.Transact(() => 
+                {
+                    Category category = new Category();
+                    category.Name = ItemCategory;
+                });
                 return true;
             }
             catch (Exception ex)

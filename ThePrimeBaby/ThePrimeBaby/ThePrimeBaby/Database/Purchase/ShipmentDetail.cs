@@ -12,14 +12,26 @@ namespace ThePrimeBaby.Database
         public int QTY_PER_BOX;
         public string MODEL;
         public int CTN;
-        public int PRICE;
+        public decimal PRICE;
         public decimal SUBTOTAL;
 
 
-        internal static bool AddConsignmentDetail(string ItemName, string ShipID, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
+        internal static bool AddConsignmentDetail(Item Item, Shipment Shipment, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
         {
             try
             {
+                Db.Transact(()=>
+                {
+                    ShipmentDetail shipmentDetail = new ShipmentDetail();
+                    shipmentDetail.Item = Item;
+                    shipmentDetail.Shipment = Shipment;
+                    shipmentDetail.T_QUANTITY = T_QUANTITY;
+                    shipmentDetail.QTY_PER_BOX = QTY_PER_BOX;
+                    shipmentDetail.MODEL = MODEL;
+                    shipmentDetail.CTN = CTN;
+                    shipmentDetail.PRICE = PRICE;
+                    shipmentDetail.SUBTOTAL = SUBTOTAL;
+                });
                 return true;
             }
             catch (Exception ex)

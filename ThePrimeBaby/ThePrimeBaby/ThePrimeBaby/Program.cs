@@ -13,7 +13,7 @@ namespace ThePrimeBaby
                 Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Name = ?", Name).First;
                 if (customer == null)
                 {
-                    bool Result = Customer.AddCustomer(Name, address, phone, email);
+                    bool Result = Customer.AddCustomer(Name, address, phone, email,0,0);
                     return 200;
                 }
                 else

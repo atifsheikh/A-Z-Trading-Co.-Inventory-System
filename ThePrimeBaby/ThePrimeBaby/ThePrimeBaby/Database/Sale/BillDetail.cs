@@ -12,12 +12,25 @@ namespace ThePrimeBaby.Database
         public int PCS_CTN;
         public decimal T_QUANTITY;
         public decimal SUBTOTAL;
+        public decimal UNITPRICE;
         public Customer Customer;
 
-        internal static bool AddSale(decimal UnitPrice, int QTY, int BILL_ID, decimal SUBTOTAL, string ITEM_CODE, string ITEM_NAME, int PCS_CTN, int QUANT, int CUSTOMER_ID)
+        internal static bool AddSale(decimal UnitPrice, int QTY, Bill BILL_ID, decimal SUBTOTAL, Item ITEM_CODE, int PCS_CTN, int QUANT, Customer CUSTOMER_ID)
         {
             try
             {
+                Db.Transact(() =>
+                {
+                    BillDetail billDetail = new BillDetail();
+                    billDetail.Bill = BILL_ID;
+                    billDetail.Item = ITEM_CODE;
+                    billDetail.QTY = QTY;
+                    billDetail.PCS_CTN = PCS_CTN;
+                    billDetail.T_QUANTITY =QUANT;
+                    billDetail.UNITPRICE = UnitPrice;
+                    billDetail.SUBTOTAL = SUBTOTAL;
+                    billDetail.Customer = CUSTOMER_ID;
+                });                
                 return true;
             }
             catch (Exception ex)
@@ -31,6 +44,10 @@ namespace ThePrimeBaby.Database
         {
             try
             {
+                Db.Transact(() =>
+                {
+                    Db.SlowSQL("DELETE FROM BillDetail WHERE Bill.BillNumber = ?", BillNumber);
+                });
                 return true;
             }
             catch (Exception ex)

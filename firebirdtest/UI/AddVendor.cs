@@ -203,7 +203,7 @@ namespace firebirdtest.UI
 
         private void AddVendor_FormClosed(object sender, FormClosedEventArgs e)
         {
-Variables.FormClosed = true;
+            Variables.FormClosed = true;
         }
 
         private void CustomerName_txt_KeyDown(object sender, KeyEventArgs e)
