@@ -38,7 +38,7 @@ namespace firebirdtest.UI
                     Variables.NotificationMessageTitle = this.Name;
                     Variables.NotificationMessageText = Result;
                     
-                    var GetVendors = DatabaseCalls.GET("http://OMER:9090/ThePrimeBaby/GetVendors");
+                    var GetVendors = DatabaseCalls.GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVendors");
                     CustomerDataSet = JsonConvert.DeserializeObject<DataSet>(GetVendors);
 
                     CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
@@ -137,7 +137,7 @@ namespace firebirdtest.UI
         {
             try
             {
-                var asdf = DatabaseCalls.GET("http://OMER:9090/ThePrimeBaby/GetVendors");
+                var asdf = DatabaseCalls.GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVendors");
 
                 try
                 {

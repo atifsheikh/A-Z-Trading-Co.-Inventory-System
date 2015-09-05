@@ -21,17 +21,11 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetVendors", (Request r) =>
             {
-                QueryResultRows<Vendor> vendor = Db.SQL<Vendor>("SELECT c FROM Vendor c");
+                QueryResultRows<Database.Vendor> vendor = Db.SQL<Database.Vendor>("SELECT c FROM Vendor c");
                 VendorJson vendorJson = new VendorJson();
                 vendorJson.Vendors.Data = vendor;
                 return vendorJson;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true }); 
-            
-            Handle.GET("/ThePrimeBaby/GetVendors", (Request r) =>
-            {
-                QueryResultRows<Vendor> vendor = Db.SQL<Vendor>("SELECT c FROM Vendor c");
-                return 200;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });             
         }
     }
 }

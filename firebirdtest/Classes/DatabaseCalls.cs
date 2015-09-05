@@ -76,250 +76,249 @@ namespace firebirdtest
         //Vendor
         internal static string GetVendors()
         {
-            return POST("http://OMER:9090/ThePrimeBaby/GetVendor","");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVendor","");
         }
         internal static string AddVendor(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
         {
-            //TODO Send Attributes
-            return POST("http://OMER:9090/ThePrimeBaby/AddVendor/" + Name + "/" + address + "/" + phone + "/" + email, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddVendor/6" , Name + "/" + address + "/" + phone + "/" + email + "/" + ballance_limit+ "/" + opening_balance);
         }
 
         //Customer
         internal static string AddCustomer(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
         {
             //TODO Send Attributes
-            return POST("http://OMER:9090/ThePrimeBaby/AddCustomer/" + Name + "/" + address + "/" + phone + "/" + email, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddCustomer/" + Name + "/" + address + "/" + phone + "/" + email, "");
         }
         internal static string ModifyCustomer(string Find, string Replace)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyCustomer/" + Find+ "/" + Replace, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyCustomer/" + Find+ "/" + Replace, "");
         }
         internal static string ModifyCustomer(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
         {
             //TODO Send Attributes
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyCustomer/" + FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyCustomer/" + FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone, "");
         }
         internal static string ModifyCustomer(int CustomerID, decimal NewBalance)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyCustomer/" + CustomerID + "/" + NewBalance, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyCustomer/" + CustomerID + "/" + NewBalance, "");
         }
         internal static string DeleteCustomer(string Name)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/DeleteCustomer/" + Name, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/DeleteCustomer/" + Name, "");
         }
 
         //Item
         internal static string AddItem(string Name, String Model, int QTY_Box, decimal Price, decimal CostPrice, String ImagePath, string ItemCategory)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyItems/" + Name + "/" + Model + "/" + QTY_Box + "/" + Price, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyItems/" + Name + "/" + Model + "/" + QTY_Box + "/" + Price, "");
         }
 
         internal static string DeleteItem(string Name)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/DeleteItem/" + Name, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/DeleteItem/" + Name, "");
         }
         internal static string ModifyItems(string FindName, string ReplaceName)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyItems/" + FindName + "/" + ReplaceName, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyItems/" + FindName + "/" + ReplaceName, "");
         }
         internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, System.Windows.Forms.PictureBox ReplaceImage, string ItemCategory, int T_Quantity)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyItems/" + FindID + "/" + ReplaceName + "/" + ReplaceModel + "/" + ReplaceQuantity, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyItems/" + FindID + "/" + ReplaceName + "/" + ReplaceModel + "/" + ReplaceQuantity, "");
         }
         internal static string AddCategory(string ItemCategory)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/AddCategory/" + ItemCategory, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddCategory/" + ItemCategory, "");
         }
         internal static string AddItemQutantity(string ItemName, int ItemQuantity)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/AddItemQutantity/" + ItemName + "/" + ItemQuantity, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddItemQutantity/" + ItemName + "/" + ItemQuantity, "");
         }
         internal static string ModifyItemPrice(string ItemName, decimal ItemPrice)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyItemPrice/" + ItemName + "/" + ItemPrice, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyItemPrice/" + ItemName + "/" + ItemPrice, "");
         }
 
         //Consignments
         internal static string AddConsignment(string ConsignmentNumber, DateTime ConsignmentDate)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/AddConsignment/" + ConsignmentNumber + "/" + ConsignmentDate, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddConsignment/" + ConsignmentNumber + "/" + ConsignmentDate, "");
         }
         internal static string ModifyConsignment(string FindID, DateTime ConsignmentDate, string ConsignmentDesc)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyConsignment/" + FindID + "/" + ConsignmentDate + "/" + ConsignmentDesc, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyConsignment/" + FindID + "/" + ConsignmentDate + "/" + ConsignmentDesc, "");
         }
         internal static string AddConsignmentDetail(string ItemName, string ShipID, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/AddConsignmentDetail/" + ItemName + "/" + ShipID + "/" + T_QUANTITY + "/" + QTY_PER_BOX, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddConsignmentDetail/" + ItemName + "/" + ShipID + "/" + T_QUANTITY + "/" + QTY_PER_BOX, "");
         }
 
         //Bill
         internal static string AddBill(int BillNumber, int CustomerID, DateTime BillDate, decimal BillTotal, decimal CustomerBalance, string Remarks)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/AddBill/" + BillNumber + "/" + CustomerID + "/" + BillDate + "/" + BillTotal, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddBill/" + BillNumber + "/" + CustomerID + "/" + BillDate + "/" + BillTotal, "");
         }
         internal static string DeleteBill(string BillNumber)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/DeleteBill/" + BillNumber, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/DeleteBill/" + BillNumber, "");
         }
         internal static string DeleteBillDetails(string BillNumber)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/DeleteBillDetails/" + BillNumber, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/DeleteBillDetails/" + BillNumber, "");
         }
         internal static string ModifyBillAmmount(int BillNumber, decimal CustomerBalance)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyBillAmmount/" + BillNumber + "/" + CustomerBalance, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyBillAmmount/" + BillNumber + "/" + CustomerBalance, "");
         }
 
         //Sale
         internal static string AddSale(decimal UnitPrice, int QTY, int BILL_ID, decimal SUBTOTAL, String ITEM_CODE, string ITEM_NAME, int PCS_CTN, int QUANT, int CUSTOMER_ID)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/AddSale/" + UnitPrice + "/" + QTY + "/" + BILL_ID + "/" + SUBTOTAL, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddSale/" + UnitPrice + "/" + QTY + "/" + BILL_ID + "/" + SUBTOTAL, "");
         }
         internal static string AddVoucherPayment(int CustomerID, DateTime BillDate, Decimal BillTotal, string Remarks, Decimal CustomerBalance)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/AddVoucherPayment/" + CustomerID + "/" + BillDate + "/" + BillTotal + "/" + Remarks + "/" + CustomerBalance, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddVoucherPayment/" + CustomerID + "/" + BillDate + "/" + BillTotal + "/" + Remarks + "/" + CustomerBalance, "");
         }
         internal static string ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/ModifyVoucher/" + ID + "/" + UpdateAmount + "/" + UpdateCUSTOMER_BALANCE, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyVoucher/" + ID + "/" + UpdateAmount + "/" + UpdateCUSTOMER_BALANCE, "");
         }
 
         //Get Calls
         internal static string GetCurrentRowBalance(string CustomerID, string Billnumber)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/GetCurrentRowBalance/" + CustomerID + "/" + Billnumber, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCurrentRowBalance/" + CustomerID + "/" + Billnumber, "");
         }
         internal static DataSet GetLedger(string CustomerID)
         {
-            string Result =  POST("http://OMER:9090/ThePrimeBaby/GetLedger/" + CustomerID, "");
+            string Result =  POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetLedger/" + CustomerID, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetVouchers()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetVouchers", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVouchers", "");
             return JsonToDataSet(Result);
         }
         internal static DataSet Get_Ctn_Bill()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/Get_Ctn_Bill", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/Get_Ctn_Bill", "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetCustomers()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetCustomers", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCustomers", "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetCustomer(String Name)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetCustomer/" + Name, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCustomer/" + Name, "");
             return JsonToDataSet(Result);
         }
         internal static string GetCustomerName(int ID)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/GetCustomerName/" + ID, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCustomerName/" + ID, "");
         }
         internal static DataSet GetCustomer(int ID)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetCustomer/" + ID, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCustomer/" + ID, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetItems()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetItems" , "");
+            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItems");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetItems(String ItemField)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetItems/"+ItemField, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItems/"+ItemField, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetCategory()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetCategory", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCategory", "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetItemDetails(string FindTable, string FindString)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetItemDetails/" + FindTable + "/" + FindString, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemDetails/" + FindTable + "/" + FindString, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetItemHistory(string ItemCode)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetItemHistory/" + ItemCode, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemHistory/" + ItemCode, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetItemSaleHistory(string p)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetItemSaleHistory/" + p, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemSaleHistory/" + p, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetItemShipmentHistory(string p)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetItemShipmentHistory/" + p, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemShipmentHistory/" + p, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetItemsForSale()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetItemsForSale", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemsForSale", "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetItemsForBill()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetItemsForBill" , "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemsForBill" , "");
             return JsonToDataSet(Result);
         }
         internal static string GetItemCount(string ItemCode)
         {
-            return POST("http://OMER:9090/ThePrimeBaby/GetItemCount/" + ItemCode, "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemCount/" + ItemCode, "");
         }
         internal static DataSet GetInventoryDetails()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetInventoryDetails", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetInventoryDetails", "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetConsignments()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetConsignments", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetConsignments", "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetConsignmentDetails()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetConsignmentDetails", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetConsignmentDetails", "");
             return JsonToDataSet(Result);
         }
         internal static string GetNewBillNumber()
         {
-            return POST("http://OMER:9090/ThePrimeBaby/GetNewBillNumber" , "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetNewBillNumber" , "");
         }
         internal static DataSet GetBills()
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetBills", "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetBills", "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetBill(string BillNumber)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetBill/" + BillNumber, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetBill/" + BillNumber, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetBillsbyCustomer(string CustomerID)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetBillsbyCustomer/" + CustomerID, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetBillsbyCustomer/" + CustomerID, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetBillDetails(string BillNumber)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetBillDetails/" + BillNumber, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetBillDetails/" + BillNumber, "");
             return JsonToDataSet(Result);
         }
         internal static DataSet GetSale(string Bill_ID)
         {
-            string Result = POST("http://OMER:9090/ThePrimeBaby/GetSale/" + Bill_ID, "");
+            string Result = POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetSale/" + Bill_ID, "");
             return JsonToDataSet(Result);
         }
         internal static string GetNewVoucherNumber()
         {
-            return POST("http://OMER:9090/ThePrimeBaby/GetNewVoucherNumber", "");
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetNewVoucherNumber", "");
         }
 
         internal static DataSet JsonToDataSet(string jsonText)

@@ -7,11 +7,11 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
-            Handle.GET("/ThePrimeBaby/GetVendors", (Request r) =>
-            {
-                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM Database.BillDetail bd");
-                return 200;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+            //Handle.GET("/ThePrimeBaby/GetVendors", (Request r) =>
+            //{
+            //    QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM Database.BillDetail bd");
+            //    return 200;
+            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
 }

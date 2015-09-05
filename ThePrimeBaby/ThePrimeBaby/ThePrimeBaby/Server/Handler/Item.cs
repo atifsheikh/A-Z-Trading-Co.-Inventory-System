@@ -7,10 +7,12 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
-            Handle.GET("/ThePrimeBaby/GetVendors", (Request r) =>
+            Handle.GET("/ThePrimeBaby/GetItems", (Request r) =>
             {
-                QueryResultRows<Database.Base.Item> item = Db.SQL<Database.Base.Item>("SELECT c FROM Database.Base.Item c");
-                return 200;
+                QueryResultRows<Database.Base.Item> item = Db.SQL<Database.Base.Item>("SELECT i FROM Item i");
+                ItemJson itemJson = new ItemJson();
+                itemJson.Items.Data = item;
+                return itemJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
