@@ -1,11 +1,14 @@
 {
 	BillDetails : [{
-		"NAME" : "",
-		"ADDRESS" :"",
-		"PHONE" :"",
-		"EMAIL" :"",
-		"OPENING_BALANCE" :0,
-		"AMOUNT" : 0,
-		"BALANCE_LIMIT" : 0
+		"ID" : 0,
+		"Name" : "",
+		"QTY" : 0,
+        "PCS_CTN" : 0,
+        "T_QUANTITY" : 0.0,
+        "SUBTOTAL" : 0.0,
+        "UNITPRICE" : 0.0,
+        "Customer" : "",
+		"Item":"",
+		"Bill":""
 	}]
 }

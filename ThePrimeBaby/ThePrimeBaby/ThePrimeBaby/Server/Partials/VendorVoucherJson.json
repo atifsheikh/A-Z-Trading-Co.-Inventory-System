@@ -1,11 +1,11 @@
 {
 	VendorVouchers : [{
-		"NAME" : "",
-		"ADDRESS" :"",
-		"PHONE" :"",
-		"EMAIL" :"",
-		"OPENING_BALANCE" :0,
-		"AMOUNT" : 0,
-		"BALANCE_LIMIT" : 0
+		"ID" : 0,
+		"Name" : "",
+		"Vendor":"",
+        "VOUCHER_DATE":"",
+        "AMOUNT":0.0,
+        "REMARKS":"",
+        "CUSTOMER_BALANCE":0.0
 	}]
 }

@@ -49,7 +49,7 @@ namespace firebirdtest.UI
                 try
                 {
                     int Result1 = 0;
-                    Result1 = DatabaseCalls.GetNewBillNumber();
+                    Result1 = Convert.ToInt32(DatabaseCalls.GetNewBillNumber());
                     BillNumber_txt.Text = (++Result1).ToString();
                 }
                 catch (Exception ex)
@@ -1431,7 +1431,7 @@ namespace firebirdtest.UI
             try
             {
                 NewBillNumber = 0;
-                NewBillNumber = DatabaseCalls.GetNewBillNumber();
+                NewBillNumber = Convert.ToInt32(DatabaseCalls.GetNewBillNumber());
                 NewBillNumber++;
             }
             catch (Exception ex)

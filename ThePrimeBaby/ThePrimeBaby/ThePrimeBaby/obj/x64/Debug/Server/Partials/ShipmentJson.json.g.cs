@@ -16,20 +16,18 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __ShShipment2__ = global::ShipmentJson.ShipmentsElementJson.Input;
+using __ShShipment1__ = global::ShipmentJson.ShipmentsElementJson.JsonByExample;
 using __Shipment1__ = global::ShipmentJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::ShipmentJson.ShipmentsElementJson>;
-using __SShBALANCE___ = global::ShipmentJson.ShipmentsElementJson.Input.BALANCE_LIMIT;
-using __SShAMOUNT__ = global::ShipmentJson.ShipmentsElementJson.Input.AMOUNT;
-using __SShOPENING___ = global::ShipmentJson.ShipmentsElementJson.Input.OPENING_BALANCE;
-using __SShEMAIL__ = global::ShipmentJson.ShipmentsElementJson.Input.EMAIL;
-using __SShPHONE__ = global::ShipmentJson.ShipmentsElementJson.Input.PHONE;
-using __SShADDRESS__ = global::ShipmentJson.ShipmentsElementJson.Input.ADDRESS;
-using __SShNAME__ = global::ShipmentJson.ShipmentsElementJson.Input.NAME;
+using __SShVendor__ = global::ShipmentJson.ShipmentsElementJson.Input.Vendor;
+using __SShDESCRIPT__ = global::ShipmentJson.ShipmentsElementJson.Input.DESCRIPTION;
+using __SShSHIP_DAT__ = global::ShipmentJson.ShipmentsElementJson.Input.SHIP_DATE;
+using __SShName__ = global::ShipmentJson.ShipmentsElementJson.Input.Name;
+using __SShID__ = global::ShipmentJson.ShipmentsElementJson.Input.ID;
+using __ShShipment2__ = global::ShipmentJson.ShipmentsElementJson.Input;
 using __Arr__ = global::Starcounter.Arr<global::ShipmentJson.ShipmentsElementJson>;
 using __Shipment2__ = global::ShipmentJson.Input;
 using __TLong__ = global::Starcounter.Templates.TLong;
-using __TString__ = global::Starcounter.Templates.TString;
 using __SShSchema__ = global::ShipmentJson.ShipmentsElementJson.JsonByExample.Schema;
 using __ShShipment__ = global::ShipmentJson.ShipmentsElementJson;
 using __ShSchema__ = global::ShipmentJson.JsonByExample.Schema;
@@ -37,7 +35,7 @@ using __Json1__ = global::Starcounter.Json.JsonByExample;
 using __TObject__ = global::Starcounter.Templates.TObject;
 using __Json__ = global::Starcounter.Json;
 using __Shipment__ = global::ShipmentJson;
-using __ShShipment1__ = global::ShipmentJson.ShipmentsElementJson.JsonByExample;
+using __TString__ = global::Starcounter.Templates.TString;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -80,11 +78,11 @@ public class ShipmentJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Shipments {
-#line 11 "Server\Partials\ShipmentJson.json"
+#line 9 "Server\Partials\ShipmentJson.json"
     get {
 #line hidden
         return Template.Shipments.Getter(this); }
-#line 11 "Server\Partials\ShipmentJson.json"
+#line 9 "Server\Partials\ShipmentJson.json"
     set {
 #line hidden
         Template.Shipments.Setter(this, value); } }
@@ -105,13 +103,11 @@ public class ShipmentJson : __Json__ {
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public new __SShSchema__ Template { get { return (__SShSchema__)base.Template; } set { base.Template = value; } }
         public override bool IsCodegenerated { get { return true; } }
-        private System.String __bf__NAME__;
-        private System.String __bf__ADDRESS__;
-        private System.String __bf__PHONE__;
-        private System.String __bf__EMAIL__;
-        private System.Int64 __bf__OPENING_BALANCE__;
-        private System.Int64 __bf__AMOUNT__;
-        private System.Int64 __bf__BALANCE_LIMIT__;
+        private System.Int64 __bf__ID__;
+        private System.String __bf__Name__;
+        private System.String __bf__SHIP_DATE__;
+        private System.String __bf__DESCRIPTION__;
+        private System.String __bf__Vendor__;
         #line default
         
         #line hidden
@@ -125,122 +121,90 @@ public class ShipmentJson : __Json__ {
                     InstanceType = typeof(__ShShipment__);
                     ClassName = "ShipmentsElementJson";
                     Properties.ClearExposed();
-                    NAME = Add<__TString__>("NAME");
-                    NAME.DefaultValue = "";
-                    NAME.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
-                    ADDRESS = Add<__TString__>("ADDRESS");
-                    ADDRESS.DefaultValue = "";
-                    ADDRESS.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__ADDRESS__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__ADDRESS__ = (System.String)_v_; }, false);
-                    PHONE = Add<__TString__>("PHONE");
-                    PHONE.DefaultValue = "";
-                    PHONE.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__PHONE__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__PHONE__ = (System.String)_v_; }, false);
-                    EMAIL = Add<__TString__>("EMAIL");
-                    EMAIL.DefaultValue = "";
-                    EMAIL.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__EMAIL__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__EMAIL__ = (System.String)_v_; }, false);
-                    OPENING_BALANCE = Add<__TLong__>("OPENING_BALANCE");
-                    OPENING_BALANCE.DefaultValue = 0L;
-                    OPENING_BALANCE.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__OPENING_BALANCE__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__OPENING_BALANCE__ = (System.Int64)_v_; }, false);
-                    AMOUNT = Add<__TLong__>("AMOUNT");
-                    AMOUNT.DefaultValue = 0L;
-                    AMOUNT.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__AMOUNT__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__AMOUNT__ = (System.Int64)_v_; }, false);
-                    BALANCE_LIMIT = Add<__TLong__>("BALANCE_LIMIT");
-                    BALANCE_LIMIT.DefaultValue = 0L;
-                    BALANCE_LIMIT.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__BALANCE_LIMIT__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__BALANCE_LIMIT__ = (System.Int64)_v_; }, false);
+                    ID = Add<__TLong__>("ID");
+                    ID.DefaultValue = 0L;
+                    ID.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
+                    Name = Add<__TString__>("Name");
+                    Name.DefaultValue = "";
+                    Name.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__Name__ = (System.String)_v_; }, false);
+                    SHIP_DATE = Add<__TString__>("SHIP_DATE");
+                    SHIP_DATE.DefaultValue = "";
+                    SHIP_DATE.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__SHIP_DATE__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__SHIP_DATE__ = (System.String)_v_; }, false);
+                    DESCRIPTION = Add<__TString__>("DESCRIPTION");
+                    DESCRIPTION.DefaultValue = "";
+                    DESCRIPTION.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__DESCRIPTION__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__DESCRIPTION__ = (System.String)_v_; }, false);
+                    Vendor = Add<__TString__>("Vendor");
+                    Vendor.DefaultValue = "";
+                    Vendor.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__Vendor__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__Vendor__ = (System.String)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __ShShipment__(this) { Parent = parent }; }
-                public __TString__ NAME;
-                public __TString__ ADDRESS;
-                public __TString__ PHONE;
-                public __TString__ EMAIL;
-                public __TLong__ OPENING_BALANCE;
-                public __TLong__ AMOUNT;
-                public __TLong__ BALANCE_LIMIT;
+                public __TLong__ ID;
+                public __TString__ Name;
+                public __TString__ SHIP_DATE;
+                public __TString__ DESCRIPTION;
+                public __TString__ Vendor;
             }
             #line default
         }
         #line default
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String NAME {
+        public System.Int64 ID {
 #line 3 "Server\Partials\ShipmentJson.json"
     get {
 #line hidden
-        return Template.NAME.Getter(this); }
+        return Template.ID.Getter(this); }
 #line 3 "Server\Partials\ShipmentJson.json"
     set {
 #line hidden
-        Template.NAME.Setter(this, value); } }
+        Template.ID.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String ADDRESS {
+        public System.String Name {
 #line 4 "Server\Partials\ShipmentJson.json"
     get {
 #line hidden
-        return Template.ADDRESS.Getter(this); }
+        return Template.Name.Getter(this); }
 #line 4 "Server\Partials\ShipmentJson.json"
     set {
 #line hidden
-        Template.ADDRESS.Setter(this, value); } }
+        Template.Name.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String PHONE {
+        public System.String SHIP_DATE {
 #line 5 "Server\Partials\ShipmentJson.json"
     get {
 #line hidden
-        return Template.PHONE.Getter(this); }
+        return Template.SHIP_DATE.Getter(this); }
 #line 5 "Server\Partials\ShipmentJson.json"
     set {
 #line hidden
-        Template.PHONE.Setter(this, value); } }
+        Template.SHIP_DATE.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String EMAIL {
+        public System.String DESCRIPTION {
 #line 6 "Server\Partials\ShipmentJson.json"
     get {
 #line hidden
-        return Template.EMAIL.Getter(this); }
+        return Template.DESCRIPTION.Getter(this); }
 #line 6 "Server\Partials\ShipmentJson.json"
     set {
 #line hidden
-        Template.EMAIL.Setter(this, value); } }
+        Template.DESCRIPTION.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 OPENING_BALANCE {
-#line 7 "Server\Partials\ShipmentJson.json"
-    get {
-#line hidden
-        return Template.OPENING_BALANCE.Getter(this); }
-#line 7 "Server\Partials\ShipmentJson.json"
-    set {
-#line hidden
-        Template.OPENING_BALANCE.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 AMOUNT {
+        public System.String Vendor {
 #line 8 "Server\Partials\ShipmentJson.json"
     get {
 #line hidden
-        return Template.AMOUNT.Getter(this); }
+        return Template.Vendor.Getter(this); }
 #line 8 "Server\Partials\ShipmentJson.json"
     set {
 #line hidden
-        Template.AMOUNT.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 BALANCE_LIMIT {
-#line 10 "Server\Partials\ShipmentJson.json"
-    get {
-#line hidden
-        return Template.BALANCE_LIMIT.Getter(this); }
-#line 10 "Server\Partials\ShipmentJson.json"
-    set {
-#line hidden
-        Template.BALANCE_LIMIT.Setter(this, value); } }
+        Template.Vendor.Setter(this, value); } }
 #line default
 
         
@@ -249,37 +213,27 @@ public class ShipmentJson : __Json__ {
         public static class Input {
             
             #line hidden
-            public class NAME : Input<__ShShipment__, __TString__, string> {
+            public class ID : Input<__ShShipment__, __TLong__, long> {
             }
             #line default
             
             #line hidden
-            public class ADDRESS : Input<__ShShipment__, __TString__, string> {
+            public class Name : Input<__ShShipment__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class PHONE : Input<__ShShipment__, __TString__, string> {
+            public class SHIP_DATE : Input<__ShShipment__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class EMAIL : Input<__ShShipment__, __TString__, string> {
+            public class DESCRIPTION : Input<__ShShipment__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class OPENING_BALANCE : Input<__ShShipment__, __TLong__, long> {
-            }
-            #line default
-            
-            #line hidden
-            public class AMOUNT : Input<__ShShipment__, __TLong__, long> {
-            }
-            #line default
-            
-            #line hidden
-            public class BALANCE_LIMIT : Input<__ShShipment__, __TLong__, long> {
+            public class Vendor : Input<__ShShipment__, __TString__, string> {
             }
             #line default
         }

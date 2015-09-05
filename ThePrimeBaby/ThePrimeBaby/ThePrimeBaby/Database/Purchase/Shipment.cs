@@ -5,12 +5,11 @@ namespace ThePrimeBaby.Database
 {
     public class Shipment : Concept
     {
-        public string ID;
         public DateTime SHIP_DATE;
         public string DESCRIPTION;
         public Vendor Vendor;
 
-        internal static bool AddConsignment(string ConsignmentNumber, DateTime ConsignmentDate)
+        internal static bool AddConsignment(int ConsignmentNumber, DateTime ConsignmentDate)
         {
             try
             {

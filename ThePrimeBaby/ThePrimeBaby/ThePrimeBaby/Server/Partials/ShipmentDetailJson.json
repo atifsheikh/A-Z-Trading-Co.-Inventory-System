@@ -1,11 +1,14 @@
 {
 	ShipmentDetails : [{
-		"NAME" : "",
-		"ADDRESS" :"",
-		"PHONE" :"",
-		"EMAIL" :"",
-		"OPENING_BALANCE" :0,
-		"AMOUNT" : 0,
-		"BALANCE_LIMIT" : 0
+		"ID" : 0,
+		"Name" : "",
+		"Shipment":"",
+        "Item":"",
+        "T_QUANTITY":0,
+        "QTY_PER_BOX":0,
+        "MODEL":"",
+        "CTN":0,
+        "PRICE":0.0,
+        "SUBTOTAL":0.0
 	}]
 }

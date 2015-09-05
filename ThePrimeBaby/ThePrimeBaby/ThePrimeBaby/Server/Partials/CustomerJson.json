@@ -1,11 +1,12 @@
 {
 	Customers : [{
-		"NAME" : "",
+		"ID" : 0,
+		"Name" : "",
 		"ADDRESS" :"",
-		"PHONE" :"",
-		"EMAIL" :"",
-		"OPENING_BALANCE" :0,
-		"AMOUNT" : 0,
-		"BALANCE_LIMIT" : 0
+        "EMAIL":"",
+        "PHONE":"",
+        "AMOUNT":0.0,
+        "OPENNING_BALANCE" : 0.0,
+        "BALANCE_LIMIT":0.0
 	}]
 }

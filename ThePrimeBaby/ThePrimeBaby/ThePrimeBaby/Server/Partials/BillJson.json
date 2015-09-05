@@ -1,11 +1,12 @@
 {
 	Bills : [{
-		"NAME" : "",
-		"ADDRESS" :"",
-		"PHONE" :"",
-		"EMAIL" :"",
-		"OPENING_BALANCE" :0,
-		"AMOUNT" : 0,
-		"BALANCE_LIMIT" : 0
+		"ID" : 0,
+		"Name" : "",
+		"CUSTOMER" : "",
+        "DATED" : "",
+        "AMOUNT" : 0.0,
+        "REMARKS" : "",
+        "CUSTOMER_BALANCE" : 0.0,
+        "BillNumber" : 0
 	}]
 }

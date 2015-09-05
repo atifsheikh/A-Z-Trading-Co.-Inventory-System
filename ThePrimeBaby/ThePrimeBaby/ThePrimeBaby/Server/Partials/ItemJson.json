@@ -1,11 +1,14 @@
 {
 	Items : [{
-		"NAME" : "",
-		"ADDRESS" :"",
-		"PHONE" :"",
-		"EMAIL" :"",
-		"OPENING_BALANCE" :0,
-		"AMOUNT" : 0,
-		"BALANCE_LIMIT" : 0
+		"ID" : 0,
+		"Name" : "",
+		"QTY_BOX":0,
+        "COSTPRICE":0.0,
+        "PRICE":0.0,
+        "IMAGE":"",
+        "MODEL":"",
+        "CODE":"",
+        "T_QUANTITY":0,
+        "Category":""
 	}]
 }

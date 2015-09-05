@@ -217,7 +217,7 @@ namespace firebirdtest.UI
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string Result = DatabaseCalls.AddCategory(ItemCategory_txt);
+            string Result = DatabaseCalls.AddCategory(ItemCategory_txt.Text);
             if (Result.StartsWith("Category added") != true)
             {
                 Variables.NotificationStatus = true;

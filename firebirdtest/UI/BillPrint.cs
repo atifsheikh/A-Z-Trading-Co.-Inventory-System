@@ -146,7 +146,7 @@ namespace firebirdtest.UI
 
                 ReportParameter[] _ReportParameter = new ReportParameter[8];
                 String CustomerID = BillDataGridView.CurrentRow.Cells["CUSTOMER_ID"].Value.ToString();
-                decimal CalculatedBalance = DatabaseCalls.GetCurrentRowBalance(CustomerID, BillNumberSearch_txt.Text);
+                decimal CalculatedBalance = Convert.ToDecimal(DatabaseCalls.GetCurrentRowBalance(CustomerID, BillNumberSearch_txt.Text));
                 foreach (DataRow GridViewColumn in BillDataSet.Tables[0].Rows)
                 {
                     _ReportParameter[0] = new ReportParameter("BillNumber", BillNumberSearch_txt.Text);

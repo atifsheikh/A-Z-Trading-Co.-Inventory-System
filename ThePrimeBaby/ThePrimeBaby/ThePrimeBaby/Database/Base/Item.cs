@@ -20,7 +20,7 @@ namespace ThePrimeBaby.Database.Base
             {
                 Db.Transact(() => {
                     Item item = new Item();
-                    item.Name = Name;
+                    item.NAME = Name;
                     item.MODEL = Model;
                     item.QTY_BOX = QTY_Box;
                     item.PRICE = Price;
@@ -58,7 +58,7 @@ namespace ThePrimeBaby.Database.Base
                 Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Name = ?",FindName).First;
                 Db.Transact(() => 
                 {
-                    item.Name = ReplaceName;
+                    item.NAME = ReplaceName;
                 });
                 return true;
             }

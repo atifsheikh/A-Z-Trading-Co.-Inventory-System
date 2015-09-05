@@ -31,7 +31,7 @@ namespace firebirdtest.UI
                 {
                     String Result = DatabaseCalls.AddCustomer(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text));
                     string[] CustomerID = Result.Split('=');
-                    DatabaseCalls.AddBill(DatabaseCalls.GetNewBillNumber()+1, Convert.ToInt32(CustomerID[1].Trim()), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
+                    DatabaseCalls.AddBill(Convert.ToInt32(DatabaseCalls.GetNewBillNumber()+1), Convert.ToInt32(CustomerID[1].Trim()), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
                         Variables.NotificationStatus = true;
                         Variables.NotificationMessageTitle = this.Name;
                         Variables.NotificationMessageText = Result;

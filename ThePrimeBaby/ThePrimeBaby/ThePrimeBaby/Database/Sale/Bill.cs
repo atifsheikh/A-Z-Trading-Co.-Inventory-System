@@ -10,8 +10,7 @@ namespace ThePrimeBaby.Database
         public decimal AMOUNT;
         public string REMARKS;
         public decimal CUSTOMER_BALANCE;
-        public decimal BillNumber;
-        public int ID;
+        public int BillNumber;
 
         internal static bool AddBill(Customer Customer, DateTime BillDate, decimal BillTotal, decimal CustomerBalance, string Remarks)
         {

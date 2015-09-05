@@ -12,7 +12,7 @@ namespace ThePrimeBaby.Database.Base
                 Db.Transact(() => 
                 {
                     Category category = new Category();
-                    category.Name = ItemCategory;
+                    category.NAME = ItemCategory;
                 });
                 return true;
             }

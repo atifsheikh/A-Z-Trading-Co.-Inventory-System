@@ -19,17 +19,19 @@ using _ScTemplate_=Starcounter.Templates.Template;
 using __BiBillsEle2__ = global::BillJson.BillsElementJson.Input;
 using __BillJson1__ = global::BillJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::BillJson.BillsElementJson>;
-using __BBiBALANCE___ = global::BillJson.BillsElementJson.Input.BALANCE_LIMIT;
+using __BBiBillNumb__ = global::BillJson.BillsElementJson.Input.BillNumber;
+using __BBiCUSTOMER1__ = global::BillJson.BillsElementJson.Input.CUSTOMER_BALANCE;
+using __BBiREMARKS__ = global::BillJson.BillsElementJson.Input.REMARKS;
 using __BBiAMOUNT__ = global::BillJson.BillsElementJson.Input.AMOUNT;
-using __BBiOPENING___ = global::BillJson.BillsElementJson.Input.OPENING_BALANCE;
-using __BBiEMAIL__ = global::BillJson.BillsElementJson.Input.EMAIL;
-using __BBiPHONE__ = global::BillJson.BillsElementJson.Input.PHONE;
-using __BBiADDRESS__ = global::BillJson.BillsElementJson.Input.ADDRESS;
-using __BBiNAME__ = global::BillJson.BillsElementJson.Input.NAME;
+using __BBiDATED__ = global::BillJson.BillsElementJson.Input.DATED;
+using __BBiCUSTOMER__ = global::BillJson.BillsElementJson.Input.CUSTOMER;
+using __BBiName__ = global::BillJson.BillsElementJson.Input.Name;
+using __BBiID__ = global::BillJson.BillsElementJson.Input.ID;
 using __Arr__ = global::Starcounter.Arr<global::BillJson.BillsElementJson>;
 using __BillJson2__ = global::BillJson.Input;
-using __TLong__ = global::Starcounter.Templates.TLong;
+using __TDecimal__ = global::Starcounter.Templates.TDecimal;
 using __TString__ = global::Starcounter.Templates.TString;
+using __TLong__ = global::Starcounter.Templates.TLong;
 using __BBiSchema__ = global::BillJson.BillsElementJson.JsonByExample.Schema;
 using __BiBillsEle__ = global::BillJson.BillsElementJson;
 using __BiSchema__ = global::BillJson.JsonByExample.Schema;
@@ -80,11 +82,11 @@ public class BillJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Bills {
-#line 11 "Server\Partials\BillJson.json"
+#line 12 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.Bills.Getter(this); }
-#line 11 "Server\Partials\BillJson.json"
+#line 12 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.Bills.Setter(this, value); } }
@@ -105,13 +107,14 @@ public class BillJson : __Json__ {
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public new __BBiSchema__ Template { get { return (__BBiSchema__)base.Template; } set { base.Template = value; } }
         public override bool IsCodegenerated { get { return true; } }
-        private System.String __bf__NAME__;
-        private System.String __bf__ADDRESS__;
-        private System.String __bf__PHONE__;
-        private System.String __bf__EMAIL__;
-        private System.Int64 __bf__OPENING_BALANCE__;
-        private System.Int64 __bf__AMOUNT__;
-        private System.Int64 __bf__BALANCE_LIMIT__;
+        private System.Int64 __bf__ID__;
+        private System.String __bf__Name__;
+        private System.String __bf__CUSTOMER__;
+        private System.String __bf__DATED__;
+        private System.Decimal __bf__AMOUNT__;
+        private System.String __bf__REMARKS__;
+        private System.Decimal __bf__CUSTOMER_BALANCE__;
+        private System.Int64 __bf__BillNumber__;
         #line default
         
         #line hidden
@@ -125,122 +128,138 @@ public class BillJson : __Json__ {
                     InstanceType = typeof(__BiBillsEle__);
                     ClassName = "BillsElementJson";
                     Properties.ClearExposed();
-                    NAME = Add<__TString__>("NAME");
-                    NAME.DefaultValue = "";
-                    NAME.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
-                    ADDRESS = Add<__TString__>("ADDRESS");
-                    ADDRESS.DefaultValue = "";
-                    ADDRESS.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__ADDRESS__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__ADDRESS__ = (System.String)_v_; }, false);
-                    PHONE = Add<__TString__>("PHONE");
-                    PHONE.DefaultValue = "";
-                    PHONE.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__PHONE__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__PHONE__ = (System.String)_v_; }, false);
-                    EMAIL = Add<__TString__>("EMAIL");
-                    EMAIL.DefaultValue = "";
-                    EMAIL.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__EMAIL__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__EMAIL__ = (System.String)_v_; }, false);
-                    OPENING_BALANCE = Add<__TLong__>("OPENING_BALANCE");
-                    OPENING_BALANCE.DefaultValue = 0L;
-                    OPENING_BALANCE.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__OPENING_BALANCE__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__OPENING_BALANCE__ = (System.Int64)_v_; }, false);
-                    AMOUNT = Add<__TLong__>("AMOUNT");
-                    AMOUNT.DefaultValue = 0L;
-                    AMOUNT.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__AMOUNT__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__AMOUNT__ = (System.Int64)_v_; }, false);
-                    BALANCE_LIMIT = Add<__TLong__>("BALANCE_LIMIT");
-                    BALANCE_LIMIT.DefaultValue = 0L;
-                    BALANCE_LIMIT.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__BALANCE_LIMIT__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__BALANCE_LIMIT__ = (System.Int64)_v_; }, false);
+                    ID = Add<__TLong__>("ID");
+                    ID.DefaultValue = 0L;
+                    ID.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
+                    Name = Add<__TString__>("Name");
+                    Name.DefaultValue = "";
+                    Name.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__Name__ = (System.String)_v_; }, false);
+                    CUSTOMER = Add<__TString__>("CUSTOMER");
+                    CUSTOMER.DefaultValue = "";
+                    CUSTOMER.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__CUSTOMER__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__CUSTOMER__ = (System.String)_v_; }, false);
+                    DATED = Add<__TString__>("DATED");
+                    DATED.DefaultValue = "";
+                    DATED.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__DATED__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__DATED__ = (System.String)_v_; }, false);
+                    AMOUNT = Add<__TDecimal__>("AMOUNT");
+                    AMOUNT.DefaultValue = 0.0m;
+                    AMOUNT.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__AMOUNT__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__AMOUNT__ = (System.Decimal)_v_; }, false);
+                    REMARKS = Add<__TString__>("REMARKS");
+                    REMARKS.DefaultValue = "";
+                    REMARKS.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__REMARKS__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__REMARKS__ = (System.String)_v_; }, false);
+                    CUSTOMER_BALANCE = Add<__TDecimal__>("CUSTOMER_BALANCE");
+                    CUSTOMER_BALANCE.DefaultValue = 0.0m;
+                    CUSTOMER_BALANCE.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__CUSTOMER_BALANCE__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__CUSTOMER_BALANCE__ = (System.Decimal)_v_; }, false);
+                    BillNumber = Add<__TLong__>("BillNumber");
+                    BillNumber.DefaultValue = 0L;
+                    BillNumber.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__BillNumber__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__BillNumber__ = (System.Int64)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __BiBillsEle__(this) { Parent = parent }; }
-                public __TString__ NAME;
-                public __TString__ ADDRESS;
-                public __TString__ PHONE;
-                public __TString__ EMAIL;
-                public __TLong__ OPENING_BALANCE;
-                public __TLong__ AMOUNT;
-                public __TLong__ BALANCE_LIMIT;
+                public __TLong__ ID;
+                public __TString__ Name;
+                public __TString__ CUSTOMER;
+                public __TString__ DATED;
+                public __TDecimal__ AMOUNT;
+                public __TString__ REMARKS;
+                public __TDecimal__ CUSTOMER_BALANCE;
+                public __TLong__ BillNumber;
             }
             #line default
         }
         #line default
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String NAME {
+        public System.Int64 ID {
 #line 3 "Server\Partials\BillJson.json"
     get {
 #line hidden
-        return Template.NAME.Getter(this); }
+        return Template.ID.Getter(this); }
 #line 3 "Server\Partials\BillJson.json"
     set {
 #line hidden
-        Template.NAME.Setter(this, value); } }
+        Template.ID.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String ADDRESS {
+        public System.String Name {
 #line 4 "Server\Partials\BillJson.json"
     get {
 #line hidden
-        return Template.ADDRESS.Getter(this); }
+        return Template.Name.Getter(this); }
 #line 4 "Server\Partials\BillJson.json"
     set {
 #line hidden
-        Template.ADDRESS.Setter(this, value); } }
+        Template.Name.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String PHONE {
+        public System.String CUSTOMER {
 #line 5 "Server\Partials\BillJson.json"
     get {
 #line hidden
-        return Template.PHONE.Getter(this); }
+        return Template.CUSTOMER.Getter(this); }
 #line 5 "Server\Partials\BillJson.json"
     set {
 #line hidden
-        Template.PHONE.Setter(this, value); } }
+        Template.CUSTOMER.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String EMAIL {
+        public System.String DATED {
 #line 6 "Server\Partials\BillJson.json"
     get {
 #line hidden
-        return Template.EMAIL.Getter(this); }
+        return Template.DATED.Getter(this); }
 #line 6 "Server\Partials\BillJson.json"
     set {
 #line hidden
-        Template.EMAIL.Setter(this, value); } }
+        Template.DATED.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 OPENING_BALANCE {
+        public System.Decimal AMOUNT {
 #line 7 "Server\Partials\BillJson.json"
-    get {
-#line hidden
-        return Template.OPENING_BALANCE.Getter(this); }
-#line 7 "Server\Partials\BillJson.json"
-    set {
-#line hidden
-        Template.OPENING_BALANCE.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 AMOUNT {
-#line 8 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.AMOUNT.Getter(this); }
-#line 8 "Server\Partials\BillJson.json"
+#line 7 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.AMOUNT.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 BALANCE_LIMIT {
-#line 10 "Server\Partials\BillJson.json"
+        public System.String REMARKS {
+#line 8 "Server\Partials\BillJson.json"
     get {
 #line hidden
-        return Template.BALANCE_LIMIT.Getter(this); }
-#line 10 "Server\Partials\BillJson.json"
+        return Template.REMARKS.Getter(this); }
+#line 8 "Server\Partials\BillJson.json"
     set {
 #line hidden
-        Template.BALANCE_LIMIT.Setter(this, value); } }
+        Template.REMARKS.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.Decimal CUSTOMER_BALANCE {
+#line 9 "Server\Partials\BillJson.json"
+    get {
+#line hidden
+        return Template.CUSTOMER_BALANCE.Getter(this); }
+#line 9 "Server\Partials\BillJson.json"
+    set {
+#line hidden
+        Template.CUSTOMER_BALANCE.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.Int64 BillNumber {
+#line 11 "Server\Partials\BillJson.json"
+    get {
+#line hidden
+        return Template.BillNumber.Getter(this); }
+#line 11 "Server\Partials\BillJson.json"
+    set {
+#line hidden
+        Template.BillNumber.Setter(this, value); } }
 #line default
 
         
@@ -249,37 +268,42 @@ public class BillJson : __Json__ {
         public static class Input {
             
             #line hidden
-            public class NAME : Input<__BiBillsEle__, __TString__, string> {
+            public class ID : Input<__BiBillsEle__, __TLong__, long> {
             }
             #line default
             
             #line hidden
-            public class ADDRESS : Input<__BiBillsEle__, __TString__, string> {
+            public class Name : Input<__BiBillsEle__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class PHONE : Input<__BiBillsEle__, __TString__, string> {
+            public class CUSTOMER : Input<__BiBillsEle__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class EMAIL : Input<__BiBillsEle__, __TString__, string> {
+            public class DATED : Input<__BiBillsEle__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class OPENING_BALANCE : Input<__BiBillsEle__, __TLong__, long> {
+            public class AMOUNT : Input<__BiBillsEle__, __TDecimal__, Decimal> {
             }
             #line default
             
             #line hidden
-            public class AMOUNT : Input<__BiBillsEle__, __TLong__, long> {
+            public class REMARKS : Input<__BiBillsEle__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class BALANCE_LIMIT : Input<__BiBillsEle__, __TLong__, long> {
+            public class CUSTOMER_BALANCE : Input<__BiBillsEle__, __TDecimal__, Decimal> {
+            }
+            #line default
+            
+            #line hidden
+            public class BillNumber : Input<__BiBillsEle__, __TLong__, long> {
             }
             #line default
         }

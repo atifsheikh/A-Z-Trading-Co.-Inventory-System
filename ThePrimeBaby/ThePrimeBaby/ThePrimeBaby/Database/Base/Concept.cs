@@ -5,7 +5,9 @@ namespace ThePrimeBaby.Database
     [Database]
     public class Concept
     {
-        public string Name;
+        public int ID;
+
+        public string NAME;
         public string ObId { get { return DbHelper.GetObjectID(this); } }
     }
 }

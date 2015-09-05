@@ -20,16 +20,18 @@ using __CuCustomer2__ = global::CustomerJson.CustomersElementJson.Input;
 using __Customer1__ = global::CustomerJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::CustomerJson.CustomersElementJson>;
 using __CCuBALANCE___ = global::CustomerJson.CustomersElementJson.Input.BALANCE_LIMIT;
+using __CCuOPENNING__ = global::CustomerJson.CustomersElementJson.Input.OPENNING_BALANCE;
 using __CCuAMOUNT__ = global::CustomerJson.CustomersElementJson.Input.AMOUNT;
-using __CCuOPENING___ = global::CustomerJson.CustomersElementJson.Input.OPENING_BALANCE;
-using __CCuEMAIL__ = global::CustomerJson.CustomersElementJson.Input.EMAIL;
 using __CCuPHONE__ = global::CustomerJson.CustomersElementJson.Input.PHONE;
+using __CCuEMAIL__ = global::CustomerJson.CustomersElementJson.Input.EMAIL;
 using __CCuADDRESS__ = global::CustomerJson.CustomersElementJson.Input.ADDRESS;
-using __CCuNAME__ = global::CustomerJson.CustomersElementJson.Input.NAME;
+using __CCuName__ = global::CustomerJson.CustomersElementJson.Input.Name;
+using __CCuID__ = global::CustomerJson.CustomersElementJson.Input.ID;
 using __Arr__ = global::Starcounter.Arr<global::CustomerJson.CustomersElementJson>;
 using __Customer2__ = global::CustomerJson.Input;
-using __TLong__ = global::Starcounter.Templates.TLong;
+using __TDecimal__ = global::Starcounter.Templates.TDecimal;
 using __TString__ = global::Starcounter.Templates.TString;
+using __TLong__ = global::Starcounter.Templates.TLong;
 using __CCuSchema__ = global::CustomerJson.CustomersElementJson.JsonByExample.Schema;
 using __CuCustomer__ = global::CustomerJson.CustomersElementJson;
 using __CuSchema__ = global::CustomerJson.JsonByExample.Schema;
@@ -80,11 +82,11 @@ public class CustomerJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Customers {
-#line 11 "Server\Partials\CustomerJson.json"
+#line 12 "Server\Partials\CustomerJson.json"
     get {
 #line hidden
         return Template.Customers.Getter(this); }
-#line 11 "Server\Partials\CustomerJson.json"
+#line 12 "Server\Partials\CustomerJson.json"
     set {
 #line hidden
         Template.Customers.Setter(this, value); } }
@@ -105,13 +107,14 @@ public class CustomerJson : __Json__ {
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public new __CCuSchema__ Template { get { return (__CCuSchema__)base.Template; } set { base.Template = value; } }
         public override bool IsCodegenerated { get { return true; } }
-        private System.String __bf__NAME__;
+        private System.Int64 __bf__ID__;
+        private System.String __bf__Name__;
         private System.String __bf__ADDRESS__;
-        private System.String __bf__PHONE__;
         private System.String __bf__EMAIL__;
-        private System.Int64 __bf__OPENING_BALANCE__;
-        private System.Int64 __bf__AMOUNT__;
-        private System.Int64 __bf__BALANCE_LIMIT__;
+        private System.String __bf__PHONE__;
+        private System.Decimal __bf__AMOUNT__;
+        private System.Decimal __bf__OPENNING_BALANCE__;
+        private System.Decimal __bf__BALANCE_LIMIT__;
         #line default
         
         #line hidden
@@ -125,74 +128,78 @@ public class CustomerJson : __Json__ {
                     InstanceType = typeof(__CuCustomer__);
                     ClassName = "CustomersElementJson";
                     Properties.ClearExposed();
-                    NAME = Add<__TString__>("NAME");
-                    NAME.DefaultValue = "";
-                    NAME.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
+                    ID = Add<__TLong__>("ID");
+                    ID.DefaultValue = 0L;
+                    ID.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
+                    Name = Add<__TString__>("Name");
+                    Name.DefaultValue = "";
+                    Name.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__Name__ = (System.String)_v_; }, false);
                     ADDRESS = Add<__TString__>("ADDRESS");
                     ADDRESS.DefaultValue = "";
                     ADDRESS.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__ADDRESS__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__ADDRESS__ = (System.String)_v_; }, false);
-                    PHONE = Add<__TString__>("PHONE");
-                    PHONE.DefaultValue = "";
-                    PHONE.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__PHONE__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__PHONE__ = (System.String)_v_; }, false);
                     EMAIL = Add<__TString__>("EMAIL");
                     EMAIL.DefaultValue = "";
                     EMAIL.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__EMAIL__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__EMAIL__ = (System.String)_v_; }, false);
-                    OPENING_BALANCE = Add<__TLong__>("OPENING_BALANCE");
-                    OPENING_BALANCE.DefaultValue = 0L;
-                    OPENING_BALANCE.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__OPENING_BALANCE__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__OPENING_BALANCE__ = (System.Int64)_v_; }, false);
-                    AMOUNT = Add<__TLong__>("AMOUNT");
-                    AMOUNT.DefaultValue = 0L;
-                    AMOUNT.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__AMOUNT__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__AMOUNT__ = (System.Int64)_v_; }, false);
-                    BALANCE_LIMIT = Add<__TLong__>("BALANCE_LIMIT");
-                    BALANCE_LIMIT.DefaultValue = 0L;
-                    BALANCE_LIMIT.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__BALANCE_LIMIT__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__BALANCE_LIMIT__ = (System.Int64)_v_; }, false);
+                    PHONE = Add<__TString__>("PHONE");
+                    PHONE.DefaultValue = "";
+                    PHONE.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__PHONE__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__PHONE__ = (System.String)_v_; }, false);
+                    AMOUNT = Add<__TDecimal__>("AMOUNT");
+                    AMOUNT.DefaultValue = 0.0m;
+                    AMOUNT.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__AMOUNT__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__AMOUNT__ = (System.Decimal)_v_; }, false);
+                    OPENNING_BALANCE = Add<__TDecimal__>("OPENNING_BALANCE");
+                    OPENNING_BALANCE.DefaultValue = 0.0m;
+                    OPENNING_BALANCE.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__OPENNING_BALANCE__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__OPENNING_BALANCE__ = (System.Decimal)_v_; }, false);
+                    BALANCE_LIMIT = Add<__TDecimal__>("BALANCE_LIMIT");
+                    BALANCE_LIMIT.DefaultValue = 0.0m;
+                    BALANCE_LIMIT.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__BALANCE_LIMIT__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__BALANCE_LIMIT__ = (System.Decimal)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __CuCustomer__(this) { Parent = parent }; }
-                public __TString__ NAME;
+                public __TLong__ ID;
+                public __TString__ Name;
                 public __TString__ ADDRESS;
-                public __TString__ PHONE;
                 public __TString__ EMAIL;
-                public __TLong__ OPENING_BALANCE;
-                public __TLong__ AMOUNT;
-                public __TLong__ BALANCE_LIMIT;
+                public __TString__ PHONE;
+                public __TDecimal__ AMOUNT;
+                public __TDecimal__ OPENNING_BALANCE;
+                public __TDecimal__ BALANCE_LIMIT;
             }
             #line default
         }
         #line default
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String NAME {
+        public System.Int64 ID {
 #line 3 "Server\Partials\CustomerJson.json"
     get {
 #line hidden
-        return Template.NAME.Getter(this); }
+        return Template.ID.Getter(this); }
 #line 3 "Server\Partials\CustomerJson.json"
     set {
 #line hidden
-        Template.NAME.Setter(this, value); } }
+        Template.ID.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.String Name {
+#line 4 "Server\Partials\CustomerJson.json"
+    get {
+#line hidden
+        return Template.Name.Getter(this); }
+#line 4 "Server\Partials\CustomerJson.json"
+    set {
+#line hidden
+        Template.Name.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String ADDRESS {
-#line 4 "Server\Partials\CustomerJson.json"
+#line 5 "Server\Partials\CustomerJson.json"
     get {
 #line hidden
         return Template.ADDRESS.Getter(this); }
-#line 4 "Server\Partials\CustomerJson.json"
+#line 5 "Server\Partials\CustomerJson.json"
     set {
 #line hidden
         Template.ADDRESS.Setter(this, value); } }
-#line default
-
-        [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String PHONE {
-#line 5 "Server\Partials\CustomerJson.json"
-    get {
-#line hidden
-        return Template.PHONE.Getter(this); }
-#line 5 "Server\Partials\CustomerJson.json"
-    set {
-#line hidden
-        Template.PHONE.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -208,19 +215,19 @@ public class CustomerJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 OPENING_BALANCE {
+        public System.String PHONE {
 #line 7 "Server\Partials\CustomerJson.json"
     get {
 #line hidden
-        return Template.OPENING_BALANCE.Getter(this); }
+        return Template.PHONE.Getter(this); }
 #line 7 "Server\Partials\CustomerJson.json"
     set {
 #line hidden
-        Template.OPENING_BALANCE.Setter(this, value); } }
+        Template.PHONE.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 AMOUNT {
+        public System.Decimal AMOUNT {
 #line 8 "Server\Partials\CustomerJson.json"
     get {
 #line hidden
@@ -232,12 +239,24 @@ public class CustomerJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Int64 BALANCE_LIMIT {
-#line 10 "Server\Partials\CustomerJson.json"
+        public System.Decimal OPENNING_BALANCE {
+#line 9 "Server\Partials\CustomerJson.json"
+    get {
+#line hidden
+        return Template.OPENNING_BALANCE.Getter(this); }
+#line 9 "Server\Partials\CustomerJson.json"
+    set {
+#line hidden
+        Template.OPENNING_BALANCE.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.Decimal BALANCE_LIMIT {
+#line 11 "Server\Partials\CustomerJson.json"
     get {
 #line hidden
         return Template.BALANCE_LIMIT.Getter(this); }
-#line 10 "Server\Partials\CustomerJson.json"
+#line 11 "Server\Partials\CustomerJson.json"
     set {
 #line hidden
         Template.BALANCE_LIMIT.Setter(this, value); } }
@@ -249,7 +268,12 @@ public class CustomerJson : __Json__ {
         public static class Input {
             
             #line hidden
-            public class NAME : Input<__CuCustomer__, __TString__, string> {
+            public class ID : Input<__CuCustomer__, __TLong__, long> {
+            }
+            #line default
+            
+            #line hidden
+            public class Name : Input<__CuCustomer__, __TString__, string> {
             }
             #line default
             
@@ -259,27 +283,27 @@ public class CustomerJson : __Json__ {
             #line default
             
             #line hidden
-            public class PHONE : Input<__CuCustomer__, __TString__, string> {
-            }
-            #line default
-            
-            #line hidden
             public class EMAIL : Input<__CuCustomer__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class OPENING_BALANCE : Input<__CuCustomer__, __TLong__, long> {
+            public class PHONE : Input<__CuCustomer__, __TString__, string> {
             }
             #line default
             
             #line hidden
-            public class AMOUNT : Input<__CuCustomer__, __TLong__, long> {
+            public class AMOUNT : Input<__CuCustomer__, __TDecimal__, Decimal> {
             }
             #line default
             
             #line hidden
-            public class BALANCE_LIMIT : Input<__CuCustomer__, __TLong__, long> {
+            public class OPENNING_BALANCE : Input<__CuCustomer__, __TDecimal__, Decimal> {
+            }
+            #line default
+            
+            #line hidden
+            public class BALANCE_LIMIT : Input<__CuCustomer__, __TDecimal__, Decimal> {
             }
             #line default
         }

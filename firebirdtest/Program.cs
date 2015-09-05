@@ -15,10 +15,6 @@ namespace firebirdtest
         [STAThread]
         static void Main()
         {
-            //string after = "2013-05-01";
-            //DateTime dateAfter = Convert.ToDateTime(after);
-            //Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
-            //DateTime.TryParseExact(after, "yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out dateAfter);
             try
             {
                 if (Directory.Exists("ItemImages") == false)

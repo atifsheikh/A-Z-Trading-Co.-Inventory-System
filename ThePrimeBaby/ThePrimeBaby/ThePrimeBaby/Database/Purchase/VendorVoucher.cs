@@ -10,7 +10,6 @@ namespace ThePrimeBaby.Database
         public decimal AMOUNT;
         public string REMARKS;
         public decimal CUSTOMER_BALANCE;
-        public int ID;
 
         internal static bool AddVoucherPayment(Vendor CustomerID, DateTime BillDate, Decimal BillTotal, string Remarks, Decimal CustomerBalance)
         {

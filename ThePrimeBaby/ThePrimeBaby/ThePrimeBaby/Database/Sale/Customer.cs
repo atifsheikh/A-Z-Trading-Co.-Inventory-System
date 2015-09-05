@@ -19,7 +19,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     Customer customer = new Customer();
-                    customer.Name = Name;
+                    customer.NAME = Name;
                     customer.ADDRESS = address;
                     customer.PHONE = phone;
                     customer.EMAIL = email;
@@ -40,7 +40,7 @@ namespace ThePrimeBaby.Database
             {
                 Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Name = ?",Find).First;
                 Db.Transact(() => {
-                    customer.Name = Replace;
+                    customer.NAME = Replace;
                 });
                 return true;
             }
@@ -57,7 +57,7 @@ namespace ThePrimeBaby.Database
                 Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Obid = ?", FindID).First;
                 Db.Transact(() =>
                 {
-                    customer.Name = ReplaceName;
+                    customer.NAME = ReplaceName;
                     customer.ADDRESS = ReplaceAddress;
                     customer.PHONE = ReplacePhone;
                     customer.EMAIL = ReplaceEmail;
