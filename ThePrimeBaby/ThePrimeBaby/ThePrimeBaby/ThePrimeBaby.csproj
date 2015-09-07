@@ -79,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\Handler\Bill.cs" />
     <Compile Include="Server\Handler\BillDetail.cs" />
+    <Compile Include="Server\Handler\Category.cs" />
     <Compile Include="Server\Handler\Customer.cs" />
     <Compile Include="Server\Handler\CustomerVoucher.cs" />
     <Compile Include="Server\Handler\Item.cs" />

@@ -35,10 +35,6 @@ namespace firebirdtest.UI
                 CustomerNameDataGridView.Columns["EMAIL"].Visible = false;
                 CustomerNameDataGridView.Columns["PHONE"].Visible = false;
                 CustomerNameDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
-                //foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                //{
-                //    CustomerName_txt.Items.Add(GridViewColumn.ItemArray[1]);
-                //}
             }
             catch (Exception ex)
             {
@@ -70,7 +66,7 @@ namespace firebirdtest.UI
                 LedgerDataSet.Tables[0].Columns.Add("TotalCtn");
                 LedgerDataSet.Tables[0].Columns.Add("Calculator");
 
-                for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
+                for (int loop = 0; LedgerDataSet.Tables.Count > 0 && loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
                 {
                     if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) > -1)
                     {
@@ -83,7 +79,7 @@ namespace firebirdtest.UI
                             }
                         }
 
-                        for (int loop1 = 0; loop1 < Ctn_Bill_DataSet.Tables[0].Rows.Count; loop1++)
+                        for (int loop1 = 0; Ctn_Bill_DataSet.Tables.Count> 0 && loop1 < Ctn_Bill_DataSet.Tables[0].Rows.Count; loop1++)
                         {
                             if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["BillNo"]) == Convert.ToInt32(Ctn_Bill_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
                             {
@@ -255,55 +251,56 @@ namespace firebirdtest.UI
 
                 
                 DataSet CustomerDataSet1 = DatabaseCalls.GetCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value));
-
-                if (CustomerDataSet1.Tables[0].Rows.Count == 0)
+                if (CustomerDataSet1.Tables.Count > 0)
                 {
-                    Variables.NotificationStatus = true;
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = "No Customer Found";
-                    return;
+                    if (CustomerDataSet1.Tables[0].Rows.Count == 0)
+                    {
+                        Variables.NotificationStatus = true;
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = "No Customer Found";
+                        return;
+                    }
+                    decimal CustomerNewBalance = Convert.ToDecimal(CustomerDataSet1.Tables[0].Rows[0]["AMOUNT"]);
+                    CustomerNewBalance += UpdateAmount;
+
+
+                    //atif work here
+                    DatabaseCalls.ModifyCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value), CustomerNewBalance);
+                    //CustomerDataSet1 = DatabaseCalls.GetCustomers();//.GetCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value));
+                    DatabaseCalls.ModifyVoucher(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["BillNo"].Value), NewAmount, CustomerNewBalance);
+                    LedgerGridView.Rows[e.RowIndex].Cells["Amount"].Value = NewAmount;
+                    RemainingBalance_txt.Text = CustomerBalance_txt.Text = CustomerNewBalance.ToString();
+                    VoucherRemarks_txt.Focus();
                 }
-                decimal CustomerNewBalance = Convert.ToDecimal(CustomerDataSet1.Tables[0].Rows[0]["AMOUNT"]);
-                CustomerNewBalance += UpdateAmount;
-
-
-                //atif work here
-                DatabaseCalls.ModifyCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value), CustomerNewBalance);
-                //CustomerDataSet1 = DatabaseCalls.GetCustomers();//.GetCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value));
-                DatabaseCalls.ModifyVoucher(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["BillNo"].Value), NewAmount, CustomerNewBalance);
-                LedgerGridView.Rows[e.RowIndex].Cells["Amount"].Value = NewAmount;
-                RemainingBalance_txt.Text =  CustomerBalance_txt.Text = CustomerNewBalance.ToString();
-                VoucherRemarks_txt.Focus();
                 //Bill Detail
                 try
                 {
                     LedgerDataSet = DatabaseCalls.GetLedger("All");
-                    LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "BillNo";
-
-                    LedgerDataSet.Tables[0].Columns.Add("Customer");
-
-                    for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
+                    if (LedgerDataSet.Tables.Count > 0)
                     {
-                        if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) > -1)
+                        LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "BillNo";
+
+                        LedgerDataSet.Tables[0].Columns.Add("Customer");
+
+                        for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
                         {
-                            for (int loop1 = 0; loop1 < CustomerDataSet.Tables[0].Rows.Count; loop1++)
+                            if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) > -1)
                             {
-                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"]) == Convert.ToInt32(CustomerDataSet.Tables[0].Rows[loop1]["ID"]))
+                                for (int loop1 = 0; loop1 < CustomerDataSet.Tables[0].Rows.Count; loop1++)
                                 {
-                                    if (LedgerDataSet.Tables[0].Rows[loop]["Customer"].ToString() != CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString())
-                                        LedgerDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"];
+                                    if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"]) == Convert.ToInt32(CustomerDataSet.Tables[0].Rows[loop1]["ID"]))
+                                    {
+                                        if (LedgerDataSet.Tables[0].Rows[loop]["Customer"].ToString() != CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString())
+                                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"];
+                                    }
                                 }
                             }
+                            else if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == -1)
+                                LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Admin";
+                            else
+                                LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Error";
                         }
-                        else if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == -1)
-                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Admin";
-                        else
-                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Error";
                     }
-                    //for (int loop = 0; loop < LedgerDataSet.Tables[0].Rows.Count - 1; loop++)
-                    //{
-                    //    LedgerDataSet.Tables[0].Rows[loop]["Customer"] = DatabaseCalls.GetCustomerName(Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()));
-                    //}
                     LedgerGridView.Columns.Clear();
                     LedgerGridView.DataSource = LedgerDataSet.Tables[0];
 
@@ -342,8 +339,6 @@ namespace firebirdtest.UI
                     LedgerGridView.Rows[loop].DefaultCellStyle.BackColor = Color.GreenYellow;
                 else
                     LedgerGridView.Rows[loop].DefaultCellStyle.BackColor = Color.SkyBlue;
-                //                    LedgerDataSet.Tables[0].Rows[loop]["Customer"] = DatabaseCalls.GetCustomerName(Convert.ToInt16(LedgerGridView.Rows[loop].Cells["Customer_ID"].Value));
-                //LedgerGridView.Rows[loop].Cells["Customer"].Value = DatabaseCalls.GetCustomerName(Convert.ToInt16(LedgerGridView.Rows[loop].Cells["Customer_ID"].Value));
             }
         }
 

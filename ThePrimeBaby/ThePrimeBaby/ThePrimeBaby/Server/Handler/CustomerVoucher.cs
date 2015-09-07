@@ -7,11 +7,29 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
-            //Handle.GET("/ThePrimeBaby/GetVendors", (Request r) =>
-            //{
-            //    QueryResultRows<Database.CustomerVoucher> customerVoucher = Db.SQL<Database.CustomerVoucher>("SELECT c FROM Database.CustomerVoucher c");
-            //    return 200;
-            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
+            Handle.GET("/ThePrimeBaby/GetNewCustomerVoucherNumber", (Request r) =>
+            {
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+            ///ThePrimeBaby/GetCustomerVouchers
+            Handle.GET("/ThePrimeBaby/GetCustomerVouchers", (Request r) =>
+            {
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+            ///ThePrimeBaby/ModifyCustomerVoucherById
+            Handle.POST("/ThePrimeBaby/ModifyCustomerVoucherById", (Request r) =>
+            {
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+            ///ThePrimeBaby/AddCustomerVoucherPayment
+            Handle.POST("/ThePrimeBaby/AddCustomerVoucherPayment", (Request r) =>
+            {
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
         }
     }
 }

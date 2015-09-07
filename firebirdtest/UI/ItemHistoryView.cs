@@ -21,9 +21,12 @@ namespace firebirdtest.UI
             Result1 = DatabaseCalls.GetItems();
 
             //Result1.Tables[0].Columns["Item_Code"].ColumnName = "Item Code";
-            for (int loop = 0; loop < Result1.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
+            if (Result1.Tables.Count > 0)
             {
-                ItemName_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
+                for (int loop = 0; loop < Result1.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
+                {
+                    ItemName_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
+                }
             }
         }
 

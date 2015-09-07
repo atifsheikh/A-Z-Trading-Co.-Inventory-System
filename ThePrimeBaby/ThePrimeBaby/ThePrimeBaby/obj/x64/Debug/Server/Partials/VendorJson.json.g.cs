@@ -26,10 +26,11 @@ using __VVeEMAIL__ = global::VendorJson.VendorsElementJson.Input.EMAIL;
 using __VVePHONE__ = global::VendorJson.VendorsElementJson.Input.PHONE;
 using __VVeADDRESS__ = global::VendorJson.VendorsElementJson.Input.ADDRESS;
 using __VVeNAME__ = global::VendorJson.VendorsElementJson.Input.NAME;
-using __Arr__ = global::Starcounter.Arr<global::VendorJson.VendorsElementJson>;
+using __VVeID__ = global::VendorJson.VendorsElementJson.Input.ID;
 using __VendorJs2__ = global::VendorJson.Input;
-using __TLong__ = global::Starcounter.Templates.TLong;
+using __VeVendorsE1__ = global::VendorJson.VendorsElementJson.JsonByExample;
 using __TString__ = global::Starcounter.Templates.TString;
+using __TLong__ = global::Starcounter.Templates.TLong;
 using __VVeSchema__ = global::VendorJson.VendorsElementJson.JsonByExample.Schema;
 using __VeVendorsE__ = global::VendorJson.VendorsElementJson;
 using __VeSchema__ = global::VendorJson.JsonByExample.Schema;
@@ -37,7 +38,7 @@ using __Json1__ = global::Starcounter.Json.JsonByExample;
 using __TObject__ = global::Starcounter.Templates.TObject;
 using __Json__ = global::Starcounter.Json;
 using __VendorJs__ = global::VendorJson;
-using __VeVendorsE1__ = global::VendorJson.VendorsElementJson.JsonByExample;
+using __Arr__ = global::Starcounter.Arr<global::VendorJson.VendorsElementJson>;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -80,11 +81,11 @@ public class VendorJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Vendors {
-#line 11 "Server\Partials\VendorJson.json"
+#line 12 "Server\Partials\VendorJson.json"
     get {
 #line hidden
         return Template.Vendors.Getter(this); }
-#line 11 "Server\Partials\VendorJson.json"
+#line 12 "Server\Partials\VendorJson.json"
     set {
 #line hidden
         Template.Vendors.Setter(this, value); } }
@@ -105,6 +106,7 @@ public class VendorJson : __Json__ {
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public new __VVeSchema__ Template { get { return (__VVeSchema__)base.Template; } set { base.Template = value; } }
         public override bool IsCodegenerated { get { return true; } }
+        private System.Int64 __bf__ID__;
         private System.String __bf__NAME__;
         private System.String __bf__ADDRESS__;
         private System.String __bf__PHONE__;
@@ -125,6 +127,9 @@ public class VendorJson : __Json__ {
                     InstanceType = typeof(__VeVendorsE__);
                     ClassName = "VendorsElementJson";
                     Properties.ClearExposed();
+                    ID = Add<__TLong__>("ID");
+                    ID.DefaultValue = 0L;
+                    ID.SetCustomAccessors((_p_) => { return ((__VeVendorsE__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__VeVendorsE__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
                     NAME = Add<__TString__>("NAME");
                     NAME.DefaultValue = "";
                     NAME.SetCustomAccessors((_p_) => { return ((__VeVendorsE__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__VeVendorsE__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
@@ -148,6 +153,7 @@ public class VendorJson : __Json__ {
                     BALANCE_LIMIT.SetCustomAccessors((_p_) => { return ((__VeVendorsE__)_p_).__bf__BALANCE_LIMIT__; }, (_p_, _v_) => { ((__VeVendorsE__)_p_).__bf__BALANCE_LIMIT__ = (System.Int64)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __VeVendorsE__(this) { Parent = parent }; }
+                public __TLong__ ID;
                 public __TString__ NAME;
                 public __TString__ ADDRESS;
                 public __TString__ PHONE;
@@ -160,12 +166,24 @@ public class VendorJson : __Json__ {
         }
         #line default
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String NAME {
+        public System.Int64 ID {
 #line 3 "Server\Partials\VendorJson.json"
     get {
 #line hidden
-        return Template.NAME.Getter(this); }
+        return Template.ID.Getter(this); }
 #line 3 "Server\Partials\VendorJson.json"
+    set {
+#line hidden
+        Template.ID.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.String NAME {
+#line 4 "Server\Partials\VendorJson.json"
+    get {
+#line hidden
+        return Template.NAME.Getter(this); }
+#line 4 "Server\Partials\VendorJson.json"
     set {
 #line hidden
         Template.NAME.Setter(this, value); } }
@@ -173,11 +191,11 @@ public class VendorJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String ADDRESS {
-#line 4 "Server\Partials\VendorJson.json"
+#line 5 "Server\Partials\VendorJson.json"
     get {
 #line hidden
         return Template.ADDRESS.Getter(this); }
-#line 4 "Server\Partials\VendorJson.json"
+#line 5 "Server\Partials\VendorJson.json"
     set {
 #line hidden
         Template.ADDRESS.Setter(this, value); } }
@@ -185,11 +203,11 @@ public class VendorJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String PHONE {
-#line 5 "Server\Partials\VendorJson.json"
+#line 6 "Server\Partials\VendorJson.json"
     get {
 #line hidden
         return Template.PHONE.Getter(this); }
-#line 5 "Server\Partials\VendorJson.json"
+#line 6 "Server\Partials\VendorJson.json"
     set {
 #line hidden
         Template.PHONE.Setter(this, value); } }
@@ -197,11 +215,11 @@ public class VendorJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String EMAIL {
-#line 6 "Server\Partials\VendorJson.json"
+#line 7 "Server\Partials\VendorJson.json"
     get {
 #line hidden
         return Template.EMAIL.Getter(this); }
-#line 6 "Server\Partials\VendorJson.json"
+#line 7 "Server\Partials\VendorJson.json"
     set {
 #line hidden
         Template.EMAIL.Setter(this, value); } }
@@ -209,11 +227,11 @@ public class VendorJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 OPENING_BALANCE {
-#line 7 "Server\Partials\VendorJson.json"
+#line 8 "Server\Partials\VendorJson.json"
     get {
 #line hidden
         return Template.OPENING_BALANCE.Getter(this); }
-#line 7 "Server\Partials\VendorJson.json"
+#line 8 "Server\Partials\VendorJson.json"
     set {
 #line hidden
         Template.OPENING_BALANCE.Setter(this, value); } }
@@ -221,11 +239,11 @@ public class VendorJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 AMOUNT {
-#line 8 "Server\Partials\VendorJson.json"
+#line 9 "Server\Partials\VendorJson.json"
     get {
 #line hidden
         return Template.AMOUNT.Getter(this); }
-#line 8 "Server\Partials\VendorJson.json"
+#line 9 "Server\Partials\VendorJson.json"
     set {
 #line hidden
         Template.AMOUNT.Setter(this, value); } }
@@ -233,11 +251,11 @@ public class VendorJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 BALANCE_LIMIT {
-#line 10 "Server\Partials\VendorJson.json"
+#line 11 "Server\Partials\VendorJson.json"
     get {
 #line hidden
         return Template.BALANCE_LIMIT.Getter(this); }
-#line 10 "Server\Partials\VendorJson.json"
+#line 11 "Server\Partials\VendorJson.json"
     set {
 #line hidden
         Template.BALANCE_LIMIT.Setter(this, value); } }
@@ -247,6 +265,11 @@ public class VendorJson : __Json__ {
         #line hidden
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public static class Input {
+            
+            #line hidden
+            public class ID : Input<__VeVendorsE__, __TLong__, long> {
+            }
+            #line default
             
             #line hidden
             public class NAME : Input<__VeVendorsE__, __TString__, string> {

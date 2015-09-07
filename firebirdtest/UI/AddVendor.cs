@@ -34,19 +34,28 @@ namespace firebirdtest.UI
                     String Result = DatabaseCalls.AddVendor(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text));
                     string[] CustomerID = Result.Split('=');
                     //DatabaseCalls.AddBill(DatabaseCalls.GetNewBillNumber()+1, Convert.ToInt32(CustomerID[1].Trim()), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
-                    Variables.NotificationStatus = true;
+                    Variables.NotificationStatus = false;
                     Variables.NotificationMessageTitle = this.Name;
                     Variables.NotificationMessageText = Result;
-                    
-                    var GetVendors = DatabaseCalls.GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVendors");
+
+                    var GetVendors = DatabaseCalls.GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendors");
                     CustomerDataSet = JsonConvert.DeserializeObject<DataSet>(GetVendors);
 
                     CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
                     CustomersDataGridView.Columns["ID"].Visible = false;
-
-                    foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
+                    if (CustomerDataSet.Tables.Count > 0)
                     {
-                        CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
+                        foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
+                        {
+                            CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
+                        }
+                        //after populating dgv, do the follwing:
+                        int cleanCount = CustomerDataSet.Tables[0].Rows.Count;
+                        while (CustomersDataGridView.Rows.Count > cleanCount)
+                        {
+                            CustomersDataGridView.Rows[cleanCount].Visible = false;
+                            cleanCount++;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -88,7 +97,7 @@ namespace firebirdtest.UI
         {
             try
             {
-                if (FormLoading == false)
+                if (FormLoading == false && CustomersDataGridView.CurrentRow != null)
                 {
                     CustomerName_txt.Text = CustomersDataGridView.CurrentRow.Cells["NAME"].Value.ToString();
                     CustomerAddress_txt.Text = CustomersDataGridView.CurrentRow.Cells["ADDRESS"].Value.ToString();
@@ -109,18 +118,20 @@ namespace firebirdtest.UI
         private void button2_Click(object sender, EventArgs e)
         {
             decimal CalculatedAmount= Convert.ToDecimal(CustomerOpeningBalance_txt.Text) - PreviousBalance + CurrentAmount;
-            string CustomerModifyResult = DatabaseCalls.ModifyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString(), CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, Convert.ToInt32(CustomerOpeningBalance_txt.Text), CalculatedAmount);
+            string CustomerModifyResult = DatabaseCalls.ModifyVendor(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString(), CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, Convert.ToInt32(CustomerOpeningBalance_txt.Text), CalculatedAmount);
 
             DataSet CusomerBillDataSet = DatabaseCalls.GetBillsbyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString());
-            foreach (DataRow Remarks in CusomerBillDataSet.Tables[0].Rows)
+            if (CusomerBillDataSet.Tables.Count > 0)
             {
-                if (Remarks.ItemArray[4].ToString().Contains("Opening Balance") == true)
+                foreach (DataRow Remarks in CusomerBillDataSet.Tables[0].Rows)
                 {
-                    DatabaseCalls.ModifyBillAmmount(Convert.ToInt32(Remarks.ItemArray[0].ToString()), Convert.ToDecimal(CustomerOpeningBalance_txt.Text));
-                    break;
+                    if (Remarks.ItemArray[4].ToString().Contains("Opening Balance") == true)
+                    {
+                        DatabaseCalls.ModifyBillAmmount(Convert.ToInt32(Remarks.ItemArray[0].ToString()), Convert.ToDecimal(CustomerOpeningBalance_txt.Text));
+                        break;
+                    }
                 }
             }
-            
             if (CustomerModifyResult.StartsWith("Customer modified = ") != true)
                 Variables.NotificationStatus = true;
             Variables.NotificationMessageTitle = this.Name;
@@ -141,28 +152,35 @@ namespace firebirdtest.UI
 
                 try
                 {
-                    CustomerDataSet = JsonConvert.DeserializeObject<DataSet>(asdf.ToString().TrimEnd());                    
-                    CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
-
-                    //after populating dgv, do the follwing:
-                    int cleanCount = CustomerDataSet.Tables[0].Rows.Count;
-                    while(CustomersDataGridView.Rows.Count > cleanCount)
+                    CustomerDataSet = JsonConvert.DeserializeObject<DataSet>(asdf.ToString().TrimEnd());
+                    if (CustomerDataSet.Tables.Count > 0)
                     {
-                        CustomersDataGridView.Rows[cleanCount].Visible = false;
-                        cleanCount++;
-                    }
+                        CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
 
-                    foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                    {
-                        CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
+                        //after populating dgv, do the follwing:
+
+                        int cleanCount = CustomerDataSet.Tables[0].Rows.Count;
+                        while (CustomersDataGridView.Rows.Count > cleanCount)
+                        {
+                            CustomersDataGridView.Rows[cleanCount].Visible = false;
+                            cleanCount++;
+                        }
+
+                        foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
+                        {
+                            CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
+                        }
+                        if (CustomersDataGridView.Columns.Count> 0)
+                        {
+                            CustomersDataGridView.Columns["NAME"].DisplayIndex = 0;
+                            CustomersDataGridView.Columns["ADDRESS"].DisplayIndex = 1;
+                            CustomersDataGridView.Columns["PHONE"].DisplayIndex = 2;
+                            CustomersDataGridView.Columns["EMAIL"].DisplayIndex = 3;
+                            CustomersDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 4;
+                            CustomersDataGridView.Columns["AMOUNT"].Visible = false;
+                            CustomersDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                        }
                     }
-                    CustomersDataGridView.Columns["NAME"].DisplayIndex = 0;
-                    CustomersDataGridView.Columns["ADDRESS"].DisplayIndex = 1;
-                    CustomersDataGridView.Columns["PHONE"].DisplayIndex = 2;
-                    CustomersDataGridView.Columns["EMAIL"].DisplayIndex = 3;
-                    CustomersDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 4;
-                    CustomersDataGridView.Columns["AMOUNT"].Visible = false;
-                    CustomersDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
                 }
                 catch (Exception ex)
                 {

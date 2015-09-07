@@ -84,11 +84,13 @@ namespace firebirdtest.UI
                 ItemsDataGridView.DataSource = Result1.Tables[0];
                 ItemsDataGridView.Columns["ID"].Visible = false;
                 ItemsDataGridView.Columns["IMAGE"].Visible = false;
-                
-                //Result1.Tables[0].Columns["Item_Code"].ColumnName = "Item Code";
-                for(int loop = 0 ;loop < Result1.Tables[0].Rows.Count;loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
+                if (Result1.Tables.Count > 0)
                 {
-                    ItemName_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
+                    //Result1.Tables[0].Columns["Item_Code"].ColumnName = "Item Code";
+                    for (int loop = 0; loop < Result1.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
+                    {
+                        ItemName_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
+                    }
                 }
                 ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
                 ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
@@ -228,9 +230,12 @@ namespace firebirdtest.UI
             DataSet Result1 = new DataSet();
             Result1 = DatabaseCalls.GetCategory();
             ItemCategory_txt.Items.Clear();
-            foreach (DataRow asdf in Result1.Tables[0].Rows)
+            if (Result1.Tables.Count > 0)
             {
-                ItemCategory_txt.Items.Add(asdf.ItemArray[0]);
+                foreach (DataRow asdf in Result1.Tables[0].Rows)
+                {
+                    ItemCategory_txt.Items.Add(asdf.ItemArray[0]);
+                }
             }
         }
 
