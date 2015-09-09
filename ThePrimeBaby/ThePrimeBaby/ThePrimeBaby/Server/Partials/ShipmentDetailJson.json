@@ -1,7 +1,7 @@
 {
 	ShipmentDetails : [{
 		"ID" : 0,
-		"Name" : "",
+		"NAME" : "",
 		"Shipment":"",
         "Item":"",
         "T_QUANTITY":0,

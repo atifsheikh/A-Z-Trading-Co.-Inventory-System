@@ -13,7 +13,7 @@ namespace ThePrimeBaby.Database.Base
                 {
                     Category category = new Category();
                     category.NAME = ItemCategory;
-                    category.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Base.Category b").First) + 1; 
+                    category.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Base.Category b").First) + 1; 
                 });
                 return true;
             }

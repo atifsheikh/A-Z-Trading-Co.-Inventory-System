@@ -25,7 +25,7 @@ using __BBiREMARKS__ = global::BillJson.BillsElementJson.Input.REMARKS;
 using __BBiAMOUNT__ = global::BillJson.BillsElementJson.Input.AMOUNT;
 using __BBiDATED__ = global::BillJson.BillsElementJson.Input.DATED;
 using __BBiCUSTOMER__ = global::BillJson.BillsElementJson.Input.CUSTOMER;
-using __BBiName__ = global::BillJson.BillsElementJson.Input.Name;
+using __BBiNAME__ = global::BillJson.BillsElementJson.Input.NAME;
 using __BBiID__ = global::BillJson.BillsElementJson.Input.ID;
 using __Arr__ = global::Starcounter.Arr<global::BillJson.BillsElementJson>;
 using __BillJson2__ = global::BillJson.Input;
@@ -108,7 +108,7 @@ public class BillJson : __Json__ {
         public new __BBiSchema__ Template { get { return (__BBiSchema__)base.Template; } set { base.Template = value; } }
         public override bool IsCodegenerated { get { return true; } }
         private System.Int64 __bf__ID__;
-        private System.String __bf__Name__;
+        private System.String __bf__NAME__;
         private System.String __bf__CUSTOMER__;
         private System.String __bf__DATED__;
         private System.Decimal __bf__AMOUNT__;
@@ -131,9 +131,9 @@ public class BillJson : __Json__ {
                     ID = Add<__TLong__>("ID");
                     ID.DefaultValue = 0L;
                     ID.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
-                    Name = Add<__TString__>("Name");
-                    Name.DefaultValue = "";
-                    Name.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__Name__ = (System.String)_v_; }, false);
+                    NAME = Add<__TString__>("NAME");
+                    NAME.DefaultValue = "";
+                    NAME.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
                     CUSTOMER = Add<__TString__>("CUSTOMER");
                     CUSTOMER.DefaultValue = "";
                     CUSTOMER.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__CUSTOMER__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__CUSTOMER__ = (System.String)_v_; }, false);
@@ -155,7 +155,7 @@ public class BillJson : __Json__ {
                 }
                 public override object CreateInstance(s.Json parent) { return new __BiBillsEle__(this) { Parent = parent }; }
                 public __TLong__ ID;
-                public __TString__ Name;
+                public __TString__ NAME;
                 public __TString__ CUSTOMER;
                 public __TString__ DATED;
                 public __TDecimal__ AMOUNT;
@@ -179,15 +179,15 @@ public class BillJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String Name {
+        public System.String NAME {
 #line 4 "Server\Partials\BillJson.json"
     get {
 #line hidden
-        return Template.Name.Getter(this); }
+        return Template.NAME.Getter(this); }
 #line 4 "Server\Partials\BillJson.json"
     set {
 #line hidden
-        Template.Name.Setter(this, value); } }
+        Template.NAME.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -273,7 +273,7 @@ public class BillJson : __Json__ {
             #line default
             
             #line hidden
-            public class Name : Input<__BiBillsEle__, __TString__, string> {
+            public class NAME : Input<__BiBillsEle__, __TString__, string> {
             }
             #line default
             

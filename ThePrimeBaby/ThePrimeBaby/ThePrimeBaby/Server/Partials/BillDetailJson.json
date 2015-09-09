@@ -1,7 +1,7 @@
 {
 	BillDetails : [{
 		"ID" : 0,
-		"Name" : "",
+		"NAME" : "",
 		"QTY" : 0,
         "PCS_CTN" : 0,
         "T_QUANTITY" : 0.0,

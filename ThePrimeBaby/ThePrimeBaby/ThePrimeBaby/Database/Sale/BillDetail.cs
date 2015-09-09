@@ -22,7 +22,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     BillDetail billDetail = new BillDetail();
-                    billDetail.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.BillDetail b").First) + 1;
+                    billDetail.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.BillDetail b").First) + 1;
                     billDetail.Bill = BILL_ID;
                     billDetail.Item = ITEM_CODE;
                     billDetail.QTY = QTY;

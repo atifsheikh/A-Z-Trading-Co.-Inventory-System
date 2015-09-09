@@ -20,7 +20,7 @@ namespace ThePrimeBaby.Database.Base
             {
                 Db.Transact(() => {
                     Item item = new Item();
-                    item.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Base.Item b").First) + 1; 
+                    item.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Base.Item b").First) + 1; 
                     item.NAME = Name;
                     item.MODEL = Model;
                     item.QTY_BOX = QTY_Box;

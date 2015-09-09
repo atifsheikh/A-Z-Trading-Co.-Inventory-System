@@ -1,7 +1,7 @@
 {
 	CustomerVouchers : [{
 		"ID" : 0,
-		"Name" : "",
+		"NAME" : "",
 		"Customer":"",
         "VOUCHER_DATE":"",
         "AMOUNT":0.0,

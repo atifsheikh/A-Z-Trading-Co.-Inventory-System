@@ -19,7 +19,7 @@ using _ScTemplate_=Starcounter.Templates.Template;
 using __TLong__ = global::Starcounter.Templates.TLong;
 using __Category1__ = global::CategoryJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::CategoryJson.CategoriesElementJson>;
-using __CCaName__ = global::CategoryJson.CategoriesElementJson.Input.Name;
+using __CCaNAME__ = global::CategoryJson.CategoriesElementJson.Input.NAME;
 using __CCaID__ = global::CategoryJson.CategoriesElementJson.Input.ID;
 using __CaCategori2__ = global::CategoryJson.CategoriesElementJson.Input;
 using __CaCategori1__ = global::CategoryJson.CategoriesElementJson.JsonByExample;
@@ -101,7 +101,7 @@ public class CategoryJson : __Json__ {
         public new __CCaSchema__ Template { get { return (__CCaSchema__)base.Template; } set { base.Template = value; } }
         public override bool IsCodegenerated { get { return true; } }
         private System.Int64 __bf__ID__;
-        private System.String __bf__Name__;
+        private System.String __bf__NAME__;
         #line default
         
         #line hidden
@@ -118,13 +118,13 @@ public class CategoryJson : __Json__ {
                     ID = Add<__TLong__>("ID");
                     ID.DefaultValue = 0L;
                     ID.SetCustomAccessors((_p_) => { return ((__CaCategori__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__CaCategori__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
-                    Name = Add<__TString__>("Name");
-                    Name.DefaultValue = "";
-                    Name.SetCustomAccessors((_p_) => { return ((__CaCategori__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__CaCategori__)_p_).__bf__Name__ = (System.String)_v_; }, false);
+                    NAME = Add<__TString__>("NAME");
+                    NAME.DefaultValue = "";
+                    NAME.SetCustomAccessors((_p_) => { return ((__CaCategori__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__CaCategori__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __CaCategori__(this) { Parent = parent }; }
                 public __TLong__ ID;
-                public __TString__ Name;
+                public __TString__ NAME;
             }
             #line default
         }
@@ -142,15 +142,15 @@ public class CategoryJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String Name {
+        public System.String NAME {
 #line 5 "Server\Partials\CategoryJson.json"
     get {
 #line hidden
-        return Template.Name.Getter(this); }
+        return Template.NAME.Getter(this); }
 #line 5 "Server\Partials\CategoryJson.json"
     set {
 #line hidden
-        Template.Name.Setter(this, value); } }
+        Template.NAME.Setter(this, value); } }
 #line default
 
         
@@ -164,7 +164,7 @@ public class CategoryJson : __Json__ {
             #line default
             
             #line hidden
-            public class Name : Input<__CaCategori__, __TString__, string> {
+            public class NAME : Input<__CaCategori__, __TString__, string> {
             }
             #line default
         }

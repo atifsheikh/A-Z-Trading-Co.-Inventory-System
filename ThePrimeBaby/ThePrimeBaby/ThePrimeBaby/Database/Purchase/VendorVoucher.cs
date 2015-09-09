@@ -16,7 +16,7 @@ namespace ThePrimeBaby.Database
             try
             {
                 VendorVoucher vendorVoucher = new VendorVoucher();
-                vendorVoucher.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.VendorVoucher b").First) + 1;
+                vendorVoucher.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.VendorVoucher b").First) + 1;
                 vendorVoucher.Vendor = CustomerID;
                 vendorVoucher.VOUCHER_DATE = BillDate;
                 vendorVoucher.AMOUNT = BillTotal;

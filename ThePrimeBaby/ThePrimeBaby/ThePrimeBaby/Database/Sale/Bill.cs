@@ -24,7 +24,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     Bill bill = new Bill();
-                    bill.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First) + 1;
+                    bill.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First) + 1;
                     bill.BillNumber = GetNewBillNumber();
                     bill.CUSTOMER = Customer;
                     bill.DATED = BillDate;
@@ -42,8 +42,7 @@ namespace ThePrimeBaby.Database
 
         internal static int GetNewBillNumber()
         {
-            IObjectView MinId = Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First;
-            return (Convert.ToInt32(MinId.GetInt64(0))+1);
+            return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First)+1);
         }
 
         internal static bool DeleteBill(string BillNumber)

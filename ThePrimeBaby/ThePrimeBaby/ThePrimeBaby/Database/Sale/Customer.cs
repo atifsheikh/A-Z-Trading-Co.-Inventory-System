@@ -19,11 +19,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     Customer customer = new Customer();
-                    IObjectView _IObjectView = Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Customer b").First;
-                    var _ID = (_IObjectView).GetInt64(0);
-                    if (_ID == null)
-                        _ID = 0;
-                    customer.ID = Convert.ToInt32(_ID) + 1; 
+                    customer.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Customer b").First + 1); 
                     customer.NAME = Name;
                     customer.ADDRESS = address;
                     customer.PHONE = phone;

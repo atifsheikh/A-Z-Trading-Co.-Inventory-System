@@ -107,19 +107,32 @@ namespace firebirdtest
 
         private static string RemoveNestedJson(string NestedJson)
         {
-            try 
+            try
             {
                 string TableName = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"([^:]+)\":\\s*{");
-                string CleanText = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
-                string TableRows = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"[^:]+\":\\s*{([^}]+)}");
-                List<string> asdf = firebirdtest.Classes.RandomAlgos.AllGroups(TableRows, "\\s*\"([^,|}]+)+");
-                NestedJson = NestedJson.Replace(TableRows,"");
+                if (TableName != null && TableName != "")
+                {
+                    string TableRows = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"[^:]+\":\\s*{([^}]+)}");
 
-                return "";
+                    List<string> Subtables = firebirdtest.Classes.RandomAlgos.AllGroups(TableRows, "\\s*\"([^,|}]+)+");
+
+                    string FindString = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
+                    string ReplaceString = "";
+
+
+                    foreach (string SubtableRow in Subtables)
+                    {
+                        ReplaceString += "\"" + TableName + SubtableRow + ",";
+                    }
+
+                    ReplaceString = ReplaceString.Remove(ReplaceString.Length - 1);
+                    NestedJson = NestedJson.Replace(FindString, ReplaceString);
+                }
+                return NestedJson;
             }
             catch (Exception ex)
             {
-                return "";
+                return NestedJson;
             }
         }
         public static string PUT(string url, string attributes)

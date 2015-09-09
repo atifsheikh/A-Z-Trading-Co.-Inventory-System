@@ -1,7 +1,7 @@
 {
 	Bills : [{
 		"ID" : 0,
-		"Name" : "",
+		"NAME" : "",
 		"CUSTOMER" : "",
         "DATED" : "",
         "AMOUNT" : 0.0,

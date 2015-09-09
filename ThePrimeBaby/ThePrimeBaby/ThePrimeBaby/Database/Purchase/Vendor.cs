@@ -19,7 +19,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     ThePrimeBaby.Database.Vendor vendor = new Vendor();
-                    vendor.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Vendor b").First) + 1;
+                    vendor.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Vendor b").First) + 1;
                     vendor.NAME = Name;
                     vendor.ADDRESS = address;
                     vendor.PHONE = phone;

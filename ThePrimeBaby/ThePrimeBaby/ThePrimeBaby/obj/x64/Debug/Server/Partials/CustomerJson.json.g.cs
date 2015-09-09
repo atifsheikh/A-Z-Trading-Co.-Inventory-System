@@ -25,7 +25,7 @@ using __CCuAMOUNT__ = global::CustomerJson.CustomersElementJson.Input.AMOUNT;
 using __CCuPHONE__ = global::CustomerJson.CustomersElementJson.Input.PHONE;
 using __CCuEMAIL__ = global::CustomerJson.CustomersElementJson.Input.EMAIL;
 using __CCuADDRESS__ = global::CustomerJson.CustomersElementJson.Input.ADDRESS;
-using __CCuName__ = global::CustomerJson.CustomersElementJson.Input.Name;
+using __CCuNAME__ = global::CustomerJson.CustomersElementJson.Input.NAME;
 using __CCuID__ = global::CustomerJson.CustomersElementJson.Input.ID;
 using __Arr__ = global::Starcounter.Arr<global::CustomerJson.CustomersElementJson>;
 using __Customer2__ = global::CustomerJson.Input;
@@ -108,7 +108,7 @@ public class CustomerJson : __Json__ {
         public new __CCuSchema__ Template { get { return (__CCuSchema__)base.Template; } set { base.Template = value; } }
         public override bool IsCodegenerated { get { return true; } }
         private System.Int64 __bf__ID__;
-        private System.String __bf__Name__;
+        private System.String __bf__NAME__;
         private System.String __bf__ADDRESS__;
         private System.String __bf__EMAIL__;
         private System.String __bf__PHONE__;
@@ -131,9 +131,9 @@ public class CustomerJson : __Json__ {
                     ID = Add<__TLong__>("ID");
                     ID.DefaultValue = 0L;
                     ID.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
-                    Name = Add<__TString__>("Name");
-                    Name.DefaultValue = "";
-                    Name.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__Name__ = (System.String)_v_; }, false);
+                    NAME = Add<__TString__>("NAME");
+                    NAME.DefaultValue = "";
+                    NAME.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
                     ADDRESS = Add<__TString__>("ADDRESS");
                     ADDRESS.DefaultValue = "";
                     ADDRESS.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__ADDRESS__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__ADDRESS__ = (System.String)_v_; }, false);
@@ -155,7 +155,7 @@ public class CustomerJson : __Json__ {
                 }
                 public override object CreateInstance(s.Json parent) { return new __CuCustomer__(this) { Parent = parent }; }
                 public __TLong__ ID;
-                public __TString__ Name;
+                public __TString__ NAME;
                 public __TString__ ADDRESS;
                 public __TString__ EMAIL;
                 public __TString__ PHONE;
@@ -179,15 +179,15 @@ public class CustomerJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String Name {
+        public System.String NAME {
 #line 4 "Server\Partials\CustomerJson.json"
     get {
 #line hidden
-        return Template.Name.Getter(this); }
+        return Template.NAME.Getter(this); }
 #line 4 "Server\Partials\CustomerJson.json"
     set {
 #line hidden
-        Template.Name.Setter(this, value); } }
+        Template.NAME.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -273,7 +273,7 @@ public class CustomerJson : __Json__ {
             #line default
             
             #line hidden
-            public class Name : Input<__CuCustomer__, __TString__, string> {
+            public class NAME : Input<__CuCustomer__, __TString__, string> {
             }
             #line default
             
