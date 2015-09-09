@@ -70,15 +70,9 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.POST("/ThePrimeBaby/DeleteVendor", (Request r) =>
             {
-                //string[] Attributes = r.Body.Split('/');
-                //Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
-                //if (vendor != null)
-                //{
-                //    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]), Convert.ToDecimal(Attributes[6]));
-                //    return 200;
-                //}
-                //else
-                return 209;
+                string[] Attributes = r.Body.Split('/');
+                Db.SlowSQL("DELETE FROM Database.Vendor v WHERE v.Name = ?", Attributes[0]);
+                return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }

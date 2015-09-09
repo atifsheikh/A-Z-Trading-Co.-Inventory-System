@@ -50,11 +50,11 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyCustomer(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
+        internal static bool ModifyCustomer(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
         {
             try
             {
-                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Obid = ?", FindID).First;
+                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.ID = ?", FindID).First;
                 Db.Transact(() =>
                 {
                     customer.NAME = ReplaceName;
@@ -76,7 +76,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Obid = ?", CustomerID).First;
+                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Id = ?", CustomerID).First;
                 Db.Transact(() =>
                 {
                     customer.AMOUNT = NewBalance;

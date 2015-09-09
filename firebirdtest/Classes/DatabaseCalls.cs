@@ -16,7 +16,6 @@ namespace firebirdtest
         {
             try
             {
-
                 string response = "";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Credentials = CredentialCache.DefaultCredentials;
@@ -234,7 +233,7 @@ namespace firebirdtest
         //Sale
         internal static string AddSale(decimal UnitPrice, int QTY, int BILL_ID, decimal SUBTOTAL, String ITEM_CODE, string ITEM_NAME, int PCS_CTN, int QUANT, int CUSTOMER_ID)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddSale/9", UnitPrice + "/" + QTY + "/" + BILL_ID + "/" + SUBTOTAL);
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddSale/9", UnitPrice + "/" + QTY + "/" + BILL_ID + "/" + SUBTOTAL+ "/" +ITEM_CODE+ "/" +ITEM_NAME+ "/" +PCS_CTN+ "/" +QUANT+ "/" +CUSTOMER_ID);
         }
         internal static string AddVoucherPayment(int CustomerID, DateTime BillDate, Decimal BillTotal, string Remarks, Decimal CustomerBalance)
         {
@@ -242,13 +241,44 @@ namespace firebirdtest
         }
         internal static string ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyCustomerVoucherById",  ID + "/" + UpdateAmount + "/" + UpdateCUSTOMER_BALANCE);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyBillAmmountByBillNumber", ID + "/" + UpdateAmount + "/" + UpdateCUSTOMER_BALANCE);
         }
 
         //Get Calls
-        internal static string GetCurrentRowBalance(string CustomerID, string Billnumber)
+        internal static decimal GetCurrentRowBalance(string CustomerID, string Billnumber)
         {
-            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCurrentRowBalanceByCustomerId/"  +CustomerID + "/" + Billnumber);
+            decimal CalulateBalance = 0;
+            DataSet _BillDataSet = GetBill(Billnumber);
+            try
+            {
+                if (_BillDataSet.Tables[0].Rows.Count == 0)
+                {
+                    DataSet _BillbyCustomerDataSet = GetBillsbyCustomer(CustomerID);
+                    foreach (DataRow BillRow in _BillbyCustomerDataSet.Tables[0].Rows)
+                    {
+                        CalulateBalance += Convert.ToInt32(BillRow["AMOUNT"]);
+                    }
+                }
+                else
+                {
+                    DataSet _BillbyCustomerDataSet = GetBillsbyCustomer(CustomerID);
+                    foreach (DataRow BillRow in _BillbyCustomerDataSet.Tables[0].Rows)
+                    {
+                        CalulateBalance += Convert.ToInt32(BillRow["AMOUNT"]);
+                        if (Convert.ToInt32(Billnumber) == Convert.ToInt32(BillRow["ID"]))
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = "DB Call";
+                Variables.NotificationStatus = true;
+            } 
+            return CalulateBalance;
         }
         internal static DataSet GetLedger(string CustomerID)
         {
@@ -257,7 +287,7 @@ namespace firebirdtest
         }
         internal static DataSet GetVouchers()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCustomerVouchers");
+            string Result = GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBills");
             return JsonToDataSet(Result);
         }
         internal static DataSet Get_Ctn_Bill()

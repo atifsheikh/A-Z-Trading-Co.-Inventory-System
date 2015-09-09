@@ -68,16 +68,28 @@ namespace ThePrimeBaby.Database.Base
             }
         }
 
-        internal static bool ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceImage, string ItemCategory, int T_Quantity)
+        internal static bool ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity)
         {
             try
             {
-                //TODO : What is FindId fix it
-                //Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Name = ?", FindID).First;
-                //Db.Transact(() =>
-                //{
-                //    item.Name = ReplaceName;
-                //});
+                Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Id = ?", Convert.ToInt32(FindID)).First;
+                Db.Transact(() =>
+                {
+                    item.ID = Convert.ToInt32(FindID);
+                    item.NAME = ReplaceName;
+                    item.MODEL = ReplaceModel;
+                    item.QTY_BOX= Convert.ToInt32(ReplaceQuantity);
+                    item.PRICE= Convert.ToDecimal(ReplacePrice);
+                    item.COSTPRICE = Convert.ToDecimal(ReplaceCostPrice);
+                    item.IMAGE= ReplaceImage;
+                    item.Category = Db.SQL<Database.Base.Category>("SELECT c FROM Database.Base.Category c WHERE c.Name = ?",ItemCategory).First;
+                    if (item.Category == null)
+                    {
+                        item.Category = new Category();
+                        item.Category.NAME = ItemCategory;
+                    }
+                    item.T_QUANTITY= T_Quantity;
+                });
                 return true;
             }
             catch (Exception ex)
@@ -86,11 +98,27 @@ namespace ThePrimeBaby.Database.Base
             }
         }
 
-        internal static bool ModifyItemPrice(string ItemName, decimal ItemPrice)
+        internal static bool ModifyItemPriceByName(string ItemName, decimal ItemPrice)
         {
             try
             {
                 Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Name = ?", ItemName).First;
+                Db.Transact(() =>
+                {
+                    item.PRICE = ItemPrice;
+                });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        internal static bool ModifyItemPriceByCode(string ItemCode, decimal ItemPrice)
+        {
+            try
+            {
+                Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Code = ?", ItemCode).First;
                 Db.Transact(() =>
                 {
                     item.PRICE = ItemPrice;

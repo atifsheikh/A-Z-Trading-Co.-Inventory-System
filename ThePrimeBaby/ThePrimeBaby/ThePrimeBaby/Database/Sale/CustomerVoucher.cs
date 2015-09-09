@@ -15,13 +15,16 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                CustomerVoucher customerVoucher = new CustomerVoucher();
-                customerVoucher.Customer = CustomerID;
-                customerVoucher.VOUCHER_DATE = BillDate;
-                customerVoucher.AMOUNT = BillTotal;
-                customerVoucher.REMARKS = Remarks;
-                customerVoucher.CUSTOMER_BALANCE = CustomerBalance;
-                customerVoucher.ID = GetNewVoucherNumber();
+                Db.Transact(() =>
+                {
+                    CustomerVoucher customerVoucher = new CustomerVoucher();
+                    customerVoucher.Customer = CustomerID;
+                    customerVoucher.VOUCHER_DATE = BillDate;
+                    customerVoucher.AMOUNT = BillTotal;
+                    customerVoucher.REMARKS = Remarks;
+                    customerVoucher.CUSTOMER_BALANCE = CustomerBalance;
+                    customerVoucher.ID = GetNewVoucherNumber();
+                });
                 return true;
             }
             catch (Exception ex)

@@ -7,21 +7,27 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
-            ///ThePrimeBaby/GetCategory
             Handle.GET("/ThePrimeBaby/GetCategory", (Request r) =>
             {
-                return 200;
+                QueryResultRows<Database.Base.Category> category = Db.SQL<Database.Base.Category>("SELECT c FROM Database.Base.Category c");
+                CategoryJson categoryJson = new CategoryJson();
+                categoryJson.Categories.Data = category;
+                return categoryJson;
+
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-
-
-            ///ThePrimeBaby/AddCategory
             Handle.POST("/ThePrimeBaby/AddCategory", (Request r) =>
             {
-                return 200;
+                string[] Attributes = r.Body.Split('/');
+                Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM Database.Base.Category c WHERE c.Name = ?", Attributes[0]).First;
+                if (category == null)
+                {
+                    bool Result = ThePrimeBaby.Database.Base.Category.AddCategory(Attributes[0]);
+                    if (Result == true)
+                        return 200;
+                }
+                return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
 }
-
-///ThePrimeBaby/AddCategory

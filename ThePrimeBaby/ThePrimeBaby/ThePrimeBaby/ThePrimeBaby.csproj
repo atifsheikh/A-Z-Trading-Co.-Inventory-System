@@ -42,6 +42,16 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -62,6 +72,8 @@
     <Reference Include="Starcounter.XSON, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d2df1e81d0ca3abf">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Base\Category.cs" />
@@ -75,6 +87,7 @@
     <Compile Include="Database\Purchase\Shipment.cs" />
     <Compile Include="Database\Sale\Bill.cs" />
     <Compile Include="Database\Base\Item.cs" />
+    <Compile Include="FunctionsVariables.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\Handler\Bill.cs" />
@@ -83,6 +96,7 @@
     <Compile Include="Server\Handler\Customer.cs" />
     <Compile Include="Server\Handler\CustomerVoucher.cs" />
     <Compile Include="Server\Handler\Item.cs" />
+    <Compile Include="Server\Handler\OldDbCalls.cs" />
     <Compile Include="Server\Handler\Shipment.cs" />
     <Compile Include="Server\Handler\ShipmentDetail.cs" />
     <Compile Include="Server\Handler\Vendor.cs" />
@@ -130,6 +144,15 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="Server\Partials\VendorJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <TypedJSON Include="Server\Partials\CategoryJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+    <TypedJSON Include="Server\Partials\ItemSaleHistoryJson.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
