@@ -54,7 +54,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM Vendor c WHERE c.ID = ?", FindID).First;
+                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM Vendor c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     vendor.NAME = ReplaceName;
@@ -76,7 +76,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM Vendor c WHERE c.ID = ?", VendorID).First;
+                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM Vendor c WHERE c.ID = ?", Convert.ToInt32(VendorID)).First;
                 Db.Transact(() =>
                 {
                     vendor.AMOUNT = NewBalance;

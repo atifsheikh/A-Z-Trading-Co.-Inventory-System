@@ -109,7 +109,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetItems", (Request r) =>
             {
-                QueryResultRows<Database.Base.Item> item = Db.SQL<Database.Base.Item>("SELECT c FROM Item c");
+                QueryResultRows<Database.Base.Item> item = Db.SQL<Database.Base.Item>("SELECT i FROM Item i");
                 ItemJson itemJson = new ItemJson();
                 itemJson.Items.Data = item;
                 return itemJson;
@@ -118,7 +118,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/ModifyItemPrice/2", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM Item i WHERE i.Code = ?", Convert.ToInt32(Attributes[0])).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM Item i WHERE i.Code = ?", Attributes[0]).First;
                 if (item != null)
                 {
                     bool Result = Database.Base.Item.ModifyItemPriceByCode(Attributes[0],Convert.ToDecimal(Attributes[1]));
@@ -145,7 +145,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/ModifyItemsByName/2", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM Item i WHERE i.Code = ?", Convert.ToInt32(Attributes[0])).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM Item i WHERE i.Code = ?", Attributes[0]).First;
                 if (item != null)
                 {
                     bool Result = Database.Base.Item.ModifyItemPriceByName(Attributes[0], Convert.ToDecimal(Attributes[1]));
@@ -176,21 +176,13 @@ namespace ThePrimeBaby.Server.Handler
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
 
-            Handle.GET("/ThePrimeBaby/GetItems", (Request r) =>
-            {
-                QueryResultRows<Database.Base.Item> item = Db.SQL<Database.Base.Item>("SELECT i FROM Item i");
-                ItemJson itemJson = new ItemJson();
-                itemJson.Items.Data = item;
-                return itemJson;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
             Handle.POST("/ThePrimeBaby/AddItem/7", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM Item c WHERE c.Name = ?", Attributes[0]).First;
                 if (item == null)
                 {
-                    Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM Category c WHERE c.ID = ?",Attributes[5]).First;
+                    Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM Category c WHERE c.ID = ?",Convert.ToInt32(Attributes[5])).First;
                     bool Result = ThePrimeBaby.Database.Base.Item.AddItem(Attributes[0], Attributes[1], Convert.ToInt32(Attributes[2]), Convert.ToDecimal(Attributes[3]), Attributes[4], category);
                     if (Result == true)
                         return 200;

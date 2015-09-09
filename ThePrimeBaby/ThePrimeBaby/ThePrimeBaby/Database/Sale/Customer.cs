@@ -54,7 +54,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.ID = ?", FindID).First;
+                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     customer.NAME = ReplaceName;
@@ -76,7 +76,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Id = ?", CustomerID).First;
+                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Id = ?", Convert.ToInt32(CustomerID)).First;
                 Db.Transact(() =>
                 {
                     customer.AMOUNT = NewBalance;
