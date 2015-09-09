@@ -9,6 +9,9 @@
         "MODEL":"",
         "CODE":"",
         "T_QUANTITY":0,
-        "Category":""
+        "Category":{
+			"ID":0,
+			"Name":""
+		}
 	}]
 }

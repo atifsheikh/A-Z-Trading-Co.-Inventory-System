@@ -20,6 +20,7 @@ namespace ThePrimeBaby.Database.Base
             {
                 Db.Transact(() => {
                     Item item = new Item();
+                    item.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Base.Item b").First) + 1; 
                     item.NAME = Name;
                     item.MODEL = Model;
                     item.QTY_BOX = QTY_Box;
@@ -55,7 +56,7 @@ namespace ThePrimeBaby.Database.Base
         {
             try
             {
-                Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Name = ?",FindName).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", FindName).First;
                 Db.Transact(() => 
                 {
                     item.NAME = ReplaceName;
@@ -72,7 +73,7 @@ namespace ThePrimeBaby.Database.Base
         {
             try
             {
-                Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Id = ?", Convert.ToInt32(FindID)).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Id = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     item.ID = Convert.ToInt32(FindID);
@@ -82,7 +83,7 @@ namespace ThePrimeBaby.Database.Base
                     item.PRICE= Convert.ToDecimal(ReplacePrice);
                     item.COSTPRICE = Convert.ToDecimal(ReplaceCostPrice);
                     item.IMAGE= ReplaceImage;
-                    item.Category = Db.SQL<Database.Base.Category>("SELECT c FROM Category c WHERE c.Name = ?",ItemCategory).First;
+                    item.Category = Db.SQL<Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c WHERE c.Name = ?", ItemCategory).First;
                     if (item.Category == null)
                     {
                         item.Category = new Category();
@@ -102,7 +103,7 @@ namespace ThePrimeBaby.Database.Base
         {
             try
             {
-                Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Name = ?", ItemName).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", ItemName).First;
                 Db.Transact(() =>
                 {
                     item.PRICE = ItemPrice;
@@ -118,7 +119,7 @@ namespace ThePrimeBaby.Database.Base
         {
             try
             {
-                Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Code = ?", ItemCode).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", ItemCode).First;
                 Db.Transact(() =>
                 {
                     item.PRICE = ItemPrice;
@@ -135,7 +136,7 @@ namespace ThePrimeBaby.Database.Base
         {
             try
             {
-                Item item = Db.SQL<Item>("SELECT i FROM Item i WHERE i.Name = ?", ItemName).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", ItemName).First;
                 Db.Transact(() =>
                 {
                     item.T_QUANTITY = ItemQuantity;

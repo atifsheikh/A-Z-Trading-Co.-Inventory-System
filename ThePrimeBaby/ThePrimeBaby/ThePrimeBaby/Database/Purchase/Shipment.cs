@@ -33,7 +33,7 @@ namespace ThePrimeBaby.Database
             {
                 Db.Transact(() => 
                 {
-                    Shipment shipment = Db.SQL<Shipment>("SELECT s FROM Shipment s WHERE s.ID = ?", Convert.ToInt32(FindID)).First;
+                    Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.ID = ?", Convert.ToInt32(FindID)).First;
                     shipment.SHIP_DATE = ConsignmentDate;
                     shipment.DESCRIPTION = ConsignmentDesc;
                 });

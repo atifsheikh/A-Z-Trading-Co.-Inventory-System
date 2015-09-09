@@ -10,7 +10,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/AddVendor/6", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM Vendor c WHERE c.Name = ?", Attributes[0]).First;
+                Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.Name = ?", Attributes[0]).First;
                 if (vendor == null)
                 {
                     bool Result = ThePrimeBaby.Database.Vendor.AddVendor(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Convert.ToDecimal(Attributes[4]), Convert.ToDecimal(Attributes[5]));
@@ -22,7 +22,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetVendors", (Request r) =>
             {
-                QueryResultRows<Database.Vendor> vendor = Db.SQL<Database.Vendor>("SELECT c FROM Vendor c");
+                QueryResultRows<Database.Vendor> vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c");
                 VendorJson vendorJson = new VendorJson();
                 vendorJson.Vendors.Data = vendor;
                 return vendorJson;
@@ -31,7 +31,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/ModifyVendor/7", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
+                Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM ThePrimeBaby.Database.Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
                 if (vendor != null)
                 {
                     bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]),Convert.ToDecimal(Attributes[6]));
@@ -45,7 +45,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/ModifyVendor/2", (Request r) =>
             {
                 //string[] Attributes = r.Body.Split('/');
-                //Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
+                //Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM ThePrimeBaby.Database.Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
                 //if (vendor != null)
                 //{
                 //    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]), Convert.ToDecimal(Attributes[6]));
@@ -58,7 +58,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/ModifyVendorBalance/2", (Request r) =>
             {
                 //string[] Attributes = r.Body.Split('/');
-                //Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
+                //Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM ThePrimeBaby.Database.Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
                 //if (vendor != null)
                 //{
                 //    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]), Convert.ToDecimal(Attributes[6]));

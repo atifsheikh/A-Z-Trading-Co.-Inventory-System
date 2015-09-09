@@ -14,7 +14,7 @@ namespace ThePrimeBaby.Database
 
         internal static int CTN_BILL_SUM(int BillID)
         {
-            IObjectView CTN_BILL_SUM = Db.SQL<IObjectView>("SELECT SUM(b.QTY) FROM Bill b WHERE b.ID = ?", Convert.ToInt32(BillID)).First;
+            IObjectView CTN_BILL_SUM = Db.SQL<IObjectView>("SELECT SUM(b.QTY) FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(BillID)).First;
             return (Convert.ToInt32(CTN_BILL_SUM.GetInt64(0)));
         }
         internal static bool AddBill(Customer Customer, DateTime BillDate, decimal BillTotal, decimal CustomerBalance, string Remarks)
@@ -24,6 +24,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     Bill bill = new Bill();
+                    bill.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First) + 1;
                     bill.BillNumber = GetNewBillNumber();
                     bill.CUSTOMER = Customer;
                     bill.DATED = BillDate;
@@ -41,7 +42,7 @@ namespace ThePrimeBaby.Database
 
         internal static int GetNewBillNumber()
         {
-            IObjectView MinId = Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM Bill b").First;
+            IObjectView MinId = Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First;
             return (Convert.ToInt32(MinId.GetInt64(0))+1);
         }
 
@@ -65,7 +66,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Bill BillVoucher = Db.SQL<Bill>("SELECT b FROM Bill b WHERE b.ID = ?", Convert.ToInt32(ID)).First;
+                Database.Bill BillVoucher = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(ID)).First;
                 Db.Transact(() =>
                 {
                     BillVoucher.AMOUNT = UpdateAmount;
@@ -83,7 +84,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Database.Bill bill = Db.SQL<Database.Bill>("SELECT i FROM Bill i WHERE i.Id = ?", Convert.ToInt32(BillNumber)).First;
+                Database.Bill bill = Db.SQL<Database.Bill>("SELECT i FROM ThePrimeBaby.Database.Bill i WHERE i.Id = ?", Convert.ToInt32(BillNumber)).First;
                 Db.Transact(() =>
                 {
                     bill.AMOUNT = CustomerBalance;

@@ -9,7 +9,7 @@ namespace ThePrimeBaby.Server.Handler
         {
             Handle.GET("/ThePrimeBaby/GetSaleByBillId/{?}", (string BillId, Request r) =>
             {
-                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM BillDetail bd WHERE bd.Bill.Id = ?",Convert.ToInt32(BillId));
+                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.Id = ?", Convert.ToInt32(BillId));
                 BillDetailJson billDetailJson = new BillDetailJson();
                 billDetailJson.BillDetails.Data = billDetail;
                 return billDetailJson;
@@ -17,7 +17,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetBillDetailsByBillNumber/{?}", (string BillNumber, Request r) =>
             {
-                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM BillDetail bd WHERE bd.Bill.ID = ?", Convert.ToInt32(BillNumber));
+                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.ID = ?", Convert.ToInt32(BillNumber));
                 BillDetailJson billDetailJson = new BillDetailJson();
                 billDetailJson.BillDetails.Data = billDetail;
                 return billDetailJson;
@@ -26,7 +26,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/ModifyBillAmmountByBillNumber", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT i FROM BillDetail i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
+                Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT i FROM ThePrimeBaby.Database.BillDetail i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
                 if (billDetail != null)
                 {
                     bool Result = Database.Bill.ModifyBillAmmount(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]));
@@ -46,12 +46,12 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/AddSale/9", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT c FROM BillDetail c WHERE c.Name = ?", Attributes[0]).First;
+                Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c WHERE c.Name = ?", Attributes[0]).First;
                 if (billDetail == null)
                 {
-                    Database.Bill bill = Db.SQL<Database.Bill>("SELECT b FROM Bill b WHERE b.Id = ?", Convert.ToInt32(Attributes[2])).First;
-                    Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT b FROM Item b WHERE b.Code = ?", Attributes[4]).First;
-                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT b FROM Customer b WHERE b.Id = ?", Convert.ToInt32(Attributes[8])).First;
+                    Database.Bill bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.Id = ?", Convert.ToInt32(Attributes[2])).First;
+                    Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT b FROM ThePrimeBaby.Database.Base.Item b WHERE b.Code = ?", Attributes[4]).First;
+                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT b FROM ThePrimeBaby.Database.Customer b WHERE b.Id = ?", Convert.ToInt32(Attributes[8])).First;
                     bool Result = ThePrimeBaby.Database.BillDetail.AddSale(Convert.ToDecimal(Attributes[0]), Convert.ToInt32(Attributes[1]), bill,Convert.ToDecimal(Attributes[3]),item, Convert.ToInt32(Attributes[6]), Convert.ToInt32(Attributes[7]),customer);
                     if (Result == true )
                         return 200;

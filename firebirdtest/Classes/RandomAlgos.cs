@@ -3,11 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace firebirdtest.Classes
 {
     class RandomAlgos
     {
+        public static Dictionary<string, Regex> RegexDic = new Dictionary<string, Regex>(); // To avoid creating regex multiple times.
+
+        public static Regex ReturnRegex(string regex)
+        {
+            if (RegexDic.ContainsKey(regex)) { var r = RegexDic[regex]; return r; }
+            else { var matchTimeout = TimeSpan.FromMilliseconds(20); var rgx = new Regex(regex, RegexOptions.Singleline | RegexOptions.Compiled); RegexDic[regex] = rgx; return rgx; }
+        }
+
+        public static string Group1(string page, string regex)
+        {
+            var r = ReturnRegex(regex);
+            var match = r.Match(page);
+            return match.Groups[1].ToString();
+        }
+        public static string Group2(string page, string regex)
+        {
+            var r = ReturnRegex(regex);
+            var match = r.Match(page);
+            return match.Groups[2].ToString();
+        }
+        public static List<string> AllGroups(string page, string regex)
+        {
+            List<string> matches = new List<string>();
+            var r = ReturnRegex(regex);
+            foreach (Match ItemMatch in r.Matches(page))
+            {
+                matches.Add(ItemMatch.Groups[1].ToString());
+            }
+            return matches;
+        }
+
         public static object[] originalList = new object[1];
         public static IEnumerable<object> newList = originalList;
         public static System.Windows.Forms.ComboBox comboKeyPressed(System.Windows.Forms.ComboBox combo)

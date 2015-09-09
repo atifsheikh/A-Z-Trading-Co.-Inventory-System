@@ -19,6 +19,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     ThePrimeBaby.Database.Vendor vendor = new Vendor();
+                    vendor.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Vendor b").First) + 1;
                     vendor.NAME = Name;
                     vendor.ADDRESS = address;
                     vendor.PHONE = phone;
@@ -37,7 +38,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM Vendor c WHERE c.Name = ?", Find).First;
+                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.Name = ?", Find).First;
                 Db.Transact(() =>
                 {
                     vendor.NAME = Replace;
@@ -54,7 +55,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM Vendor c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
+                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     vendor.NAME = ReplaceName;
@@ -76,7 +77,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM Vendor c WHERE c.ID = ?", Convert.ToInt32(VendorID)).First;
+                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(VendorID)).First;
                 Db.Transact(() =>
                 {
                     vendor.AMOUNT = NewBalance;

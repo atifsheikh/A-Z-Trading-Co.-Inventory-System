@@ -38,8 +38,7 @@ namespace firebirdtest.UI
                     Variables.NotificationMessageTitle = this.Name;
                     Variables.NotificationMessageText = Result;
 
-                    var GetVendors = DatabaseCalls.GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendors");
-                    CustomerDataSet = JsonConvert.DeserializeObject<DataSet>(GetVendors);
+                    CustomerDataSet = DatabaseCalls.GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendors");
 
                     CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
                     CustomersDataGridView.Columns["ID"].Visible = false;
@@ -148,11 +147,9 @@ namespace firebirdtest.UI
         {
             try
             {
-                var asdf = DatabaseCalls.GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVendors");
-
                 try
                 {
-                    CustomerDataSet = JsonConvert.DeserializeObject<DataSet>(asdf.ToString().TrimEnd());
+                    CustomerDataSet = DatabaseCalls.GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVendors");
                     if (CustomerDataSet.Tables.Count > 0)
                     {
                         CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];

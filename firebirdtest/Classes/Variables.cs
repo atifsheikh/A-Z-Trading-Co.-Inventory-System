@@ -25,5 +25,7 @@ namespace firebirdtest
         public static bool FormClosed { get; set; }
 
         public static string FormRefresh { get; set; }
+
+        public static int DisplayTime { get; set; }
     }
 }

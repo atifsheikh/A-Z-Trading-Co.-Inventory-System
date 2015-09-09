@@ -16,6 +16,7 @@ namespace ThePrimeBaby.Database
             try
             {
                 VendorVoucher vendorVoucher = new VendorVoucher();
+                vendorVoucher.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.VendorVoucher b").First) + 1;
                 vendorVoucher.Vendor = CustomerID;
                 vendorVoucher.VOUCHER_DATE = BillDate;
                 vendorVoucher.AMOUNT = BillTotal;
@@ -31,7 +32,7 @@ namespace ThePrimeBaby.Database
         }
         internal static int GetNewVoucherNumber()
         {
-            IObjectView MinId = Db.SQL<IObjectView>("SELECT MIN(s.ID) FROM Shipment s").First;
+            IObjectView MinId = Db.SQL<IObjectView>("SELECT MIN(s.ID) FROM ThePrimeBaby.Database.Shipment s").First;
             return Convert.ToInt32(MinId.GetInt64(0)) - 1;
         }
     }

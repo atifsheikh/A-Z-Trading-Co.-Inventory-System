@@ -9,7 +9,7 @@ namespace ThePrimeBaby.Server.Handler
         {
             Handle.GET("/ThePrimeBaby/GetConsignments", (Request r) =>
             {
-                QueryResultRows<Database.Shipment> shipment = Db.SQL<Database.Shipment>("SELECT c FROM Shipment c");
+                QueryResultRows<Database.Shipment> shipment = Db.SQL<Database.Shipment>("SELECT c FROM ThePrimeBaby.Database.Shipment c");
                 ShipmentJson shipmentJson = new ShipmentJson();
                 shipmentJson.Shipments.Data = shipment;
                 return shipmentJson;
@@ -18,7 +18,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/AddConsignmentByNumber/2", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT c FROM Shipment c WHERE c.Id = ?",Convert.ToInt32(Attributes[0])).First;
+                Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT c FROM ThePrimeBaby.Database.Shipment c WHERE c.Id = ?", Convert.ToInt32(Attributes[0])).First;
                 if (shipment == null)
                 {
                     bool Result = ThePrimeBaby.Database.Shipment.AddConsignment(Convert.ToInt32(Attributes[0]), Convert.ToDateTime(Attributes[1]));

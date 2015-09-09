@@ -30,18 +30,21 @@ namespace firebirdtest.UI
                 try
                 {
                     String Result = DatabaseCalls.AddCustomer(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text));
-                    string[] CustomerID = Result.Split('=');
-                    DatabaseCalls.AddBill(Convert.ToInt32(DatabaseCalls.GetNewBillNumber()), Convert.ToInt32(CustomerID[1].Trim()), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
+                    if (Result != null)
+                    {
+                        DataSet CustomerIDDataSet = DatabaseCalls.GetCustomer(CustomerName_txt.Text);
+                        DatabaseCalls.AddBill(Convert.ToInt32(DatabaseCalls.GetNewBillNumber()), Convert.ToInt32(CustomerIDDataSet.Tables[0].Rows[0].ItemArray[0]), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
                         Variables.NotificationStatus = true;
                         Variables.NotificationMessageTitle = this.Name;
                         Variables.NotificationMessageText = Result;
-                    CustomerDataSet = DatabaseCalls.GetCustomers();
-                    CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
-                    CustomersDataGridView.Columns["ID"].Visible = false;
+                        CustomerDataSet = DatabaseCalls.GetCustomers();
+                        CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
+                        CustomersDataGridView.Columns["ID"].Visible = false;
 
-                    foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                    {
-                        CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
+                        foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
+                        {
+                            CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
+                        }
                     }
                 }
                 catch (Exception ex)

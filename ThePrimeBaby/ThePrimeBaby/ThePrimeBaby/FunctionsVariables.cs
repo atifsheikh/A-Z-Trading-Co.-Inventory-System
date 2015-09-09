@@ -9,11 +9,102 @@ using System.Text;
 using System.IO;
 using Newtonsoft.Json.Converters;
 using System.Net;
+using Starcounter;
 
 namespace ThePrimeBaby
 {
     public static class FunctionsVariables
     {
+        public static void Init_Data()
+        {
+            Db.Transact(() =>
+            {
+                ThePrimeBaby.Database.Base.Category category = Db.SQL<ThePrimeBaby.Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c").First;
+                if (category == null)
+                {
+                    category = new Database.Base.Category();
+                    category.ID = 0;
+                }
+                var item = Db.SQL<ThePrimeBaby.Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c").First;//Item
+                if (item == null)
+                {
+                    item = new Database.Base.Item();
+                    item.ID = 0;
+                    item.NAME = "Admin";
+                    item.MODEL = "Admin";
+                    item.QTY_BOX = 0;
+                    item.PRICE = 0;
+                    item.IMAGE = "Admin";
+                    item.CODE = "Admin";
+                    item.Category = category;
+                }
+                {
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT c FROM ThePrimeBaby.Database.Shipment c").First;//Shipment
+                    if (DbObject == null)
+                    {
+                        DbObject = new Database.Shipment();
+                        DbObject.ID = 0;
+                    }
+                }
+                {
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.ShipmentDetail>("SELECT c FROM ThePrimeBaby.Database.ShipmentDetail c").First;//ShipmentDetail
+                    if (DbObject == null)
+                    {
+                        DbObject = new Database.ShipmentDetail();
+                        DbObject.ID = 0;
+                    }
+                }
+                {
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c").First;//Vendor
+                    if (DbObject == null)
+                    {
+                        DbObject = new Database.Vendor();
+                        DbObject.ID = 0;
+                    }
+                }
+                {
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.VendorVoucher>("SELECT c FROM ThePrimeBaby.Database.VendorVoucher c").First;//VendorVoucher
+                    if (DbObject == null)
+                    {
+                        DbObject = new Database.VendorVoucher();
+                        DbObject.ID = 0;
+                    }
+                }
+                {
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.Bill>("SELECT c FROM ThePrimeBaby.Database.Bill c").First;//Bill
+                    if (DbObject == null)
+                    {
+                        DbObject = new Database.Bill();
+                        DbObject.ID = 0;
+                    }
+                }
+                {
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c").First;//BillDetail
+                    if (DbObject == null)
+                    {
+                        DbObject = new Database.BillDetail();
+                        DbObject.ID = 0;
+                    }
+                }
+                {
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c").First;//Customer
+                    if (DbObject == null)
+                    {
+                        DbObject = new Database.Customer();
+                        DbObject.ID = 0;
+                    }
+                }
+                {
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.CustomerVoucher>("SELECT c FROM ThePrimeBaby.Database.CustomerVoucher c").First;//CustomerVoucher
+                    if (DbObject == null)
+                    {
+                        DbObject = new Database.CustomerVoucher();
+                        DbObject.ID = 0;
+                    }
+                }
+            });
+        }
+
         public static DataSet JsonToDataSet(string jsonText)
         {
             //Deserialization of Json String to DataSet

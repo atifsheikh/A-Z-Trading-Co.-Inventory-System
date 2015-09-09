@@ -23,6 +23,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(()=>
                 {
                     ShipmentDetail shipmentDetail = new ShipmentDetail();
+                    shipmentDetail.ID = Convert.ToInt32(Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.ShipmentDetail b").First) + 1;
                     shipmentDetail.Item = Item;
                     shipmentDetail.Shipment = Shipment;
                     shipmentDetail.T_QUANTITY = T_QUANTITY;

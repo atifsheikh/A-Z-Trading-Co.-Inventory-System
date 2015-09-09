@@ -90,7 +90,6 @@
     <Compile Include="Server\Handler\Customer.cs" />
     <Compile Include="Server\Handler\CustomerVoucher.cs" />
     <Compile Include="Server\Handler\Item.cs" />
-    <Compile Include="Server\Handler\OldDbCalls.cs" />
     <Compile Include="Server\Handler\Shipment.cs" />
     <Compile Include="Server\Handler\ShipmentDetail.cs" />
     <Compile Include="Server\Handler\Vendor.cs" />

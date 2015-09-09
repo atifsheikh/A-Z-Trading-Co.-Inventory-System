@@ -19,6 +19,11 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     Customer customer = new Customer();
+                    IObjectView _IObjectView = Db.SQL<IObjectView>("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Customer b").First;
+                    var _ID = (_IObjectView).GetInt64(0);
+                    if (_ID == null)
+                        _ID = 0;
+                    customer.ID = Convert.ToInt32(_ID) + 1; 
                     customer.NAME = Name;
                     customer.ADDRESS = address;
                     customer.PHONE = phone;
@@ -38,7 +43,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Name = ?",Find).First;
+                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Name = ?", Find).First;
                 Db.Transact(() => {
                     customer.NAME = Replace;
                 });
@@ -54,7 +59,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
+                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     customer.NAME = ReplaceName;
@@ -76,7 +81,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Customer customer = Db.SQL<Customer>("SELECT c FROM Customer c WHERE c.Id = ?", Convert.ToInt32(CustomerID)).First;
+                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Id = ?", Convert.ToInt32(CustomerID)).First;
                 Db.Transact(() =>
                 {
                     customer.AMOUNT = NewBalance;

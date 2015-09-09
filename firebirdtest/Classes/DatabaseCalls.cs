@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Xml;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace firebirdtest
 {
@@ -38,10 +39,15 @@ namespace firebirdtest
             }
             catch (Exception ex)
             {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = "Database Side Error";
+                Variables.NotificationMessageText = ex.Message;
+                Variables.DisplayTime = 5000;
                 return null;
             }
         }
-        public static string GET(string url)
+
+        public static string GET_String(string url)
         {
             try
             {
@@ -61,7 +67,59 @@ namespace firebirdtest
             }
             catch (Exception ex)
             {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = "Database Side Error";
+                Variables.NotificationMessageText = ex.Message;
+                Variables.DisplayTime = 5000;
                 return null;
+            }
+        }
+
+        public static DataSet GET(string url)
+        {
+            try
+            {
+                string response = "";
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Credentials = CredentialCache.DefaultCredentials;
+                request.Method = "GET";
+                WebResponse response1 = request.GetResponse();
+                Stream dataStream = response1.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+
+                response = reader.ReadToEnd();
+
+                reader.Close();
+                response1.Close();
+                string NestedJson = response.ToString().TrimEnd();
+                string PlainJson = RemoveNestedJson(NestedJson);
+                return JsonConvert.DeserializeObject<DataSet>(PlainJson);
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = "Database Side Error";
+                Variables.NotificationMessageText = ex.Message;
+                Variables.DisplayTime = 5000;
+                return null;
+            }
+        }
+
+        private static string RemoveNestedJson(string NestedJson)
+        {
+            try 
+            {
+                string TableName = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"([^:]+)\":\\s*{");
+                string CleanText = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
+                string TableRows = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"[^:]+\":\\s*{([^}]+)}");
+                List<string> asdf = firebirdtest.Classes.RandomAlgos.AllGroups(TableRows, "\\s*\"([^,|}]+)+");
+                NestedJson = NestedJson.Replace(TableRows,"");
+
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return "";
             }
         }
         public static string PUT(string url, string attributes)
@@ -90,14 +148,18 @@ namespace firebirdtest
             }
             catch (Exception ex)
             {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = "Database Side Error";
+                Variables.NotificationMessageText = ex.Message;
+                Variables.DisplayTime = 5000;
                 return null;
             }
         }
 
         //Vendor
-        internal static string GetVendors()
+        internal static DataSet GetVendors()
         {
-            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVendors");
+            return DatabaseCalls.GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendors");
         }
         internal static string AddVendor(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
         {
@@ -124,17 +186,17 @@ namespace firebirdtest
         //Customer
         internal static DataSet GetCustomers()
         {
-            string Result = GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomers");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomers");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetCustomer(String Name)
         {
-            string Result = GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerByName/" + Name);
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerByName/" + Name);
+            //return JsonToDataSet(Result);
         }
         internal static string GetCustomerName(int ID)
         {
-            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerName/" + ID);
+            return GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerName/" + ID);
         }
         internal static DataSet GetCustomer(int ID)
         {
@@ -148,7 +210,7 @@ namespace firebirdtest
         internal static string AddCustomer(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
         {
             //TODO Send Attributes
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddCustomer/6", Name + "/" + address + "/" + phone + "/" + email);
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddCustomer/6", Name + "/" + address + "/" + phone + "/" + email+ "/" + ballance_limit+ "/" + opening_balance);
         }
         internal static string ModifyCustomer(string Find, string Replace)
         {
@@ -282,48 +344,48 @@ namespace firebirdtest
         }
         internal static DataSet GetLedger(string CustomerID)
         {
-            string Result =  GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetLedgerCustomerId/"+ CustomerID);
-            return JsonToDataSet(Result);
+            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetLedgerCustomerId/"+ CustomerID);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetVouchers()
         {
-            string Result = GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBills");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBills");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet Get_Ctn_Bill()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/Get_Ctn_Bill");
-            return JsonToDataSet(Result);
+            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/Get_Ctn_Bill");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetItems()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItems");
-            return JsonToDataSet(Result);
+            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItems");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetItems (String ItemField)
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemsByName/"+ItemField);
-            return JsonToDataSet(Result);
+            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemsByName/"+ItemField);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetCategory()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetCategory");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCategory");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetItemDetails(string FindTable, string FindString)
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemDetails/" + FindTable + "/" + FindString);
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItemDetails/" + FindTable + "/" + FindString);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetItemHistory(string ItemCode)
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemHistory/" + ItemCode);
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItemHistory/" + ItemCode);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetItemSaleHistory(string p)
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemSaleHistory/" + p);
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItemSaleHistory/" + p);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetItemShipmentHistory(string p)
         {
@@ -332,74 +394,87 @@ namespace firebirdtest
         }
         internal static DataSet GetItemsForSale()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemsForSale");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItemsForSale");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetItemsForBill()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemsForBill");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItemsForBill");
+            //return JsonToDataSet(Result);
         }
         internal static string GetItemCount(string ItemCode)
         {
-            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemCount/" + ItemCode);
+            return GET_String("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemCount/" + ItemCode);
         }
         internal static DataSet GetInventoryDetails()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetInventoryDetails");
-            return JsonToDataSet(Result);
+            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetInventoryDetails");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetConsignments()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetConsignments");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetConsignments");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetConsignmentDetails()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetConsignmentDetails");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetConsignmentDetails");
+            //return JsonToDataSet(Result);
         }
         internal static string GetNewBillNumber()
         {
-            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetNewBillNumber");
+            return GET_String("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetNewBillNumber");
         }
         internal static DataSet GetBills()
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetBills");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBills");
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetBill(string BillNumber)
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetBillByBillNumber/" + BillNumber);
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillByBillNumber/" + BillNumber);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetBillsbyCustomer(string CustomerID)
         {
-            string Result = GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillsbyCustomerById/" + CustomerID);
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillsbyCustomerById/" + CustomerID);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetBillDetails(string BillNumber)
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetBillDetailsByBillNumber/" + BillNumber);
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillDetailsByBillNumber/" + BillNumber);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetSale(string Bill_ID)
         {
-            string Result = GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetSaleByBillId/" + Bill_ID);
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetSaleByBillId/" + Bill_ID);
+            //return JsonToDataSet(Result);
         }
         internal static string GetNewVoucherNumber()
         {
-            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetNewCustomerVoucherNumber");
+            return GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetNewCustomerVoucherNumber");
         }
 
         internal static DataSet JsonToDataSet(string jsonText)
         {
-            //Deserialization of Json String to DataSet
-            XmlDocument xd1 = new XmlDocument();
-            xd1 = (XmlDocument)JsonConvert.DeserializeXmlNode(jsonText);
             DataSet jsonDataSet = new DataSet();
-            jsonDataSet.ReadXml(new XmlNodeReader(xd1)); 
+            try
+            {
+                //Deserialization of Json String to DataSet
+                XmlDocument xd1 = new XmlDocument();
+                xd1 = (XmlDocument)JsonConvert.DeserializeXmlNode(jsonText);
+                jsonDataSet.ReadXml(new XmlNodeReader(xd1));
+            }
+            catch (Exception ex)
+            {
+                if (jsonText == null)
+                {
+                    Variables.NotificationStatus = true;
+                    Variables.NotificationMessageTitle = "No Response From DB Server";
+                    Variables.NotificationMessageText = "Please Make sure that DB Server (http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + " is Up...?";
+                    Variables.DisplayTime = 10000;
+                }
+            }
             return jsonDataSet;
         }
         internal static string DataSetToJson(DataSet dataSet)

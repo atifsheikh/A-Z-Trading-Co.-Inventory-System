@@ -748,13 +748,24 @@ namespace firebirdtest
                 if (Variables.NotificationStatus)
                 {
                     Variables.NotificationStatus = false;
-                    if (Variables.NotificationMessageText != "")
+                    if (!Variables.NotificationMessageText.Equals("Cannot find table 0."))
                     {
-                        notifyIcon1.ShowBalloonTip(1000, Variables.NotificationMessageTitle, Variables.NotificationMessageText, ToolTipIcon.Info);
-                        Variables.NotificationMessageText = "";
+                        if (Variables.NotificationMessageText != "")
+                        {
+                            if (Variables.DisplayTime == null || Variables.DisplayTime == 0)
+                            {
+                                notifyIcon1.ShowBalloonTip(1000, Variables.NotificationMessageTitle, Variables.NotificationMessageText, ToolTipIcon.Info);
+                            }
+                            else
+                            {
+                                notifyIcon1.ShowBalloonTip(Variables.DisplayTime, Variables.NotificationMessageTitle, Variables.NotificationMessageText, ToolTipIcon.Info);
+                                Variables.DisplayTime = 0;
+                            }
+                            Variables.NotificationMessageText = "";
+                        }
+                        else
+                            notifyIcon1.ShowBalloonTip(1000, Variables.NotificationMessageTitle, "some empty message poped", ToolTipIcon.Info);
                     }
-                    else
-                        notifyIcon1.ShowBalloonTip(1000, Variables.NotificationMessageTitle, "some empty message poped", ToolTipIcon.Info);
                 }
                 if (Variables.FormClosed == true)
                 {
