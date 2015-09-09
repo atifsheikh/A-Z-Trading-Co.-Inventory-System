@@ -48,9 +48,9 @@ Temporary Items
 *.txt
 *.Cache
 *.cache
-ExcelParse\obj\*
-ExcelParse\bin\*
-firebirdtest\obj\*
-firebirdtest\bin\*
-ThePrimeBaby\bin\*
-ThePrimeBaby\obj\*
+ExcelParse/obj/*
+ExcelParse/bin/*
+firebirdtest/obj/*
+firebirdtest/bin/*
+ThePrimeBaby/bin/*
+ThePrimeBaby/obj/*
