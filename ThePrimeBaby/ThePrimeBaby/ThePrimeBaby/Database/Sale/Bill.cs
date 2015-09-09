@@ -83,7 +83,7 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                Database.Bill bill = Db.SQL<Database.Bill>("SELECT i FROM Database.Bill i WHERE i.Id = ?", BillNumber).First;
+                Database.Bill bill = Db.SQL<Database.Bill>("SELECT i FROM Bill i WHERE i.Id = ?", BillNumber).First;
                 Db.Transact(() =>
                 {
                     bill.AMOUNT = CustomerBalance;

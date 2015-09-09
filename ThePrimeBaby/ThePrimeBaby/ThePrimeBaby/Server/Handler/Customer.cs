@@ -9,7 +9,7 @@ namespace ThePrimeBaby.Server.Handler
         {
             Handle.GET("/ThePrimeBaby/GetCustomerById/{?}", (string CustomerId,Request r) =>
             {
-                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT c FROM Database.Customer c WHERE c.ID = ? ",Convert.ToInt32(CustomerId));
+                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT c FROM Customer c WHERE c.ID = ? ",Convert.ToInt32(CustomerId));
                 CustomerJson customerJson = new CustomerJson();
                 customerJson.Customers.Data = customer;
                 return customerJson;            
@@ -17,13 +17,13 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetCustomerName/{?}", (string CustomerId, Request r) =>
             {
-                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Database.Customer c WHERE c.ID = ? ", Convert.ToInt32(CustomerId)).First;
+                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Customer c WHERE c.ID = ? ", Convert.ToInt32(CustomerId)).First;
                 return customer.NAME;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetCustomerByName/{?}", (string CustomerName, Request r) =>
             {
-                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT c FROM Database.Customer c WHERE c.Name = ? ", CustomerName);
+                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT c FROM Customer c WHERE c.Name = ? ", CustomerName);
                 CustomerJson customerJson = new CustomerJson();
                 customerJson.Customers.Data = customer;
                 return customerJson;
@@ -31,7 +31,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetCustomers", () =>
             {
-                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT c FROM Database.Customer c");
+                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT c FROM Customer c");
                 CustomerJson customerJson = new CustomerJson();
                 customerJson.Customers.Data = customer;
                 return customerJson;
@@ -53,7 +53,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/DeleteCustomerByName", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Db.SlowSQL("DELETE FROM Database.Customer v WHERE v.Name = ?", Attributes[0]);
+                Db.SlowSQL("DELETE FROM Customer v WHERE v.Name = ?", Attributes[0]);
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

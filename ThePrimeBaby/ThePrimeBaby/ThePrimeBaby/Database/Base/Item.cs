@@ -82,7 +82,7 @@ namespace ThePrimeBaby.Database.Base
                     item.PRICE= Convert.ToDecimal(ReplacePrice);
                     item.COSTPRICE = Convert.ToDecimal(ReplaceCostPrice);
                     item.IMAGE= ReplaceImage;
-                    item.Category = Db.SQL<Database.Base.Category>("SELECT c FROM Database.Base.Category c WHERE c.Name = ?",ItemCategory).First;
+                    item.Category = Db.SQL<Database.Base.Category>("SELECT c FROM Category c WHERE c.Name = ?",ItemCategory).First;
                     if (item.Category == null)
                     {
                         item.Category = new Category();

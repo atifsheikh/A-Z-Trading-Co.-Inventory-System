@@ -11,15 +11,15 @@ namespace ThePrimeBaby.Server.Handler
             {
                 if (CustomerId != "All")
                 {
-                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Database.Customer c WHERE c.ID = ?", CustomerId).First;
-                    QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT bd FROM Database.Bill bd WHERE bd.Customer = ?", customer);
+                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Customer c WHERE c.ID = ?", CustomerId).First;
+                    QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT bd FROM Bill bd WHERE bd.Customer = ?", customer);
                     BillJson billJson = new BillJson();
                     billJson.Bills.Data = bill;
                     return billJson;
                 }
                 else
                 {
-                    QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT bd FROM Database.Bill bd");
+                    QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT bd FROM Bill bd");
                     BillJson billJson = new BillJson();
                     billJson.Bills.Data = bill;
                     return billJson;
@@ -28,8 +28,8 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetBillsbyCustomerById/{?}", (string CustomerId, Request r) =>
             {
-                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Database.Customer c WHERE c.Id = ?", CustomerId).First;                
-                QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT b FROM Database.Bill b WHERE Customer = ?", customer);
+                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Customer c WHERE c.Id = ?", CustomerId).First;                
+                QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT b FROM Bill b WHERE Customer = ?", customer);
                 BillJson billJson = new BillJson();
                 billJson.Bills.Data = bill;
                 return billJson;
@@ -44,17 +44,17 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Db.SlowSQL("DELETE FROM Database.Bill v WHERE v.BillNumber = ?", Attributes[0]);
+                Db.SlowSQL("DELETE FROM Bill v WHERE v.BillNumber = ?", Attributes[0]);
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.POST("/ThePrimeBaby/AddBill/6", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Bill bill = Db.SQL<Database.Bill>("SELECT c FROM Database.Bill c WHERE c.BillNumber = ?", Convert.ToInt32(Attributes[0])).First;
+                Database.Bill bill = Db.SQL<Database.Bill>("SELECT c FROM Bill c WHERE c.BillNumber = ?", Convert.ToInt32(Attributes[0])).First;
                 if (bill == null)
                 {
-                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Database.Customer c WHERE c.Id = ?", Convert.ToInt32(Attributes[1])).First;
+                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Customer c WHERE c.Id = ?", Convert.ToInt32(Attributes[1])).First;
                     bool Result = ThePrimeBaby.Database.Bill.AddBill(customer, Convert.ToDateTime(Attributes[2]), Convert.ToDecimal(Attributes[3]),Convert.ToDecimal(Attributes[4]),Attributes[5]);
                     if (Result == true)
                         return 200;

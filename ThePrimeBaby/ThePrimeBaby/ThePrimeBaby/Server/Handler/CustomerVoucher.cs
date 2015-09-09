@@ -15,10 +15,10 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/AddCustomerVoucherPayment", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.CustomerVoucher customerVoucher = Db.SQL<Database.CustomerVoucher>("SELECT c FROM Database.CustomerVoucher  c WHERE c.Name = ?", Attributes[0]).First;
+                Database.CustomerVoucher customerVoucher = Db.SQL<Database.CustomerVoucher>("SELECT c FROM CustomerVoucher  c WHERE c.Name = ?", Attributes[0]).First;
                 if (customerVoucher == null)
                 {
-                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Database.Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
+                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
                     bool Result = Database.CustomerVoucher.AddVoucherPayment(customer,Convert.ToDateTime(Attributes[1]),Convert.ToDecimal(Attributes[2]), Attributes[3], Convert.ToDecimal(Attributes[4]));
                     return 200;
                 }
