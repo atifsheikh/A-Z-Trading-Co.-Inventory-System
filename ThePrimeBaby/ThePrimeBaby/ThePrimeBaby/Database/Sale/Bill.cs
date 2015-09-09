@@ -42,7 +42,7 @@ namespace ThePrimeBaby.Database
 
         internal static int GetNewBillNumber()
         {
-            return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First)+1);
+            return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First) + 1);
         }
 
         internal static bool DeleteBill(string BillNumber)

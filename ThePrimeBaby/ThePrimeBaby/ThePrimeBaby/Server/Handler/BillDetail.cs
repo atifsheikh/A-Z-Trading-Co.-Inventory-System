@@ -1,5 +1,6 @@
 ﻿using System;
 using Starcounter;
+using System.Web;
 
 namespace ThePrimeBaby.Server.Handler
 {
@@ -9,7 +10,7 @@ namespace ThePrimeBaby.Server.Handler
         {
             Handle.GET("/ThePrimeBaby/GetSaleByBillId/{?}", (string BillId, Request r) =>
             {
-                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.Id = ?", Convert.ToInt32(BillId));
+                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.Id = ?", Convert.ToInt32(HttpUtility.UrlDecode(BillId)));
                 BillDetailJson billDetailJson = new BillDetailJson();
                 billDetailJson.BillDetails.Data = billDetail;
                 return billDetailJson;
@@ -17,7 +18,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetBillDetailsByBillNumber/{?}", (string BillNumber, Request r) =>
             {
-                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.ID = ?", Convert.ToInt32(BillNumber));
+                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.ID = ?", Convert.ToInt32(HttpUtility.UrlDecode(BillNumber)));
                 BillDetailJson billDetailJson = new BillDetailJson();
                 billDetailJson.BillDetails.Data = billDetail;
                 return billDetailJson;

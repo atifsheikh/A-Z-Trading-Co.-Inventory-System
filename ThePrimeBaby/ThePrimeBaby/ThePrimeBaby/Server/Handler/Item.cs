@@ -1,6 +1,7 @@
 ﻿using System;
 using Starcounter;
 using System.Data;
+using System.Web;
 
 namespace ThePrimeBaby.Server.Handler
 {
@@ -78,13 +79,13 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetItemCount/{?}", (string ItemCode, Request r) =>
             {
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", ItemCode).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemCode)).First;
                 return item.T_QUANTITY;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetItemSaleHistory/{?}", (string ItemName, Request r) =>
             {
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Name = ?", ItemName).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Name = ?", HttpUtility.UrlDecode(ItemName)).First;
                 QueryResultRows<IObjectView> billDetail = Db.SQL<IObjectView>("SELECT bd.ID, bd.QTY, bd.Bill.Id, bd.Item.ITEM_CODE, bd.Item.ITEM_NAME, bd.PCS_CTN, bd.T_QUANTITY, bd.UNITPRICE, bd.SUBTOTAL, bd.Customer.NAME , bd.Bill.DATED FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Item = ? AND bd.Bill.Id > ?", item, 0);
                 ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
                 itemSaleHistoryJson.ItemSaleHistory.Data = billDetail;
@@ -93,7 +94,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetItemDetails/{?}", (string FindString,Request r) =>
             {
-                QueryResultRows<Database.Base.Item> ItemDetail = Db.SQL<Database.Base.Item>("SELECT i ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", FindString);
+                QueryResultRows<Database.Base.Item> ItemDetail = Db.SQL<Database.Base.Item>("SELECT i ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", HttpUtility.UrlDecode(FindString));
                 ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
                 itemSaleHistoryJson.ItemSaleHistory.Data = ItemDetail;
                 return itemSaleHistoryJson;
@@ -101,7 +102,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetItemsByName/{?}", (string ItemName, Request r) =>
             {
-                QueryResultRows<Database.Base.Item> ItemDetail = Db.SQL<Database.Base.Item>("SELECT i ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", ItemName);
+                QueryResultRows<Database.Base.Item> ItemDetail = Db.SQL<Database.Base.Item>("SELECT i ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", HttpUtility.UrlDecode(ItemName));
                 ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
                 itemSaleHistoryJson.ItemSaleHistory.Data = ItemDetail;
                 return itemSaleHistoryJson;
@@ -138,7 +139,8 @@ namespace ThePrimeBaby.Server.Handler
                     return 200;
                 }
                 else
-                    return 209;
+                { return 300; }
+                return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             
@@ -182,11 +184,13 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Name = ?", Attributes[0]).First;
                 if (item == null)
                 {
-                    Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c WHERE c.ID = ?", Convert.ToInt32(Attributes[5])).First;
+                    Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c WHERE c.ID = ?", (Attributes[5]!=""?Convert.ToInt32(Attributes[5]):0)).First;
                     bool Result = ThePrimeBaby.Database.Base.Item.AddItem(Attributes[0], Attributes[1], Convert.ToInt32(Attributes[2]), Convert.ToDecimal(Attributes[3]), Attributes[4], category);
                     if (Result == true)
                         return 200;
                 }
+                else
+                    return 300;
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }

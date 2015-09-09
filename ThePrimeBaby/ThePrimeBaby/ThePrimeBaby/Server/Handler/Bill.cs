@@ -1,5 +1,6 @@
 ﻿using System;
 using Starcounter;
+using System.Web;
 
 namespace ThePrimeBaby.Server.Handler
 {
@@ -11,7 +12,7 @@ namespace ThePrimeBaby.Server.Handler
             {
                 if (CustomerId != "All")
                 {
-                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(CustomerId)).First;
+                    Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(HttpUtility.UrlDecode(CustomerId))).First;
                     QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT bd FROM ThePrimeBaby.Database.Bill bd WHERE bd.Customer = ?", customer);
                     BillJson billJson = new BillJson();
                     billJson.Bills.Data = bill;
@@ -28,7 +29,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetBillsbyCustomerById/{?}", (string CustomerId, Request r) =>
             {
-                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Id = ?", Convert.ToInt32(CustomerId)).First;
+                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Id = ?", Convert.ToInt32(HttpUtility.UrlDecode(CustomerId))).First;
                 QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE Customer = ?", customer);
                 BillJson billJson = new BillJson();
                 billJson.Bills.Data = bill;
@@ -38,7 +39,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetNewBillNumber", (Request r) =>
             {
-                return ThePrimeBaby.Database.Bill.GetNewBillNumber();
+                return ThePrimeBaby.Database.Bill.GetNewBillNumber().ToString();
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.POST("/ThePrimeBaby/DeleteBillByBillNumber", (Request r) =>
@@ -72,7 +73,7 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetBillByBillNumber/{?}", (string BillNumber, Request r) =>
             {
-                QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(BillNumber));
+                QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(HttpUtility.UrlDecode(BillNumber)));
                 BillJson billJson = new BillJson();
                 billJson.Bills.Data = bill;
                 return billJson;

@@ -1,5 +1,6 @@
 ﻿using System;
 using Starcounter;
+using System.Web;
 
 namespace ThePrimeBaby.Server.Handler
 {
@@ -9,7 +10,7 @@ namespace ThePrimeBaby.Server.Handler
         {
             Handle.GET("/ThePrimeBaby/GetCustomerById/{?}", (string CustomerId,Request r) =>
             {
-                QueryResultRows<Database.Customer> customer = Db.SQL<ThePrimeBaby.Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ? ", Convert.ToInt32(CustomerId));
+                QueryResultRows<Database.Customer> customer = Db.SQL<ThePrimeBaby.Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ? ", Convert.ToInt32(HttpUtility.UrlDecode(CustomerId)));
                 CustomerJson customerJson = new CustomerJson();
                 customerJson.Customers.Data = customer;
                 return customerJson;            
@@ -17,13 +18,13 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetCustomerName/{?}", (string CustomerId, Request r) =>
             {
-                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ? ", Convert.ToInt32(CustomerId)).First;
+                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ? ", Convert.ToInt32(HttpUtility.UrlDecode(CustomerId))).First;
                 return customer.NAME;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetCustomerByName/{?}", (string CustomerName, Request r) =>
             {
-                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Name = ? ", CustomerName);
+                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Name = ? ", HttpUtility.UrlDecode(CustomerName));
                 CustomerJson customerJson = new CustomerJson();
                 customerJson.Customers.Data = customer;
                 return customerJson;

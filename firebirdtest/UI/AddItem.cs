@@ -43,11 +43,8 @@ namespace firebirdtest.UI
                     }
                 }
                 Result = DatabaseCalls.AddItem(ItemNewName_txt.Text, ItemModel_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text);
-                Variables.NotificationStatus = true;
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = Result;
 
-                if (Result.StartsWith("Item Added with") != true)
+                if (Result!="")
                 {
                     return;
                 }

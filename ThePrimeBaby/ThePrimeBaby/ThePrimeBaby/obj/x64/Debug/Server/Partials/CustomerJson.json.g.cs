@@ -20,7 +20,7 @@ using __CuCustomer2__ = global::CustomerJson.CustomersElementJson.Input;
 using __Customer1__ = global::CustomerJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::CustomerJson.CustomersElementJson>;
 using __CCuBALANCE___ = global::CustomerJson.CustomersElementJson.Input.BALANCE_LIMIT;
-using __CCuOPENNING__ = global::CustomerJson.CustomersElementJson.Input.OPENNING_BALANCE;
+using __CCuOPENING___ = global::CustomerJson.CustomersElementJson.Input.OPENING_BALANCE;
 using __CCuAMOUNT__ = global::CustomerJson.CustomersElementJson.Input.AMOUNT;
 using __CCuPHONE__ = global::CustomerJson.CustomersElementJson.Input.PHONE;
 using __CCuEMAIL__ = global::CustomerJson.CustomersElementJson.Input.EMAIL;
@@ -113,7 +113,7 @@ public class CustomerJson : __Json__ {
         private System.String __bf__EMAIL__;
         private System.String __bf__PHONE__;
         private System.Decimal __bf__AMOUNT__;
-        private System.Decimal __bf__OPENNING_BALANCE__;
+        private System.Decimal __bf__OPENING_BALANCE__;
         private System.Decimal __bf__BALANCE_LIMIT__;
         #line default
         
@@ -146,9 +146,9 @@ public class CustomerJson : __Json__ {
                     AMOUNT = Add<__TDecimal__>("AMOUNT");
                     AMOUNT.DefaultValue = 0.0m;
                     AMOUNT.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__AMOUNT__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__AMOUNT__ = (System.Decimal)_v_; }, false);
-                    OPENNING_BALANCE = Add<__TDecimal__>("OPENNING_BALANCE");
-                    OPENNING_BALANCE.DefaultValue = 0.0m;
-                    OPENNING_BALANCE.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__OPENNING_BALANCE__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__OPENNING_BALANCE__ = (System.Decimal)_v_; }, false);
+                    OPENING_BALANCE = Add<__TDecimal__>("OPENING_BALANCE");
+                    OPENING_BALANCE.DefaultValue = 0.0m;
+                    OPENING_BALANCE.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__OPENING_BALANCE__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__OPENING_BALANCE__ = (System.Decimal)_v_; }, false);
                     BALANCE_LIMIT = Add<__TDecimal__>("BALANCE_LIMIT");
                     BALANCE_LIMIT.DefaultValue = 0.0m;
                     BALANCE_LIMIT.SetCustomAccessors((_p_) => { return ((__CuCustomer__)_p_).__bf__BALANCE_LIMIT__; }, (_p_, _v_) => { ((__CuCustomer__)_p_).__bf__BALANCE_LIMIT__ = (System.Decimal)_v_; }, false);
@@ -160,7 +160,7 @@ public class CustomerJson : __Json__ {
                 public __TString__ EMAIL;
                 public __TString__ PHONE;
                 public __TDecimal__ AMOUNT;
-                public __TDecimal__ OPENNING_BALANCE;
+                public __TDecimal__ OPENING_BALANCE;
                 public __TDecimal__ BALANCE_LIMIT;
             }
             #line default
@@ -239,15 +239,15 @@ public class CustomerJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.Decimal OPENNING_BALANCE {
+        public System.Decimal OPENING_BALANCE {
 #line 9 "Server\Partials\CustomerJson.json"
     get {
 #line hidden
-        return Template.OPENNING_BALANCE.Getter(this); }
+        return Template.OPENING_BALANCE.Getter(this); }
 #line 9 "Server\Partials\CustomerJson.json"
     set {
 #line hidden
-        Template.OPENNING_BALANCE.Setter(this, value); } }
+        Template.OPENING_BALANCE.Setter(this, value); } }
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -298,7 +298,7 @@ public class CustomerJson : __Json__ {
             #line default
             
             #line hidden
-            public class OPENNING_BALANCE : Input<__CuCustomer__, __TDecimal__, Decimal> {
+            public class OPENING_BALANCE : Input<__CuCustomer__, __TDecimal__, Decimal> {
             }
             #line default
             
