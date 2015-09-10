@@ -4,7 +4,7 @@
 		"NAME" : "",
 		"CUSTOMER":{
 			"ID":0,
-			"Name":""
+			"NAME":""
 		},
         "DATED" : "",
         "AMOUNT" : 0.0,

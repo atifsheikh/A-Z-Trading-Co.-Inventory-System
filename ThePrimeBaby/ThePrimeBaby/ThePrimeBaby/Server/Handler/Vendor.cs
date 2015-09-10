@@ -10,7 +10,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/AddVendor/6", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.Name = ?", Attributes[0]).First;
+                Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.NAME = ?", Attributes[0]).First;
                 if (vendor == null)
                 {
                     bool Result = ThePrimeBaby.Database.Vendor.AddVendor(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Convert.ToDecimal(Attributes[4]), Convert.ToDecimal(Attributes[5]));
@@ -71,7 +71,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/DeleteVendor", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Db.SlowSQL("DELETE FROM Vendor v WHERE v.Name = ?", Attributes[0]);
+                Db.SlowSQL("DELETE FROM Vendor v WHERE v.NAME = ?", Attributes[0]);
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }

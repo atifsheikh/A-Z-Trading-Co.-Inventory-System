@@ -10,8 +10,7 @@
         "CODE":"",
         "T_QUANTITY":0,
         "Category":{
-			"ID":0,
-			"Name":""
+			"NAME":""
 		}
 	}]
 }

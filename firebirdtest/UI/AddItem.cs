@@ -84,6 +84,7 @@ namespace firebirdtest.UI
                 if (Result1.Tables.Count > 0)
                 {
                     //Result1.Tables[0].Columns["Item_Code"].ColumnName = "Item Code";
+                    ItemCodeSearch_txt.Items.Clear();
                     for (int loop = 0; loop < Result1.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
                     {
                         ItemCodeSearch_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
@@ -92,13 +93,14 @@ namespace firebirdtest.UI
                 if (ItemsDataGridView.Columns.Count > 0)
                 {
                     ItemsDataGridView.Columns["ID"].Visible = false;
+                    ItemsDataGridView.Columns["NAME"].Visible = false;
                     ItemsDataGridView.Columns["IMAGE"].Visible = false;
                     ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
                     ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
                     ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 2;
                     ItemsDataGridView.Columns["PRICE"].DisplayIndex = 3;
                     ItemsDataGridView.Columns["T_QUANTITY"].Visible = false;
-                    ItemsDataGridView.Columns["CATEGORYNAME"].Visible = false;
+                    ItemsDataGridView.Columns["CATEGORYNAME"].DisplayIndex = 9;
                 }
             }
             catch (Exception ex)
@@ -129,6 +131,7 @@ namespace firebirdtest.UI
                     ItemName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["MODEL"].Value.ToString();
                     ItemQuantity_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["QTY_BOX"].Value.ToString();
                     ItemPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["PRICE"].Value.ToString();
+                    ItemCostPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["COSTPRICE"].Value.ToString();
                     ItemCategory_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CATEGORYNAME"].Value.ToString();
                     TQUANTITY_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["T_QUANTITY"].Value.ToString();
                     //TODO : SC Task
@@ -233,7 +236,7 @@ namespace firebirdtest.UI
                     }
                     else
                     {
-                        ItemsDataGridView.CurrentCell = null;
+                        ItemsDataGridView.CurrentCell.Selected = false;
                         ItemsDataGridView.Rows[loop].Visible = false;
                     }
                 }

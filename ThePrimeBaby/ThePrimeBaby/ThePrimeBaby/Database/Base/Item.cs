@@ -14,17 +14,18 @@ namespace ThePrimeBaby.Database.Base
         public int T_QUANTITY;
         public Category Category;
 
-        internal static bool AddItem(string Name, string Model, int QTY_Box, decimal Price, string ImagePath, Category ItemCategory)
+        internal static bool AddItem(string Code, string Model, int QTY_Box, decimal Price,decimal CostPrice, string ImagePath, Category ItemCategory)
         {
             try
             {
                 Db.Transact(() => {
                     Item item = new Item();
                     item.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Base.Item b").First) + 1; 
-                    item.NAME = Name;
+                    item.CODE = Code;
                     item.MODEL = Model;
                     item.QTY_BOX = QTY_Box;
                     item.PRICE = Price;
+                    item.COSTPRICE = CostPrice;
                     item.IMAGE = ImagePath;
                     item.Category = ItemCategory;
                 });
@@ -69,7 +70,7 @@ namespace ThePrimeBaby.Database.Base
             }
         }
 
-        internal static bool ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity)
+        internal static bool ModifyItems(string FindID, string ReplaceCode, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity)
         {
             try
             {
@@ -77,7 +78,7 @@ namespace ThePrimeBaby.Database.Base
                 Db.Transact(() =>
                 {
                     item.ID = Convert.ToInt32(FindID);
-                    item.NAME = ReplaceName;
+                    item.CODE = ReplaceCode;
                     item.MODEL = ReplaceModel;
                     item.QTY_BOX= Convert.ToInt32(ReplaceQuantity);
                     item.PRICE= Convert.ToDecimal(ReplacePrice);

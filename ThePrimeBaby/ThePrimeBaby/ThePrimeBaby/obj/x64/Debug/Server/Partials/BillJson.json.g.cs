@@ -27,7 +27,7 @@ using __BBiDATED__ = global::BillJson.BillsElementJson.Input.DATED;
 using __BBiNAME__ = global::BillJson.BillsElementJson.Input.NAME;
 using __BBiID__ = global::BillJson.BillsElementJson.Input.ID;
 using __BiBillsEle2__ = global::BillJson.BillsElementJson.Input;
-using __BBCUName__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input.Name;
+using __BBCUNAME__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input.NAME;
 using __BBCUID__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input.ID;
 using __BBiCUSTOMER2__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input;
 using __BillJson2__ = global::BillJson.Input;
@@ -283,7 +283,7 @@ public class BillJson : __Json__ {
             public new __BBCUSchema__ Template { get { return (__BBCUSchema__)base.Template; } set { base.Template = value; } }
             public override bool IsCodegenerated { get { return true; } }
             private System.Int64 __bf__ID__;
-            private System.String __bf__Name__;
+            private System.String __bf__NAME__;
             #line default
             
             #line hidden
@@ -300,13 +300,13 @@ public class BillJson : __Json__ {
                         ID = Add<__TLong__>("ID");
                         ID.DefaultValue = 0L;
                         ID.SetCustomAccessors((_p_) => { return ((__BBiCUSTOMER__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__BBiCUSTOMER__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
-                        Name = Add<__TString__>("Name");
-                        Name.DefaultValue = "";
-                        Name.SetCustomAccessors((_p_) => { return ((__BBiCUSTOMER__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__BBiCUSTOMER__)_p_).__bf__Name__ = (System.String)_v_; }, false);
+                        NAME = Add<__TString__>("NAME");
+                        NAME.DefaultValue = "";
+                        NAME.SetCustomAccessors((_p_) => { return ((__BBiCUSTOMER__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__BBiCUSTOMER__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
                     }
                     public override object CreateInstance(s.Json parent) { return new __BBiCUSTOMER__(this) { Parent = parent }; }
                     public __TLong__ ID;
-                    public __TString__ Name;
+                    public __TString__ NAME;
                 }
                 #line default
             }
@@ -324,15 +324,15 @@ public class BillJson : __Json__ {
 #line default
 
             [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public System.String Name {
+            public System.String NAME {
 #line 8 "Server\Partials\BillJson.json"
     get {
 #line hidden
-        return Template.Name.Getter(this); }
+        return Template.NAME.Getter(this); }
 #line 8 "Server\Partials\BillJson.json"
     set {
 #line hidden
-        Template.Name.Setter(this, value); } }
+        Template.NAME.Setter(this, value); } }
 #line default
 
             
@@ -347,7 +347,7 @@ public class BillJson : __Json__ {
                 
                 #line hidden
                 [_GEN1_][_GEN2_("Starcounter","2.0")]
-                public class Name : Input<__BBiCUSTOMER__, __TString__, string> {
+                public class NAME : Input<__BBiCUSTOMER__, __TString__, string> {
                 }
                 #line default
             }

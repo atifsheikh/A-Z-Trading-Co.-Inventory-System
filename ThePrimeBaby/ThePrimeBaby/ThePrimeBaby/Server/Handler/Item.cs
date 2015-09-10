@@ -181,11 +181,19 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/AddItem/7", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Name = ?", Attributes[0]).First;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", Attributes[0]).First;
                 if (item == null)
                 {
-                    Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c WHERE c.ID = ?", (Attributes[5]!=""?Convert.ToInt32(Attributes[5]):0)).First;
-                    bool Result = ThePrimeBaby.Database.Base.Item.AddItem(Attributes[0], Attributes[1], Convert.ToInt32(Attributes[2]), Convert.ToDecimal(Attributes[3]), Attributes[4], category);
+                    Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c WHERE c.NAME = ?", Attributes[6]).First;
+                    if (category == null)
+                    {
+                        Db.Transact(() => 
+                        {
+                            category = new Database.Base.Category();
+                            category.NAME = Attributes[6];
+                        });
+                    }
+                    bool Result = ThePrimeBaby.Database.Base.Item.AddItem(Attributes[0], Attributes[1], Convert.ToInt32(Attributes[2]), Convert.ToDecimal(Attributes[3]), Convert.ToDecimal(Attributes[4]), Attributes[5], category);
                     if (Result == true)
                         return 200;
                 }

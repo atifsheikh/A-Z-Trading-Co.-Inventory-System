@@ -19,7 +19,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/AddCategory", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c WHERE c.Name = ?", Attributes[0]).First;
+                Database.Base.Category category = Db.SQL<Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c WHERE c.NAME = ?", Attributes[0]).First;
                 if (category == null)
                 {
                     bool Result = ThePrimeBaby.Database.Base.Category.AddCategory(Attributes[0]);

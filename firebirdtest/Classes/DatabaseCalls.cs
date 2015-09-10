@@ -105,28 +105,42 @@ namespace firebirdtest
             }
         }
 
+        public static string ReplaceFirst(string text, string search, string replace)
+        {
+            int pos = text.IndexOf(search);
+            if (pos < 0)
+            {
+                return text;
+            }
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
+        }
+
         private static string RemoveNestedJson(string NestedJson)
         {
             try
             {
+                string ReplaceString = "";
                 string TableName = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"([^:]+)\":\\s*{");
+                string FindString = "";
                 if (TableName != null && TableName != "")
                 {
-                    string TableRows = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"[^:]+\":\\s*{([^}]+)}");
-
-                    List<string> Subtables = firebirdtest.Classes.RandomAlgos.AllGroups(TableRows, "\\s*\"([^,|}]+)+");
-
-                    string FindString = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
-                    string ReplaceString = "";
-
-
-                    foreach (string SubtableRow in Subtables)
+                    List<string> TableRows = firebirdtest.Classes.RandomAlgos.AllGroups(NestedJson, "{[^{]+\"[^:]+\":\\s*{([^}]+)}");
+                    foreach (string TableRow in TableRows)
                     {
-                        ReplaceString += "\"" + TableName + SubtableRow + ",";
-                    }
+                        List<string> Subtables = firebirdtest.Classes.RandomAlgos.AllGroups(TableRow, "\\s*\"([^,|}]+)+");
 
-                    ReplaceString = ReplaceString.Remove(ReplaceString.Length - 1);
-                    NestedJson = NestedJson.Replace(FindString, ReplaceString);
+                        FindString = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
+                        
+
+                        foreach (string SubtableRow in Subtables)
+                        {
+                            ReplaceString += "\"" + TableName + SubtableRow + ",";
+                        }
+                        ReplaceString = ReplaceString.Remove(ReplaceString.Length - 1);
+                        NestedJson = ReplaceFirst(NestedJson, FindString, ReplaceString);
+                        FindString = "";
+                        ReplaceString = "";
+                    }
                 }
                 return NestedJson;
             }
@@ -241,9 +255,9 @@ namespace firebirdtest
         }
 
         //Item
-        internal static string AddItem(string Name, String Model, int QTY_Box, decimal Price, decimal CostPrice, String ImagePath, string ItemCategory)
+        internal static string AddItem(string Code, String Model, int QTY_Box, decimal Price, decimal CostPrice, String ImagePath, string ItemCategory)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddItem/7", Name + "/" + Model + "/" + QTY_Box + "/" + Price+"/"+CostPrice+"/"+ImagePath+"/"+ItemCategory);
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddItem/7", Code + "/" + Model + "/" + QTY_Box + "/" + Price+"/"+CostPrice+"/"+ImagePath+"/"+ItemCategory);
         }
         internal static string DeleteItem(string Name)
         {

@@ -47,7 +47,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/AddSale/9", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c WHERE c.Name = ?", Attributes[0]).First;
+                Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c WHERE c.NAME = ?", Attributes[0]).First;
                 if (billDetail == null)
                 {
                     Database.Bill bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.Id = ?", Convert.ToInt32(Attributes[2])).First;

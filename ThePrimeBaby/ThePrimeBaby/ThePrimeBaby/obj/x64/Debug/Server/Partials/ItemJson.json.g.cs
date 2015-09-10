@@ -29,10 +29,9 @@ using __IItQTY_BOX__ = global::ItemJson.ItemsElementJson.Input.QTY_BOX;
 using __IItNAME__ = global::ItemJson.ItemsElementJson.Input.NAME;
 using __IItID__ = global::ItemJson.ItemsElementJson.Input.ID;
 using __ItItemsEle2__ = global::ItemJson.ItemsElementJson.Input;
-using __IICaName__ = global::ItemJson.ItemsElementJson.CategoryJson.Input.Name;
-using __IICaID__ = global::ItemJson.ItemsElementJson.CategoryJson.Input.ID;
+using __IICaNAME__ = global::ItemJson.ItemsElementJson.CategoryJson.Input.NAME;
+using __Arr__ = global::Starcounter.Arr<global::ItemJson.ItemsElementJson>;
 using __ItemJson2__ = global::ItemJson.Input;
-using __IItCategory1__ = global::ItemJson.ItemsElementJson.CategoryJson.JsonByExample;
 using __IItCategory__ = global::ItemJson.ItemsElementJson.CategoryJson;
 using __ItItemsEle1__ = global::ItemJson.ItemsElementJson.JsonByExample;
 using __IICaSchema__ = global::ItemJson.ItemsElementJson.CategoryJson.JsonByExample.Schema;
@@ -46,7 +45,7 @@ using __Json1__ = global::Starcounter.Json.JsonByExample;
 using __TObject__ = global::Starcounter.Templates.TObject;
 using __Json__ = global::Starcounter.Json;
 using __ItemJson__ = global::ItemJson;
-using __Arr__ = global::Starcounter.Arr<global::ItemJson.ItemsElementJson>;
+using __IItCategory1__ = global::ItemJson.ItemsElementJson.CategoryJson.JsonByExample;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -89,11 +88,11 @@ public class ItemJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Items {
-#line 17 "Server\Partials\ItemJson.json"
+#line 16 "Server\Partials\ItemJson.json"
     get {
 #line hidden
         return Template.Items.Getter(this); }
-#line 17 "Server\Partials\ItemJson.json"
+#line 16 "Server\Partials\ItemJson.json"
     set {
 #line hidden
         Template.Items.Setter(this, value); } }
@@ -292,11 +291,11 @@ public class ItemJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public __IItCategory__ Category {
-#line 16 "Server\Partials\ItemJson.json"
+#line 15 "Server\Partials\ItemJson.json"
     get {
 #line hidden
         return (__IItCategory__)Template.Category.Getter(this); }
-#line 16 "Server\Partials\ItemJson.json"
+#line 15 "Server\Partials\ItemJson.json"
     set {
 #line hidden
         Template.Category.Setter(this, value); } }
@@ -318,8 +317,7 @@ public class ItemJson : __Json__ {
             [_GEN1_][_GEN2_("Starcounter","2.0")]
             public new __IICaSchema__ Template { get { return (__IICaSchema__)base.Template; } set { base.Template = value; } }
             public override bool IsCodegenerated { get { return true; } }
-            private System.Int64 __bf__ID__;
-            private System.String __bf__Name__;
+            private System.String __bf__NAME__;
             #line default
             
             #line hidden
@@ -333,42 +331,26 @@ public class ItemJson : __Json__ {
                         InstanceType = typeof(__IItCategory__);
                         ClassName = "CategoryJson";
                         Properties.ClearExposed();
-                        ID = Add<__TLong__>("ID");
-                        ID.DefaultValue = 0L;
-                        ID.SetCustomAccessors((_p_) => { return ((__IItCategory__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__IItCategory__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
-                        Name = Add<__TString__>("Name");
-                        Name.DefaultValue = "";
-                        Name.SetCustomAccessors((_p_) => { return ((__IItCategory__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__IItCategory__)_p_).__bf__Name__ = (System.String)_v_; }, false);
+                        NAME = Add<__TString__>("NAME");
+                        NAME.DefaultValue = "";
+                        NAME.SetCustomAccessors((_p_) => { return ((__IItCategory__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__IItCategory__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
                     }
                     public override object CreateInstance(s.Json parent) { return new __IItCategory__(this) { Parent = parent }; }
-                    public __TLong__ ID;
-                    public __TString__ Name;
+                    public __TString__ NAME;
                 }
                 #line default
             }
             #line default
             [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public System.Int64 ID {
-#line 13 "Server\Partials\ItemJson.json"
+            public System.String NAME {
+#line 14 "Server\Partials\ItemJson.json"
     get {
 #line hidden
-        return Template.ID.Getter(this); }
-#line 13 "Server\Partials\ItemJson.json"
+        return Template.NAME.Getter(this); }
+#line 14 "Server\Partials\ItemJson.json"
     set {
 #line hidden
-        Template.ID.Setter(this, value); } }
-#line default
-
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public System.String Name {
-#line 15 "Server\Partials\ItemJson.json"
-    get {
-#line hidden
-        return Template.Name.Getter(this); }
-#line 15 "Server\Partials\ItemJson.json"
-    set {
-#line hidden
-        Template.Name.Setter(this, value); } }
+        Template.NAME.Setter(this, value); } }
 #line default
 
             
@@ -377,13 +359,7 @@ public class ItemJson : __Json__ {
                 
                 #line hidden
                 [_GEN1_][_GEN2_("Starcounter","2.0")]
-                public class ID : Input<__IItCategory__, __TLong__, long> {
-                }
-                #line default
-                
-                #line hidden
-                [_GEN1_][_GEN2_("Starcounter","2.0")]
-                public class Name : Input<__IItCategory__, __TString__, string> {
+                public class NAME : Input<__IItCategory__, __TString__, string> {
                 }
                 #line default
             }
