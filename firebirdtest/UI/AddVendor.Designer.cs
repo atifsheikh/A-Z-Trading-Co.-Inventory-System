@@ -323,9 +323,9 @@
             this.label13.Location = new System.Drawing.Point(16, 46);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(109, 17);
+            this.label13.Size = new System.Drawing.Size(95, 17);
             this.label13.TabIndex = 20;
-            this.label13.Text = "Customer Name";
+            this.label13.Text = "Vendor Name";
             // 
             // button3
             // 

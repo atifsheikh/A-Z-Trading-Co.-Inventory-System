@@ -699,6 +699,10 @@ namespace firebirdtest
                             Variables.FormRefresh = "";
                             addCustomerToolStripMenuItem_Click(sender, e);
                             break;
+                        case "AddVendor":
+                            Variables.FormRefresh = "";
+                            addVendorToolStripMenuItem_Click(sender, e);
+                            break;
                         case "LedgerReports":
                             Variables.FormRefresh = "";
                             leadgerReportToolStripMenuItem_Click(sender, e);

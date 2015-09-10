@@ -32,30 +32,19 @@ namespace firebirdtest.UI
                 try
                 {
                     String Result = DatabaseCalls.AddVendor(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text));
-                    string[] CustomerID = Result.Split('=');
-                    //DatabaseCalls.AddBill(DatabaseCalls.GetNewBillNumber()+1, Convert.ToInt32(CustomerID[1].Trim()), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
-                    Variables.NotificationStatus = false;
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = Result;
-
-                    CustomerDataSet = DatabaseCalls.GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendors");
-
-                    CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
-                    CustomersDataGridView.Columns["ID"].Visible = false;
-                    if (CustomerDataSet.Tables.Count > 0)
+                    if (Result != "")
                     {
-                        foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                        {
-                            CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
-                        }
-                        //after populating dgv, do the follwing:
-                        int cleanCount = CustomerDataSet.Tables[0].Rows.Count;
-                        while (CustomersDataGridView.Rows.Count > cleanCount)
-                        {
-                            CustomersDataGridView.Rows[cleanCount].Visible = false;
-                            cleanCount++;
-                        }
+                        Variables.NotificationStatus = true;
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = Result;
                     }
+                    else 
+                    {
+                        Variables.NotificationStatus = false;
+                    }
+
+                    VendorDataSet = DatabaseCalls.GetVendors();
+                    CleanUpGridView(VendorDataSet);
                 }
                 catch (Exception ex)
                 {
@@ -72,6 +61,57 @@ namespace firebirdtest.UI
             }
             FormLoading = false;
             //this.Close();
+        }
+
+        private void CleanUpGridView(DataSet VendorDataSet)
+        {
+            CustomersDataGridView.DataSource = VendorDataSet.Tables[0];
+            try
+            {
+                if (CustomersDataGridView.Columns.Count > 0)
+                {
+                    CustomersDataGridView.Columns["ID"].Visible = false;
+                }
+                if (VendorDataSet.Tables.Count > 0)
+                {
+                    foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
+                    {
+                        CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
+                    }
+                    //after populating dgv, do the follwing:
+                    int cleanCount = VendorDataSet.Tables[0].Rows.Count;
+                    while (CustomersDataGridView.Rows.Count > cleanCount)
+                    {
+                        CustomersDataGridView.Rows[cleanCount].Visible = false;
+                        cleanCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //CustomersDataGridView.DataSource = VendorDataSet.Tables[0];
+                ////after populating dgv, do the follwing:
+                //int cleanCount = VendorDataSet.Tables[0].Rows.Count;
+                //while (CustomersDataGridView.Rows.Count > cleanCount)
+                //{
+                //    CustomersDataGridView.Rows[cleanCount].Visible = false;
+                //    cleanCount++;
+                //}
+                //foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
+                //{
+                //    CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
+                //}
+                //if (CustomersDataGridView.Columns.Count > 0)
+                //{
+                //    CustomersDataGridView.Columns["NAME"].DisplayIndex = 0;
+                //    CustomersDataGridView.Columns["ADDRESS"].DisplayIndex = 1;
+                //    CustomersDataGridView.Columns["PHONE"].DisplayIndex = 2;
+                //    CustomersDataGridView.Columns["EMAIL"].DisplayIndex = 3;
+                //    CustomersDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 4;
+                //    CustomersDataGridView.Columns["AMOUNT"].Visible = false;
+                //    CustomersDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                //}
+            }
         }
 
         bool FormLoading = false;
@@ -119,65 +159,26 @@ namespace firebirdtest.UI
             decimal CalculatedAmount= Convert.ToDecimal(CustomerOpeningBalance_txt.Text) - PreviousBalance + CurrentAmount;
             string CustomerModifyResult = DatabaseCalls.ModifyVendor(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString(), CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, Convert.ToInt32(CustomerOpeningBalance_txt.Text), CalculatedAmount);
 
-            DataSet CusomerBillDataSet = DatabaseCalls.GetBillsbyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString());
-            if (CusomerBillDataSet.Tables.Count > 0)
+            if (CustomerModifyResult != "")
             {
-                foreach (DataRow Remarks in CusomerBillDataSet.Tables[0].Rows)
-                {
-                    if (Remarks.ItemArray[4].ToString().Contains("Opening Balance") == true)
-                    {
-                        DatabaseCalls.ModifyBillAmmount(Convert.ToInt32(Remarks.ItemArray[0].ToString()), Convert.ToDecimal(CustomerOpeningBalance_txt.Text));
-                        break;
-                    }
-                }
-            }
-            if (CustomerModifyResult.StartsWith("Customer modified = ") != true)
                 Variables.NotificationStatus = true;
-            Variables.NotificationMessageTitle = this.Name;
-            Variables.NotificationMessageText = CustomerModifyResult;
-
-            DataSet Result1 = new DataSet();
-            Result1 = DatabaseCalls.GetCustomers();
-            CustomersDataGridView.DataSource = Result1.Tables[0];
-            CustomersDataGridView.Columns[0].Visible = false;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = CustomerModifyResult;
+            }
+            DataSet VendorDataSet = new DataSet();
+            VendorDataSet = DatabaseCalls.GetVendors();
+            CleanUpGridView(VendorDataSet);
         }
 
-        static DataSet CustomerDataSet = new DataSet();
+        static DataSet VendorDataSet = new DataSet();
         private void AddVendor_Shown(object sender, EventArgs e)
         {
             try
             {
                 try
                 {
-                    CustomerDataSet = DatabaseCalls.GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetVendors");
-                    if (CustomerDataSet.Tables.Count > 0)
-                    {
-                        CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
-
-                        //after populating dgv, do the follwing:
-
-                        int cleanCount = CustomerDataSet.Tables[0].Rows.Count;
-                        while (CustomersDataGridView.Rows.Count > cleanCount)
-                        {
-                            CustomersDataGridView.Rows[cleanCount].Visible = false;
-                            cleanCount++;
-                        }
-
-                        foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                        {
-                            CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
-                        }
-                        if (CustomersDataGridView.Columns.Count> 0)
-                        {
-                            CustomersDataGridView.Columns["NAME"].DisplayIndex = 0;
-                            CustomersDataGridView.Columns["ADDRESS"].DisplayIndex = 1;
-                            CustomersDataGridView.Columns["PHONE"].DisplayIndex = 2;
-                            CustomersDataGridView.Columns["EMAIL"].DisplayIndex = 3;
-                            CustomersDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 4;
-                            CustomersDataGridView.Columns["AMOUNT"].Visible = false;
-                            CustomersDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
-                        }
-                    }
+                    VendorDataSet = DatabaseCalls.GetVendors();
+                        CleanUpGridView(VendorDataSet);
                 }
                 catch (Exception ex)
                 {

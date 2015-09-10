@@ -211,7 +211,6 @@ Variables.FormClosed = true;
         {
             Variables.FormRefresh = this.Name;
             this.Close();
-
         }
 
         private void CustomerNameSearch_txt_KeyPress(object sender, KeyPressEventArgs e)
