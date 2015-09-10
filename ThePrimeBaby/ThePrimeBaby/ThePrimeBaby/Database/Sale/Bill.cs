@@ -17,14 +17,21 @@ namespace ThePrimeBaby.Database
             IObjectView CTN_BILL_SUM = Db.SQL<IObjectView>("SELECT SUM(b.QTY) FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(BillID)).First;
             return (Convert.ToInt32(CTN_BILL_SUM.GetInt64(0)));
         }
-        internal static bool AddBill(Customer Customer, DateTime BillDate, decimal BillTotal, decimal CustomerBalance, string Remarks)
+        internal static bool AddBill(int billID, Customer Customer, DateTime BillDate, decimal BillTotal, decimal CustomerBalance, string Remarks)
         {
             try
             {
                 Db.Transact(() =>
                 {
                     Bill bill = new Bill();
-                    bill.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First) + 1;
+                    if (billID != 0 || billID != null)
+                    {
+                        bill.ID = billID;
+                    }
+                    else
+                    {
+                        bill.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First) + 1;
+                    }
                     bill.BillNumber = GetNewBillNumber();
                     bill.CUSTOMER = Customer;
                     bill.DATED = BillDate;

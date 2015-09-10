@@ -276,11 +276,11 @@ namespace firebirdtest
         //Consignments
         internal static string AddConsignment(string ConsignmentNumber, DateTime ConsignmentDate)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddConsignmentByNumber/2" + ConsignmentNumber + "/" + ConsignmentDate, "");
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddConsignmentByNumber/2" + ConsignmentNumber + "/" + ConsignmentDate.ToString().Replace('/', '-'), "");
         }
         internal static string ModifyConsignment(string FindID, DateTime ConsignmentDate, string ConsignmentDesc)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyConsignmentById/3", FindID + "/" + ConsignmentDate + "/" + ConsignmentDesc);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyConsignmentById/3", FindID + "/" + ConsignmentDate.ToString().Replace('/', '-') + "/" + ConsignmentDesc);
         }
         internal static string AddConsignmentDetail(string ItemName, string ShipID, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
         {
@@ -290,7 +290,7 @@ namespace firebirdtest
         //Bill
         internal static string AddBill(int BillNumber, int CustomerID, DateTime BillDate, decimal BillTotal, decimal CustomerBalance, string Remarks)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddBill/6", BillNumber + "/" + CustomerID + "/" + BillDate + "/" + BillTotal+ "/" + CustomerBalance+ "/" + Remarks);
+            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddBill/6", BillNumber + "/" + CustomerID + "/" + BillDate.ToString().Replace('/','-') + "/" + BillTotal+ "/" + CustomerBalance+ "/" + Remarks);
         }
         internal static string DeleteBill(string BillNumber)
         {
@@ -312,7 +312,7 @@ namespace firebirdtest
         }
         internal static string AddVoucherPayment(int CustomerID, DateTime BillDate, Decimal BillTotal, string Remarks, Decimal CustomerBalance)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddCustomerVoucherPayment",CustomerID + "/" + BillDate + "/" + BillTotal + "/" + Remarks + "/" + CustomerBalance);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddCustomerVoucherPayment", CustomerID + "/" + BillDate.ToString().Replace('/', '-') + "/" + BillTotal + "/" + Remarks + "/" + CustomerBalance);
         }
         internal static string ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE)
         {

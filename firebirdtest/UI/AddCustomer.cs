@@ -29,14 +29,17 @@ namespace firebirdtest.UI
             {
                 try
                 {
-                    String Result = DatabaseCalls.AddCustomer(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text));
-                    if (Result != null)
+                    String AddCustomerResult = DatabaseCalls.AddCustomer(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text));
+                    if (AddCustomerResult != null)
                     {
                         DataSet CustomerIDDataSet = DatabaseCalls.GetCustomer(CustomerName_txt.Text);
-                        DatabaseCalls.AddBill(Convert.ToInt32(DatabaseCalls.GetNewBillNumber()), Convert.ToInt32(CustomerIDDataSet.Tables[0].Rows[0].ItemArray[0]), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
-                        Variables.NotificationStatus = true;
-                        Variables.NotificationMessageTitle = this.Name;
-                        Variables.NotificationMessageText = Result;
+                        string AddBillResult = DatabaseCalls.AddBill(Convert.ToInt32(DatabaseCalls.GetNewBillNumber()), Convert.ToInt32(CustomerIDDataSet.Tables[0].Rows[0].ItemArray[0]), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
+                        if (AddBillResult != "")
+                        {
+                            Variables.NotificationStatus = true;
+                            Variables.NotificationMessageTitle = this.Name;
+                            Variables.NotificationMessageText = AddCustomerResult;
+                        }
                         CustomerDataSet = DatabaseCalls.GetCustomers();
                         CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
                         CustomersDataGridView.Columns["ID"].Visible = false;
@@ -86,7 +89,7 @@ namespace firebirdtest.UI
         {
             try
             {
-                if (FormLoading == false)
+                if (FormLoading == false && CustomersDataGridView.CurrentRow != null && CustomersDataGridView.CurrentRow.Cells[0].Value != null)
                 {
                     CustomerName_txt.Text = CustomersDataGridView.CurrentRow.Cells["NAME"].Value.ToString();
                     CustomerAddress_txt.Text = CustomersDataGridView.CurrentRow.Cells["ADDRESS"].Value.ToString();
@@ -137,19 +140,22 @@ namespace firebirdtest.UI
             {
                 CustomerDataSet = DatabaseCalls.GetCustomers();
                 CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
-                CustomersDataGridView.Columns["ID"].Visible = false;
-
+                
                 foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
                 {
                     CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
                 }
-                CustomersDataGridView.Columns["NAME"].DisplayIndex = 0;
-                CustomersDataGridView.Columns["ADDRESS"].DisplayIndex = 1;
-                CustomersDataGridView.Columns["PHONE"].DisplayIndex = 2;
-                CustomersDataGridView.Columns["EMAIL"].DisplayIndex = 3;
-                CustomersDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 4;
-                CustomersDataGridView.Columns["AMOUNT"].Visible= false;
-                CustomersDataGridView.Columns["BALANCE_LIMIT"].Visible= false;
+                if (CustomersDataGridView.Columns.Count > 0)
+                {
+                    CustomersDataGridView.Columns["NAME"].DisplayIndex = 0;
+                    CustomersDataGridView.Columns["ADDRESS"].DisplayIndex = 1;
+                    CustomersDataGridView.Columns["PHONE"].DisplayIndex = 2;
+                    CustomersDataGridView.Columns["EMAIL"].DisplayIndex = 3;
+                    CustomersDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 4;
+                    CustomersDataGridView.Columns["ID"].Visible = false;
+                    CustomersDataGridView.Columns["AMOUNT"].Visible = false;
+                    CustomersDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                }
             }
             catch (Exception ex)
             {

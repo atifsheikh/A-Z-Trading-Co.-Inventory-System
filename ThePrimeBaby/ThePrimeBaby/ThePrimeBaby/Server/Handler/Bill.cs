@@ -56,7 +56,7 @@ namespace ThePrimeBaby.Server.Handler
                 if (bill == null)
                 {
                     Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[1])).First;
-                    bool Result = ThePrimeBaby.Database.Bill.AddBill(customer, Convert.ToDateTime(Attributes[2]), Convert.ToDecimal(Attributes[3]),Convert.ToDecimal(Attributes[4]),Attributes[5]);
+                    bool Result = ThePrimeBaby.Database.Bill.AddBill(Convert.ToInt32(Attributes[0]),customer, Convert.ToDateTime(Attributes[2]), Convert.ToDecimal(Attributes[3]),Convert.ToDecimal(Attributes[4]),Attributes[5]);
                     if (Result == true)
                         return 200;
                 }
