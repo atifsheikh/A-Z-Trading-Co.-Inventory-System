@@ -41,7 +41,7 @@ namespace firebirdtest.UI
                             Variables.NotificationMessageText = AddCustomerResult;
                         }
                         CustomerDataSet = DatabaseCalls.GetCustomers();
-                        CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
+                        RandomAlgos.CleanUpGridView(CustomerDataSet, CustomersDataGridView); //CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
                         CustomersDataGridView.Columns["ID"].Visible = false;
 
                         foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
@@ -121,15 +121,17 @@ namespace firebirdtest.UI
                     break;
                 }
             }
-            
-            if (CustomerModifyResult.StartsWith("Customer modified = ") != true)
-                Variables.NotificationStatus = true;
-            Variables.NotificationMessageTitle = this.Name;
-            Variables.NotificationMessageText = CustomerModifyResult;
 
-            DataSet Result1 = new DataSet();
-            Result1 = DatabaseCalls.GetCustomers();
-            CustomersDataGridView.DataSource = Result1.Tables[0];
+            if (CustomerModifyResult != "")
+            {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = CustomerModifyResult;
+            }
+
+            DataSet CustomerDataSet = new DataSet();
+            CustomerDataSet = DatabaseCalls.GetCustomers();
+            RandomAlgos.CleanUpGridView(CustomerDataSet, CustomersDataGridView);
             CustomersDataGridView.Columns[0].Visible = false;
         }
 
@@ -139,8 +141,8 @@ namespace firebirdtest.UI
             try
             {
                 CustomerDataSet = DatabaseCalls.GetCustomers();
-                CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
-                
+                RandomAlgos.CleanUpGridView(CustomerDataSet, CustomersDataGridView);
+                CustomerNameSearch_txt.Items.Clear();
                 foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
                 {
                     CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);

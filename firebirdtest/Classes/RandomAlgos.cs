@@ -32,6 +32,9 @@ namespace firebirdtest.Classes
             }
             catch (Exception ex)
             {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = "Grid CleanUp Have Issues.";
+                Variables.NotificationMessageText = ex.Message;
             }
         }
 

@@ -16,20 +16,25 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __BiBillsEle2__ = global::BillJson.BillsElementJson.Input;
+using __BBiCUSTOMER1__ = global::BillJson.BillsElementJson.CUSTOMERJson.JsonByExample;
 using __BillJson1__ = global::BillJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::BillJson.BillsElementJson>;
 using __BBiBillNumb__ = global::BillJson.BillsElementJson.Input.BillNumber;
-using __BBiCUSTOMER1__ = global::BillJson.BillsElementJson.Input.CUSTOMER_BALANCE;
+using __BBiCUSTOMER3__ = global::BillJson.BillsElementJson.Input.CUSTOMER_BALANCE;
 using __BBiREMARKS__ = global::BillJson.BillsElementJson.Input.REMARKS;
 using __BBiAMOUNT__ = global::BillJson.BillsElementJson.Input.AMOUNT;
 using __BBiDATED__ = global::BillJson.BillsElementJson.Input.DATED;
-using __BBiCUSTOMER__ = global::BillJson.BillsElementJson.Input.CUSTOMER;
 using __BBiNAME__ = global::BillJson.BillsElementJson.Input.NAME;
 using __BBiID__ = global::BillJson.BillsElementJson.Input.ID;
-using __Arr__ = global::Starcounter.Arr<global::BillJson.BillsElementJson>;
+using __BiBillsEle2__ = global::BillJson.BillsElementJson.Input;
+using __BBCUName__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input.Name;
+using __BBCUID__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input.ID;
+using __BBiCUSTOMER2__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input;
 using __BillJson2__ = global::BillJson.Input;
+using __BBiCUSTOMER__ = global::BillJson.BillsElementJson.CUSTOMERJson;
+using __BiBillsEle1__ = global::BillJson.BillsElementJson.JsonByExample;
 using __TDecimal__ = global::Starcounter.Templates.TDecimal;
+using __BBCUSchema__ = global::BillJson.BillsElementJson.CUSTOMERJson.JsonByExample.Schema;
 using __TString__ = global::Starcounter.Templates.TString;
 using __TLong__ = global::Starcounter.Templates.TLong;
 using __BBiSchema__ = global::BillJson.BillsElementJson.JsonByExample.Schema;
@@ -39,7 +44,7 @@ using __Json1__ = global::Starcounter.Json.JsonByExample;
 using __TObject__ = global::Starcounter.Templates.TObject;
 using __Json__ = global::Starcounter.Json;
 using __BillJson__ = global::BillJson;
-using __BiBillsEle1__ = global::BillJson.BillsElementJson.JsonByExample;
+using __Arr__ = global::Starcounter.Arr<global::BillJson.BillsElementJson>;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -82,11 +87,11 @@ public class BillJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Bills {
-#line 12 "Server\Partials\BillJson.json"
+#line 15 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.Bills.Getter(this); }
-#line 12 "Server\Partials\BillJson.json"
+#line 15 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.Bills.Setter(this, value); } }
@@ -109,7 +114,7 @@ public class BillJson : __Json__ {
         public override bool IsCodegenerated { get { return true; } }
         private System.Int64 __bf__ID__;
         private System.String __bf__NAME__;
-        private System.String __bf__CUSTOMER__;
+        private __BBiCUSTOMER__ __bf__CUSTOMER__;
         private System.String __bf__DATED__;
         private System.Decimal __bf__AMOUNT__;
         private System.String __bf__REMARKS__;
@@ -134,9 +139,8 @@ public class BillJson : __Json__ {
                     NAME = Add<__TString__>("NAME");
                     NAME.DefaultValue = "";
                     NAME.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
-                    CUSTOMER = Add<__TString__>("CUSTOMER");
-                    CUSTOMER.DefaultValue = "";
-                    CUSTOMER.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__CUSTOMER__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__CUSTOMER__ = (System.String)_v_; }, false);
+                    CUSTOMER = Add<__BBCUSchema__>("CUSTOMER");
+                    CUSTOMER.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__CUSTOMER__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__CUSTOMER__ = (__BBiCUSTOMER__)_v_; }, false);
                     DATED = Add<__TString__>("DATED");
                     DATED.DefaultValue = "";
                     DATED.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__DATED__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__DATED__ = (System.String)_v_; }, false);
@@ -156,7 +160,7 @@ public class BillJson : __Json__ {
                 public override object CreateInstance(s.Json parent) { return new __BiBillsEle__(this) { Parent = parent }; }
                 public __TLong__ ID;
                 public __TString__ NAME;
-                public __TString__ CUSTOMER;
+                public __BBCUSchema__ CUSTOMER;
                 public __TString__ DATED;
                 public __TDecimal__ AMOUNT;
                 public __TString__ REMARKS;
@@ -191,12 +195,12 @@ public class BillJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String CUSTOMER {
-#line 5 "Server\Partials\BillJson.json"
+        public __BBiCUSTOMER__ CUSTOMER {
+#line 8 "Server\Partials\BillJson.json"
     get {
 #line hidden
-        return Template.CUSTOMER.Getter(this); }
-#line 5 "Server\Partials\BillJson.json"
+        return (__BBiCUSTOMER__)Template.CUSTOMER.Getter(this); }
+#line 8 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.CUSTOMER.Setter(this, value); } }
@@ -204,11 +208,11 @@ public class BillJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String DATED {
-#line 6 "Server\Partials\BillJson.json"
+#line 9 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.DATED.Getter(this); }
-#line 6 "Server\Partials\BillJson.json"
+#line 9 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.DATED.Setter(this, value); } }
@@ -216,11 +220,11 @@ public class BillJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Decimal AMOUNT {
-#line 7 "Server\Partials\BillJson.json"
+#line 10 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.AMOUNT.Getter(this); }
-#line 7 "Server\Partials\BillJson.json"
+#line 10 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.AMOUNT.Setter(this, value); } }
@@ -228,11 +232,11 @@ public class BillJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.String REMARKS {
-#line 8 "Server\Partials\BillJson.json"
+#line 11 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.REMARKS.Getter(this); }
-#line 8 "Server\Partials\BillJson.json"
+#line 11 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.REMARKS.Setter(this, value); } }
@@ -240,11 +244,11 @@ public class BillJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Decimal CUSTOMER_BALANCE {
-#line 9 "Server\Partials\BillJson.json"
+#line 12 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.CUSTOMER_BALANCE.Getter(this); }
-#line 9 "Server\Partials\BillJson.json"
+#line 12 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.CUSTOMER_BALANCE.Setter(this, value); } }
@@ -252,16 +256,104 @@ public class BillJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 BillNumber {
-#line 11 "Server\Partials\BillJson.json"
+#line 14 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.BillNumber.Getter(this); }
-#line 11 "Server\Partials\BillJson.json"
+#line 14 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.BillNumber.Setter(this, value); } }
 #line default
 
+        
+        #line hidden
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public class CUSTOMERJson : __Json__ {
+            #line hidden
+            [_GEN2_("Starcounter","2.0")]
+            public static __BBCUSchema__ DefaultTemplate = new __BBCUSchema__();
+            [_GEN1_][_GEN2_("Starcounter","2.0")]
+            public CUSTOMERJson() { }
+            [_GEN1_][_GEN2_("Starcounter","2.0")]
+            public CUSTOMERJson(__BBCUSchema__ template) { Template = template; }
+            [_GEN1_][_GEN2_("Starcounter","2.0")]
+            protected override _ScTemplate_ GetDefaultTemplate() { return DefaultTemplate; }
+            [_GEN1_][_GEN2_("Starcounter","2.0")]
+            public new __BBCUSchema__ Template { get { return (__BBCUSchema__)base.Template; } set { base.Template = value; } }
+            public override bool IsCodegenerated { get { return true; } }
+            private System.Int64 __bf__ID__;
+            private System.String __bf__Name__;
+            #line default
+            
+            #line hidden
+            public static class JsonByExample {
+                
+                #line hidden
+                [_GEN1_][_GEN2_("Starcounter","2.0")]
+                public class Schema : __TObject__ {
+                    public Schema()
+                        : base() {
+                        InstanceType = typeof(__BBiCUSTOMER__);
+                        ClassName = "CUSTOMERJson";
+                        Properties.ClearExposed();
+                        ID = Add<__TLong__>("ID");
+                        ID.DefaultValue = 0L;
+                        ID.SetCustomAccessors((_p_) => { return ((__BBiCUSTOMER__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__BBiCUSTOMER__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
+                        Name = Add<__TString__>("Name");
+                        Name.DefaultValue = "";
+                        Name.SetCustomAccessors((_p_) => { return ((__BBiCUSTOMER__)_p_).__bf__Name__; }, (_p_, _v_) => { ((__BBiCUSTOMER__)_p_).__bf__Name__ = (System.String)_v_; }, false);
+                    }
+                    public override object CreateInstance(s.Json parent) { return new __BBiCUSTOMER__(this) { Parent = parent }; }
+                    public __TLong__ ID;
+                    public __TString__ Name;
+                }
+                #line default
+            }
+            #line default
+            [_GEN1_][_GEN2_("Starcounter","2.0")]
+            public System.Int64 ID {
+#line 6 "Server\Partials\BillJson.json"
+    get {
+#line hidden
+        return Template.ID.Getter(this); }
+#line 6 "Server\Partials\BillJson.json"
+    set {
+#line hidden
+        Template.ID.Setter(this, value); } }
+#line default
+
+            [_GEN1_][_GEN2_("Starcounter","2.0")]
+            public System.String Name {
+#line 8 "Server\Partials\BillJson.json"
+    get {
+#line hidden
+        return Template.Name.Getter(this); }
+#line 8 "Server\Partials\BillJson.json"
+    set {
+#line hidden
+        Template.Name.Setter(this, value); } }
+#line default
+
+            
+            #line hidden
+            public static class Input {
+                
+                #line hidden
+                [_GEN1_][_GEN2_("Starcounter","2.0")]
+                public class ID : Input<__BBiCUSTOMER__, __TLong__, long> {
+                }
+                #line default
+                
+                #line hidden
+                [_GEN1_][_GEN2_("Starcounter","2.0")]
+                public class Name : Input<__BBiCUSTOMER__, __TString__, string> {
+                }
+                #line default
+            }
+            #line default
+        }
+        #line default
         
         #line hidden
         [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -274,11 +366,6 @@ public class BillJson : __Json__ {
             
             #line hidden
             public class NAME : Input<__BiBillsEle__, __TString__, string> {
-            }
-            #line default
-            
-            #line hidden
-            public class CUSTOMER : Input<__BiBillsEle__, __TString__, string> {
             }
             #line default
             
