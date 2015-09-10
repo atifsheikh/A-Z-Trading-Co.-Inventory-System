@@ -1,5 +1,6 @@
 ﻿using System;
 using Starcounter;
+using System.Web;
 
 namespace ThePrimeBaby.Server.Handler
 {
@@ -7,6 +8,14 @@ namespace ThePrimeBaby.Server.Handler
     {
         public static void Register()
         {
+            Handle.GET("/ThePrimeBaby/GetVendorById/{?}", (string VendorId, Request r) =>
+            {
+                QueryResultRows<Database.Vendor> Vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ? ", Convert.ToInt32(HttpUtility.UrlDecode(VendorId)));
+                VendorJson VendorJson = new VendorJson();
+                VendorJson.Vendors.Data = Vendor;
+                return VendorJson;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
             Handle.POST("/ThePrimeBaby/AddVendor/6", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');

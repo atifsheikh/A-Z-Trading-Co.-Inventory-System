@@ -4,6 +4,9 @@
 		"NAME" : "",
 		"SHIP_DATE":"",
         "DESCRIPTION":"",
-        "Vendor":""
+        "Vendor":{
+			"ID" : 0,
+			"NAME" : ""
+		}
 	}]
 }

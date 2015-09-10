@@ -136,6 +136,12 @@
     <Compile Include="UI\Admin Panel.Designer.cs">
       <DependentUpon>Admin Panel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ConsignmentPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ConsignmentPrint.Designer.cs">
+      <DependentUpon>ConsignmentPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Not in use\ItemHistoryReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Admin Panel.resx">
       <DependentUpon>Admin Panel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ConsignmentPrint.resx">
+      <DependentUpon>ConsignmentPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Not in use\ItemHistoryReport.resx">
       <DependentUpon>ItemHistoryReport.cs</DependentUpon>

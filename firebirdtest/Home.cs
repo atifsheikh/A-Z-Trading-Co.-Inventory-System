@@ -1064,6 +1064,79 @@ namespace firebirdtest
             }
 
         }
+
+        private void addConsignmentToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_LedgerReports != null && !_LedgerReports.IsDisposed)
+                    _LedgerReports.Dispose();
+                if (_LedgerStatement != null && !_LedgerStatement.IsDisposed)
+                    _LedgerStatement.Dispose();
+                if (_ListConsignmentDetails != null && !_ListConsignmentDetails.IsDisposed)
+                    _ListConsignmentDetails.Dispose();
+                if (_ListConsignments != null && !_ListConsignments.IsDisposed)
+                    _ListConsignments.Dispose();
+                if (_ListCustomers != null && !_ListCustomers.IsDisposed)
+                    _ListCustomers.Dispose();
+                if (_ListInventory != null && !_ListInventory.IsDisposed)
+                    _ListInventory.Dispose();
+                if (_AddConsignmentAdvanced != null && !_AddConsignmentAdvanced.IsDisposed)
+                    _AddConsignmentAdvanced.Dispose();
+                if (_AddCustomer != null && !_AddCustomer.IsDisposed)
+                    _AddCustomer.Dispose();
+                if (_AddItems != null && !_AddItems.IsDisposed)
+                    _AddItems.Dispose();
+                if (_DebitorSummary != null && !_DebitorSummary.IsDisposed)
+                    _DebitorSummary.Dispose();
+                if (_DeleteBill != null && !_DeleteBill.IsDisposed)
+                    _DeleteBill.Dispose();
+                if (_ItemHistoryReport != null && !_ItemHistoryReport.IsDisposed)
+                    _ItemHistoryReport.Dispose();
+
+
+                if (_AddBill.IsDisposed)
+                    _AddBill = new AddBill();
+
+                Home.Home_pnl.Visible = false;
+
+                _AddBill.MdiParent = this;
+                _AddBill.WindowState = FormWindowState.Maximized;
+                _AddBill.Show();
+                _AddBill.Focus();
+
+            }
+            catch (Exception ex)
+            {
+                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            }
+
+        }
+
+        AddConsignment _AddConsignment = new AddConsignment();
+        ConsignmentPrint _ConsignmentPrint = new ConsignmentPrint();
+        private void addConsignmentToolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void printConsignmentToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_ConsignmentPrint.IsDisposed)
+                    _ConsignmentPrint = new ConsignmentPrint();
+                Home.Home_pnl.Visible = false;
+                _ConsignmentPrint.MdiParent = this;
+                _ConsignmentPrint.WindowState = FormWindowState.Maximized;
+                _ConsignmentPrint.Show();
+                _ConsignmentPrint.Focus();
+            }
+            catch (Exception ex)
+            {
+                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            }
+        }
     }
 }
 //

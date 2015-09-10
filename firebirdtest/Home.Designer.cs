@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.Customer_Strip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Consignment_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -58,6 +58,8 @@
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.addConsignmentShortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listConsignmentDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addConsignmentToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.printConsignmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
             this.addSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,8 +99,6 @@
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
             this.leadgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addConsignmentToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.printConsignmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Consignment_strip.SuspendLayout();
             this.Inventory_Strio.SuspendLayout();
             this.Sales_Strip.SuspendLayout();
@@ -319,6 +319,20 @@
             this.listConsignmentDetailsToolStripMenuItem.Visible = false;
             this.listConsignmentDetailsToolStripMenuItem.Click += new System.EventHandler(this.listConsignmentDetailsToolStripMenuItem_Click);
             // 
+            // addConsignmentToolStripMenuItem2
+            // 
+            this.addConsignmentToolStripMenuItem2.Name = "addConsignmentToolStripMenuItem2";
+            this.addConsignmentToolStripMenuItem2.Size = new System.Drawing.Size(333, 24);
+            this.addConsignmentToolStripMenuItem2.Text = "Add Consignment";
+            this.addConsignmentToolStripMenuItem2.Click += new System.EventHandler(this.addConsignmentToolStripMenuItem2_Click_1);
+            // 
+            // printConsignmentToolStripMenuItem
+            // 
+            this.printConsignmentToolStripMenuItem.Name = "printConsignmentToolStripMenuItem";
+            this.printConsignmentToolStripMenuItem.Size = new System.Drawing.Size(333, 24);
+            this.printConsignmentToolStripMenuItem.Text = "Print Consignment";
+            this.printConsignmentToolStripMenuItem.Click += new System.EventHandler(this.printConsignmentToolStripMenuItem_Click_1);
+            // 
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -450,9 +464,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource2.Name = "DataSet1";
+            reportDataSource2.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.CustomerBill.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(1052, 481);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
@@ -665,18 +679,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // addConsignmentToolStripMenuItem2
-            // 
-            this.addConsignmentToolStripMenuItem2.Name = "addConsignmentToolStripMenuItem2";
-            this.addConsignmentToolStripMenuItem2.Size = new System.Drawing.Size(333, 24);
-            this.addConsignmentToolStripMenuItem2.Text = "Add Consignment";
-            // 
-            // printConsignmentToolStripMenuItem
-            // 
-            this.printConsignmentToolStripMenuItem.Name = "printConsignmentToolStripMenuItem";
-            this.printConsignmentToolStripMenuItem.Size = new System.Drawing.Size(333, 24);
-            this.printConsignmentToolStripMenuItem.Text = "Print Consignment";
             // 
             // Home
             // 

@@ -224,6 +224,11 @@ namespace firebirdtest
         {
             return GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerName/" + ID);
         }
+        internal static DataSet GetVendor(int ID)
+        {
+            string Result = POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorById/" + ID, "");
+            return JsonToDataSet(Result);
+        }
         internal static DataSet GetCustomer(int ID)
         {
             string Result = POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerById/" + ID, "");
@@ -457,6 +462,11 @@ namespace firebirdtest
         internal static DataSet GetBill(string BillNumber)
         {
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillByBillNumber/" + BillNumber);
+            //return JsonToDataSet(Result);
+        }
+        internal static DataSet GetConsignment(string ConsignmentNumber)
+        {
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetConsignmentByConsignmentNumber/" + ConsignmentNumber);
             //return JsonToDataSet(Result);
         }
         internal static DataSet GetBillsbyCustomer(string CustomerID)
