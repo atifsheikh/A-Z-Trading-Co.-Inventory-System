@@ -33,29 +33,29 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddVendor));
             this.label1 = new System.Windows.Forms.Label();
-            this.CustomerName_txt = new System.Windows.Forms.TextBox();
+            this.VendorName_txt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.CustomerAddress_txt = new System.Windows.Forms.TextBox();
+            this.VendorAddress_txt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.CustomerPhone_txt = new System.Windows.Forms.TextBox();
+            this.VendorPhone_txt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.CustomerEmail_txt = new System.Windows.Forms.TextBox();
+            this.VendorEmail_txt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.CustomerOpeningBalance_txt = new System.Windows.Forms.TextBox();
+            this.VendorOpeningBalance_txt = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.CustomerNameSearch_txt = new System.Windows.Forms.ComboBox();
+            this.VendorNameSearch_txt = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.CustomersDataGridView = new System.Windows.Forms.DataGridView();
+            this.VendorsDataGridView = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VendorsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -70,14 +70,14 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Name :";
             // 
-            // CustomerName_txt
+            // VendorName_txt
             // 
-            this.CustomerName_txt.Location = new System.Drawing.Point(148, 46);
-            this.CustomerName_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.CustomerName_txt.Name = "CustomerName_txt";
-            this.CustomerName_txt.Size = new System.Drawing.Size(153, 22);
-            this.CustomerName_txt.TabIndex = 1;
-            this.CustomerName_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerName_txt_KeyDown);
+            this.VendorName_txt.Location = new System.Drawing.Point(148, 46);
+            this.VendorName_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.VendorName_txt.Name = "VendorName_txt";
+            this.VendorName_txt.Size = new System.Drawing.Size(153, 22);
+            this.VendorName_txt.TabIndex = 1;
+            this.VendorName_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VendorName_txt_KeyDown);
             // 
             // label2
             // 
@@ -90,15 +90,15 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Address :";
             // 
-            // CustomerAddress_txt
+            // VendorAddress_txt
             // 
-            this.CustomerAddress_txt.Location = new System.Drawing.Point(148, 78);
-            this.CustomerAddress_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.CustomerAddress_txt.Name = "CustomerAddress_txt";
-            this.CustomerAddress_txt.Size = new System.Drawing.Size(153, 22);
-            this.CustomerAddress_txt.TabIndex = 2;
-            this.CustomerAddress_txt.Text = "None";
-            this.CustomerAddress_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerName_txt_KeyDown);
+            this.VendorAddress_txt.Location = new System.Drawing.Point(148, 78);
+            this.VendorAddress_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.VendorAddress_txt.Name = "VendorAddress_txt";
+            this.VendorAddress_txt.Size = new System.Drawing.Size(153, 22);
+            this.VendorAddress_txt.TabIndex = 2;
+            this.VendorAddress_txt.Text = "None";
+            this.VendorAddress_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VendorName_txt_KeyDown);
             // 
             // label3
             // 
@@ -111,15 +111,15 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Phone :";
             // 
-            // CustomerPhone_txt
+            // VendorPhone_txt
             // 
-            this.CustomerPhone_txt.Location = new System.Drawing.Point(148, 110);
-            this.CustomerPhone_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.CustomerPhone_txt.Name = "CustomerPhone_txt";
-            this.CustomerPhone_txt.Size = new System.Drawing.Size(153, 22);
-            this.CustomerPhone_txt.TabIndex = 3;
-            this.CustomerPhone_txt.Text = "+92-";
-            this.CustomerPhone_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerName_txt_KeyDown);
+            this.VendorPhone_txt.Location = new System.Drawing.Point(148, 110);
+            this.VendorPhone_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.VendorPhone_txt.Name = "VendorPhone_txt";
+            this.VendorPhone_txt.Size = new System.Drawing.Size(153, 22);
+            this.VendorPhone_txt.TabIndex = 3;
+            this.VendorPhone_txt.Text = "+92-";
+            this.VendorPhone_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VendorName_txt_KeyDown);
             // 
             // label4
             // 
@@ -132,14 +132,14 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Email :";
             // 
-            // CustomerEmail_txt
+            // VendorEmail_txt
             // 
-            this.CustomerEmail_txt.Location = new System.Drawing.Point(148, 142);
-            this.CustomerEmail_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.CustomerEmail_txt.Name = "CustomerEmail_txt";
-            this.CustomerEmail_txt.Size = new System.Drawing.Size(153, 22);
-            this.CustomerEmail_txt.TabIndex = 4;
-            this.CustomerEmail_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerName_txt_KeyDown);
+            this.VendorEmail_txt.Location = new System.Drawing.Point(148, 142);
+            this.VendorEmail_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.VendorEmail_txt.Name = "VendorEmail_txt";
+            this.VendorEmail_txt.Size = new System.Drawing.Size(153, 22);
+            this.VendorEmail_txt.TabIndex = 4;
+            this.VendorEmail_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VendorName_txt_KeyDown);
             // 
             // label5
             // 
@@ -152,15 +152,15 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Opening Balance :";
             // 
-            // CustomerOpeningBalance_txt
+            // VendorOpeningBalance_txt
             // 
-            this.CustomerOpeningBalance_txt.Location = new System.Drawing.Point(148, 174);
-            this.CustomerOpeningBalance_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.CustomerOpeningBalance_txt.Name = "CustomerOpeningBalance_txt";
-            this.CustomerOpeningBalance_txt.Size = new System.Drawing.Size(153, 22);
-            this.CustomerOpeningBalance_txt.TabIndex = 5;
-            this.CustomerOpeningBalance_txt.Text = "0";
-            this.CustomerOpeningBalance_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerName_txt_KeyDown);
+            this.VendorOpeningBalance_txt.Location = new System.Drawing.Point(148, 174);
+            this.VendorOpeningBalance_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.VendorOpeningBalance_txt.Name = "VendorOpeningBalance_txt";
+            this.VendorOpeningBalance_txt.Size = new System.Drawing.Size(153, 22);
+            this.VendorOpeningBalance_txt.TabIndex = 5;
+            this.VendorOpeningBalance_txt.Text = "0";
+            this.VendorOpeningBalance_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VendorName_txt_KeyDown);
             // 
             // button1
             // 
@@ -182,16 +182,16 @@
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.CustomerName_txt);
+            this.panel2.Controls.Add(this.VendorName_txt);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.CustomerAddress_txt);
+            this.panel2.Controls.Add(this.VendorAddress_txt);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.CustomerOpeningBalance_txt);
-            this.panel2.Controls.Add(this.CustomerPhone_txt);
+            this.panel2.Controls.Add(this.VendorOpeningBalance_txt);
+            this.panel2.Controls.Add(this.VendorPhone_txt);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.CustomerEmail_txt);
+            this.panel2.Controls.Add(this.VendorEmail_txt);
             this.panel2.Location = new System.Drawing.Point(0, 37);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
@@ -238,9 +238,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.LightBlue;
-            this.panel1.Controls.Add(this.CustomerNameSearch_txt);
+            this.panel1.Controls.Add(this.VendorNameSearch_txt);
             this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.CustomersDataGridView);
+            this.panel1.Controls.Add(this.VendorsDataGridView);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Location = new System.Drawing.Point(317, 37);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
@@ -248,18 +248,18 @@
             this.panel1.Size = new System.Drawing.Size(1475, 822);
             this.panel1.TabIndex = 1;
             // 
-            // CustomerNameSearch_txt
+            // VendorNameSearch_txt
             // 
-            this.CustomerNameSearch_txt.FormattingEnabled = true;
-            this.CustomerNameSearch_txt.Location = new System.Drawing.Point(145, 41);
-            this.CustomerNameSearch_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.CustomerNameSearch_txt.Name = "CustomerNameSearch_txt";
-            this.CustomerNameSearch_txt.Size = new System.Drawing.Size(160, 24);
-            this.CustomerNameSearch_txt.TabIndex = 0;
-            this.CustomerNameSearch_txt.TextChanged += new System.EventHandler(this.CustomerNameSearch_txt_TextChanged);
-            this.CustomerNameSearch_txt.Enter += new System.EventHandler(this.CustomerNameSearch_txt_Enter);
-            this.CustomerNameSearch_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CustomerNameSearch_txt_KeyPress);
-            this.CustomerNameSearch_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CustomerNameSearch_txt_KeyUp);
+            this.VendorNameSearch_txt.FormattingEnabled = true;
+            this.VendorNameSearch_txt.Location = new System.Drawing.Point(145, 41);
+            this.VendorNameSearch_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.VendorNameSearch_txt.Name = "VendorNameSearch_txt";
+            this.VendorNameSearch_txt.Size = new System.Drawing.Size(160, 24);
+            this.VendorNameSearch_txt.TabIndex = 0;
+            this.VendorNameSearch_txt.TextChanged += new System.EventHandler(this.VendorNameSearch_txt_TextChanged);
+            this.VendorNameSearch_txt.Enter += new System.EventHandler(this.VendorNameSearch_txt_Enter);
+            this.VendorNameSearch_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VendorNameSearch_txt_KeyPress);
+            this.VendorNameSearch_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.VendorNameSearch_txt_KeyUp);
             // 
             // label12
             // 
@@ -275,18 +275,18 @@
             this.label12.TabIndex = 36;
             this.label12.Text = "Search ";
             // 
-            // CustomersDataGridView
+            // VendorsDataGridView
             // 
-            this.CustomersDataGridView.AllowUserToAddRows = false;
+            this.VendorsDataGridView.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightBlue;
-            this.CustomersDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.CustomersDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.VendorsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.VendorsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.CustomersDataGridView.BackgroundColor = System.Drawing.Color.LightBlue;
-            this.CustomersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.CustomersDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.VendorsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.VendorsDataGridView.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.VendorsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.VendorsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightBlue;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -294,26 +294,26 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.LightBlue;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CustomersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.CustomersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CustomersDataGridView.GridColor = System.Drawing.Color.LightBlue;
-            this.CustomersDataGridView.Location = new System.Drawing.Point(9, 74);
-            this.CustomersDataGridView.Margin = new System.Windows.Forms.Padding(4);
-            this.CustomersDataGridView.Name = "CustomersDataGridView";
-            this.CustomersDataGridView.ReadOnly = true;
+            this.VendorsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.VendorsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.VendorsDataGridView.GridColor = System.Drawing.Color.LightBlue;
+            this.VendorsDataGridView.Location = new System.Drawing.Point(9, 74);
+            this.VendorsDataGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.VendorsDataGridView.Name = "VendorsDataGridView";
+            this.VendorsDataGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CustomersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.CustomersDataGridView.Size = new System.Drawing.Size(1455, 745);
-            this.CustomersDataGridView.TabIndex = 1;
-            this.CustomersDataGridView.TabStop = false;
-            this.CustomersDataGridView.CurrentCellChanged += new System.EventHandler(this.ItemsDataGridView_CurrentCellChanged);
-            this.CustomersDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.CustomersDataGridView_DataError);
-            this.CustomersDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.CustomersDataGridView_RowsAdded);
+            this.VendorsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.VendorsDataGridView.Size = new System.Drawing.Size(1455, 745);
+            this.VendorsDataGridView.TabIndex = 1;
+            this.VendorsDataGridView.TabStop = false;
+            this.VendorsDataGridView.CurrentCellChanged += new System.EventHandler(this.ItemsDataGridView_CurrentCellChanged);
+            this.VendorsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.VendorsDataGridView_DataError);
+            this.VendorsDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.VendorsDataGridView_RowsAdded);
             // 
             // label13
             // 
@@ -351,7 +351,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddVendor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Customer";
+            this.Text = "Add Vendor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddVendor_FormClosed);
             this.Load += new System.EventHandler(this.AddVendor_Load);
@@ -361,7 +361,7 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VendorsDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -369,26 +369,25 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox CustomerName_txt;
+        private System.Windows.Forms.TextBox VendorName_txt;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox CustomerAddress_txt;
+        private System.Windows.Forms.TextBox VendorAddress_txt;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox CustomerPhone_txt;
+        private System.Windows.Forms.TextBox VendorPhone_txt;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox CustomerEmail_txt;
+        private System.Windows.Forms.TextBox VendorEmail_txt;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox CustomerOpeningBalance_txt;
+        private System.Windows.Forms.TextBox VendorOpeningBalance_txt;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox CustomerNameSearch_txt;
+        private System.Windows.Forms.ComboBox VendorNameSearch_txt;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView CustomersDataGridView;
+        private System.Windows.Forms.DataGridView VendorsDataGridView;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button6;
-
     }
 }

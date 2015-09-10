@@ -4,11 +4,37 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Data;
 
 namespace firebirdtest.Classes
 {
     class RandomAlgos
     {
+        public static void CleanUpGridView(DataSet VendorDataSet, System.Windows.Forms.DataGridView dataGridViewObject)
+        {
+            dataGridViewObject.DataSource = VendorDataSet.Tables[0];
+            try
+            {
+                if (dataGridViewObject.Columns.Count > 0)
+                {
+                    dataGridViewObject.Columns["ID"].Visible = false;
+                }
+                if (VendorDataSet.Tables.Count > 0)
+                {
+                    //after populating dgv, do the follwing:
+                    int cleanCount = VendorDataSet.Tables[0].Rows.Count;
+                    while (dataGridViewObject.Rows.Count > cleanCount)
+                    {
+                        dataGridViewObject.Rows[cleanCount].Visible = false;
+                        cleanCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
         public static Dictionary<string, Regex> RegexDic = new Dictionary<string, Regex>(); // To avoid creating regex multiple times.
 
         public static Regex ReturnRegex(string regex)
