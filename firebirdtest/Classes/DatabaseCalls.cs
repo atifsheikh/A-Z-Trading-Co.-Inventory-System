@@ -215,6 +215,11 @@ namespace firebirdtest
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomers");
             //return JsonToDataSet(Result);
         }
+        internal static DataSet GetVendorByName(String Name)
+        {
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorByName/" + Name);
+            //return JsonToDataSet(Result);
+        }
         internal static DataSet GetCustomer(String Name)
         {
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerByName/" + Name);
@@ -391,7 +396,7 @@ namespace firebirdtest
             return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItems");
             //return JsonToDataSet(Result);
         }
-        internal static DataSet GetItems (String ItemField)
+        internal static DataSet GetItems(String ItemField)
         {
             return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemsByName/"+ItemField);
             //return JsonToDataSet(Result);

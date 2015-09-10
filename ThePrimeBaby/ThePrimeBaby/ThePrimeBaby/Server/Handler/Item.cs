@@ -101,18 +101,18 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetItemDetails/{?}", (string FindString,Request r) =>
             {
-                QueryResultRows<Database.Base.Item> ItemDetail = Db.SQL<Database.Base.Item>("SELECT i ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", HttpUtility.UrlDecode(FindString));
-                ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
-                itemSaleHistoryJson.ItemSaleHistory.Data = ItemDetail;
-                return itemSaleHistoryJson;
+                QueryResultRows<Database.Base.Item> item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", HttpUtility.UrlDecode(FindString));
+                ItemJson itemJson = new ItemJson();
+                itemJson.Items.Data = item;
+                return itemJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetItemsByName/{?}", (string ItemName, Request r) =>
             {
-                QueryResultRows<Database.Base.Item> ItemDetail = Db.SQL<Database.Base.Item>("SELECT i ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", HttpUtility.UrlDecode(ItemName));
-                ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
-                itemSaleHistoryJson.ItemSaleHistory.Data = ItemDetail;
-                return itemSaleHistoryJson;
+                QueryResultRows<Database.Base.Item> item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.CODE = ?", HttpUtility.UrlDecode(ItemName));
+                ItemJson itemJson = new ItemJson();
+                itemJson.Items.Data = item;
+                return itemJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetItems", (Request r) =>

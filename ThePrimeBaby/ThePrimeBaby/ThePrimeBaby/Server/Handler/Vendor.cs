@@ -56,6 +56,14 @@ namespace ThePrimeBaby.Server.Handler
                     return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
+            Handle.GET("/ThePrimeBaby/GetVendorByName/{?}", (string VendorName, Request r) =>
+            {
+                QueryResultRows<Database.Vendor> vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.Name = ? ", HttpUtility.UrlDecode(VendorName));
+                VendorJson vendorJson = new VendorJson();
+                vendorJson.Vendors.Data = vendor;
+                return vendorJson;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
 
             Handle.POST("/ThePrimeBaby/ModifyVendor/2", (Request r) =>
             {

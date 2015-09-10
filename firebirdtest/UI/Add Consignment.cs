@@ -315,7 +315,7 @@ namespace firebirdtest.UI
                 if (VendorName_txt.Text != "")
                 {
                     DataSet Result1 = new DataSet();
-                    Result1 = DatabaseCalls.GetVendor(Convert.ToInt32(VendorName_txt.Text));
+                    Result1 = DatabaseCalls.GetVendorByName(VendorName_txt.Text);
                     
                     foreach (DataRow GridViewColumn in Result1.Tables[0].Rows)
                     {
@@ -349,7 +349,7 @@ namespace firebirdtest.UI
             try
             {
                 String Result1 = DatabaseCalls.AddConsignment(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToInt32(VendorID_txt.Text), Convert.ToDateTime(ConsignmentDate_txt.Text), Convert.ToDecimal(Total_txt.Text), Convert.ToDecimal(BalanceNew_txt.Text),"Consignment");
-                if (Result1.StartsWith("Consignment Added with ID") == true)
+                if (Result1 == "")
                 {
                     //Add Consignment Details
                     foreach (DataGridViewRow GridViewRow in ConsignmentDetailDataGridView.Rows)
@@ -358,13 +358,13 @@ namespace firebirdtest.UI
                         {
                             // PCS_CTN, QUANT, CUSTOMER_ID
 
-                            String AddSaleResult = DatabaseCalls.AddSale(Convert.ToDecimal(GridViewRow.Cells[6].Value), Convert.ToInt32(GridViewRow.Cells[4].Value), Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToDecimal(GridViewRow.Cells[7].Value), GridViewRow.Cells[1].Value.ToString(), GridViewRow.Cells[2].Value.ToString(), Convert.ToInt32(GridViewRow.Cells[3].Value), Convert.ToInt32(GridViewRow.Cells[5].Value), Convert.ToInt32(VendorID_txt.Text));
-                            if (AddSaleResult.StartsWith("Vendor Balance Updated") != true)
+                            string AddSaleResult = DatabaseCalls.AddConsignmentDetail(GridViewRow.Cells["ITEM_CODE"].Value.ToString(), ConsignmentNumber_txt.Text, Convert.ToInt32( GridViewRow.Cells["QUANT"].Value),Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), GridViewRow.Cells["ItemName"].Value.ToString(),Convert.ToInt32(GridViewRow.Cells["Qty"].Value),Convert.ToDecimal(GridViewRow.Cells["Price"].Value),Convert.ToDecimal(GridViewRow.Cells["SubTotal"].Value));
+                            if (AddSaleResult == "")
                             {
-                                ItemDetails = DatabaseCalls.GetItemDetails("code", GridViewRow.Cells[1].Value.ToString());
-                                int UpdatedItem_Quantity = (Convert.ToInt32(ItemDetails.Tables[0].Rows[0]["T_QUANTITY"]) - Convert.ToInt32(GridViewRow.Cells[5].Value));
+                                ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
+                                int UpdatedItem_Quantity = (Convert.ToInt32(ItemDetails.Tables[0].Rows[0]["T_Quantity"]) - Convert.ToInt32(GridViewRow.Cells[5].Value));
                                 String UpdateItemResult = DatabaseCalls.AddItemQutantity(GridViewRow.Cells[1].Value.ToString(), UpdatedItem_Quantity);
-                                if (UpdateItemResult.StartsWith("Item Quantity Modified") != true)
+                                if (UpdateItemResult != "")
                                 {
                                     Variables.NotificationStatus = true;
                                     Variables.NotificationMessageTitle = this.Name;
@@ -1624,7 +1624,7 @@ namespace firebirdtest.UI
             {
                 for (int loop = 0; loop < ItemsDataGridView.Rows.Count; loop++)
                 {
-                    if (ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Contains(ItemCode_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
+                    if (StaticClass.Contain(ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString(),ItemCode_txt.Text,StringComparison.OrdinalIgnoreCase))
                     {
                         ItemsDataGridView.Rows[loop].Visible = true;
                     }
@@ -1679,7 +1679,7 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (Convert.ToInt32(ItemsDataGridView.Rows[SelectedRowIndex].Cells["T_Quantity"].Value.ToString()) > 0)
+                    //if (Convert.ToInt32(ItemsDataGridView.Rows[SelectedRowIndex].Cells["T_Quantity"].Value.ToString()) > 0)
                     {
                         ItemsDataGridView.Visible = false;
                         Ctn_txt.Focus();
@@ -1693,12 +1693,12 @@ namespace firebirdtest.UI
                         //RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CTN_LEFT"].Value.ToString();
                         //SHIPMENT_ITEM_ID = ItemsDataGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString().Trim();
                     }
-                    else
-                    {
-                        Variables.NotificationStatus = true;
-                        Variables.NotificationMessageTitle = this.Name;
-                        Variables.NotificationMessageText = "Stock Empty...";
-                    }
+                    //else
+                    //{
+                    //    Variables.NotificationStatus = true;
+                    //    Variables.NotificationMessageTitle = this.Name;
+                    //    Variables.NotificationMessageText = "Stock Empty...";
+                    //}
                 }
                 else if (e.KeyCode == Keys.Escape)
                 {
