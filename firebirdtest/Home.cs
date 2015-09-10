@@ -1005,12 +1005,23 @@ namespace firebirdtest
 
         }
 
+        Admin_Panel _Admin_Panel = new Admin_Panel();
         private void databaseAddressToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog ItemFileBrowser_Dialogue = new OpenFileDialog();
-            //ItemFileBrowser_Dialogue.ShowDialog();
-            //if (ItemFileBrowser_Dialogue.FileName != "")
-            //    Variables.DatabaseConnectString = "User=SYSDBA; Password=masterkey;Database=CyberKryptos-PC-9:" + ItemFileBrowser_Dialogue.FileName + " ;DataSource=localhost;Port=3050;Dialect=3;Charset=NONE;";
+            try
+            {
+                if (_Admin_Panel.IsDisposed)
+                    _Admin_Panel = new Admin_Panel();
+                Home.Home_pnl.Visible = false;
+                _Admin_Panel.MdiParent = this;
+                //_Admin_Panel.WindowState = FormWindowState.Maximized;
+                _Admin_Panel.Show();
+                _Admin_Panel.Focus();
+            }
+            catch (Exception ex)
+            {
+                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            }
         }
 
         ItemHistoryView _ItemHistoryReport = new ItemHistoryView();

@@ -6,7 +6,7 @@
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;ConnectionString&gt;Dsn=Firebird DNS;uid=sysdba;pwd=masterkey&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
+  &lt;ProviderName /&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Dsn=Firebird DNS;uid=sysdba;pwd=masterkey</Value>
     </Setting>
@@ -20,7 +20,7 @@
       <Value Profile="(Default)">User=SYSDBA; Password=masterkey;Database=Atif-PC:E:\A-Z.FDB;DataSource=localhost;Port=3050;Dialect=3;Charset=NONE;
 </Value>
     </Setting>
-    <Setting Name="SC_Server" Type="System.String" Scope="Application">
+    <Setting Name="SC_Server" Type="System.String" Scope="User">
       <Value Profile="(Default)">Atif-PC:8080</Value>
     </Setting>
   </Settings>

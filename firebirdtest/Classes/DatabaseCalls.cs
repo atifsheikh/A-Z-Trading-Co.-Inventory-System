@@ -43,7 +43,7 @@ namespace firebirdtest
                 Variables.NotificationMessageTitle = "Database Side Error";
                 Variables.NotificationMessageText = ex.Message;
                 Variables.DisplayTime = 5000;
-                return null;
+                return "{}";
             }
         }
 
@@ -101,7 +101,7 @@ namespace firebirdtest
                 Variables.NotificationMessageTitle = "Database Side Error";
                 Variables.NotificationMessageText = ex.Message;
                 Variables.DisplayTime = 5000;
-                return null;
+                return new DataSet();
             }
         }
 

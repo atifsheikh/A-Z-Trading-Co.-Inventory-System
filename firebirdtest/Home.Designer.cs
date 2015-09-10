@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.Customer_Strip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Consignment_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -49,9 +49,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addVendorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.addCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,9 +97,6 @@
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
             this.leadgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vendorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addVendorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewVendorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Consignment_strip.SuspendLayout();
             this.Inventory_Strio.SuspendLayout();
             this.Sales_Strip.SuspendLayout();
@@ -247,11 +245,25 @@
             this.toolStripMenuItem21.Text = "E&xit";
             this.toolStripMenuItem21.Click += new System.EventHandler(this.toolStripMenuItem21_Click);
             // 
+            // vendorToolStripMenuItem
+            // 
+            this.vendorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addVendorToolStripMenuItem});
+            this.vendorToolStripMenuItem.Name = "vendorToolStripMenuItem";
+            this.vendorToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.vendorToolStripMenuItem.Text = "Vendor";
+            // 
+            // addVendorToolStripMenuItem
+            // 
+            this.addVendorToolStripMenuItem.Name = "addVendorToolStripMenuItem";
+            this.addVendorToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.addVendorToolStripMenuItem.Text = "Add Vendor";
+            this.addVendorToolStripMenuItem.Click += new System.EventHandler(this.addVendorToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addCustomerToolStripMenuItem,
-            this.listCustomerToolStripMenuItem});
+            this.addCustomerToolStripMenuItem});
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             this.toolStripMenuItem8.Size = new System.Drawing.Size(84, 24);
             this.toolStripMenuItem8.Text = "&Customer";
@@ -262,14 +274,6 @@
             this.addCustomerToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.addCustomerToolStripMenuItem.Text = "&Add Customer";
             this.addCustomerToolStripMenuItem.Click += new System.EventHandler(this.addCustomerToolStripMenuItem_Click);
-            // 
-            // listCustomerToolStripMenuItem
-            // 
-            this.listCustomerToolStripMenuItem.Name = "listCustomerToolStripMenuItem";
-            this.listCustomerToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
-            this.listCustomerToolStripMenuItem.Text = "&List Customer";
-            this.listCustomerToolStripMenuItem.Visible = false;
-            this.listCustomerToolStripMenuItem.Click += new System.EventHandler(this.listCustomerToolStripMenuItem_Click);
             // 
             // toolStripMenuItem19
             // 
@@ -307,6 +311,7 @@
             this.listConsignmentDetailsToolStripMenuItem.Name = "listConsignmentDetailsToolStripMenuItem";
             this.listConsignmentDetailsToolStripMenuItem.Size = new System.Drawing.Size(241, 24);
             this.listConsignmentDetailsToolStripMenuItem.Text = "List Consignment Details";
+            this.listConsignmentDetailsToolStripMenuItem.Visible = false;
             this.listConsignmentDetailsToolStripMenuItem.Click += new System.EventHandler(this.listConsignmentDetailsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem17
@@ -432,7 +437,7 @@
             Home_pnl.Controls.Add(this.pictureBox9);
             Home_pnl.Controls.Add(this.pictureBox10);
             Home_pnl.Location = new System.Drawing.Point(0, 30);
-            Home_pnl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            Home_pnl.Margin = new System.Windows.Forms.Padding(4);
             Home_pnl.Name = "Home_pnl";
             Home_pnl.Size = new System.Drawing.Size(1065, 494);
             Home_pnl.TabIndex = 11;
@@ -440,12 +445,12 @@
             // reportViewer1
             // 
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.CustomerBill.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(1052, 481);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
             this.reportViewer1.Size = new System.Drawing.Size(13, 12);
@@ -458,7 +463,7 @@
             this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox6.Location = new System.Drawing.Point(933, 183);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(107, 105);
             this.pictureBox6.TabIndex = 9;
@@ -471,7 +476,7 @@
             this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox7.Location = new System.Drawing.Point(711, 183);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(107, 105);
             this.pictureBox7.TabIndex = 8;
@@ -484,7 +489,7 @@
             this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox8.Location = new System.Drawing.Point(481, 183);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(107, 105);
             this.pictureBox8.TabIndex = 7;
@@ -497,7 +502,7 @@
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox9.Location = new System.Drawing.Point(243, 183);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(107, 105);
             this.pictureBox9.TabIndex = 6;
@@ -511,7 +516,7 @@
             this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox10.Location = new System.Drawing.Point(24, 183);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(107, 105);
             this.pictureBox10.TabIndex = 5;
@@ -656,28 +661,6 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // vendorToolStripMenuItem
-            // 
-            this.vendorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addVendorToolStripMenuItem,
-            this.viewVendorToolStripMenuItem});
-            this.vendorToolStripMenuItem.Name = "vendorToolStripMenuItem";
-            this.vendorToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
-            this.vendorToolStripMenuItem.Text = "Vendor";
-            // 
-            // addVendorToolStripMenuItem
-            // 
-            this.addVendorToolStripMenuItem.Name = "addVendorToolStripMenuItem";
-            this.addVendorToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
-            this.addVendorToolStripMenuItem.Text = "Add Vendor";
-            this.addVendorToolStripMenuItem.Click += new System.EventHandler(this.addVendorToolStripMenuItem_Click);
-            // 
-            // viewVendorToolStripMenuItem
-            // 
-            this.viewVendorToolStripMenuItem.Name = "viewVendorToolStripMenuItem";
-            this.viewVendorToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
-            this.viewVendorToolStripMenuItem.Text = "View Vendor";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -689,7 +672,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1081, 559);
             this.Name = "Home";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -740,7 +723,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem21;
         private System.Windows.Forms.ToolStripMenuItem addSaleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCustomerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem19;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem20;
         private System.Windows.Forms.ToolStripMenuItem listConsignmentDetailsToolStripMenuItem;
@@ -784,7 +766,6 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.ToolStripMenuItem vendorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addVendorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewVendorToolStripMenuItem;
         public static System.Windows.Forms.Panel Home_pnl;
         
     }
