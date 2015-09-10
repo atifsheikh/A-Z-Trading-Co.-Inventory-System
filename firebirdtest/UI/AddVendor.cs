@@ -174,7 +174,7 @@ namespace firebirdtest.UI
             //Vendor Detail
             try
             {
-                for (int loop = 0; loop < VendorsDataGridView.Rows.Count; loop++)
+                for (int loop = 0; loop < VendorsDataGridView.Rows.Count && VendorsDataGridView.Rows[loop]!= null && VendorsDataGridView.Rows[loop].Cells["NAME"].Value != null; loop++)
                 {
                     if (VendorsDataGridView.Rows[loop].Cells["NAME"].Value.ToString().Contains(VendorNameSearch_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
                     {

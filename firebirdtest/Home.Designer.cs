@@ -97,6 +97,8 @@
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
             this.leadgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addConsignmentToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.printConsignmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Consignment_strip.SuspendLayout();
             this.Inventory_Strio.SuspendLayout();
             this.Sales_Strip.SuspendLayout();
@@ -294,7 +296,9 @@
             // 
             this.toolStripMenuItem11.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addConsignmentShortToolStripMenuItem,
-            this.listConsignmentDetailsToolStripMenuItem});
+            this.listConsignmentDetailsToolStripMenuItem,
+            this.addConsignmentToolStripMenuItem2,
+            this.printConsignmentToolStripMenuItem});
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
             this.toolStripMenuItem11.Size = new System.Drawing.Size(108, 24);
             this.toolStripMenuItem11.Text = "C&onsignment";
@@ -302,15 +306,16 @@
             // addConsignmentShortToolStripMenuItem
             // 
             this.addConsignmentShortToolStripMenuItem.Name = "addConsignmentShortToolStripMenuItem";
-            this.addConsignmentShortToolStripMenuItem.Size = new System.Drawing.Size(241, 24);
-            this.addConsignmentShortToolStripMenuItem.Text = "Add Consignment";
+            this.addConsignmentShortToolStripMenuItem.Size = new System.Drawing.Size(333, 24);
+            this.addConsignmentShortToolStripMenuItem.Text = "Add Consignment - Depriciated";
+            this.addConsignmentShortToolStripMenuItem.Visible = false;
             this.addConsignmentShortToolStripMenuItem.Click += new System.EventHandler(this.addConsignmentShortToolStripMenuItem_Click);
             // 
             // listConsignmentDetailsToolStripMenuItem
             // 
             this.listConsignmentDetailsToolStripMenuItem.Name = "listConsignmentDetailsToolStripMenuItem";
-            this.listConsignmentDetailsToolStripMenuItem.Size = new System.Drawing.Size(241, 24);
-            this.listConsignmentDetailsToolStripMenuItem.Text = "List Consignment Details";
+            this.listConsignmentDetailsToolStripMenuItem.Size = new System.Drawing.Size(333, 24);
+            this.listConsignmentDetailsToolStripMenuItem.Text = "List Consignment Details - Depriciated";
             this.listConsignmentDetailsToolStripMenuItem.Visible = false;
             this.listConsignmentDetailsToolStripMenuItem.Click += new System.EventHandler(this.listConsignmentDetailsToolStripMenuItem_Click);
             // 
@@ -661,6 +666,18 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // addConsignmentToolStripMenuItem2
+            // 
+            this.addConsignmentToolStripMenuItem2.Name = "addConsignmentToolStripMenuItem2";
+            this.addConsignmentToolStripMenuItem2.Size = new System.Drawing.Size(333, 24);
+            this.addConsignmentToolStripMenuItem2.Text = "Add Consignment";
+            // 
+            // printConsignmentToolStripMenuItem
+            // 
+            this.printConsignmentToolStripMenuItem.Name = "printConsignmentToolStripMenuItem";
+            this.printConsignmentToolStripMenuItem.Size = new System.Drawing.Size(333, 24);
+            this.printConsignmentToolStripMenuItem.Text = "Print Consignment";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -766,6 +783,8 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.ToolStripMenuItem vendorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addVendorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addConsignmentToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem printConsignmentToolStripMenuItem;
         public static System.Windows.Forms.Panel Home_pnl;
         
     }
