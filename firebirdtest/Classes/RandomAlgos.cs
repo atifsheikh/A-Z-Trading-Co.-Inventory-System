@@ -8,7 +8,7 @@ using System.Data;
 
 namespace firebirdtest.Classes
 {
-    class RandomAlgos
+    public class RandomAlgos
     {
         public static void CleanUpGridView(DataSet VendorDataSet, System.Windows.Forms.DataGridView dataGridViewObject)
         {

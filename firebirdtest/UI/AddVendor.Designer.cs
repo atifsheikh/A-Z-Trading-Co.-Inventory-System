@@ -250,7 +250,11 @@
             // 
             // VendorNameSearch_txt
             // 
+            this.VendorNameSearch_txt.DropDownHeight = 1;
+            this.VendorNameSearch_txt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.VendorNameSearch_txt.DropDownWidth = 1;
             this.VendorNameSearch_txt.FormattingEnabled = true;
+            this.VendorNameSearch_txt.IntegralHeight = false;
             this.VendorNameSearch_txt.Location = new System.Drawing.Point(145, 41);
             this.VendorNameSearch_txt.Margin = new System.Windows.Forms.Padding(4);
             this.VendorNameSearch_txt.Name = "VendorNameSearch_txt";

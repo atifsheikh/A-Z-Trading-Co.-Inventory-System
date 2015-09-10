@@ -76,31 +76,29 @@ namespace firebirdtest.UI
             //TO GET ITEM LIST
             try
             {
-                DataSet Result1 = new DataSet();
-                Result1 = DatabaseCalls.GetItems();
-                RandomAlgos.CleanUpGridView(Result1, ItemsDataGridView);
+                DataSet ItemsDataset = new DataSet();
+                ItemsDataset = DatabaseCalls.GetItems();
+                RandomAlgos.CleanUpGridView(ItemsDataset, ItemsDataGridView);
                 //ItemsDataGridView.DataSource = Result1.Tables[0];
                 
-                if (Result1.Tables.Count > 0)
+                if (ItemsDataset.Tables.Count > 0)
                 {
                     //Result1.Tables[0].Columns["Item_Code"].ColumnName = "Item Code";
                     ItemCodeSearch_txt.Items.Clear();
-                    for (int loop = 0; loop < Result1.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
+                    for (int loop = 0; loop < ItemsDataset.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
                     {
-                        ItemCodeSearch_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
+                        ItemCodeSearch_txt.Items.Add(ItemsDataset.Tables[0].Rows[loop]["CODE"]);
                     }
                 }
                 if (ItemsDataGridView.Columns.Count > 0)
                 {
-                    ItemsDataGridView.Columns["ID"].Visible = false;
-                    ItemsDataGridView.Columns["NAME"].Visible = false;
-                    ItemsDataGridView.Columns["IMAGE"].Visible = false;
-                    ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
-                    ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
-                    ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 2;
-                    ItemsDataGridView.Columns["PRICE"].DisplayIndex = 3;
-                    ItemsDataGridView.Columns["T_QUANTITY"].Visible = false;
-                    ItemsDataGridView.Columns["CATEGORYNAME"].DisplayIndex = 9;
+                    SortItems();
+                }
+                DataSet CategoryDataset = new DataSet();
+                CategoryDataset = DatabaseCalls.GetCategory();
+                for (int loop = 0; loop < CategoryDataset.Tables[0].Rows.Count; loop++)
+                {
+                    ItemCategory_txt.Items.Add(CategoryDataset.Tables[0].Rows[loop]["NAME"]);
                 }
             }
             catch (Exception ex)
@@ -109,6 +107,20 @@ namespace firebirdtest.UI
             Variables.NotificationMessageTitle = this.Name;
             Variables.NotificationMessageText = ex.Message;
             }
+        }
+
+        private void SortItems()
+        {
+            ItemsDataGridView.Columns["ID"].Visible = false;
+            ItemsDataGridView.Columns["NAME"].Visible = false;
+            ItemsDataGridView.Columns["IMAGE"].Visible = false;
+            ItemsDataGridView.Columns["T_QUANTITY"].Visible = false;
+            ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
+            ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
+            ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 2;
+            ItemsDataGridView.Columns["COSTPRICE"].DisplayIndex = 3;
+            ItemsDataGridView.Columns["PRICE"].DisplayIndex = 4;
+            ItemsDataGridView.Columns["CategoryNAME"].DisplayIndex = 7;
         }
 
         private void ItemsDataGridView_MouseClick(object sender, MouseEventArgs e)
@@ -379,6 +391,21 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageText = ex.Message;
             }
 
+        }
+
+        private void ItemQuantity_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void ItemPrice_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void ItemCostPrice_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

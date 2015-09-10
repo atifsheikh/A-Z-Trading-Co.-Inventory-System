@@ -258,7 +258,7 @@ namespace firebirdtest.UI
                             { MessageBox.Show("error -7"); }
                             try
                             {
-                                ItemsDataGridView.Columns["QUANTITY"].DisplayIndex = 4;
+                                ItemsDataGridView.Columns["T_QUANTITY"].DisplayIndex = 4;
                             }
                             catch (Exception ex)
                             { MessageBox.Show("error -8"); }
@@ -1679,7 +1679,7 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (Convert.ToInt32(ItemsDataGridView.Rows[SelectedRowIndex].Cells["Quantity"].Value.ToString()) > 0)
+                    if (Convert.ToInt32(ItemsDataGridView.Rows[SelectedRowIndex].Cells["T_Quantity"].Value.ToString()) > 0)
                     {
                         ItemsDataGridView.Visible = false;
                         Ctn_txt.Focus();

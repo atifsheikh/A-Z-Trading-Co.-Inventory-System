@@ -97,8 +97,7 @@ namespace firebirdtest.UI
                     VendorEmail_txt.Text = VendorsDataGridView.CurrentRow.Cells["EMAIL"].Value.ToString();
                     VendorOpeningBalance_txt.Text = VendorsDataGridView.CurrentRow.Cells["OPENING_BALANCE"].Value.ToString();
                     CurrentAmount = Convert.ToDecimal(VendorsDataGridView.CurrentRow.Cells["AMOUNT"].Value.ToString()); 
-                    PreviousBalance = Convert.ToDecimal(VendorOpeningBalance_txt.Text);
-                    
+                    PreviousBalance = Convert.ToDecimal(VendorOpeningBalance_txt.Text);                    
                 }
             }
             catch (Exception ex)
@@ -154,6 +153,8 @@ namespace firebirdtest.UI
                     //    VendorsDataGridView.Columns["AMOUNT"].Visible = false;
                     //    VendorsDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
                     //}
+                    VendorsDataGridView.Columns["AMOUNT"].Visible = false;
+                    VendorsDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
                 }
                 catch (Exception ex)
                 {
@@ -168,15 +169,18 @@ namespace firebirdtest.UI
             { }
         }
 
+
         private void VendorNameSearch_txt_TextChanged(object sender, EventArgs e)
         {
+            
+            //"atif".Contains("Atif", StringComparison.OrdinalIgnoreCase);
             
             //Vendor Detail
             try
             {
                 for (int loop = 0; loop < VendorsDataGridView.Rows.Count && VendorsDataGridView.Rows[loop]!= null && VendorsDataGridView.Rows[loop].Cells["NAME"].Value != null; loop++)
                 {
-                    if (VendorsDataGridView.Rows[loop].Cells["NAME"].Value.ToString().Contains(VendorNameSearch_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
+                    if (StaticClass.Contain(VendorsDataGridView.Rows[loop].Cells["NAME"].Value.ToString(),(VendorNameSearch_txt.Text),StringComparison.OrdinalIgnoreCase))//(GridViewColumn.ItemArray[0].ToString()))
                     {
                         VendorsDataGridView.Rows[loop].Visible = true;
                     }

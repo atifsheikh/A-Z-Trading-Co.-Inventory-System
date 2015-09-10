@@ -540,7 +540,7 @@ namespace firebirdtest
 
         internal static DataSet GetItemsForConsignment()
         {
-            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItemsForConsignment");
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItems");
         }
 
         internal static string AddConsignment(int ConsignmentNumber, int VendorID, DateTime ConsignmentDate, decimal ConsignmentTotal, decimal VendorBalance, string Remarks)

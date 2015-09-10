@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Classes\RandomAlgos.cs" />
     <Compile Include="Classes\DatabaseCalls.cs" />
+    <Compile Include="Classes\StaticClass.cs" />
     <Compile Include="DataSets\CustomerAccountDataSet.cs">
       <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>

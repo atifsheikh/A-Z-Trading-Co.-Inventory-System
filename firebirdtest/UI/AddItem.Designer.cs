@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddItem));
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -79,7 +79,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
-            this.button1.TabIndex = 8;
+            this.button1.TabIndex = 7;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -105,6 +105,7 @@
             this.ItemPrice_txt.TabIndex = 3;
             this.ItemPrice_txt.Text = "0";
             this.ItemPrice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
+            this.ItemPrice_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ItemPrice_txt_KeyPress);
             // 
             // label3
             // 
@@ -126,6 +127,7 @@
             this.ItemQuantity_txt.TabIndex = 2;
             this.ItemQuantity_txt.Text = "0";
             this.ItemQuantity_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
+            this.ItemQuantity_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ItemQuantity_txt_KeyPress);
             // 
             // label2
             // 
@@ -146,7 +148,6 @@
             this.ItemName_txt.Name = "ItemName_txt";
             this.ItemName_txt.Size = new System.Drawing.Size(157, 22);
             this.ItemName_txt.TabIndex = 1;
-            this.ItemName_txt.Text = "0";
             this.ItemName_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
             // 
             // label1
@@ -165,8 +166,8 @@
             // 
             this.ItemsDataGridView.AllowUserToAddRows = false;
             this.ItemsDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightBlue;
-            this.ItemsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightBlue;
+            this.ItemsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.ItemsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -174,23 +175,23 @@
             this.ItemsDataGridView.BackgroundColor = System.Drawing.Color.LightBlue;
             this.ItemsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ItemsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ItemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ItemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.ItemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ItemsDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ItemsDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
             this.ItemsDataGridView.Location = new System.Drawing.Point(9, 106);
             this.ItemsDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.ItemsDataGridView.Name = "ItemsDataGridView";
@@ -205,7 +206,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 7;
+            this.button2.TabIndex = 6;
             this.button2.TabStop = false;
             this.button2.Text = "Update";
             this.button2.UseVisualStyleBackColor = true;
@@ -236,7 +237,7 @@
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(71, 28);
-            this.button7.TabIndex = 50;
+            this.button7.TabIndex = 2;
             this.button7.Text = "History";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
@@ -342,8 +343,9 @@
             this.ItemCostPrice_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemCostPrice_txt.Name = "ItemCostPrice_txt";
             this.ItemCostPrice_txt.Size = new System.Drawing.Size(157, 22);
-            this.ItemCostPrice_txt.TabIndex = 50;
+            this.ItemCostPrice_txt.TabIndex = 4;
             this.ItemCostPrice_txt.Text = "0";
+            this.ItemCostPrice_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ItemCostPrice_txt_KeyPress);
             // 
             // button6
             // 
@@ -399,7 +401,7 @@
             this.ItemCategory_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemCategory_txt.Name = "ItemCategory_txt";
             this.ItemCategory_txt.Size = new System.Drawing.Size(160, 24);
-            this.ItemCategory_txt.TabIndex = 45;
+            this.ItemCategory_txt.TabIndex = 5;
             this.ItemCategory_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
             // 
             // label11
@@ -443,6 +445,7 @@
             this.button4.TabStop = false;
             this.button4.Text = "Browse";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
@@ -455,6 +458,7 @@
             this.button3.TabStop = false;
             this.button3.Text = "Clear";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label9
@@ -467,6 +471,7 @@
             this.label9.Size = new System.Drawing.Size(37, 17);
             this.label9.TabIndex = 38;
             this.label9.Text = "Path";
+            this.label9.Visible = false;
             // 
             // textBox2
             // 
@@ -476,6 +481,7 @@
             this.textBox2.Size = new System.Drawing.Size(236, 22);
             this.textBox2.TabIndex = 6;
             this.textBox2.TabStop = false;
+            this.textBox2.Visible = false;
             // 
             // label8
             // 
@@ -488,6 +494,7 @@
             this.label8.Size = new System.Drawing.Size(71, 25);
             this.label8.TabIndex = 36;
             this.label8.Text = "Image";
+            this.label8.Visible = false;
             // 
             // label7
             // 
@@ -512,6 +519,7 @@
             this.ItemPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ItemPictureBox.TabIndex = 34;
             this.ItemPictureBox.TabStop = false;
+            this.ItemPictureBox.Visible = false;
             // 
             // button8
             // 

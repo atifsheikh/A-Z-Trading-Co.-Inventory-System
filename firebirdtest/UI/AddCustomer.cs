@@ -32,14 +32,14 @@ namespace firebirdtest.UI
                     String AddCustomerResult = DatabaseCalls.AddCustomer(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text));
                     if (AddCustomerResult != null)
                     {
-                        DataSet CustomerIDDataSet = DatabaseCalls.GetCustomer(CustomerName_txt.Text);
-                        string AddBillResult = DatabaseCalls.AddBill(Convert.ToInt32(DatabaseCalls.GetNewBillNumber()), Convert.ToInt32(CustomerIDDataSet.Tables[0].Rows[0].ItemArray[0]), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
-                        if (AddBillResult != "")
-                        {
-                            Variables.NotificationStatus = true;
-                            Variables.NotificationMessageTitle = this.Name;
-                            Variables.NotificationMessageText = AddCustomerResult;
-                        }
+                        //DataSet CustomerIDDataSet = DatabaseCalls.GetCustomer(CustomerName_txt.Text);
+                        //string AddBillResult = DatabaseCalls.AddBill(Convert.ToInt32(DatabaseCalls.GetNewBillNumber()), Convert.ToInt32(CustomerIDDataSet.Tables[0].Rows[0].ItemArray[0]), DateTime.Now, Convert.ToInt32(CustomerOpeningBalance_txt.Text), Convert.ToInt32(CustomerOpeningBalance_txt.Text), "Opening Balance");
+                        //if (AddBillResult != "")
+                        //{
+                        //    Variables.NotificationStatus = true;
+                        //    Variables.NotificationMessageTitle = this.Name;
+                        //    Variables.NotificationMessageText = AddCustomerResult;
+                        //}
                         CustomerDataSet = DatabaseCalls.GetCustomers();
                         RandomAlgos.CleanUpGridView(CustomerDataSet, CustomersDataGridView); //CustomersDataGridView.DataSource = CustomerDataSet.Tables[0];
                         CustomersDataGridView.Columns["ID"].Visible = false;
@@ -112,15 +112,15 @@ namespace firebirdtest.UI
             decimal CalculatedAmount= Convert.ToDecimal(CustomerOpeningBalance_txt.Text) - PreviousBalance + CurrentAmount;
             string CustomerModifyResult = DatabaseCalls.ModifyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString(), CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, Convert.ToInt32(CustomerOpeningBalance_txt.Text), CalculatedAmount);
 
-            DataSet CusomerBillDataSet = DatabaseCalls.GetBillsbyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString());
-            foreach (DataRow Remarks in CusomerBillDataSet.Tables[0].Rows)
-            {
-                if (Remarks.ItemArray[4].ToString().Contains("Opening Balance") == true)
-                {
-                    DatabaseCalls.ModifyBillAmmount(Convert.ToInt32(Remarks.ItemArray[0].ToString()), Convert.ToDecimal(CustomerOpeningBalance_txt.Text));
-                    break;
-                }
-            }
+            //DataSet CusomerBillDataSet = DatabaseCalls.GetBillsbyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString());
+            //foreach (DataRow CustomerBill in CusomerBillDataSet.Tables[0].Rows)
+            //{
+            //    if (CustomerBill.ItemArray[4].ToString().Contains("Opening Balance") == true)
+            //    {
+            //        DatabaseCalls.ModifyBillAmmount(Convert.ToInt32(CustomerBill.ItemArray[0].ToString()), Convert.ToDecimal(CustomerOpeningBalance_txt.Text));
+            //        break;
+            //    }
+            //}
 
             if (CustomerModifyResult != "")
             {
@@ -177,7 +177,7 @@ namespace firebirdtest.UI
             {
                 for (int loop = 0; loop < CustomersDataGridView.Rows.Count; loop++)
                 {
-                    if (CustomersDataGridView.Rows[loop].Cells["NAME"].Value.ToString().Contains(CustomerNameSearch_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
+                    if ( StaticClass.Contain(CustomersDataGridView.Rows[loop].Cells["NAME"].Value.ToString(),(CustomerNameSearch_txt.Text),StringComparison.OrdinalIgnoreCase))//(GridViewColumn.ItemArray[0].ToString()))
                     {
                         CustomersDataGridView.Rows[loop].Visible = true;
                     }
@@ -269,6 +269,11 @@ Variables.FormClosed = true;
         private void CustomersDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void CustomerOpeningBalance_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
