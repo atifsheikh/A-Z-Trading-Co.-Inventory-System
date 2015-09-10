@@ -9,6 +9,13 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
+            ///ThePrimeBaby/GetItemsForConsignment
+            Handle.GET("/ThePrimeBaby/GetItemsForConsignment", (Request r) =>
+            {
+                //"SELECT a.ID, a.QTY_BOX, a.PRICE, a.SHIPCTN, a.SALECTN, a.MODEL, a.CODE FROM ITEMINVENTORY a where (a.SHIPCTN-a.SALECTN) > 0"
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
             ///ThePrimeBaby/GetItemsForBill
             Handle.GET("/ThePrimeBaby/GetItemsForBill", (Request r) =>
             {

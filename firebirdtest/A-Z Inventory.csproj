@@ -112,6 +112,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
     </Compile>
+    <Compile Include="UI\Add Consignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Add Consignment.Designer.cs">
+      <DependentUpon>Add Consignment.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AddConsignmentAdvanced.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,29 +148,17 @@
     <Compile Include="UI\ConsignmentPrint.Designer.cs">
       <DependentUpon>ConsignmentPrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Not in use\ItemHistoryReport.cs">
+    <Compile Include="UI\DialogueBoxes\SelectVendorName.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Not in use\ItemHistoryReport.Designer.cs">
-      <DependentUpon>ItemHistoryReport.cs</DependentUpon>
+    <Compile Include="UI\DialogueBoxes\SelectVendorName.Designer.cs">
+      <DependentUpon>SelectVendorName.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ItemHistoryView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\ItemHistoryView.Designer.cs">
       <DependentUpon>ItemHistoryView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Not in use\AddConsignment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Not in use\AddConsignment.Designer.cs">
-      <DependentUpon>AddConsignment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Not in use\AddConsignmentDetail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Not in use\AddConsignmentDetail.Designer.cs">
-      <DependentUpon>AddConsignmentDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AddCustomer.cs">
       <SubType>Form</SubType>
@@ -190,12 +184,6 @@
     <Compile Include="UI\DeleteBill.Designer.cs">
       <DependentUpon>DeleteBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Not in use\EditItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Not in use\EditItem.Designer.cs">
-      <DependentUpon>EditItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\BillPrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,12 +198,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Not in use\ItemHistory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Not in use\ItemHistory.Designer.cs">
-      <DependentUpon>ItemHistory.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\LedgerReports.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,29 +216,11 @@
     <Compile Include="UI\ListConsignmentDetails.Designer.cs">
       <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Not in use\ListConsignments.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Not in use\ListConsignments.Designer.cs">
-      <DependentUpon>ListConsignments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Not in use\ListCustomers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Not in use\ListCustomers.Designer.cs">
-      <DependentUpon>ListCustomers.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\ListInventory.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\ListInventory.Designer.cs">
       <DependentUpon>ListInventory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Not in use\ListItems.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Not in use\ListItems.Designer.cs">
-      <DependentUpon>ListItems.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\DialogueBoxes\SelectCustomerName.cs">
       <SubType>Form</SubType>
@@ -283,6 +247,9 @@
     <EmbeddedResource Include="UI\Add Bill.resx">
       <DependentUpon>Add Bill.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Add Consignment.resx">
+      <DependentUpon>Add Consignment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AddVendor.resx">
       <DependentUpon>AddVendor.cs</DependentUpon>
     </EmbeddedResource>
@@ -292,20 +259,14 @@
     <EmbeddedResource Include="UI\ConsignmentPrint.resx">
       <DependentUpon>ConsignmentPrint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\ItemHistoryReport.resx">
-      <DependentUpon>ItemHistoryReport.cs</DependentUpon>
+    <EmbeddedResource Include="UI\DialogueBoxes\SelectVendorName.resx">
+      <DependentUpon>SelectVendorName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ItemHistoryView.resx">
       <DependentUpon>ItemHistoryView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\AddConsignment.resx">
-      <DependentUpon>AddConsignment.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\AddConsignmentAdvanced.resx">
       <DependentUpon>AddConsignmentAdvanced.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\AddConsignmentDetail.resx">
-      <DependentUpon>AddConsignmentDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
@@ -313,18 +274,12 @@
     <EmbeddedResource Include="UI\AddItem.resx">
       <DependentUpon>AddItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\CustomerVoucher.rdlc">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\DebitorSummary.resx">
       <DependentUpon>DebitorSummary.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DeleteBill.resx">
       <DependentUpon>DeleteBill.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\EditItem.resx">
-      <DependentUpon>EditItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BillPrint.resx">
       <DependentUpon>BillPrint.cs</DependentUpon>
@@ -341,9 +296,6 @@
     <EmbeddedResource Include="Reports\CustomerBill.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\ItemHistory.resx">
-      <DependentUpon>ItemHistory.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\LedgerReports.resx">
       <DependentUpon>LedgerReports.cs</DependentUpon>
     </EmbeddedResource>
@@ -353,17 +305,8 @@
     <EmbeddedResource Include="UI\ListConsignmentDetails.resx">
       <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\ListConsignments.resx">
-      <DependentUpon>ListConsignments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\ListCustomers.resx">
-      <DependentUpon>ListCustomers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\ListInventory.resx">
       <DependentUpon>ListInventory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\ListItems.resx">
-      <DependentUpon>ListItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\LeadgerReport1.rdlc">
       <SubType>Designer</SubType>
@@ -487,7 +430,9 @@
       <Name>ExcelReader</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UI\Not in use\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

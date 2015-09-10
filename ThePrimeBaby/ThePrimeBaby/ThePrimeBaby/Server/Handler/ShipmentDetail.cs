@@ -7,6 +7,13 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
+            Handle.POST("/ThePrimeBaby/DeleteConsignmentDetailsByConsignmentNumber", (Request r) =>
+            {
+                string[] Attributes = r.Body.Split('/');
+                Db.SlowSQL("DELETE FROM ShipmentDetail v WHERE v.Shipment.ID = ?", Attributes[0]);
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
             Handle.GET("/ThePrimeBaby/GetConsignmentDetails", (Request r) =>
             {
                 QueryResultRows<Database.ShipmentDetail> shipmentDetail = Db.SQL<Database.ShipmentDetail>("SELECT c FROM ThePrimeBaby.Database.ShipmentDetail c");

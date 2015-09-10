@@ -205,11 +205,18 @@ namespace firebirdtest.UI
         {
             try
             {
+                try 
+                {
+                    System.Drawing.Icon ico = new System.Drawing.Icon("favicon.ico");
+                    this.Icon = ico;
+                }
+                catch (Exception ex)
+                { }
                 SpeedTest_BGWorker.RunWorkerAsync();                //TO GET Consingment Detail LIST
                 try
                 {
                     ConsignmentDetailsDataSet = new DataSet();
-                    ConsignmentDetailsDataSet = DatabaseCalls.GetItemsForSale();//.GetConsignmentDetails();
+                    ConsignmentDetailsDataSet = DatabaseCalls.GetItemsForConsignment();//.GetConsignmentDetails();
                     //ConsignmentDetailsDataSet.Tables[0].Columns.Add("Stock");
                     //for (int loop = 0; loop < ConsignmentDetailsDataSet.Tables[0].Rows.Count; loop++)
                     //{
@@ -218,51 +225,54 @@ namespace firebirdtest.UI
 
                     try
                     {
-                        ItemsDataGridView.DataSource = ConsignmentDetailsDataSet.Tables[0];
-                        try
+                        if (ConsignmentDetailsDataSet != null && ConsignmentDetailsDataSet.Tables.Count > 0)
                         {
-                            ItemsDataGridView.Columns[0].Visible = false;
-                        }
-                        catch (Exception ex)
-                        { MessageBox.Show("error -4"); }
+                            ItemsDataGridView.DataSource = ConsignmentDetailsDataSet.Tables[0];
+                            try
+                            {
+                                ItemsDataGridView.Columns[0].Visible = false;
+                            }
+                            catch (Exception ex)
+                            { MessageBox.Show("error -4"); }
 
-                        try
-                        {
-                            //ItemsDataGridView.Columns["SHIP_ID"].Visible = false;//.DisplayIndex = 0;
-                            ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
-                        }
-                        catch (Exception ex)
-                        { MessageBox.Show("error -4"); }
+                            try
+                            {
+                                //ItemsDataGridView.Columns["SHIP_ID"].Visible = false;//.DisplayIndex = 0;
+                                ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
+                            }
+                            catch (Exception ex)
+                            { MessageBox.Show("error -4"); }
 
-                        try
-                        {
-                            ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
+                            try
+                            {
+                                ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
+                            }
+                            catch (Exception ex)
+                            { MessageBox.Show("error -5"); }
+                            //                ItemsDataGridView.Columns["MODEL"].HeaderText = "Discription";
+                            try
+                            {
+                                ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 3;
+                            }
+                            catch (Exception ex)
+                            { MessageBox.Show("error -7"); }
+                            try
+                            {
+                                ItemsDataGridView.Columns["QUANTITY"].DisplayIndex = 4;
+                            }
+                            catch (Exception ex)
+                            { MessageBox.Show("error -8"); }
+                            //                    ItemsDataGridView.Columns["QTY_INNER"].DisplayIndex = 5;
+                            //                  ItemsDataGridView.Columns["INNER_BOX"].DisplayIndex = 6;
+                            //ItemsDataGridView.Columns["PURCHASE_PRICE"].DisplayIndex = 5;
+                            //ItemsDataGridView.Columns["P_SUBTOTAL"].DisplayIndex = 7;
+                            try
+                            {
+                                ItemsDataGridView.Columns["PRICE"].DisplayIndex = 5;
+                            }
+                            catch (Exception ex)
+                            { MessageBox.Show("error -9"); }
                         }
-                        catch (Exception ex)
-                        { MessageBox.Show("error -5"); }
-                        //                ItemsDataGridView.Columns["MODEL"].HeaderText = "Discription";
-                        try
-                        {
-                            ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 3;
-                        }
-                        catch (Exception ex)
-                        { MessageBox.Show("error -7"); }
-                        try
-                        {
-                            ItemsDataGridView.Columns["QUANTITY"].DisplayIndex = 4;
-                        }
-                        catch (Exception ex)
-                        { MessageBox.Show("error -8"); }
-                        //                    ItemsDataGridView.Columns["QTY_INNER"].DisplayIndex = 5;
-                        //                  ItemsDataGridView.Columns["INNER_BOX"].DisplayIndex = 6;
-                        //ItemsDataGridView.Columns["PURCHASE_PRICE"].DisplayIndex = 5;
-                        //ItemsDataGridView.Columns["P_SUBTOTAL"].DisplayIndex = 7;
-                        try
-                        {
-                            ItemsDataGridView.Columns["PRICE"].DisplayIndex = 5;
-                        }
-                        catch (Exception ex)
-                        { MessageBox.Show("error -9"); }
                     }
                     catch (Exception ex)
                     { MessageBox.Show("error -3"); }
@@ -289,8 +299,6 @@ namespace firebirdtest.UI
                     Variables.NotificationMessageTitle = this.Name;
                     Variables.NotificationMessageText = ex.Message;
                 }
-                System.Drawing.Icon ico = new System.Drawing.Icon("favicon.ico");
-                this.Icon = ico;
             }
             catch (Exception ex)
             {
@@ -307,7 +315,7 @@ namespace firebirdtest.UI
                 if (VendorName_txt.Text != "")
                 {
                     DataSet Result1 = new DataSet();
-                    Result1 = DatabaseCalls.GetVendor(VendorName_txt.Text);
+                    Result1 = DatabaseCalls.GetVendor(Convert.ToInt32(VendorName_txt.Text));
                     
                     foreach (DataRow GridViewColumn in Result1.Tables[0].Rows)
                     {
@@ -1021,7 +1029,7 @@ namespace firebirdtest.UI
                     }
                     decimal VendorNewBalance = Convert.ToDecimal(BalanceNew_txt.Text);
                     //                VendorNewBalance -= Convert.ToDecimal(
-                    DatabaseCalls.ModifyVendor(Convert.ToInt32(ConsignmentDataSet.Tables[0].Rows[0]["Vendor_ID"]), VendorNewBalance);
+                    DatabaseCalls.ModifyVendor(ConsignmentDataSet.Tables[0].Rows[0]["VendorID"].ToString(), VendorNewBalance.ToString());
                     DatabaseCalls.DeleteConsignmentDetails(ConsignmentNumber_txt.Text);
                     DatabaseCalls.ModifyVoucher(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToDecimal(Total_txt.Text), VendorNewBalance);
                     //DatabaseCalls.DeleteConsignment(ConsignmentNumberSearch_txt.Text);
@@ -1052,7 +1060,7 @@ namespace firebirdtest.UI
                     }
 
                     //Update Vendor New Balance
-                    string ModifyVendorResult = DatabaseCalls.ModifyVendor(Convert.ToInt32(VendorID_txt.Text), Convert.ToDecimal(BalanceNew_txt.Text));
+                    string ModifyVendorResult = DatabaseCalls.ModifyVendor(VendorID_txt.Text, BalanceNew_txt.Text);
                     Variables.NotificationStatus = true;
                     Variables.NotificationMessageTitle = this.Name;
                     Variables.NotificationMessageText = ModifyVendorResult;
@@ -1470,15 +1478,19 @@ namespace firebirdtest.UI
             {
 //                ItemDetailsDataSet = DatabaseCalls.GetItems();
                 ItemDetailsDataSet = DatabaseCalls.GetItemsForConsignment();
-                _ItemDetailsCollectionObject = new object[ItemDetailsDataSet.Tables[0].Rows.Count];
-                foreach (DataRow asdf in ItemDetailsDataSet.Tables[0].Rows)
+                if (ItemDetailsDataSet != null && ItemDetailsDataSet.Tables.Count > 0)
                 {
-//                    if (Convert.ToInt32(asdf.ItemArray[7]) > 0)
+                    _ItemDetailsCollectionObject = new object[ItemDetailsDataSet.Tables[0].Rows.Count];
+
+                    foreach (DataRow asdf in ItemDetailsDataSet.Tables[0].Rows)
                     {
-                        //int RemainingCount = DatabaseCalls.GetItemCount(asdf.ItemArray[6].ToString());
-                        //if (RemainingCount > 0)
+                        //                    if (Convert.ToInt32(asdf.ItemArray[7]) > 0)
+                        {
+                            //int RemainingCount = DatabaseCalls.GetItemCount(asdf.ItemArray[6].ToString());
+                            //if (RemainingCount > 0)
                             _ItemDetailsCollectionArray.Add(asdf.ItemArray[6].ToString());
-                        //ItemCode_txt.Items.Add(asdf.ItemArray[6]);
+                            //ItemCode_txt.Items.Add(asdf.ItemArray[6]);
+                        }
                     }
                 }
                 _ItemDetailsCollectionObject = _ItemDetailsCollectionArray.ToArray();
@@ -1512,7 +1524,7 @@ namespace firebirdtest.UI
                     {
 //                        if (VendorDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(ConsignmentDataSet.Tables[0].Rows[loop]["Vendor_ID"].ToString()) == true)
                         {
-                            ConsignmentDataSet.Tables[0].Rows[loop]["CUSTOMER_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(ConsignmentDataSet.Tables[0].Rows[loop]["Vendor_ID"].ToString(), ConsignmentDataSet.Tables[0].Rows[loop][0].ToString());
+                            ConsignmentDataSet.Tables[0].Rows[loop]["VENDOR_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(ConsignmentDataSet.Tables[0].Rows[loop]["VendorID"].ToString(), ConsignmentDataSet.Tables[0].Rows[loop][0].ToString());
 //                            ConsignmentDataSet.Tables[0].Rows[loop]["Vendor"] = VendorDataSet.Tables[0].Rows[loop1]["Name"].ToString();
                             break;
                         }

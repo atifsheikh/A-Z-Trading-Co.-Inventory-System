@@ -194,12 +194,12 @@ namespace firebirdtest
         {
             try
             {
-                Home.Home_pnl.Visible = false;
-                EditItem _EditItem = new EditItem();
-                _EditItem.MdiParent = this;
-                _EditItem.WindowState = FormWindowState.Maximized;
-                _EditItem.Show();
-                _EditItem.Focus();
+                //Home.Home_pnl.Visible = false;
+                //EditItem _EditItem = new EditItem();
+                //_EditItem.MdiParent = this;
+                //_EditItem.WindowState = FormWindowState.Maximized;
+                //_EditItem.Show();
+                //_EditItem.Focus();
             }
             catch (Exception ex)
             {
@@ -228,12 +228,12 @@ namespace firebirdtest
         {
             try
             {
-                Home.Home_pnl.Visible = false;
-                AddConsignmentDetail _AddConsignmentDetail = new AddConsignmentDetail();
-                _AddConsignmentDetail.MdiParent = this;
-                _AddConsignmentDetail.WindowState = FormWindowState.Maximized;
-                _AddConsignmentDetail.Show();
-                _AddConsignmentDetail.Focus();
+                //Home.Home_pnl.Visible = false;
+                //AddConsignmentDetail _AddConsignmentDetail = new AddConsignmentDetail();
+                //_AddConsignmentDetail.MdiParent = this;
+                //_AddConsignmentDetail.WindowState = FormWindowState.Maximized;
+                //_AddConsignmentDetail.Show();
+                //_AddConsignmentDetail.Focus();
             }
             catch (Exception ex)
             {
@@ -252,10 +252,10 @@ namespace firebirdtest
                     _LedgerStatement.Dispose();
                 if (_ListConsignmentDetails!= null && !_ListConsignmentDetails.IsDisposed)
                     _ListConsignmentDetails.Dispose();
-                if (_ListConsignments!= null && !_ListConsignments.IsDisposed)
-                    _ListConsignments.Dispose();
-                if (_ListCustomers!= null && !_ListCustomers.IsDisposed)
-                    _ListCustomers.Dispose();
+                //if (_ListConsignments!= null && !_ListConsignments.IsDisposed)
+                //    _ListConsignments.Dispose();
+                //if (_ListCustomers!= null && !_ListCustomers.IsDisposed)
+                //    _ListCustomers.Dispose();
                 if (_ListInventory!= null && !_ListInventory.IsDisposed)
                     _ListInventory.Dispose();
                 if (_AddConsignmentAdvanced!= null && !_AddConsignmentAdvanced.IsDisposed)
@@ -331,42 +331,42 @@ namespace firebirdtest
             }
         }
 
-        ListCustomers _ListCustomers = new ListCustomers();
+        //ListCustomers _ListCustomers = new ListCustomers();
         private void listCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (_ListCustomers.IsDisposed)
-                    _ListCustomers = new ListCustomers();
+            //try
+            //{
+            //    if (_ListCustomers.IsDisposed)
+            //        _ListCustomers = new ListCustomers();
 
-                Home.Home_pnl.Visible = false;
-                _ListCustomers.MdiParent = this;
-                _ListCustomers.WindowState = FormWindowState.Maximized;
-                _ListCustomers.Show();
-                _ListCustomers.Focus();
-            }
-            catch (Exception ex)
-            {
-                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
-            }
+            //    Home.Home_pnl.Visible = false;
+            //    _ListCustomers.MdiParent = this;
+            //    _ListCustomers.WindowState = FormWindowState.Maximized;
+            //    _ListCustomers.Show();
+            //    _ListCustomers.Focus();
+            //}
+            //catch (Exception ex)
+            //{
+            //    notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            //}
         }
 
-        ListConsignments _ListConsignments;
+        //ListConsignments _ListConsignments;
         private void listConsignmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Home.Home_pnl.Visible = false;
-                _ListConsignments = new ListConsignments();
-                _ListConsignments.MdiParent = this;
-                _ListConsignments.WindowState = FormWindowState.Maximized;
-                _ListConsignments.Show();
-                _ListConsignments.Focus();
-            }
-            catch (Exception ex)
-            {
-                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
-            }
+            //try
+            //{
+            //    Home.Home_pnl.Visible = false;
+            //    _ListConsignments = new ListConsignments();
+            //    _ListConsignments.MdiParent = this;
+            //    _ListConsignments.WindowState = FormWindowState.Maximized;
+            //    _ListConsignments.Show();
+            //    _ListConsignments.Focus();
+            //}
+            //catch (Exception ex)
+            //{
+            //    notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            //}
         }
 
         ListConsignmentDetails _ListConsignmentDetails = new ListConsignmentDetails();
@@ -428,19 +428,19 @@ namespace firebirdtest
 
         private void toolStripMenuItem24_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                Home.Home_pnl.Visible = false;
-                ListItems _ListItems = new ListItems();
-                _ListItems.MdiParent = this;
-                _ListItems.WindowState = FormWindowState.Maximized;
-                _ListItems.Show();
-                _ListItems.Focus();
-            }
-            catch (Exception ex)
-            {
-                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
-            }
+            //try
+            //{
+            //    Home.Home_pnl.Visible = false;
+            //    ListItems _ListItems = new ListItems();
+            //    _ListItems.MdiParent = this;
+            //    _ListItems.WindowState = FormWindowState.Maximized;
+            //    _ListItems.Show();
+            //    _ListItems.Focus();
+            //}
+            //catch (Exception ex)
+            //{
+            //    notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            //}
         }
 
         ListInventory _ListInventory = new ListInventory();
@@ -1065,7 +1065,9 @@ namespace firebirdtest
 
         }
 
-        private void addConsignmentToolStripMenuItem2_Click(object sender, EventArgs e)
+        AddConsignment _AddConsignment = new AddConsignment();
+        ConsignmentPrint _ConsignmentPrint = new ConsignmentPrint();
+        private void addConsignmentToolStripMenuItem2_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -1075,16 +1077,16 @@ namespace firebirdtest
                     _LedgerStatement.Dispose();
                 if (_ListConsignmentDetails != null && !_ListConsignmentDetails.IsDisposed)
                     _ListConsignmentDetails.Dispose();
-                if (_ListConsignments != null && !_ListConsignments.IsDisposed)
-                    _ListConsignments.Dispose();
-                if (_ListCustomers != null && !_ListCustomers.IsDisposed)
-                    _ListCustomers.Dispose();
+                //if (_ListConsignments != null && !_ListConsignments.IsDisposed)
+                //    _ListConsignments.Dispose();
+                //if (_ListCustomers != null && !_ListCustomers.IsDisposed)
+                //    _ListCustomers.Dispose();
                 if (_ListInventory != null && !_ListInventory.IsDisposed)
                     _ListInventory.Dispose();
                 if (_AddConsignmentAdvanced != null && !_AddConsignmentAdvanced.IsDisposed)
                     _AddConsignmentAdvanced.Dispose();
-                if (_AddCustomer != null && !_AddCustomer.IsDisposed)
-                    _AddCustomer.Dispose();
+                if (_AddVendor != null && !_AddVendor.IsDisposed)
+                    _AddVendor.Dispose();
                 if (_AddItems != null && !_AddItems.IsDisposed)
                     _AddItems.Dispose();
                 if (_DebitorSummary != null && !_DebitorSummary.IsDisposed)
@@ -1095,29 +1097,21 @@ namespace firebirdtest
                     _ItemHistoryReport.Dispose();
 
 
-                if (_AddBill.IsDisposed)
-                    _AddBill = new AddBill();
+                if (_AddConsignment.IsDisposed)
+                    _AddConsignment = new AddConsignment();
 
                 Home.Home_pnl.Visible = false;
 
-                _AddBill.MdiParent = this;
-                _AddBill.WindowState = FormWindowState.Maximized;
-                _AddBill.Show();
-                _AddBill.Focus();
+                _AddConsignment.MdiParent = this;
+                _AddConsignment.WindowState = FormWindowState.Maximized;
+                _AddConsignment.Show();
+                _AddConsignment.Focus();
 
             }
             catch (Exception ex)
             {
                 notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
             }
-
-        }
-
-        AddConsignment _AddConsignment = new AddConsignment();
-        ConsignmentPrint _ConsignmentPrint = new ConsignmentPrint();
-        private void addConsignmentToolStripMenuItem2_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void printConsignmentToolStripMenuItem_Click_1(object sender, EventArgs e)

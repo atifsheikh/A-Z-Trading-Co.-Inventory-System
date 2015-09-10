@@ -103,5 +103,10 @@ namespace ThePrimeBaby.Database
                 return false;
             }
         }
+
+        internal static object GetNewConsignmentNumber()
+        {
+            return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1);
+        }
     }
 }

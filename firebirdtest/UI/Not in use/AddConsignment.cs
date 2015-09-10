@@ -60,3 +60,39 @@ namespace firebirdtest.UI
                 {
                     ConsignmentNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
                 }
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationStatus = true;
+            Variables.NotificationMessageTitle = this.Name;
+            Variables.NotificationMessageText = ex.Message;
+            }
+        }
+
+        private void ItemsDataGridView_CurrentCellChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ConsignmentNumber_txt.Text = ItemsDataGridView.CurrentRow.Cells[0].Value.ToString();
+                ConsignmentDate_txt.Text = ItemsDataGridView.CurrentRow.Cells[1].Value.ToString();
+                ConsignmentDesc_txt.Text = ItemsDataGridView.CurrentRow.Cells[2].Value.ToString();
+            }
+            catch (Exception ex)
+            { }
+        }
+
+        private void AddConsignment_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Variables.FormClosed = true;
+        }
+
+        private void AddConsignment_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData.ToString().Contains("Control"))
+            {
+                if (e.KeyData.ToString().Contains("W, Control"))
+                    this.Close();
+            }
+        }
+    }
+}

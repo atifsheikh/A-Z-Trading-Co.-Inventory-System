@@ -42,6 +42,11 @@ namespace ThePrimeBaby.Server.Handler
                 return ThePrimeBaby.Database.Bill.GetNewBillNumber().ToString();
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
+            Handle.GET("/ThePrimeBaby/GetNewConsignmentNumber", (Request r) =>
+            {
+                return ThePrimeBaby.Database.Bill.GetNewConsignmentNumber().ToString();
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
             Handle.POST("/ThePrimeBaby/DeleteBillByBillNumber", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');

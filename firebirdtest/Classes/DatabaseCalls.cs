@@ -522,5 +522,30 @@ namespace firebirdtest
             //File.WriteAllText(“d:/datasetJson.txt”,jsonText); 
             return "";
         }
+
+        internal static string GetNewConsignmentNumber()
+        {
+            return GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetNewConsignmentNumber");
+        }
+
+        internal static string GetVendorName(int ID)
+        {
+            return GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorName/" + ID);
+        }
+
+        internal static string DeleteConsignmentDetails(string ConsignmentNumber)
+        {
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DeleteConsignmentDetailsByConsignmentNumber", ConsignmentNumber);
+        }
+
+        internal static DataSet GetItemsForConsignment()
+        {
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItemsForConsignment");
+        }
+
+        internal static string AddConsignment(int ConsignmentNumber, int VendorID, DateTime ConsignmentDate, decimal ConsignmentTotal, decimal VendorBalance, string Remarks)
+        {
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddConsignment/6", ConsignmentNumber + "/" + VendorID + "/" + ConsignmentDate.ToString().Replace('/', '-') + "/" + ConsignmentTotal + "/" + VendorBalance + "/" + Remarks);
+        }
     }
 }
