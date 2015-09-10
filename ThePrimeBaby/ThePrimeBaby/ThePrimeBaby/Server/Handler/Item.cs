@@ -163,7 +163,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
                 if (item != null)
                 {
-                    bool Result = Database.Base.Item.ModifyItems(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Attributes[4], Attributes[5], Attributes[6], Attributes[7], Convert.ToInt32(Attributes[2]));
+                    bool Result = Database.Base.Item.ModifyItems(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Attributes[4], Attributes[5], Attributes[6], Attributes[7], Convert.ToInt32(Attributes[8]));
                     return 200;
                 }
                 else

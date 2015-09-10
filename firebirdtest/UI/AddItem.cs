@@ -29,20 +29,20 @@ namespace firebirdtest.UI
             string Result = "";
             try
             {
-                if (ItemNewName_txt.Text == "")
+                if (ItemCode_txt.Text == "")
                     return;
                 if (ItemPictureBox.ImageLocation == null || ItemPictureBox.ImageLocation == "")
                 {
-                    if (File.Exists("ItemImages\\" + ItemNewName_txt.Text + ".JPG") == true)
+                    if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPG") == true)
                     {
-                        ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemNewName_txt.Text + ".JPG";
+                        ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPG";
                     }
-                    else if (File.Exists("ItemImages\\" + ItemNewName_txt.Text + ".JPEG") == true)
+                    else if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPEG") == true)
                     {
-                        ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemNewName_txt.Text + ".JPEG";
+                        ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPEG";
                     }
                 }
-                Result = DatabaseCalls.AddItem(ItemNewName_txt.Text, ItemModel_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text);
+                Result = DatabaseCalls.AddItem(ItemCode_txt.Text, ItemName_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text);
 
                 if (Result!="")
                 {
@@ -51,7 +51,7 @@ namespace firebirdtest.UI
 
                 DataSet Result1 = new DataSet();
                 Result1 = DatabaseCalls.GetItems();
-                ItemsDataGridView.DataSource = Result1.Tables[0];
+                RandomAlgos.CleanUpGridView(Result1, ItemsDataGridView);//ItemsDataGridView.DataSource = Result1.Tables[0];
                 ItemsDataGridView.Columns[0].Visible = false;
             }
             catch (Exception ex)
@@ -78,23 +78,28 @@ namespace firebirdtest.UI
             {
                 DataSet Result1 = new DataSet();
                 Result1 = DatabaseCalls.GetItems();
-                ItemsDataGridView.DataSource = Result1.Tables[0];
-                ItemsDataGridView.Columns["ID"].Visible = false;
-                ItemsDataGridView.Columns["IMAGE"].Visible = false;
+                RandomAlgos.CleanUpGridView(Result1, ItemsDataGridView);
+                //ItemsDataGridView.DataSource = Result1.Tables[0];
+                
                 if (Result1.Tables.Count > 0)
                 {
                     //Result1.Tables[0].Columns["Item_Code"].ColumnName = "Item Code";
                     for (int loop = 0; loop < Result1.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
                     {
-                        ItemName_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
+                        ItemCodeSearch_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
                     }
                 }
-                ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
-                ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
-                ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 2;
-                ItemsDataGridView.Columns["PRICE"].DisplayIndex = 3;
-                ItemsDataGridView.Columns["T_QUANTITY"].Visible= false; 
-                ItemsDataGridView.Columns["CATEGORYNAME"].Visible = false;
+                if (ItemsDataGridView.Columns.Count > 0)
+                {
+                    ItemsDataGridView.Columns["ID"].Visible = false;
+                    ItemsDataGridView.Columns["IMAGE"].Visible = false;
+                    ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
+                    ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
+                    ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 2;
+                    ItemsDataGridView.Columns["PRICE"].DisplayIndex = 3;
+                    ItemsDataGridView.Columns["T_QUANTITY"].Visible = false;
+                    ItemsDataGridView.Columns["CATEGORYNAME"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -118,40 +123,22 @@ namespace firebirdtest.UI
                 if (ItemsDataGridView.CurrentCell != null && currentRow != ItemsDataGridView.CurrentCell.RowIndex)
                 {
                     currentRow = ItemsDataGridView.CurrentCell.RowIndex;
-                    ItemNewName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
-                    //ItemName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
-                    ItemModel_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["MODEL"].Value.ToString();
+                    ItemName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["NAME"].Value.ToString();
+                    ItemCode_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
+                    ItemCodeSearch_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
+                    ItemName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["MODEL"].Value.ToString();
                     ItemQuantity_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["QTY_BOX"].Value.ToString();
                     ItemPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["PRICE"].Value.ToString();
                     ItemCategory_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CATEGORYNAME"].Value.ToString();
                     TQUANTITY_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["T_QUANTITY"].Value.ToString();
-                    byte[] byteBLOBData = (byte[])ItemsDataGridView.Rows[currentRow].Cells["IMAGE"].Value;
-                    
-                    System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
-                    Image img = (Image)converter.ConvertFrom(byteBLOBData);
-
-
-                    MemoryStream ms = new MemoryStream(byteBLOBData); 
-                    ms.Write(byteBLOBData, 0, byteBLOBData.Length);
-                    ms.Position = 0; // THIS !!!!!
-                    ItemPictureBox.Image = Image.FromStream(ms, true); 
-
-                    
-
-                    //byte[] imgData = (byte[])ItemsDataGridView.Rows[currentRow].Cells[5].Value;
-                    //MemoryStream ms = new MemoryStream(imgData);
-                    //ms.Seek(0, SeekOrigin.Begin);
-                    //Bitmap bmp = new Bitmap(ms);
-                    //ItemPictureBox.Image = Image.FromStream(ms);
-
-
-                    //Bitmap IMG = new Bitmap(ItemPictureBox.Image);
-                    //MemoryStream stream = new MemoryStream();
-                    //IMG.
-                    //IMG.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-//                    Bitmap image = new Bitmap();
-//                    ItemPictureBox.Image = 
+                    //TODO : SC Task
+                    //byte[] byteBLOBData = (byte[])ItemsDataGridView.Rows[currentRow].Cells["IMAGE"].Value;
+                    //System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
+                    //Image img = (Image)converter.ConvertFrom(byteBLOBData);
+                    //MemoryStream ms = new MemoryStream(byteBLOBData); 
+                    //ms.Write(byteBLOBData, 0, byteBLOBData.Length);
+                    //ms.Position = 0; // THIS !!!!!
+                    //ItemPictureBox.Image = Image.FromStream(ms, true); 
                 }
             }
             catch (Exception ex)
@@ -166,27 +153,26 @@ namespace firebirdtest.UI
         {
             if (ItemPictureBox.ImageLocation == null || ItemPictureBox.ImageLocation == "")
             {
-                if (File.Exists("ItemImages\\" + ItemNewName_txt.Text + ".JPG") == true)
+                if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPG") == true)
                 {
-                    ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemNewName_txt.Text + ".JPG";
+                    ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPG";
                 }
-                else if (File.Exists("ItemImages\\" + ItemNewName_txt.Text + ".JPEG") == true)
+                else if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPEG") == true)
                 {
-                    ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemNewName_txt.Text + ".JPEG";
+                    ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPEG";
                 }
             }
 
-            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemNewName_txt.Text, ItemModel_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, ItemPictureBox, ItemCategory_txt.Text, Convert.ToInt32(TQUANTITY_txt.Text));
-            if (Result.StartsWith("Item modified") != true)
+            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemCode_txt.Text, ItemName_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, "Image Blob String", ItemCategory_txt.Text, Convert.ToInt32(TQUANTITY_txt.Text));
+            if (Result != "")
             {
                 Variables.NotificationStatus = true;
-            Variables.NotificationMessageTitle = this.Name;
-            Variables.NotificationMessageText = Result;
-                return;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = Result;
             }
             DataSet Result1 = new DataSet();
             Result1 = DatabaseCalls.GetItems();
-            ItemsDataGridView.DataSource = Result1.Tables[0];
+            RandomAlgos.CleanUpGridView(Result1,ItemsDataGridView);//.DataSource = Result1.Tables[0];
             ItemsDataGridView.Columns[0].Visible = false;
         }
 
@@ -216,22 +202,21 @@ namespace firebirdtest.UI
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string Result = DatabaseCalls.AddCategory(ItemCategory_txt.Text);
-            if (Result.StartsWith("Category added") != true)
+            string AddCategoryResult = DatabaseCalls.AddCategory(ItemCategory_txt.Text);
+            if (AddCategoryResult != "")
             {
                 Variables.NotificationStatus = true;
-            Variables.NotificationMessageTitle = this.Name;
-            Variables.NotificationMessageText = Result;
-                return;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = AddCategoryResult;
             }
-            DataSet Result1 = new DataSet();
-            Result1 = DatabaseCalls.GetCategory();
+            DataSet CategoriesDataSet = new DataSet();
+            CategoriesDataSet = DatabaseCalls.GetCategory();
             ItemCategory_txt.Items.Clear();
-            if (Result1.Tables.Count > 0)
-            {
-                foreach (DataRow asdf in Result1.Tables[0].Rows)
+            if (CategoriesDataSet.Tables.Count > 0)
+            { 
+                foreach (DataRow categoryDataRow in CategoriesDataSet.Tables[0].Rows)
                 {
-                    ItemCategory_txt.Items.Add(asdf.ItemArray[0]);
+                    ItemCategory_txt.Items.Add(categoryDataRow.ItemArray[1]);
                 }
             }
         }
@@ -242,7 +227,7 @@ namespace firebirdtest.UI
             {
                 for (int loop = 0; loop < ItemsDataGridView.Rows.Count; loop++)
                 {
-                    if (ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Contains(ItemName_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
+                    if (ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Contains(ItemCodeSearch_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
                     {
                         ItemsDataGridView.Rows[loop].Visible = true;
                     }
@@ -277,14 +262,14 @@ namespace firebirdtest.UI
 
         private void button6_Click(object sender, EventArgs e)
         {
-            ItemNewName_txt.Text = "None";
-            ItemModel_txt.Text = "None";
+            ItemCode_txt.Text = "None";
+            ItemName_txt.Text = "None";
             ItemQuantity_txt.Text = "0";
             ItemPrice_txt.Text = "0";
             TQUANTITY_txt.Text = "0";
             ItemPictureBox.ImageLocation = "";
             textBox2.Text = "";
-            ItemNewName_txt.Focus();
+            ItemCode_txt.Focus();
         }
 
         private void TQUANTITY_txt_KeyDown(object sender, KeyEventArgs e)
@@ -297,7 +282,7 @@ namespace firebirdtest.UI
 
         private void AddItem_Shown(object sender, EventArgs e)
         {
-            ItemNewName_txt.Focus();
+            ItemCode_txt.Focus();
         }
 
         private void ItemName_txt_KeyDown(object sender, KeyEventArgs e)
@@ -345,8 +330,8 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode!= Keys.Enter && e.KeyValue != 27)
                 {
-                    if (ItemName_txt.Text != null)
-                        RandomAlgos.comboKeyPressed(ItemName_txt);
+                    if (ItemCodeSearch_txt.Text != null)
+                        RandomAlgos.comboKeyPressed(ItemCodeSearch_txt);
                 }
                 else if (e.KeyCode == Keys.Enter)
                 {
@@ -364,7 +349,7 @@ namespace firebirdtest.UI
 
         private void ItemName_txt_Enter(object sender, EventArgs e)
         {
-            ItemName_txt.DroppedDown = true;
+            ItemCodeSearch_txt.DroppedDown = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

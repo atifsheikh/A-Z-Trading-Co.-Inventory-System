@@ -184,7 +184,6 @@ namespace firebirdtest
         }
         internal static string ModifyVendor(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
         {
-            //TODO Send Attributes
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyVendor/7", FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone + "/" + ReplaceEmail + "/" + ReplaceOpening_balance + "/" + CalculatedAmount);
         }
         internal static string ModifyVendorBalance(int VendorID, decimal NewBalance)
@@ -222,7 +221,6 @@ namespace firebirdtest
         //}
         internal static string AddCustomer(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
         {
-            //TODO Send Attributes
             return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddCustomer/6", Name + "/" + address + "/" + phone + "/" + email+ "/" + ballance_limit+ "/" + opening_balance);
         }
         internal static string ModifyCustomer(string Find, string Replace)
@@ -231,7 +229,6 @@ namespace firebirdtest
         }
         internal static string ModifyCustomer(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
         {
-            //TODO Send Attributes
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyCustomer/7", FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone + "/" + ReplaceEmail + "/" + ReplaceOpening_balance + "/" + CalculatedAmount);
         }
         internal static string ModifyCustomer(int CustomerID, decimal NewBalance)
@@ -256,7 +253,7 @@ namespace firebirdtest
         {
             return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyItemsByName/2", FindName + "/" + ReplaceName);
         }
-        internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, System.Windows.Forms.PictureBox ReplaceImage, string ItemCategory, int T_Quantity)
+        internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity)
         {
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyItemsById/9", FindID + "/" + ReplaceName + "/" + ReplaceModel + "/" + ReplaceQuantity + "/" + ReplacePrice + "/" + ReplaceCostPrice + "/" + ReplaceImage + "/" + ItemCategory + "/" + T_Quantity);
         }

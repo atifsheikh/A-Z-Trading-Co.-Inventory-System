@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddItem));
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -38,17 +38,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ItemQuantity_txt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.ItemModel_txt = new System.Windows.Forms.TextBox();
+            this.ItemName_txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ItemsDataGridView = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
-            this.ItemName_txt = new System.Windows.Forms.ComboBox();
+            this.ItemCodeSearch_txt = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.ItemCostPrice_txt = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.TQUANTITY_txt = new System.Windows.Forms.TextBox();
@@ -56,7 +58,7 @@
             this.ItemCategory_txt = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.ItemNewName_txt = new System.Windows.Forms.TextBox();
+            this.ItemCode_txt = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -65,8 +67,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.ItemPictureBox = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.ItemCostPrice_txt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -75,8 +75,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(153, 573);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(153, 585);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 8;
@@ -99,7 +99,7 @@
             // ItemPrice_txt
             // 
             this.ItemPrice_txt.Location = new System.Drawing.Point(127, 140);
-            this.ItemPrice_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemPrice_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemPrice_txt.Name = "ItemPrice_txt";
             this.ItemPrice_txt.Size = new System.Drawing.Size(157, 22);
             this.ItemPrice_txt.TabIndex = 3;
@@ -120,7 +120,7 @@
             // ItemQuantity_txt
             // 
             this.ItemQuantity_txt.Location = new System.Drawing.Point(127, 108);
-            this.ItemQuantity_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemQuantity_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemQuantity_txt.Name = "ItemQuantity_txt";
             this.ItemQuantity_txt.Size = new System.Drawing.Size(157, 22);
             this.ItemQuantity_txt.TabIndex = 2;
@@ -139,15 +139,15 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Add Item";
             // 
-            // ItemModel_txt
+            // ItemName_txt
             // 
-            this.ItemModel_txt.Location = new System.Drawing.Point(127, 76);
-            this.ItemModel_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ItemModel_txt.Name = "ItemModel_txt";
-            this.ItemModel_txt.Size = new System.Drawing.Size(157, 22);
-            this.ItemModel_txt.TabIndex = 1;
-            this.ItemModel_txt.Text = "0";
-            this.ItemModel_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
+            this.ItemName_txt.Location = new System.Drawing.Point(127, 76);
+            this.ItemName_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.ItemName_txt.Name = "ItemName_txt";
+            this.ItemName_txt.Size = new System.Drawing.Size(157, 22);
+            this.ItemName_txt.TabIndex = 1;
+            this.ItemName_txt.Text = "0";
+            this.ItemName_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
             // 
             // label1
             // 
@@ -165,8 +165,8 @@
             // 
             this.ItemsDataGridView.AllowUserToAddRows = false;
             this.ItemsDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightBlue;
-            this.ItemsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightBlue;
+            this.ItemsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.ItemsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -174,25 +174,25 @@
             this.ItemsDataGridView.BackgroundColor = System.Drawing.Color.LightBlue;
             this.ItemsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ItemsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ItemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ItemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.ItemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ItemsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ItemsDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
             this.ItemsDataGridView.Location = new System.Drawing.Point(9, 106);
-            this.ItemsDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemsDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.ItemsDataGridView.Name = "ItemsDataGridView";
             this.ItemsDataGridView.ReadOnly = true;
             this.ItemsDataGridView.Size = new System.Drawing.Size(1427, 703);
@@ -201,8 +201,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(45, 573);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(45, 585);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 7;
@@ -218,14 +218,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.LightBlue;
             this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.ItemName_txt);
+            this.panel1.Controls.Add(this.ItemCodeSearch_txt);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.ItemsDataGridView);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(345, 37);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1447, 812);
             this.panel1.TabIndex = 0;
@@ -233,7 +233,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(315, 41);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(71, 28);
             this.button7.TabIndex = 50;
@@ -241,23 +241,23 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // ItemName_txt
+            // ItemCodeSearch_txt
             // 
-            this.ItemName_txt.FormattingEnabled = true;
-            this.ItemName_txt.Location = new System.Drawing.Point(145, 41);
-            this.ItemName_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ItemName_txt.Name = "ItemName_txt";
-            this.ItemName_txt.Size = new System.Drawing.Size(160, 24);
-            this.ItemName_txt.TabIndex = 0;
-            this.ItemName_txt.TextChanged += new System.EventHandler(this.ItemName_txt_TextChanged);
-            this.ItemName_txt.Enter += new System.EventHandler(this.ItemName_txt_Enter);
-            this.ItemName_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ItemName_txt_KeyPress);
-            this.ItemName_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ItemName_txt_KeyUp);
+            this.ItemCodeSearch_txt.FormattingEnabled = true;
+            this.ItemCodeSearch_txt.Location = new System.Drawing.Point(145, 41);
+            this.ItemCodeSearch_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.ItemCodeSearch_txt.Name = "ItemCodeSearch_txt";
+            this.ItemCodeSearch_txt.Size = new System.Drawing.Size(160, 24);
+            this.ItemCodeSearch_txt.TabIndex = 0;
+            this.ItemCodeSearch_txt.TextChanged += new System.EventHandler(this.ItemName_txt_TextChanged);
+            this.ItemCodeSearch_txt.Enter += new System.EventHandler(this.ItemName_txt_Enter);
+            this.ItemCodeSearch_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ItemName_txt_KeyPress);
+            this.ItemCodeSearch_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ItemName_txt_KeyUp);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(145, 74);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 22);
             this.textBox1.TabIndex = 1;
@@ -303,7 +303,7 @@
             this.panel2.Controls.Add(this.ItemCategory_txt);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.ItemNewName_txt);
+            this.panel2.Controls.Add(this.ItemCode_txt);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button2);
@@ -312,7 +312,7 @@
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.ItemPictureBox);
-            this.panel2.Controls.Add(this.ItemModel_txt);
+            this.panel2.Controls.Add(this.ItemName_txt);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.ItemQuantity_txt);
@@ -320,15 +320,35 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.ItemPrice_txt);
             this.panel2.Location = new System.Drawing.Point(0, 37);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(345, 812);
             this.panel2.TabIndex = 1;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Location = new System.Drawing.Point(41, 174);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(80, 17);
+            this.label13.TabIndex = 51;
+            this.label13.Text = "Cost Price :";
+            // 
+            // ItemCostPrice_txt
+            // 
+            this.ItemCostPrice_txt.Location = new System.Drawing.Point(127, 170);
+            this.ItemCostPrice_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.ItemCostPrice_txt.Name = "ItemCostPrice_txt";
+            this.ItemCostPrice_txt.Size = new System.Drawing.Size(157, 22);
+            this.ItemCostPrice_txt.TabIndex = 50;
+            this.ItemCostPrice_txt.Text = "0";
+            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(141, 12);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(52, 28);
             this.button6.TabIndex = 49;
@@ -340,7 +360,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(93, 231);
+            this.label12.Location = new System.Drawing.Point(93, 243);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(95, 17);
@@ -350,8 +370,8 @@
             // 
             // TQUANTITY_txt
             // 
-            this.TQUANTITY_txt.Location = new System.Drawing.Point(179, 227);
-            this.TQUANTITY_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TQUANTITY_txt.Location = new System.Drawing.Point(179, 239);
+            this.TQUANTITY_txt.Margin = new System.Windows.Forms.Padding(4);
             this.TQUANTITY_txt.Name = "TQUANTITY_txt";
             this.TQUANTITY_txt.Size = new System.Drawing.Size(157, 22);
             this.TQUANTITY_txt.TabIndex = 47;
@@ -362,13 +382,12 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(296, 199);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(29, 28);
             this.button5.TabIndex = 46;
             this.button5.Text = "+";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // ItemCategory_txt
@@ -377,12 +396,10 @@
             this.ItemCategory_txt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ItemCategory_txt.FormattingEnabled = true;
             this.ItemCategory_txt.Location = new System.Drawing.Point(127, 200);
-            this.ItemCategory_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemCategory_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemCategory_txt.Name = "ItemCategory_txt";
             this.ItemCategory_txt.Size = new System.Drawing.Size(160, 24);
             this.ItemCategory_txt.TabIndex = 45;
-            this.ItemCategory_txt.Text = "Toys";
-            this.ItemCategory_txt.Visible = false;
             this.ItemCategory_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
             // 
             // label11
@@ -395,7 +412,6 @@
             this.label11.Size = new System.Drawing.Size(65, 17);
             this.label11.TabIndex = 44;
             this.label11.Text = "Category";
-            this.label11.Visible = false;
             // 
             // label10
             // 
@@ -408,19 +424,19 @@
             this.label10.TabIndex = 42;
             this.label10.Text = "Item Code";
             // 
-            // ItemNewName_txt
+            // ItemCode_txt
             // 
-            this.ItemNewName_txt.Location = new System.Drawing.Point(127, 44);
-            this.ItemNewName_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ItemNewName_txt.Name = "ItemNewName_txt";
-            this.ItemNewName_txt.Size = new System.Drawing.Size(157, 22);
-            this.ItemNewName_txt.TabIndex = 0;
-            this.ItemNewName_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
+            this.ItemCode_txt.Location = new System.Drawing.Point(127, 44);
+            this.ItemCode_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.ItemCode_txt.Name = "ItemCode_txt";
+            this.ItemCode_txt.Size = new System.Drawing.Size(157, 22);
+            this.ItemCode_txt.TabIndex = 0;
+            this.ItemCode_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(45, 506);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Location = new System.Drawing.Point(45, 518);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
             this.button4.TabIndex = 4;
@@ -431,8 +447,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(153, 506);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Location = new System.Drawing.Point(153, 518);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 28);
             this.button3.TabIndex = 5;
@@ -445,7 +461,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(41, 550);
+            this.label9.Location = new System.Drawing.Point(41, 562);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 17);
@@ -454,8 +470,8 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(88, 541);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Location = new System.Drawing.Point(88, 553);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(236, 22);
             this.textBox2.TabIndex = 6;
@@ -466,7 +482,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(24, 231);
+            this.label8.Location = new System.Drawing.Point(24, 243);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 25);
@@ -489,8 +505,8 @@
             // 
             this.ItemPictureBox.BackColor = System.Drawing.Color.Transparent;
             this.ItemPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ItemPictureBox.Location = new System.Drawing.Point(45, 259);
-            this.ItemPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ItemPictureBox.Location = new System.Drawing.Point(45, 271);
+            this.ItemPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.ItemPictureBox.Name = "ItemPictureBox";
             this.ItemPictureBox.Size = new System.Drawing.Size(281, 239);
             this.ItemPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -502,32 +518,12 @@
             this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
             this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button8.Location = new System.Drawing.Point(4, 4);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(47, 33);
             this.button8.TabIndex = 7;
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(41, 174);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 17);
-            this.label13.TabIndex = 51;
-            this.label13.Text = "Cost Price :";
-            // 
-            // ItemCostPrice_txt
-            // 
-            this.ItemCostPrice_txt.Location = new System.Drawing.Point(127, 170);
-            this.ItemCostPrice_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.ItemCostPrice_txt.Name = "ItemCostPrice_txt";
-            this.ItemCostPrice_txt.Size = new System.Drawing.Size(157, 22);
-            this.ItemCostPrice_txt.TabIndex = 50;
-            this.ItemCostPrice_txt.Text = "0";
             // 
             // AddItem
             // 
@@ -538,7 +534,7 @@
             this.Controls.Add(this.button8);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Item";
@@ -565,7 +561,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox ItemQuantity_txt;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox ItemModel_txt;
+        private System.Windows.Forms.TextBox ItemName_txt;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox ItemPictureBox;
         private System.Windows.Forms.DataGridView ItemsDataGridView;
@@ -574,7 +570,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox ItemName_txt;
+        private System.Windows.Forms.ComboBox ItemCodeSearch_txt;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label9;
@@ -583,7 +579,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox ItemNewName_txt;
+        private System.Windows.Forms.TextBox ItemCode_txt;
         private System.Windows.Forms.ComboBox ItemCategory_txt;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button5;

@@ -9,6 +9,7 @@ namespace ThePrimeBaby
         static void Main()
         {
             //ThePrimeBaby.FunctionsVariables.Init_Data();
+            ThePrimeBaby.Server.Handler.Category.Register();
             ThePrimeBaby.Server.Handler.Bill.Register();
             ThePrimeBaby.Server.Handler.BillDetail.Register();
             ThePrimeBaby.Server.Handler.Customer.Register();
