@@ -1309,8 +1309,6 @@ namespace firebirdtest.UI
             try
             {
                 rowIndex = e.RowIndex;
-                ConsignmentDataGridView.Rows[rowIndex].Cells[0].Value.ToString();
-
                 //item
                 ItemCode_txt.Text = ConsignmentDetailDataGridView.Rows[rowIndex].Cells["ITEM_CODE"].Value.ToString();
 
@@ -1328,7 +1326,7 @@ namespace firebirdtest.UI
 
                 //unit price
                 UnitPrice_txt.Text = ConsignmentDetailDataGridView.Rows[rowIndex].Cells["Price"].Value.ToString();
-
+                
                 Ctn_txt.Focus();
             }
             catch (Exception ex)
