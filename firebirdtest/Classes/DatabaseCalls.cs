@@ -121,26 +121,30 @@ namespace firebirdtest
             {
                 string ReplaceString = "";
                 string TableName = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"([^:]+)\":\\s*{");
-                string FindString = "";
-                if (TableName != null && TableName != "")
+                while (TableName != "")
                 {
-                    List<string> TableRows = firebirdtest.Classes.RandomAlgos.AllGroups(NestedJson, "{[^{]+\"[^:]+\":\\s*{([^}]+)}");
-                    foreach (string TableRow in TableRows)
+                    string FindString = "";
+                    if (TableName != null && TableName != "")
                     {
-                        List<string> Subtables = firebirdtest.Classes.RandomAlgos.AllGroups(TableRow, "\\s*\"([^,|}]+)+");
-
-                        FindString = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
-                        
-
-                        foreach (string SubtableRow in Subtables)
+                        List<string> TableRows = firebirdtest.Classes.RandomAlgos.AllGroups(NestedJson, "{[^{]+\"[^:]+\":\\s*{([^}]+)}");
+                        foreach (string TableRow in TableRows)
                         {
-                            ReplaceString += "\"" + TableName + SubtableRow + ",";
+                            List<string> Subtables = firebirdtest.Classes.RandomAlgos.AllGroups(TableRow, "\\s*\"([^,|}]+)+");
+
+                            FindString = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
+
+
+                            foreach (string SubtableRow in Subtables)
+                            {
+                                ReplaceString += "\"" + TableName + SubtableRow + ",";
+                            }
+                            ReplaceString = ReplaceString.Remove(ReplaceString.Length - 1);
+                            NestedJson = ReplaceFirst(NestedJson, FindString, ReplaceString);
+                            FindString = "";
+                            ReplaceString = "";
                         }
-                        ReplaceString = ReplaceString.Remove(ReplaceString.Length - 1);
-                        NestedJson = ReplaceFirst(NestedJson, FindString, ReplaceString);
-                        FindString = "";
-                        ReplaceString = "";
                     }
+                    TableName = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"([^:]+)\":\\s*{");
                 }
                 return NestedJson;
             }
@@ -231,8 +235,8 @@ namespace firebirdtest
         }
         internal static DataSet GetVendor(int ID)
         {
-            string Result = POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorById/" + ID, "");
-            return JsonToDataSet(Result);
+            return  GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorById/" + ID);
+            //return JsonToDataSet(Result);
         }
         internal static DataSet GetCustomer(int ID)
         {
@@ -482,6 +486,11 @@ namespace firebirdtest
         internal static DataSet GetBillDetails(string BillNumber)
         {
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillDetailsByBillNumber/" + BillNumber);
+            //return JsonToDataSet(Result);
+        }
+        internal static DataSet GetConsignmentDetails(string ConsignmentID)
+        {
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetConsignmentDetailsByConsignmentId/" + ConsignmentID);
             //return JsonToDataSet(Result);
         }
         internal static DataSet GetSale(string Bill_ID)

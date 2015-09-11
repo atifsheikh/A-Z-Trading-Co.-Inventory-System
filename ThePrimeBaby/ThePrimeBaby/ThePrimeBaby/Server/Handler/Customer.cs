@@ -54,7 +54,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/DeleteCustomerByName", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Db.SlowSQL("DELETE FROM Customer v WHERE v.Name = ?", Attributes[0]);
+                Db.Transact(() => { Db.SlowSQL("DELETE FROM Customer v WHERE v.Name = ?", Attributes[0]); });
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

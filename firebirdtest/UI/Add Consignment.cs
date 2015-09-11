@@ -264,7 +264,7 @@ namespace firebirdtest.UI
         {
             try
             {
-                if (VendorName_txt.Text != "")
+                if (VendorName_txt.Text != "" && VendorName_txt.Text != "None")
                 {
                     DataSet Result1 = new DataSet();
                     Result1 = DatabaseCalls.GetVendorByName(VendorName_txt.Text);
@@ -281,7 +281,7 @@ namespace firebirdtest.UI
                         if (CalculatedBalance != Convert.ToDecimal(VendorBalance_txt.Text))
                         {
                             Variables.NotificationStatus = true;
-                            Variables.NotificationMessageTitle = this.Name;
+                            Variables.NotificationMessageTitle = "Inform Atif, Which variable is showing correct value?";
                             Variables.NotificationMessageText = "Critical : VendorBalance_txt.Text = " + VendorBalance_txt.Text + " AND CalculatedBalance = " + CalculatedBalance;
                         }
                     }
@@ -561,7 +561,8 @@ namespace firebirdtest.UI
 
 
                     Total_txt.Text = ConsignmentDataGridView.Rows[rowIndex].Cells[5].Value.ToString();
-                    Result1 = DatabaseCalls.GetSale(ConsignmentDataGridView.Rows[rowIndex].Cells[0].Value.ToString());
+                    ConsignmentDetailDataGridView.Focus();
+                    Result1 = DatabaseCalls.GetConsignmentDetails(ConsignmentDataGridView.Rows[rowIndex].Cells[0].Value.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -581,15 +582,15 @@ namespace firebirdtest.UI
                         {
                             ConsignmentDetailDataGridView.Rows.Add();
                             ConsignmentDetailDataGridView.Rows[r].Cells[0].Value = (r + 1).ToString();
-                            ConsignmentDetailDataGridView.Rows[r].Cells[1].Value = Result1.Tables[0].Rows[r].ItemArray[3];
-                            ConsignmentDetailDataGridView.Rows[r].Cells[2].Value = Result1.Tables[0].Rows[r].ItemArray[4];
-                            ConsignmentDetailDataGridView.Rows[r].Cells[3].Value = Result1.Tables[0].Rows[r].ItemArray[5];
-                            ConsignmentDetailDataGridView.Rows[r].Cells[4].Value = Result1.Tables[0].Rows[r].ItemArray[1];
-                            ConsignmentDetailDataGridView.Rows[r].Cells[5].Value = (Convert.ToInt32(Result1.Tables[0].Rows[r].ItemArray[6]) * (-1)).ToString();
-                            ConsignmentDetailDataGridView.Rows[r].Cells[6].Value = Result1.Tables[0].Rows[r].ItemArray[7];
-                            ConsignmentDetailDataGridView.Rows[r].Cells[7].Value = Result1.Tables[0].Rows[r].ItemArray[8];
+                            ConsignmentDetailDataGridView.Rows[r].Cells[1].Value = Result1.Tables[0].Rows[r].ItemArray[4];
+                            ConsignmentDetailDataGridView.Rows[r].Cells[2].Value = Result1.Tables[0].Rows[r].ItemArray[5];
+                            ConsignmentDetailDataGridView.Rows[r].Cells[3].Value = Result1.Tables[0].Rows[r].ItemArray[7];
+                            ConsignmentDetailDataGridView.Rows[r].Cells[4].Value = Result1.Tables[0].Rows[r].ItemArray[9];
+                            ConsignmentDetailDataGridView.Rows[r].Cells[5].Value = (Convert.ToInt32(Result1.Tables[0].Rows[r].ItemArray[6])).ToString();
+                            ConsignmentDetailDataGridView.Rows[r].Cells[6].Value = Result1.Tables[0].Rows[r].ItemArray[10];
+                            ConsignmentDetailDataGridView.Rows[r].Cells[7].Value = Result1.Tables[0].Rows[r].ItemArray[11];
 
-                            TOTAL_CTN_txt.Text = (Convert.ToInt32(TOTAL_CTN_txt.Text) + Convert.ToInt32(ConsignmentDetailDataGridView.Rows[r].Cells[4].Value)).ToString();
+                            TOTAL_CTN_txt.Text = (Convert.ToInt32(TOTAL_CTN_txt.Text) + (ConsignmentDetailDataGridView.Rows[r].Cells[4].Value == ""? 0 : Convert.ToInt32(ConsignmentDetailDataGridView.Rows[r].Cells[4].Value))).ToString();
                             int temp = Convert.ToInt32(textBox7.Text);
                             textBox7.Text = (++temp).ToString();
                             CostAmmount += Convert.ToInt32(ConsignmentDetailDataGridView.Rows[r].Cells["SUBTOTAL"].Value);
@@ -605,26 +606,10 @@ namespace firebirdtest.UI
                     //                Total_txt_Leave(sender, e);
                     try
                     {
-                        VendorID_txt.Text = Result1.Tables[0].Rows[0].ItemArray[9].ToString();
+                        VendorID_txt.Text = Result1.Tables[0].Rows[0].ItemArray[3].ToString();
                         VendorName_txt.Text = DatabaseCalls.GetVendorName(Convert.ToInt32(VendorID_txt.Text));
                         ConsignmentNumber_txt.Text = Result1.Tables[0].Rows[0].ItemArray[2].ToString();
-                    }
-                    catch (Exception ex)
-                    {
-                        Variables.NotificationStatus = true;
-                        Variables.NotificationMessageTitle = this.Name;
-                        Variables.NotificationMessageText = ex.Message;
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                    Result1 = DatabaseCalls.GetConsignment(ConsignmentDataGridView.Rows[rowIndex].Cells[0].Value.ToString());
-                    
-                        VendorID_txt.Text = Result1.Tables[0].Rows[0].ItemArray[2].ToString();
-                        VendorName_txt.Text = DatabaseCalls.GetVendorName(Convert.ToInt32(VendorID_txt.Text));
-                        ConsignmentNumber_txt.Text = Result1.Tables[0].Rows[0].ItemArray[0].ToString();
+                        VendorName_txt_Leave(this, null);
                     }
                     catch (Exception ex)
                     {
@@ -977,7 +962,7 @@ namespace firebirdtest.UI
                     }
 
                     DataSet VendorDataSet = new DataSet();
-                    VendorDataSet = DatabaseCalls.GetVendor(Convert.ToInt32(ConsignmentDataSet.Tables[0].Rows[0]["CUSTOMER_ID"].ToString()));
+                    VendorDataSet = DatabaseCalls.GetVendor(Convert.ToInt32(ConsignmentDataSet.Tables[0].Rows[0]["VendorID"].ToString()));
                     if (VendorDataSet.Tables[0].Rows.Count == 0)
                     {
                         Variables.NotificationStatus = true;
@@ -1000,13 +985,13 @@ namespace firebirdtest.UI
                         {
                             // PCS_CTN, QUANT, CUSTOMER_ID
 
-                            String AddSaleResult = DatabaseCalls.AddSale(Convert.ToDecimal(GridViewRow.Cells[6].Value), Convert.ToInt32(GridViewRow.Cells[4].Value), Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToDecimal(GridViewRow.Cells[7].Value), GridViewRow.Cells[1].Value.ToString(), GridViewRow.Cells[2].Value.ToString(), Convert.ToInt32(GridViewRow.Cells[3].Value), Convert.ToInt32(GridViewRow.Cells[5].Value), Convert.ToInt32(VendorID_txt.Text));
-                            if (AddSaleResult.StartsWith("Vendor Balance Updated") != true)
+                            string AddSaleResult = DatabaseCalls.AddConsignmentDetail(GridViewRow.Cells["ITEM_CODE"].Value.ToString(), ConsignmentNumber_txt.Text, Convert.ToInt32(GridViewRow.Cells["QUANT"].Value), Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), GridViewRow.Cells["ItemName"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["Qty"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["SubTotal"].Value));
+                            if (AddSaleResult == "")
                             {
-                                ItemDetails = DatabaseCalls.GetItemDetails("code", GridViewRow.Cells[1].Value.ToString());
-                                int UpdatedItem_Quantity = (Convert.ToInt32(ItemDetails.Tables[0].Rows[0]["T_QUANTITY"]) - Convert.ToInt32(GridViewRow.Cells[5].Value));
+                                ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
+                                int UpdatedItem_Quantity = (Convert.ToInt32(ItemDetails.Tables[0].Rows[0]["T_Quantity"]) - Convert.ToInt32(GridViewRow.Cells[5].Value));
                                 String UpdateItemResult = DatabaseCalls.AddItemQutantity(GridViewRow.Cells[1].Value.ToString(), UpdatedItem_Quantity);
-                                if (UpdateItemResult.StartsWith("Item Quantity Modified") != true)
+                                if (UpdateItemResult != "")
                                 {
                                     Variables.NotificationStatus = true;
                                     Variables.NotificationMessageTitle = this.Name;
@@ -1019,12 +1004,11 @@ namespace firebirdtest.UI
 
                     //Update Vendor New Balance
                     string ModifyVendorResult = DatabaseCalls.ModifyVendor(VendorID_txt.Text, BalanceNew_txt.Text);
-                    Variables.NotificationStatus = true;
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = ModifyVendorResult;
-                    if (ModifyVendorResult.StartsWith("Vendor Balance Updated") != true)
+                    if (ModifyVendorResult != "")
                     {
-                        return;
+                        Variables.NotificationStatus = true;
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = "Vendor Balance Update Error";
                     }
                     toolStripButton1_Click(sender, e);
 
@@ -1713,7 +1697,10 @@ namespace firebirdtest.UI
             try
             {
                 if (ItemCodeCons_txt.Text == "")
+                {
+                    AddItemPnl.Visible = false;
                     return;
+                }
                 //if (ItemPictureBox.ImageLocation == null || ItemPictureBox.ImageLocation == "")
                 //{
                 //    if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPG") == true)

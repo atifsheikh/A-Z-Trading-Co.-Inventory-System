@@ -199,7 +199,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/DeleteItemByName", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Db.SlowSQL("DELETE FROM Item v WHERE v.Name = ?", Attributes[0]);
+                Db.Transact(() => { Db.SlowSQL("DELETE FROM Item v WHERE v.Name = ?", Attributes[0]); });
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

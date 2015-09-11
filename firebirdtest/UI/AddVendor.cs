@@ -31,6 +31,8 @@ namespace firebirdtest.UI
             {
                 try
                 {
+                    if (VendorOpeningBalance_txt.Text == "")
+                        VendorOpeningBalance_txt.Text = "0";
                     String Result = DatabaseCalls.AddVendor(VendorName_txt.Text, VendorAddress_txt.Text, VendorPhone_txt.Text, VendorEmail_txt.Text, 0, Convert.ToInt32(VendorOpeningBalance_txt.Text));
                     if (Result != "")
                     {
@@ -153,8 +155,11 @@ namespace firebirdtest.UI
                     //    VendorsDataGridView.Columns["AMOUNT"].Visible = false;
                     //    VendorsDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
                     //}
-                    VendorsDataGridView.Columns["AMOUNT"].Visible = false;
-                    VendorsDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                    if (VendorsDataGridView.Columns.Count > 0)
+                    {
+                        VendorsDataGridView.Columns["AMOUNT"].Visible = false;
+                        VendorsDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                    }
                 }
                 catch (Exception ex)
                 {

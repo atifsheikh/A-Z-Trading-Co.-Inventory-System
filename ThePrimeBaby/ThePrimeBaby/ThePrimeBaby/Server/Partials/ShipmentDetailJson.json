@@ -2,8 +2,16 @@
 	ShipmentDetails : [{
 		"ID" : 0,
 		"NAME" : "",
-		"Shipment":"",
-        "Item":"",
+		"Shipment":{
+			"ID" : 0,
+			"Vendor":{
+				"ID" : 0
+			}
+		},
+        "Item":{
+			"CODE" : "",
+			"MODEL" : ""
+		},
         "T_QUANTITY":0,
         "QTY_PER_BOX":0,
         "MODEL":"",

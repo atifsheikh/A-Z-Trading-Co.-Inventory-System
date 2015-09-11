@@ -8,12 +8,12 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
-            Handle.GET("/ThePrimeBaby/GetSaleByBillId/{?}", (string BillId, Request r) =>
+            Handle.GET("/ThePrimeBaby/GetConsignmentDetailsByConsignmentId/{?}", (string ConsignmentID, Request r) =>
             {
-                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.Id = ?", Convert.ToInt32(HttpUtility.UrlDecode(BillId)));
-                BillDetailJson billDetailJson = new BillDetailJson();
-                billDetailJson.BillDetails.Data = billDetail;
-                return billDetailJson;
+                QueryResultRows<Database.ShipmentDetail> shipmentDetail = Db.SQL<Database.ShipmentDetail>("SELECT bd FROM ThePrimeBaby.Database.ShipmentDetail bd WHERE bd.Shipment.Id = ?", Convert.ToInt32(HttpUtility.UrlDecode(ConsignmentID)));
+                ShipmentDetailJson shipmentDetailJson = new ShipmentDetailJson();
+                shipmentDetailJson.ShipmentDetails.Data = shipmentDetail;
+                return shipmentDetailJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetBillDetailsByBillNumber/{?}", (string BillNumber, Request r) =>
@@ -40,7 +40,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/DeleteBillDetailsByBillNumber", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Db.SlowSQL("DELETE FROM BillDetail v WHERE v.Bill.BillNumber = ?", Attributes[0]);
+                Db.Transact(() => { Db.SlowSQL("DELETE FROM BillDetail v WHERE v.Bill.BillNumber = ?", Attributes[0]); });
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

@@ -91,6 +91,14 @@
             this.BalanceNew_txt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.ConsignmentDetailDataGridView = new System.Windows.Forms.DataGridView();
+            this.Sr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ITEM_CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ctn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.StatusConsignment_txt = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -124,14 +132,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SpeedTest_BGWorker = new System.ComponentModel.BackgroundWorker();
-            this.Sr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ITEM_CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ctn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.AddItemPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).BeginInit();
@@ -160,8 +160,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.AddItemPnl);
+            this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.label25);
             this.panel2.Controls.Add(this.label24);
             this.panel2.Controls.Add(this.label23);
@@ -845,6 +845,59 @@
             this.ConsignmentDetailDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConsignmentDetailDataGridView_CellClick);
             this.ConsignmentDetailDataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.ConsignmentDetailDataGridView_RowsRemoved);
             // 
+            // Sr
+            // 
+            this.Sr.Frozen = true;
+            this.Sr.HeaderText = "Sr #";
+            this.Sr.Name = "Sr";
+            this.Sr.Width = 59;
+            // 
+            // ITEM_CODE
+            // 
+            this.ITEM_CODE.Frozen = true;
+            this.ITEM_CODE.HeaderText = "ITEM_CODE";
+            this.ITEM_CODE.Name = "ITEM_CODE";
+            this.ITEM_CODE.ReadOnly = true;
+            this.ITEM_CODE.Width = 112;
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Item Name";
+            this.ItemName.Name = "ItemName";
+            // 
+            // Ctn
+            // 
+            this.Ctn.HeaderText = "Pcs/Ctn";
+            this.Ctn.Name = "Ctn";
+            this.Ctn.Width = 81;
+            // 
+            // Qty
+            // 
+            this.Qty.HeaderText = "Ctn";
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            this.Qty.Width = 54;
+            // 
+            // Quant
+            // 
+            this.Quant.HeaderText = "Quant";
+            this.Quant.Name = "Quant";
+            this.Quant.Width = 72;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "UnitPrice";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 90;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.HeaderText = "SubTotal";
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 90;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -1255,59 +1308,6 @@
             // 
             this.SpeedTest_BGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SpeedTest_BGWorker_DoWork);
             this.SpeedTest_BGWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SpeedTest_BGWorker_RunWorkerCompleted);
-            // 
-            // Sr
-            // 
-            this.Sr.Frozen = true;
-            this.Sr.HeaderText = "Sr #";
-            this.Sr.Name = "Sr";
-            this.Sr.Width = 59;
-            // 
-            // ITEM_CODE
-            // 
-            this.ITEM_CODE.Frozen = true;
-            this.ITEM_CODE.HeaderText = "ITEM_CODE";
-            this.ITEM_CODE.Name = "ITEM_CODE";
-            this.ITEM_CODE.ReadOnly = true;
-            this.ITEM_CODE.Width = 112;
-            // 
-            // ItemName
-            // 
-            this.ItemName.HeaderText = "Item Name";
-            this.ItemName.Name = "ItemName";
-            // 
-            // Ctn
-            // 
-            this.Ctn.HeaderText = "Pcs/Ctn";
-            this.Ctn.Name = "Ctn";
-            this.Ctn.Width = 81;
-            // 
-            // Qty
-            // 
-            this.Qty.HeaderText = "Ctn";
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            this.Qty.Width = 54;
-            // 
-            // Quant
-            // 
-            this.Quant.HeaderText = "Quant";
-            this.Quant.Name = "Quant";
-            this.Quant.Width = 72;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "UnitPrice";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Width = 90;
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "SubTotal";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 90;
             // 
             // AddConsignment
             // 
