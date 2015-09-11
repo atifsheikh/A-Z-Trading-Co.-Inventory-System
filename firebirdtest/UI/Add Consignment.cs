@@ -554,15 +554,18 @@ namespace firebirdtest.UI
                     //            ConsignmentDetailDataGridView.Rows.Clear();
                     ConsignmentDetailDataGridView.Enabled = false;
                     ConsignmentDetailDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.Gray;
-
                     toolStripButton2.Enabled = false;
                     ItemCode_txt.Enabled = false;
                     toolStripButton5.Enabled = true;
 
 
                     Total_txt.Text = ConsignmentDataGridView.Rows[rowIndex].Cells[5].Value.ToString();
+
                     ConsignmentDetailDataGridView.Focus();
+                    
                     Result1 = DatabaseCalls.GetConsignmentDetails(ConsignmentDataGridView.Rows[rowIndex].Cells[0].Value.ToString());
+                    
+
                 }
                 catch (Exception ex)
                 {
@@ -589,11 +592,15 @@ namespace firebirdtest.UI
                             ConsignmentDetailDataGridView.Rows[r].Cells[5].Value = (Convert.ToInt32(Result1.Tables[0].Rows[r].ItemArray[6])).ToString();
                             ConsignmentDetailDataGridView.Rows[r].Cells[6].Value = Result1.Tables[0].Rows[r].ItemArray[10];
                             ConsignmentDetailDataGridView.Rows[r].Cells[7].Value = Result1.Tables[0].Rows[r].ItemArray[11];
+                            
+
 
                             TOTAL_CTN_txt.Text = (Convert.ToInt32(TOTAL_CTN_txt.Text) + (ConsignmentDetailDataGridView.Rows[r].Cells[4].Value == ""? 0 : Convert.ToInt32(ConsignmentDetailDataGridView.Rows[r].Cells[4].Value))).ToString();
                             int temp = Convert.ToInt32(textBox7.Text);
                             textBox7.Text = (++temp).ToString();
                             CostAmmount += Convert.ToInt32(ConsignmentDetailDataGridView.Rows[r].Cells["SUBTOTAL"].Value);
+                            
+
                         }
                         Total_txt.Text = CostAmmount.ToString();
                     }
@@ -606,10 +613,18 @@ namespace firebirdtest.UI
                     //                Total_txt_Leave(sender, e);
                     try
                     {
+                        
+
                         VendorID_txt.Text = Result1.Tables[0].Rows[0].ItemArray[3].ToString();
                         VendorName_txt.Text = DatabaseCalls.GetVendorName(Convert.ToInt32(VendorID_txt.Text));
+                        
+
                         ConsignmentNumber_txt.Text = Result1.Tables[0].Rows[0].ItemArray[2].ToString();
+                        
+
                         VendorName_txt_Leave(this, null);
+                        
+
                     }
                     catch (Exception ex)
                     {

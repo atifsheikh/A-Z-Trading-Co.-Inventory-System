@@ -93,6 +93,8 @@ namespace firebirdtest
                 response1.Close();
                 string NestedJson = response.ToString().TrimEnd();
                 string PlainJson = RemoveNestedJson(NestedJson);
+                //System.IO.File.WriteAllText(@"H:\SC_Inventory\JsonBefore.txt", NestedJson);
+                //System.IO.File.WriteAllText(@"H:\SC_Inventory\JsonAfter.txt", PlainJson);
                 return JsonConvert.DeserializeObject<DataSet>(PlainJson);
             }
             catch (Exception ex)
@@ -127,11 +129,11 @@ namespace firebirdtest
                     if (TableName != null && TableName != "")
                     {
                         List<string> TableRows = firebirdtest.Classes.RandomAlgos.AllGroups(NestedJson, "{[^{]+\"[^:]+\":\\s*{([^}]+)}");
+                        FindString = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
                         foreach (string TableRow in TableRows)
                         {
                             List<string> Subtables = firebirdtest.Classes.RandomAlgos.AllGroups(TableRow, "\\s*\"([^,|}]+)+");
 
-                            FindString = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+(\"[^:]+\":\\s*{[^}]+})");
 
 
                             foreach (string SubtableRow in Subtables)
@@ -140,9 +142,11 @@ namespace firebirdtest
                             }
                             ReplaceString = ReplaceString.Remove(ReplaceString.Length - 1);
                             NestedJson = ReplaceFirst(NestedJson, FindString, ReplaceString);
-                            FindString = "";
+                            //NestedJson =NestedJson.Replace(FindString, ReplaceString);
                             ReplaceString = "";
                         }
+                        FindString = "";
+                        //TableName = "";
                     }
                     TableName = firebirdtest.Classes.RandomAlgos.Group1(NestedJson, "{[^{]+{[^{]+\"([^:]+)\":\\s*{");
                 }
