@@ -62,6 +62,7 @@ namespace firebirdtest.UI
                 Console.WriteLine(ex.Message);
             }
             button6_Click(sender, e);
+            SortItems();
         }
 
         private void AddItem_Load(object sender, EventArgs e)
@@ -139,7 +140,7 @@ namespace firebirdtest.UI
                     currentRow = ItemsDataGridView.CurrentCell.RowIndex;
                     ItemName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["NAME"].Value.ToString();
                     ItemCode_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
-                    ItemCodeSearch_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
+                    //ItemCodeSearch_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
                     ItemName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["MODEL"].Value.ToString();
                     ItemQuantity_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["QTY_BOX"].Value.ToString();
                     ItemPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["PRICE"].Value.ToString();
@@ -189,6 +190,7 @@ namespace firebirdtest.UI
             Result1 = DatabaseCalls.GetItems();
             RandomAlgos.CleanUpGridView(Result1,ItemsDataGridView);//.DataSource = Result1.Tables[0];
             ItemsDataGridView.Columns[0].Visible = false;
+            SortItems();
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -240,15 +242,15 @@ namespace firebirdtest.UI
         {
             try
             {
-                for (int loop = 0; loop < ItemsDataGridView.Rows.Count; loop++)
+                for (int loop = 0; loop < ItemsDataGridView.Rows.Count && ItemsDataGridView.Rows[loop] != null && ItemsDataGridView.Rows[loop].Cells["CODE"].Value != null; loop++)
                 {
-                    if (ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Contains(ItemCodeSearch_txt.Text))//(GridViewColumn.ItemArray[0].ToString()))
+                    if (StaticClass.Contain(ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString(),ItemCodeSearch_txt.Text,StringComparison.OrdinalIgnoreCase))
                     {
                         ItemsDataGridView.Rows[loop].Visible = true;
                     }
                     else
                     {
-                        ItemsDataGridView.CurrentCell.Selected = false;
+                        ItemsDataGridView.CurrentCell = null;
                         ItemsDataGridView.Rows[loop].Visible = false;
                     }
                 }
@@ -332,39 +334,39 @@ namespace firebirdtest.UI
 
         private void ItemName_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 27)
-            {
-                this.AllowDrop = false;
-            }
+            //if (e.KeyChar == 27)
+            //{
+            //    this.AllowDrop = false;
+            //}
             //(e.KeyChar
         }
 
         private void ItemName_txt_KeyUp(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode!= Keys.Enter && e.KeyValue != 27)
-                {
-                    if (ItemCodeSearch_txt.Text != null)
-                        RandomAlgos.comboKeyPressed(ItemCodeSearch_txt);
-                }
-                else if (e.KeyCode == Keys.Enter)
-                {
-                    //ItemName_txt.Text = ItemName_txt.;
-                }
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationStatus = true;
-            }
+            //try
+            //{
+            //    if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode!= Keys.Enter && e.KeyValue != 27)
+            //    {
+            //        if (ItemCodeSearch_txt.Text != null)
+            //            RandomAlgos.comboKeyPressed(ItemCodeSearch_txt);
+            //    }
+            //    else if (e.KeyCode == Keys.Enter)
+            //    {
+            //        //ItemName_txt.Text = ItemName_txt.;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Variables.NotificationMessageTitle = this.Name;
+            //    Variables.NotificationMessageText = ex.Message;
+            //    Variables.NotificationStatus = true;
+            //}
 
         }
 
         private void ItemName_txt_Enter(object sender, EventArgs e)
         {
-            ItemCodeSearch_txt.DroppedDown = true;
+            //ItemCodeSearch_txt.DroppedDown = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

@@ -172,20 +172,19 @@ namespace firebirdtest.UI
 
         private void VendorNameSearch_txt_TextChanged(object sender, EventArgs e)
         {
-            
-            //"atif".Contains("Atif", StringComparison.OrdinalIgnoreCase);
-            
-            //Vendor Detail
             try
             {
-                for (int loop = 0; loop < VendorsDataGridView.Rows.Count && VendorsDataGridView.Rows[loop]!= null && VendorsDataGridView.Rows[loop].Cells["NAME"].Value != null; loop++)
+                for (int loop = 0; loop < VendorsDataGridView.Rows.Count && VendorsDataGridView.Rows[loop] != null && VendorsDataGridView.Rows[loop].Cells["NAME"].Value != null; loop++)
                 {
-                    if (StaticClass.Contain(VendorsDataGridView.Rows[loop].Cells["NAME"].Value.ToString(),(VendorNameSearch_txt.Text),StringComparison.OrdinalIgnoreCase))//(GridViewColumn.ItemArray[0].ToString()))
+                    if (StaticClass.Contain(VendorsDataGridView.Rows[loop].Cells["NAME"].Value.ToString(), (VendorNameSearch_txt.Text), StringComparison.OrdinalIgnoreCase))//(GridViewColumn.ItemArray[0].ToString()))
                     {
                         VendorsDataGridView.Rows[loop].Visible = true;
                     }
                     else
+                    {
+                        VendorsDataGridView.CurrentCell = null;
                         VendorsDataGridView.Rows[loop].Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -227,33 +226,33 @@ namespace firebirdtest.UI
 
         private void VendorNameSearch_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 27)
-            {
-                this.AllowDrop = false;
-            }
+            //if (e.KeyChar == 27)
+            //{
+            //    this.AllowDrop = false;
+            //}
         }
 
         private void VendorNameSearch_txt_KeyUp(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode!= Keys.Enter && e.KeyValue != 27)
-                {
-                    if (VendorNameSearch_txt.Text != null) RandomAlgos.comboKeyPressed(VendorNameSearch_txt);
-                }
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationStatus = true;
-            }
+            //try
+            //{
+            //    if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode!= Keys.Enter && e.KeyValue != 27)
+            //    {
+            //        if (VendorNameSearch_txt.Text != null) RandomAlgos.comboKeyPressed(VendorNameSearch_txt);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Variables.NotificationMessageTitle = this.Name;
+            //    Variables.NotificationMessageText = ex.Message;
+            //    Variables.NotificationStatus = true;
+            //}
 
         }
 
         private void VendorNameSearch_txt_Enter(object sender, EventArgs e)
         {
-            VendorNameSearch_txt.DroppedDown = true;
+            //VendorNameSearch_txt.DroppedDown = true;
         }
 
         private void button6_Click(object sender, EventArgs e)

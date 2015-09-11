@@ -12,7 +12,7 @@ namespace ThePrimeBaby.Database
         public decimal OPENNING_BALANCE;
         public decimal BALANCE_LIMIT;
 
-        internal static bool AddVendor(string Name, string address, string phone, string email, decimal openning_balance, decimal balance_limit)
+        internal static bool AddVendor(string Name, string address, string phone, string email, decimal balance_limit, decimal openning_balance)
         {
             try
             {

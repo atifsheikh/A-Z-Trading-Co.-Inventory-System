@@ -228,6 +228,8 @@ namespace firebirdtest.UI
                         if (ConsignmentDetailsDataSet != null && ConsignmentDetailsDataSet.Tables.Count > 0)
                         {
                             ItemsDataGridView.DataSource = ConsignmentDetailsDataSet.Tables[0];
+                            ItemsDataGridView.Columns["NAME"].Visible = false;
+                            ItemsDataGridView.Columns["IMAGE"].Visible = false;
                             try
                             {
                                 ItemsDataGridView.Columns[0].Visible = false;
@@ -1201,6 +1203,7 @@ namespace firebirdtest.UI
 
         private void VendorName_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
             try
             {
                 if (e.KeyChar == 27)
