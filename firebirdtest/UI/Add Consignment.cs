@@ -93,7 +93,7 @@ namespace firebirdtest.UI
                         {
                             if (ItemsDataGridView.Rows[loop].Visible == true)// && ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString() == ItemCode_txt.Text)
                             {
-                                UnitPrice_txt.Text = ItemsDataGridView.Rows[loop].Cells["PRICE"].Value.ToString().Trim();
+                                UnitPrice_txt.Text = ItemsDataGridView.Rows[loop].Cells["COSTPRICE"].Value.ToString().Trim();
                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Trim();
                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop].Cells["Model"].Value.ToString().Trim();
                                 Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
@@ -219,7 +219,6 @@ namespace firebirdtest.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("error -1");
                     Variables.NotificationStatus = true;
                     Variables.NotificationMessageTitle = this.Name;
                     Variables.NotificationMessageText = ex.Message;
@@ -257,7 +256,11 @@ namespace firebirdtest.UI
                 }
             }
             catch (Exception ex)
-            { MessageBox.Show("error -3"); }
+            {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = ex.Message;
+            }
         }
 
         private void VendorName_txt_Leave(object sender, EventArgs e)
@@ -305,6 +308,10 @@ namespace firebirdtest.UI
                     MessageBox.Show("Please Select a Vendor");
                     VendorName_txt.Focus();
                     return;
+                }
+                if (ConsignmentNumber_txt.Text == "")
+                {
+                    ConsignmentNumber_txt.Text = DatabaseCalls.GetNewConsignmentNumber();
                 }
                 String Result1 = DatabaseCalls.AddConsignment(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToInt32(VendorID_txt.Text), Convert.ToDateTime(ConsignmentDate_txt.Text), Convert.ToDecimal(Total_txt.Text), Convert.ToDecimal(BalanceNew_txt.Text), "Consignment",  Convert.ToInt32(TOTAL_CTN_txt.Text));
                 if (Result1 == "")
@@ -464,7 +471,7 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (Ctn_txt.Text == "0")
+                    if (Ctn_txt.Text == "0" && ItemsDataGridView.Rows.Count >= rowIndex && ItemCode_txt.Text == ConsignmentDetailDataGridView.Rows[rowIndex].Cells["ITEM_CODE"].Value.ToString())
                     {
                         ConsignmentDetailDataGridView.Rows.RemoveAt(rowIndex);
                         ItemCode_txt.Text = "";
@@ -477,7 +484,7 @@ namespace firebirdtest.UI
                         Total_txt_Leave(sender, e);
                         ItemCode_txt.Focus();
                     }
-                    else
+                    else if (Ctn_txt.Text != "" && Ctn_txt.Text != "0")
                         UnitPrice_txt.Focus();
                 }
             }
@@ -1028,6 +1035,8 @@ namespace firebirdtest.UI
                     toolStripButton1_Click(sender, e);
 
 
+                    //bool resultUpdateConsignments = UpdateConsignments();
+
                     //Consignments
                     try
                     {
@@ -1155,6 +1164,7 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
             }
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
         private void VendorName_txt_KeyPress(object sender, KeyPressEventArgs e)
@@ -1400,7 +1410,6 @@ namespace firebirdtest.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("error 1");
                 Variables.NotificationStatus = true;
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
@@ -1421,7 +1430,6 @@ namespace firebirdtest.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("error 2"); 
                 Variables.NotificationStatus = true;
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
@@ -1454,7 +1462,6 @@ namespace firebirdtest.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("error 3");
                 Variables.NotificationStatus = true;
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
@@ -1503,7 +1510,6 @@ namespace firebirdtest.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("error 4");
                 Variables.NotificationStatus = true;
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
@@ -1512,6 +1518,43 @@ namespace firebirdtest.UI
         }
 
         private void SpeedTest_BGWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            bool Result = UpdateConsignments();
+
+
+            try
+            {
+                RandomAlgos.RestoreOldSlaesDataInGrid(ConsignmentDetailDataGridView, VendorName_txt, BalanceNew_txt, Total_txt, TOTAL_CTN_txt, textBox7, VendorBalance_txt);
+                VendorName_txt_Leave(sender, e);
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = ex.Message;
+            }
+
+            
+            try
+            {
+                ConsignmentNumber_txt.Text = (NewConsignmentNumber).ToString();
+                ConsignmentNumberSearch_txt.Items.AddRange(_ConsignmentCollectionObject);
+                if (_CutomerNameCollectionObject != null)
+                {
+                    VendorName_txt.Items.AddRange(_CutomerNameCollectionObject);
+                    VendorNameSearch_txt.Items.AddRange(_CutomerNameCollectionObject);
+                }
+                //ItemCode_txt.Items.AddRange(_ItemDetailsCollectionObject);                
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = ex.Message;
+            }
+        }
+
+        private bool UpdateConsignments()
         {
             try
             {
@@ -1537,39 +1580,9 @@ namespace firebirdtest.UI
             }
             catch (Exception ex)
             {
+                return false;
             }
-
-            try
-            {
-                RandomAlgos.RestoreOldSlaesDataInGrid(ConsignmentDetailDataGridView, VendorName_txt, BalanceNew_txt, Total_txt, TOTAL_CTN_txt, textBox7, VendorBalance_txt);
-                VendorName_txt_Leave(sender, e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("error 6");
-                Variables.NotificationStatus = true;
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = ex.Message;
-            }
-
-            
-            try
-            {
-                ConsignmentNumber_txt.Text = (NewConsignmentNumber).ToString();
-                ConsignmentNumberSearch_txt.Items.AddRange(_ConsignmentCollectionObject);
-                
-                VendorName_txt.Items.AddRange(_CutomerNameCollectionObject);
-                VendorNameSearch_txt.Items.AddRange(_CutomerNameCollectionObject);
-                
-                //ItemCode_txt.Items.AddRange(_ItemDetailsCollectionObject);                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("error 7");
-                Variables.NotificationStatus = true;
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = ex.Message;
-            }
+            return true;
         }
 
         public object[] _ConsignmentCollectionObject { get; set; }
@@ -1686,7 +1699,7 @@ namespace firebirdtest.UI
             {
                 if (Qty_txt.Text != "" && Ctn_txt.Text != "")
                     Quant_txt.Text = (Convert.ToInt32(Qty_txt.Text) * Convert.ToInt32(Ctn_txt.Text)).ToString();
-                else
+                else if (Qty_txt.Text != "0")
                     Quant_txt.Text = (0 * Convert.ToInt32(Ctn_txt.Text)).ToString();
             }
             catch (Exception ex)
@@ -1762,6 +1775,46 @@ namespace firebirdtest.UI
         }
 
         private void ItemCostPriceCons_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void Ctn_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void Qty_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void Quant_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void UnitPrice_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void Total_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void BalanceNew_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void textBox7_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void TOTAL_CTN_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }

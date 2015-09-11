@@ -49,6 +49,25 @@ namespace ThePrimeBaby.Database
             }
         }
 
+        internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal VendorBalance)
+        {
+            try
+            {
+                Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT i FROM ThePrimeBaby.Database.Shipment i WHERE i.Id = ?", Convert.ToInt32(ShipmentNumber)).First;
+                Db.Transact(() =>
+                {
+                    shipment.AMOUNT = VendorBalance;
+                    shipment.VENDOR_BALANCE = VendorBalance;
+                });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        
+
         internal static bool AddShipment(int shipmentID, Vendor Vendor, DateTime ShipmentDate, decimal ShipmentTotal, decimal VendorBalance, string Remarks, int TOTAL_CTN)
         {
             try

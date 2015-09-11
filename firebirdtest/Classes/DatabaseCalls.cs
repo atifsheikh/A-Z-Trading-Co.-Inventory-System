@@ -345,7 +345,7 @@ namespace firebirdtest
         }
         internal static string ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE)
         {
-            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyBillAmmountByBillNumber", ID + "/" + UpdateAmount + "/" + UpdateCUSTOMER_BALANCE);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyShipmentAmmountByShipmentNumber", ID + "/" + UpdateAmount + "/" + UpdateCUSTOMER_BALANCE);
         }
 
         //Get Calls

@@ -7,6 +7,19 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
+            Handle.POST("/ThePrimeBaby/ModifyShipmentAmmountByShipmentNumber", (Request r) =>
+            {
+                string[] Attributes = r.Body.Split('/');
+                Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT i FROM ThePrimeBaby.Database.Shipment i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
+                if (shipment != null)
+                {
+                    bool Result = Database.Shipment.ModifyShipmentAmmount(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]));
+                    return 200;
+                }
+                else
+                    return 209;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
             Handle.POST("/ThePrimeBaby/DeleteConsignmentDetailsByConsignmentNumber", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
