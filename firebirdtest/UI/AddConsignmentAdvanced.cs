@@ -371,7 +371,7 @@ namespace firebirdtest.UI
                 try
                 {
                     //Add Consignment
-                    Result = DatabaseCalls.AddConsignment(ConsignmentNumber_txt.Text, Convert.ToDateTime(ConsignmentDate_txt.Text));
+                    Result = DatabaseCalls.AddShipment(ConsignmentNumber_txt.Text, Convert.ToDateTime(ConsignmentDate_txt.Text));
                     if (Result.StartsWith("Consignment Added with ID") != true)
                     {
                         Variables.NotificationStatus = true;
@@ -413,7 +413,7 @@ namespace firebirdtest.UI
                                         break;
                                     }
                                 }
-                                String Result2 = DatabaseCalls.AddConsignmentDetail(ItemCode, ConsignmentNumber_txt.Text, Convert.ToInt32(GridViewRow.Cells["TQuantity"].Value), Convert.ToInt32(GridViewRow.Cells["QtyPerBox"].Value), GridViewRow.Cells["Description"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["SUBTOTAL"].Value));
+                                String Result2 = DatabaseCalls.AddShipmentDetail(ItemCode, ConsignmentNumber_txt.Text, Convert.ToInt32(GridViewRow.Cells["TQuantity"].Value), Convert.ToInt32(GridViewRow.Cells["QtyPerBox"].Value), GridViewRow.Cells["Description"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["SUBTOTAL"].Value));
                                 if (Result2.StartsWith("Consignment added with id") != true)
                                 {
                                     Variables.NotificationStatus = true;

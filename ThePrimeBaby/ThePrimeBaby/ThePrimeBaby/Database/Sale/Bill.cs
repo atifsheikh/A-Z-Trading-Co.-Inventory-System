@@ -10,7 +10,6 @@ namespace ThePrimeBaby.Database
         public decimal AMOUNT;
         public string REMARKS;
         public decimal CUSTOMER_BALANCE;
-        public int BillNumber;
 
         internal static int CTN_BILL_SUM(int BillID)
         {
@@ -32,7 +31,7 @@ namespace ThePrimeBaby.Database
                     {
                         bill.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First) + 1;
                     }
-                    bill.BillNumber = GetNewBillNumber();
+                    bill.ID = GetNewBillID();
                     bill.CUSTOMER = Customer;
                     bill.DATED = BillDate;
                     bill.AMOUNT = BillTotal;
@@ -47,7 +46,7 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static int GetNewBillNumber()
+        internal static int GetNewBillID()
         {
             try
             {
@@ -57,13 +56,13 @@ namespace ThePrimeBaby.Database
             { return 1; }
         }
 
-        internal static bool DeleteBill(string BillNumber)
+        internal static bool DeleteBill(string BillID)
         {
             try
             {
                 Db.Transact(() =>
                 {
-                    Db.SlowSQL("DELETE FROM Bill WHERE BillNumber = ?", BillNumber);
+                    Db.SlowSQL("DELETE FROM Bill WHERE ID = ?", BillID);
                 });
                 return true;
             }
@@ -73,11 +72,11 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE)
+        internal static bool ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE, Database.Bill BillVoucher)
         {
             try
             {
-                Database.Bill BillVoucher = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(ID)).First;
+                //Database.Bill BillVoucher = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(ID)).First;
                 Db.Transact(() =>
                 {
                     BillVoucher.AMOUNT = UpdateAmount;
@@ -91,11 +90,11 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyBillAmmount(int BillNumber, decimal CustomerBalance)
+        internal static bool ModifyBillAmmount(int BillID, decimal CustomerBalance, Database.Bill bill)
         {
             try
             {
-                Database.Bill bill = Db.SQL<Database.Bill>("SELECT i FROM ThePrimeBaby.Database.Bill i WHERE i.Id = ?", Convert.ToInt32(BillNumber)).First;
+                //Database.Bill bill = Db.SQL<Database.Bill>("SELECT i FROM ThePrimeBaby.Database.Bill i WHERE i.Id = ?", Convert.ToInt32(BillID)).First;
                 Db.Transact(() =>
                 {
                     bill.AMOUNT = CustomerBalance;
@@ -107,14 +106,6 @@ namespace ThePrimeBaby.Database
             {
                 return false;
             }
-        }
-
-        internal static object GetNewConsignmentNumber()
-        {
-            try { return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1); }
-            catch (Exception ex)
-            { return 1; }
-            
         }
     }
 }

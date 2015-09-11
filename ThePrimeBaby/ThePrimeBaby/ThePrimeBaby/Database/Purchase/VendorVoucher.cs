@@ -9,19 +9,19 @@ namespace ThePrimeBaby.Database
         public DateTime VOUCHER_DATE;
         public decimal AMOUNT;
         public string REMARKS;
-        public decimal CUSTOMER_BALANCE;
+        public decimal VENDOR_BALANCE;
 
-        internal static bool AddVoucherPayment(Vendor CustomerID, DateTime BillDate, Decimal BillTotal, string Remarks, Decimal CustomerBalance)
+        internal static bool AddVoucherPayment(Vendor VendorID, DateTime BillDate, Decimal BillTotal, string Remarks, Decimal VendorBalance)
         {
             try
             {
                 VendorVoucher vendorVoucher = new VendorVoucher();
                 vendorVoucher.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.VendorVoucher b").First) + 1;
-                vendorVoucher.Vendor = CustomerID;
+                vendorVoucher.Vendor = VendorID;
                 vendorVoucher.VOUCHER_DATE = BillDate;
                 vendorVoucher.AMOUNT = BillTotal;
                 vendorVoucher.REMARKS = Remarks;
-                vendorVoucher.CUSTOMER_BALANCE = CustomerBalance;
+                vendorVoucher.VENDOR_BALANCE = VendorBalance;
                 vendorVoucher.ID = GetNewVoucherNumber();
                 return true;
             }

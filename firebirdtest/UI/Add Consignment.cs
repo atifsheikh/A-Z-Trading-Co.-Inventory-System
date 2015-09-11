@@ -49,7 +49,7 @@ namespace firebirdtest.UI
                 try
                 {
                     int Result1 = 0;
-                    Result1 = Convert.ToInt32(DatabaseCalls.GetNewConsignmentNumber());
+                    Result1 = Convert.ToInt32(DatabaseCalls.GetNewShipmentNumber());
                     ConsignmentNumber_txt.Text = (Result1).ToString();
                 }
                 catch (Exception ex)
@@ -235,7 +235,7 @@ namespace firebirdtest.UI
         private void GetItemsForConsignmentPage()
         {
             ConsignmentDetailsDataSet = new DataSet();
-            ConsignmentDetailsDataSet = DatabaseCalls.GetItemsForConsignment();//.GetConsignmentDetails();
+            ConsignmentDetailsDataSet = DatabaseCalls.GetItemsForShipment();//.GetConsignmentDetails();
 
             try
             {
@@ -311,9 +311,9 @@ namespace firebirdtest.UI
                 }
                 if (ConsignmentNumber_txt.Text == "")
                 {
-                    ConsignmentNumber_txt.Text = DatabaseCalls.GetNewConsignmentNumber();
+                    ConsignmentNumber_txt.Text = DatabaseCalls.GetNewShipmentNumber();
                 }
-                String Result1 = DatabaseCalls.AddConsignment(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToInt32(VendorID_txt.Text), Convert.ToDateTime(ConsignmentDate_txt.Text), Convert.ToDecimal(Total_txt.Text), Convert.ToDecimal(BalanceNew_txt.Text), "Consignment",  Convert.ToInt32(TOTAL_CTN_txt.Text));
+                String Result1 = DatabaseCalls.AddShipment(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToInt32(VendorID_txt.Text), Convert.ToDateTime(ConsignmentDate_txt.Text), Convert.ToDecimal(Total_txt.Text), Convert.ToDecimal(BalanceNew_txt.Text), "Consignment", Convert.ToInt32(TOTAL_CTN_txt.Text));
                 if (Result1 == "")
                 {
                     //Add Consignment Details
@@ -323,7 +323,7 @@ namespace firebirdtest.UI
                         {
                             // PCS_CTN, QUANT, CUSTOMER_ID
 
-                            string AddSaleResult = DatabaseCalls.AddConsignmentDetail(GridViewRow.Cells["ITEM_CODE"].Value.ToString(), ConsignmentNumber_txt.Text, Convert.ToInt32( GridViewRow.Cells["QUANT"].Value),Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), GridViewRow.Cells["ItemName"].Value.ToString(),Convert.ToInt32(GridViewRow.Cells["Qty"].Value),Convert.ToDecimal(GridViewRow.Cells["Price"].Value),Convert.ToDecimal(GridViewRow.Cells["SubTotal"].Value));
+                            string AddSaleResult = DatabaseCalls.AddShipmentDetail(GridViewRow.Cells["ITEM_CODE"].Value.ToString(), ConsignmentNumber_txt.Text, Convert.ToInt32(GridViewRow.Cells["QUANT"].Value), Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), GridViewRow.Cells["ItemName"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["Qty"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["SubTotal"].Value));
                             if (AddSaleResult == "")
                             {
                                 ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
@@ -347,7 +347,7 @@ namespace firebirdtest.UI
                     try
                     {
                         DataSet Result2 = new DataSet();
-                        Result2 = DatabaseCalls.GetConsignments();
+                        Result2 = DatabaseCalls.GetShipments();
                         ConsignmentDataGridView.DataSource = Result2.Tables[0];
                         ConsignmentDataGridView.Columns[0].HeaderText = "Consignment Number";
                         foreach (DataRow GridViewColumn in Result2.Tables[0].Rows)
@@ -569,8 +569,8 @@ namespace firebirdtest.UI
                     Total_txt.Text = ConsignmentDataGridView.Rows[rowIndex].Cells[5].Value.ToString();
 
                     ConsignmentDetailDataGridView.Focus();
-                    
-                    Result1 = DatabaseCalls.GetConsignmentDetails(ConsignmentDataGridView.Rows[rowIndex].Cells[0].Value.ToString());
+
+                    Result1 = DatabaseCalls.GetShipmentDetails(ConsignmentDataGridView.Rows[rowIndex].Cells[0].Value.ToString());
                     
 
                 }
@@ -974,7 +974,7 @@ namespace firebirdtest.UI
                 if (ConsignmentNumber_txt.Text != "")
                 {
                     DataSet ConsignmentDataSet = new DataSet();
-                    ConsignmentDataSet = DatabaseCalls.GetConsignment(ConsignmentNumber_txt.Text);
+                    ConsignmentDataSet = DatabaseCalls.GetShipment(ConsignmentNumber_txt.Text);
                     if (ConsignmentDataSet.Tables[0].Rows.Count == 0)
                     {
                         Variables.NotificationStatus = true;
@@ -995,7 +995,7 @@ namespace firebirdtest.UI
                     decimal VendorNewBalance = Convert.ToDecimal(BalanceNew_txt.Text);
                     //                VendorNewBalance -= Convert.ToDecimal(
                     DatabaseCalls.ModifyVendor(ConsignmentDataSet.Tables[0].Rows[0]["VendorID"].ToString(), VendorNewBalance.ToString());
-                    DatabaseCalls.DeleteConsignmentDetails(ConsignmentNumber_txt.Text);
+                    DatabaseCalls.DeleteShipmentDetails(ConsignmentNumber_txt.Text);
                     DatabaseCalls.ModifyVoucher(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToDecimal(Total_txt.Text), VendorNewBalance);
                     //DatabaseCalls.DeleteConsignment(ConsignmentNumberSearch_txt.Text);
 
@@ -1007,7 +1007,7 @@ namespace firebirdtest.UI
                         {
                             // PCS_CTN, QUANT, CUSTOMER_ID
 
-                            string AddSaleResult = DatabaseCalls.AddConsignmentDetail(GridViewRow.Cells["ITEM_CODE"].Value.ToString(), ConsignmentNumber_txt.Text, Convert.ToInt32(GridViewRow.Cells["QUANT"].Value), Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), GridViewRow.Cells["ItemName"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["Qty"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["SubTotal"].Value));
+                            string AddSaleResult = DatabaseCalls.AddShipmentDetail(GridViewRow.Cells["ITEM_CODE"].Value.ToString(), ConsignmentNumber_txt.Text, Convert.ToInt32(GridViewRow.Cells["QUANT"].Value), Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), GridViewRow.Cells["ItemName"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["Qty"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["SubTotal"].Value));
                             if (AddSaleResult == "")
                             {
                                 ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
@@ -1041,7 +1041,7 @@ namespace firebirdtest.UI
                     try
                     {
                         DataSet Result2 = new DataSet();
-                        Result2 = DatabaseCalls.GetConsignments();
+                        Result2 = DatabaseCalls.GetShipments();
                         ConsignmentDataGridView.DataSource = Result2.Tables[0];
                         ConsignmentDataGridView.Columns[0].HeaderText = "Consignment Number";
                         foreach (DataRow GridViewColumn in Result2.Tables[0].Rows)
@@ -1406,7 +1406,7 @@ namespace firebirdtest.UI
             try
             {
                 NewConsignmentNumber = 0;
-                NewConsignmentNumber = Convert.ToInt32(DatabaseCalls.GetNewConsignmentNumber());
+                NewConsignmentNumber = Convert.ToInt32(DatabaseCalls.GetNewShipmentNumber());
             }
             catch (Exception ex)
             {
@@ -1442,7 +1442,7 @@ namespace firebirdtest.UI
             try
             {
 //                ItemDetailsDataSet = DatabaseCalls.GetItems();
-                ItemDetailsDataSet = DatabaseCalls.GetItemsForConsignment();
+                ItemDetailsDataSet = DatabaseCalls.GetItemsForShipment();
                 if (ItemDetailsDataSet != null && ItemDetailsDataSet.Tables.Count > 0)
                 {
                     _ItemDetailsCollectionObject = new object[ItemDetailsDataSet.Tables[0].Rows.Count];
@@ -1472,7 +1472,7 @@ namespace firebirdtest.UI
             //Consignments
             try
             {
-                ConsignmentDataSet = DatabaseCalls.GetConsignments();
+                ConsignmentDataSet = DatabaseCalls.GetShipments();
                 _ConsignmentCollectionObject = new object[ConsignmentDataSet.Tables[0].Rows.Count];
                 foreach (DataRow GridViewColumn in ConsignmentDataSet.Tables[0].Rows)
                 {

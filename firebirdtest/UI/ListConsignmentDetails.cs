@@ -32,7 +32,7 @@ namespace firebirdtest.UI
             {
 
                 DataSet Result1 = new DataSet();
-                Result1 = DatabaseCalls.GetConsignmentDetails();
+                Result1 = DatabaseCalls.GetShipmentDetails();
                 ItemsDataGridView.DataSource = Result1.Tables[0];
                 ItemsDataGridView.Columns[0].Visible = false;
                 ItemsDataGridView.Columns["SHIP_ID"].DisplayIndex = 0;

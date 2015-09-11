@@ -9,27 +9,8 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
-            Handle.GET("/ThePrimeBaby/DelAll", (Request r) =>
-            {
-                Db.Transact(() =>
-                {
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Item");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Category");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Vendor");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.VendorVoucher");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Shipment");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.BillDetail");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Bill");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Customer");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.CustomerVoucher");
-                });
-                return 200;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
-
-
-            ///ThePrimeBaby/GetItemsForConsignment
-            Handle.GET("/ThePrimeBaby/GetItemsForConsignment", (Request r) =>
+            ///ThePrimeBaby/GetItemsForShipment
+            Handle.GET("/ThePrimeBaby/GetItemsForShipment", (Request r) =>
             {
                 //"SELECT a.ID, a.QTY_BOX, a.PRICE, a.SHIPCTN, a.SALECTN, a.MODEL, a.CODE FROM ITEMINVENTORY a where (a.SHIPCTN-a.SALECTN) > 0"
                 return 200;
@@ -148,7 +129,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", Attributes[0]).First;
                 if (item != null)
                 {
-                    bool Result = Database.Base.Item.ModifyItemPriceByCode(Attributes[0],Convert.ToDecimal(Attributes[1]));
+                    bool Result = Database.Base.Item.ModifyItemPriceByCode(Attributes[0],Convert.ToDecimal(Attributes[1]),item);
                     return 200;
                 }
                 else
@@ -161,7 +142,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Name = ?", Attributes[0]).First;
                 if (item == null)
                 {
-                    bool Result = ThePrimeBaby.Database.Base.Item.AddItemQutantity(Attributes[0], Convert.ToInt32(Attributes[1]));
+                    bool Result = ThePrimeBaby.Database.Base.Item.AddItemQutantity(Attributes[0], Convert.ToInt32(Attributes[1]),item);
                     return 200;
                 }
                 else
@@ -176,7 +157,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", Attributes[0]).First;
                 if (item != null)
                 {
-                    bool Result = Database.Base.Item.ModifyItemPriceByName(Attributes[0], Convert.ToDecimal(Attributes[1]));
+                    bool Result = Database.Base.Item.ModifyItemPriceByName(Attributes[0], Convert.ToDecimal(Attributes[1]),item);
                     return 200;
                 }
                 else
@@ -189,7 +170,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
                 if (item != null)
                 {
-                    bool Result = Database.Base.Item.ModifyItems(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Attributes[4], Attributes[5], Attributes[6], Attributes[7], Convert.ToInt32(Attributes[8]));
+                    bool Result = Database.Base.Item.ModifyItems(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Attributes[4], Attributes[5], Attributes[6], Attributes[7], Convert.ToInt32(Attributes[8]),item);
                     return 200;
                 }
                 else

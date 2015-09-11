@@ -35,11 +35,11 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyCustomer(string Find, string Replace)
+        internal static bool ModifyCustomer(string Find, string Replace, Database.Customer customer)
         {
             try
             {
-                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Name = ?", Find).First;
+                //Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Name = ?", Find).First;
                 Db.Transact(() => {
                     customer.NAME = Replace;
                 });
@@ -51,11 +51,11 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyCustomer(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
+        internal static bool ModifyCustomer(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount, Database.Customer customer)
         {
             try
             {
-                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
+                //Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     customer.NAME = ReplaceName;
@@ -73,11 +73,11 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyCustomer(int CustomerID, decimal NewBalance)
+        internal static bool ModifyCustomer(int CustomerID, decimal NewBalance, Database.Customer customer)
         {
             try
             {
-                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Id = ?", Convert.ToInt32(CustomerID)).First;
+                //Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Id = ?", Convert.ToInt32(CustomerID)).First;
                 Db.Transact(() =>
                 {
                     customer.AMOUNT = NewBalance;

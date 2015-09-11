@@ -44,7 +44,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
                 if (customer != null)
                 {
-                    bool Result = ThePrimeBaby.Database.Customer.ModifyCustomer(Convert.ToInt32(Attributes[0]),Convert.ToDecimal(Attributes[1]));
+                    bool Result = ThePrimeBaby.Database.Customer.ModifyCustomer(Convert.ToInt32(Attributes[0]),Convert.ToDecimal(Attributes[1]),customer);
                     return 200;
                 }
                 else
@@ -64,7 +64,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
                 if (customer != null)
                 {
-                    bool Result = ThePrimeBaby.Database.Customer.ModifyCustomer(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]));
+                    bool Result = ThePrimeBaby.Database.Customer.ModifyCustomer(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]),customer);
                     return 200;
                 }
                 else
@@ -78,7 +78,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
                 if (customer != null)
                 {
-                    bool Result = ThePrimeBaby.Database.Customer.ModifyCustomer(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]), Convert.ToDecimal(Attributes[6]));
+                    bool Result = ThePrimeBaby.Database.Customer.ModifyCustomer(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]), Convert.ToDecimal(Attributes[6]),customer);
                     return 200;
                 }
                 else

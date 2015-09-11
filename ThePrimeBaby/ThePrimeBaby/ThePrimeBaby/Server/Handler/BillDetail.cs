@@ -8,39 +8,31 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
-            Handle.GET("/ThePrimeBaby/GetConsignmentDetailsByConsignmentId/{?}", (string ConsignmentID, Request r) =>
+            Handle.GET("/ThePrimeBaby/GetBillDetailsByBillID/{?}", (string BillID, Request r) =>
             {
-                QueryResultRows<Database.ShipmentDetail> shipmentDetail = Db.SQL<Database.ShipmentDetail>("SELECT bd FROM ThePrimeBaby.Database.ShipmentDetail bd WHERE bd.Shipment.Id = ?", Convert.ToInt32(HttpUtility.UrlDecode(ConsignmentID)));
-                ShipmentDetailJson shipmentDetailJson = new ShipmentDetailJson();
-                shipmentDetailJson.ShipmentDetails.Data = shipmentDetail;
-                return shipmentDetailJson;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
-            Handle.GET("/ThePrimeBaby/GetBillDetailsByBillNumber/{?}", (string BillNumber, Request r) =>
-            {
-                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.ID = ?", Convert.ToInt32(HttpUtility.UrlDecode(BillNumber)));
+                QueryResultRows<Database.BillDetail> billDetail = Db.SQL<Database.BillDetail>("SELECT bd FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Bill.ID = ?", Convert.ToInt32(HttpUtility.UrlDecode(BillID)));
                 BillDetailJson billDetailJson = new BillDetailJson();
                 billDetailJson.BillDetails.Data = billDetail;
                 return billDetailJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/ModifyBillAmmountByBillNumber", (Request r) =>
+            Handle.POST("/ThePrimeBaby/ModifyBillAmmountByBillID", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT i FROM ThePrimeBaby.Database.BillDetail i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
-                if (billDetail != null)
+                Database.Bill bill = Db.SQL<Database.Bill>("SELECT i FROM ThePrimeBaby.Database.Bill i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
+                if (bill != null)
                 {
-                    bool Result = Database.Bill.ModifyBillAmmount(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]));
+                    bool Result = Database.Bill.ModifyBillAmmount(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]),bill);
                     return 200;
                 }
                 else
                     return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/DeleteBillDetailsByBillNumber", (Request r) =>
+            Handle.POST("/ThePrimeBaby/DeleteBillDetailsByBillID", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Db.Transact(() => { Db.SlowSQL("DELETE FROM BillDetail v WHERE v.Bill.BillNumber = ?", Attributes[0]); });
+                Db.Transact(() => { Db.SlowSQL("DELETE FROM BillDetail v WHERE v.Bill.ID = ?", Attributes[0]); });
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

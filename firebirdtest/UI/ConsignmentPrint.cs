@@ -36,7 +36,7 @@ namespace firebirdtest.UI
             try
             {
                 VendorDataSet = DatabaseCalls.GetVendors();
-                ConsignmentDataSet = DatabaseCalls.GetConsignments();
+                ConsignmentDataSet = DatabaseCalls.GetShipments();
                 foreach (DataRow GridViewColumn in ConsignmentDataSet.Tables[0].Rows)
                 {
                     ConsignmentNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
@@ -141,7 +141,7 @@ namespace firebirdtest.UI
             {
                 this.SALETableAdapter.Fill(this.DataSet1.SALE);
                 DataSet ConsignmentDataSet = new DataSet();
-                ConsignmentDataSet = DatabaseCalls.GetConsignment(ConsignmentNumberSearch_txt.Text);
+                ConsignmentDataSet = DatabaseCalls.GetShipment(ConsignmentNumberSearch_txt.Text);
 
 
                 ReportParameter[] _ReportParameter = new ReportParameter[8];

@@ -8,7 +8,6 @@ namespace ThePrimeBaby
     {
         static void Main()
         {
-            //ThePrimeBaby.FunctionsVariables.Init_Data();
             ThePrimeBaby.Server.Handler.Category.Register();
             ThePrimeBaby.Server.Handler.Bill.Register();
             ThePrimeBaby.Server.Handler.BillDetail.Register();
@@ -19,6 +18,13 @@ namespace ThePrimeBaby
             ThePrimeBaby.Server.Handler.ShipmentDetail.Register();
             ThePrimeBaby.Server.Handler.Vendor.Register();
             ThePrimeBaby.Server.Handler.VendorVoucher.Register();
+            
+            Handle.GET("/ThePrimeBaby/DeveloperTools", (Request r) =>
+            {
+                FunctionsVariables.Register();
+                //ThePrimeBaby.FunctionsVariables.Init_Data();
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
 }

@@ -12,16 +12,15 @@ namespace ThePrimeBaby.Database
         public string REMARKS;
         public decimal VENDOR_BALANCE;
         public int TOTAL_CTN;
-
-        internal static bool AddConsignment(int ConsignmentNumber, DateTime ConsignmentDate)
+        internal static bool AddShipment(int ShipmentNumber, DateTime ShipmentDate)
         {
             try
             {
                 Db.Transact(() => 
                 {
                     Shipment shipment = new Shipment();
-                    shipment.SHIP_DATE = ConsignmentDate;
-                    shipment.ID = ConsignmentNumber;
+                    shipment.SHIP_DATE = ShipmentDate;
+                    shipment.ID = ShipmentNumber;
                 });
                 return true;
             }
@@ -31,15 +30,14 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyConsignment(string FindID, DateTime ConsignmentDate, string ConsignmentDesc)
+        internal static bool ModifyShipment(string FindID, DateTime ShipmentDate, string ShipmentDesc, Database.Shipment shipment)
         {
             try
             {
                 Db.Transact(() => 
                 {
-                    Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.ID = ?", Convert.ToInt32(FindID)).First;
-                    shipment.SHIP_DATE = ConsignmentDate;
-                    shipment.DESCRIPTION = ConsignmentDesc;
+                    shipment.SHIP_DATE = ShipmentDate;
+                    shipment.DESCRIPTION = ShipmentDesc;
                 });
                 return true;
             }
@@ -49,13 +47,13 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal VendorBalance)
+        internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal VendorBalance,Database.Shipment shipment)
         {
             try
             {
-                Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT i FROM ThePrimeBaby.Database.Shipment i WHERE i.Id = ?", Convert.ToInt32(ShipmentNumber)).First;
                 Db.Transact(() =>
                 {
+                    //TODO subtract amount from Vendor here
                     shipment.AMOUNT = VendorBalance;
                     shipment.VENDOR_BALANCE = VendorBalance;
                 });
@@ -98,14 +96,14 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        private static int GetNewShipmentNumber()
+        internal static object GetNewShipmentNumber()
         {
-            try
-            {
-                return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1);
-            }
+            try { return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1); }
             catch (Exception ex)
             { return 1; }
+
         }
+
+
     }
 }

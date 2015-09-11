@@ -40,14 +40,13 @@ namespace ThePrimeBaby.Database
             }
         }
 
-
-        internal static bool DeleteBillDetails(string BillNumber)
+        internal static bool DeleteBillDetails(string BillID)
         {
             try
             {
                 Db.Transact(() =>
                 {
-                    Db.SlowSQL("DELETE FROM BillDetail WHERE Bill.BillNumber = ?", BillNumber);
+                    Db.SlowSQL("DELETE FROM BillDetail WHERE Bill.ID = ?", BillID);
                 });
                 return true;
             }

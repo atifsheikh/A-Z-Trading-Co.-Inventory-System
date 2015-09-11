@@ -13,7 +13,6 @@ namespace ThePrimeBaby.Database.Base
         public string CODE;
         public int T_QUANTITY;
         public Category Category;
-
         internal static bool AddItem(string Code, string Model, int QTY_Box, decimal Price,decimal CostPrice, string ImagePath, Category ItemCategory)
         {
             try
@@ -36,7 +35,6 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-
         internal static bool DeleteItem(string Name)
         {
             try
@@ -52,12 +50,11 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-
-        internal static bool ModifyItems(string FindName, string ReplaceName)
+        internal static bool ModifyItems(string FindName, string ReplaceName, Database.Base.Item item)
         {
             try
             {
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", FindName).First;
+                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", FindName).First;
                 Db.Transact(() => 
                 {
                     item.NAME = ReplaceName;
@@ -69,12 +66,11 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-
-        internal static bool ModifyItems(string FindID, string ReplaceCode, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity)
+        internal static bool ModifyItems(string FindID, string ReplaceCode, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity, Database.Base.Item item)
         {
             try
             {
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Id = ?", Convert.ToInt32(FindID)).First;
+                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Id = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     item.ID = Convert.ToInt32(FindID);
@@ -99,12 +95,11 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-
-        internal static bool ModifyItemPriceByName(string ItemName, decimal ItemPrice)
+        internal static bool ModifyItemPriceByName(string ItemName, decimal ItemPrice, Database.Base.Item item)
         {
             try
             {
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", ItemName).First;
+                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", ItemName).First;
                 Db.Transact(() =>
                 {
                     item.PRICE = ItemPrice;
@@ -116,11 +111,11 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-        internal static bool ModifyItemPriceByCode(string ItemCode, decimal ItemPrice)
+        internal static bool ModifyItemPriceByCode(string ItemCode, decimal ItemPrice, Database.Base.Item item)
         {
             try
             {
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", ItemCode).First;
+                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", ItemCode).First;
                 Db.Transact(() =>
                 {
                     item.PRICE = ItemPrice;
@@ -132,12 +127,11 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-
-        internal static bool AddItemQutantity(string ItemName, int ItemQuantity)
+        internal static bool AddItemQutantity(string ItemName, int ItemQuantity, Database.Base.Item item)
         {
             try
             {
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", ItemName).First;
+                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", ItemName).First;
                 Db.Transact(() =>
                 {
                     item.T_QUANTITY = ItemQuantity;

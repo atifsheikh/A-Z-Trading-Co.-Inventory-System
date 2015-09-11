@@ -34,11 +34,11 @@ namespace ThePrimeBaby.Database
 
         }
 
-        internal static bool ModifyVendor(string Find, string Replace)
+        internal static bool ModifyVendor(string Find, string Replace, ThePrimeBaby.Database.Vendor vendor)
         {
             try
             {
-                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.Name = ?", Find).First;
+                //ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.Name = ?", Find).First;
                 Db.Transact(() =>
                 {
                     vendor.NAME = Replace;
@@ -51,11 +51,11 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyVendor(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
+        internal static bool ModifyVendor(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount, ThePrimeBaby.Database.Vendor vendor)
         {
             try
             {
-                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
+                //ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     vendor.NAME = ReplaceName;
@@ -73,11 +73,11 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyVendor(int VendorID, decimal NewBalance)
+        internal static bool ModifyVendor(int VendorID, decimal NewBalance, ThePrimeBaby.Database.Vendor vendor)
         {
             try
             {
-                ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(VendorID)).First;
+                //ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(VendorID)).First;
                 Db.Transact(() =>
                 {
                     vendor.AMOUNT = NewBalance;

@@ -33,7 +33,7 @@ namespace ThePrimeBaby.Server.Handler
             //}, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             //same as
-            ///ThePrimeBaby/ModifyBillAmmountByBillNumber
+            ///ThePrimeBaby/ModifyBillAmmountByBillID
             //Handle.POST("/ThePrimeBaby/ModifyCustomerVoucherById", (Request r) =>
             //{
             //}, new HandlerOptions() { SkipMiddlewareFilters = true });
