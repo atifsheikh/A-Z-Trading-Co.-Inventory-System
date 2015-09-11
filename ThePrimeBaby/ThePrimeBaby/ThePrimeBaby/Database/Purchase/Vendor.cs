@@ -9,10 +9,10 @@ namespace ThePrimeBaby.Database
         public string EMAIL;
         public string PHONE;
         public decimal AMOUNT;
-        public decimal OPENNING_BALANCE;
+        public decimal OPENING_BALANCE;
         public decimal BALANCE_LIMIT;
 
-        internal static bool AddVendor(string Name, string address, string phone, string email, decimal balance_limit, decimal openning_balance)
+        internal static bool AddVendor(string Name, string address, string phone, string email, decimal balance_limit, decimal opening_balance)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace ThePrimeBaby.Database
                     vendor.ADDRESS = address;
                     vendor.PHONE = phone;
                     vendor.EMAIL = email;
-                    vendor.OPENNING_BALANCE = openning_balance;
+                    vendor.OPENING_BALANCE = opening_balance;
                     vendor.BALANCE_LIMIT = balance_limit;
                 });
                 return true;
@@ -63,7 +63,7 @@ namespace ThePrimeBaby.Database
                     vendor.PHONE = ReplacePhone;
                     vendor.EMAIL = ReplaceEmail;
                     vendor.AMOUNT = CalculatedAmount;
-                    vendor.OPENNING_BALANCE = ReplaceOpening_balance;
+                    vendor.OPENING_BALANCE = ReplaceOpening_balance;
                 });
                 return true;
             }

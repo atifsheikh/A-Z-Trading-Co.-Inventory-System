@@ -9,6 +9,25 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
+            Handle.GET("/ThePrimeBaby/DelAll", (Request r) =>
+            {
+                Db.Transact(() =>
+                {
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Item");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Category");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Vendor");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.VendorVoucher");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Shipment");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.BillDetail");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Bill");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Customer");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.CustomerVoucher");
+                });
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+
+
             ///ThePrimeBaby/GetItemsForConsignment
             Handle.GET("/ThePrimeBaby/GetItemsForConsignment", (Request r) =>
             {

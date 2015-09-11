@@ -739,6 +739,10 @@ namespace firebirdtest
                             Variables.FormRefresh = "";
                             debitorSummeryToolStripMenuItem_Click(sender, e);
                             break;
+                        case "AddConsignment":
+                            Variables.FormRefresh = "";
+                            addConsignmentToolStripMenuItem2_Click_1(sender, e);
+                            break;
 
 
                             

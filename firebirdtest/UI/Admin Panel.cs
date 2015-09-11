@@ -34,5 +34,10 @@ namespace firebirdtest.UI
         {
             DBAddress_txt.Text = global::firebirdtest.Properties.Settings.Default.SC_Server;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DatabaseCalls.DeleteEverything();
+        }
     }
 }

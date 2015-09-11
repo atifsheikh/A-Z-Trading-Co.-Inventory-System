@@ -552,5 +552,10 @@ namespace firebirdtest
         {
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddConsignment/6", ConsignmentNumber + "/" + VendorID + "/" + ConsignmentDate.ToString().Replace('/', '-') + "/" + ConsignmentTotal + "/" + VendorBalance + "/" + Remarks);
         }
+
+        internal static void DeleteEverything()
+        {
+            GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DelAll");
+        }
     }
 }
