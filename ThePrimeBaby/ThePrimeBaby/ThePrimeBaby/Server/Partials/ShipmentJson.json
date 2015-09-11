@@ -2,13 +2,14 @@
 	Shipments : [{
 		"ID" : 0,
 		"NAME" : "",
-		"VENDOR":{
+		"Vendor":{
 			"ID":0,
 			"NAME":""
 		},
         "AMOUNT" : 0.0,
         "VENDOR_BALANCE" : 0.0,
 		"SHIP_DATE":"",
-        "DESCRIPTION":""
+        "DESCRIPTION":"",
+		"TOTAL_CTN":0
 	}]
 }

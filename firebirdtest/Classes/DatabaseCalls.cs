@@ -548,9 +548,9 @@ namespace firebirdtest
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItems");
         }
 
-        internal static string AddConsignment(int ConsignmentNumber, int VendorID, DateTime ConsignmentDate, decimal ConsignmentTotal, decimal VendorBalance, string Remarks)
+        internal static string AddConsignment(int ConsignmentNumber, int VendorID, DateTime ConsignmentDate, decimal ConsignmentTotal, decimal VendorBalance, string Remarks, int Total_ctn)
         {
-            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddConsignment/6", ConsignmentNumber + "/" + VendorID + "/" + ConsignmentDate.ToString().Replace('/', '-') + "/" + ConsignmentTotal + "/" + VendorBalance + "/" + Remarks);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddConsignment/7", ConsignmentNumber + "/" + VendorID + "/" + ConsignmentDate.ToString().Replace('/', '-') + "/" + ConsignmentTotal + "/" + VendorBalance + "/" + Remarks + "/" + Total_ctn);
         }
 
         internal static void DeleteEverything()

@@ -11,6 +11,7 @@ namespace ThePrimeBaby.Database
         public decimal AMOUNT;
         public string REMARKS;
         public decimal VENDOR_BALANCE;
+        public int TOTAL_CTN;
 
         internal static bool AddConsignment(int ConsignmentNumber, DateTime ConsignmentDate)
         {
@@ -48,7 +49,7 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool AddShipment(int shipmentID, Vendor Vendor, DateTime ShipmentDate, decimal ShipmentTotal, decimal VendorBalance, string Remarks)
+        internal static bool AddShipment(int shipmentID, Vendor Vendor, DateTime ShipmentDate, decimal ShipmentTotal, decimal VendorBalance, string Remarks, int TOTAL_CTN)
         {
             try
             {
@@ -63,12 +64,12 @@ namespace ThePrimeBaby.Database
                     {
                         shipment.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1;
                     }
-                    shipment.ID = GetNewShipmentNumber();
                     shipment.Vendor = Vendor;
                     shipment.SHIP_DATE = ShipmentDate;
                     shipment.AMOUNT = ShipmentTotal;
                     shipment.VENDOR_BALANCE = VendorBalance;
                     shipment.REMARKS = Remarks;
+                    shipment.TOTAL_CTN = TOTAL_CTN;
                 });
                 return true;
             }
@@ -80,7 +81,12 @@ namespace ThePrimeBaby.Database
 
         private static int GetNewShipmentNumber()
         {
-            return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1);
+            try
+            {
+                return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1);
+            }
+            catch (Exception ex)
+            { return 1; }
         }
     }
 }

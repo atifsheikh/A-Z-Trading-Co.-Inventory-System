@@ -29,12 +29,15 @@ namespace firebirdtest.UI
             {
                 CustomerDataSet = DatabaseCalls.GetCustomers();
                 CustomerNameDataGridView.DataSource = CustomerDataSet.Tables[0];
-                CustomerNameDataGridView.Columns["ID"].Visible = false;
-                CustomerNameDataGridView.Columns["OPENING_BALANCE"].Visible = false;
-                CustomerNameDataGridView.Columns["ADDRESS"].Visible = false;
-                CustomerNameDataGridView.Columns["EMAIL"].Visible = false;
-                CustomerNameDataGridView.Columns["PHONE"].Visible = false;
-                CustomerNameDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                if (CustomerNameDataGridView.Columns.Count > 0)
+                {
+                    CustomerNameDataGridView.Columns["ID"].Visible = false;
+                    CustomerNameDataGridView.Columns["OPENING_BALANCE"].Visible = false;
+                    CustomerNameDataGridView.Columns["ADDRESS"].Visible = false;
+                    CustomerNameDataGridView.Columns["EMAIL"].Visible = false;
+                    CustomerNameDataGridView.Columns["PHONE"].Visible = false;
+                    CustomerNameDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -60,52 +63,55 @@ namespace firebirdtest.UI
             {
                 Ctn_Bill_DataSet = DatabaseCalls.Get_Ctn_Bill();
                 LedgerDataSet = DatabaseCalls.GetLedger("All");
-                LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "BillNo";
-
-                LedgerDataSet.Tables[0].Columns.Add("Customer");
-                LedgerDataSet.Tables[0].Columns.Add("TotalCtn");
-                LedgerDataSet.Tables[0].Columns.Add("Calculator");
-
-                for (int loop = 0; LedgerDataSet.Tables.Count > 0 && loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
+                if (LedgerDataSet.Tables[0].Columns.Count > 0)
                 {
-                    if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) > -1)
+                    LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "BillNo";
+
+                    LedgerDataSet.Tables[0].Columns.Add("Customer");
+                    LedgerDataSet.Tables[0].Columns.Add("TotalCtn");
+                    LedgerDataSet.Tables[0].Columns.Add("Calculator");
+
+                    for (int loop = 0; LedgerDataSet.Tables.Count > 0 && loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
                     {
-                        for (int loop1 = 0; loop1 < CustomerDataSet.Tables[0].Rows.Count; loop1++)
+                        if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) > -1)
                         {
-                            if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"]) == Convert.ToInt32(CustomerDataSet.Tables[0].Rows[loop1]["ID"]))
+                            for (int loop1 = 0; loop1 < CustomerDataSet.Tables[0].Rows.Count; loop1++)
                             {
-                                if (LedgerDataSet.Tables[0].Rows[loop]["Customer"].ToString() != CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString())
-                                    LedgerDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"];
+                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"]) == Convert.ToInt32(CustomerDataSet.Tables[0].Rows[loop1]["ID"]))
+                                {
+                                    if (LedgerDataSet.Tables[0].Rows[loop]["Customer"].ToString() != CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString())
+                                        LedgerDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"];
+                                }
                             }
-                        }
 
-                        for (int loop1 = 0; Ctn_Bill_DataSet.Tables.Count> 0 && loop1 < Ctn_Bill_DataSet.Tables[0].Rows.Count; loop1++)
-                        {
-                            if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["BillNo"]) == Convert.ToInt32(Ctn_Bill_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
+                            for (int loop1 = 0; Ctn_Bill_DataSet.Tables.Count > 0 && loop1 < Ctn_Bill_DataSet.Tables[0].Rows.Count; loop1++)
                             {
-                                if (LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"].ToString() != Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"].ToString())
-                                    LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"] = Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"];
+                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["BillNo"]) == Convert.ToInt32(Ctn_Bill_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
+                                {
+                                    if (LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"].ToString() != Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"].ToString())
+                                        LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"] = Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"];
+                                }
                             }
                         }
+                        else if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == -1)
+                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Admin";
+                        else
+                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Error";
                     }
-                    else if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == -1)
-                        LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Admin";
-                    else
-                        LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Error";
+
+
+                    LedgerGridView.Visible = false;
+
+                    LedgerGridView.Columns.Clear();
+                    LedgerGridView.DataSource = LedgerDataSet.Tables[0];
+                    LedgerGridView.Columns["Customer_ID"].Visible = false;
+                    LedgerGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
+                    LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
+                    LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
+                    LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
+
+                    LedgerGridView.Visible = true;
                 }
-
-
-                LedgerGridView.Visible = false;
-
-                LedgerGridView.Columns.Clear();
-                LedgerGridView.DataSource = LedgerDataSet.Tables[0];
-                LedgerGridView.Columns["Customer_ID"].Visible = false;
-                LedgerGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
-                LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
-                LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
-                LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
-                
-                LedgerGridView.Visible = true;
             }
             catch (Exception ex)
             {
