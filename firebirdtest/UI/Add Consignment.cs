@@ -32,6 +32,7 @@ namespace firebirdtest.UI
         {
             try
             {
+                VendorName_txt.Enabled = true;
                 ModifyingConsignment = false;
                 ItemCode_txt.Enabled = true;
                 toolStripButton2.Enabled = true;
@@ -98,7 +99,7 @@ namespace firebirdtest.UI
                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Trim();
                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop].Cells["Model"].Value.ToString().Trim();
                                 Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
-                                //RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CTN_LEFT"].Value.ToString();
+                                //RemainingPcs_txt.Text = ItemsDataGridView.Rows[.CurrentRow.Index].Cells["CTN_LEFT"].Value.ToString();
                                 //Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["INNER_BOX"].Value.ToString();
                                 //Qty_txt.Text = 
                                 //Quant_txt.Text = ItemsDataGridView.Rows[loop].Cells["T_QUANTITY"].Value.ToString();
@@ -282,11 +283,11 @@ namespace firebirdtest.UI
                         VendorBalance_txt.Text = GridViewColumn.ItemArray[6].ToString();//balance
                         if (ModifyingConsignment == true)
                         {
-                            BalanceNew_txt.Text = VendorBalance_txt.Text;
+                            BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) - Convert.ToDecimal(ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentRow.Index].Cells[4].Value) + Convert.ToDecimal(Total_txt.Text)).ToString();
                         }
                         else
                         {
-                            BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
+                            BalanceNew_txt.Text = ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentRow.Index].Cells[5].Value.ToString();//(Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
                         }
                         VendorPhone_txt.Text = GridViewColumn.ItemArray[3].ToString();//email
                         decimal CalculatedBalance = Convert.ToDecimal(DatabaseCalls.GetCurrentRowBalance(VendorID_txt.Text, ConsignmentNumber_txt.Text));
@@ -480,9 +481,9 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (Ctn_txt.Text == "0" && ItemsDataGridView.Rows.Count >= rowIndex && ItemCode_txt.Text == ConsignmentDetailDataGridView.Rows[rowIndex].Cells["ITEM_CODE"].Value.ToString())
+                    if (Ctn_txt.Text == "0" && ItemCode_txt.Text == ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["ITEM_CODE"].Value.ToString())
                     {
-                        ConsignmentDetailDataGridView.Rows.RemoveAt(rowIndex);
+                        ConsignmentDetailDataGridView.Rows.RemoveAt(ConsignmentDetailDataGridView.CurrentRow.Index);
                         ItemCode_txt.Text = "";
                         ItemName_txt.Text = "None";
                         Ctn_txt.Text = "0";
@@ -517,11 +518,11 @@ namespace firebirdtest.UI
                 //if (ConsignmentTotal != 0 && Total_txt.Text == (ConsignmentTotal).ToString())//+ Convert.ToInt32(Quant_txt.Text) * Convert.ToInt32(UnitPrice_txt.Text)
                 if (ModifyingConsignment == true)
                 {
-                    BalanceNew_txt.Text = Total_txt.Text;
+                    BalanceNew_txt.Text = (Convert.ToDecimal(ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentRow.Index].Cells[5].Value) - Convert.ToDecimal(ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentRow.Index].Cells[4].Value) + Convert.ToDecimal(Total_txt.Text)).ToString();
                 }
                 else
                 {
-                    BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
+                    BalanceNew_txt.Text = ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentRow.Index].Cells[5].Value.ToString();//(Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
                 }
             }
             catch (Exception ex)
@@ -567,13 +568,11 @@ namespace firebirdtest.UI
         {
             try
             {
-                rowIndex = e.RowIndex;
                 DataSet Result1 = new DataSet();
                 try
                 {
                     //            BalanceNew_txt.Visible = false;
                     toolStripButton1_Click(sender, e);
-                    ModifyingConsignment = true;
                     //            ConsignmentDetailDataGridView.Rows.Clear();
                     ConsignmentDetailDataGridView.Enabled = false;
                     ConsignmentDetailDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.Gray;
@@ -582,11 +581,11 @@ namespace firebirdtest.UI
                     toolStripButton5.Enabled = true;
 
 
-                    Total_txt.Text = ConsignmentDataGridView.Rows[rowIndex].Cells[5].Value.ToString();
+                    Total_txt.Text = ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentRow.Index].Cells[5].Value.ToString();
 
                     ConsignmentDetailDataGridView.Focus();
 
-                    Result1 = DatabaseCalls.GetShipmentDetails(ConsignmentDataGridView.Rows[rowIndex].Cells[0].Value.ToString());
+                    Result1 = DatabaseCalls.GetShipmentDetails(ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentRow.Index].Cells[0].Value.ToString());
                     
 
                 }
@@ -664,6 +663,7 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageText = ex.Message;
             }
             SendKeys.Send("{TAB}");
+            VendorName_txt.Enabled = false;
 //            ItemCode_txt.Focus();
             //            ConsignmentDetailDataGridView.Columns["ITEM_CODE"] = Result1.Tables[0].Columns["ITEM_CODE"];
         }
@@ -987,6 +987,7 @@ namespace firebirdtest.UI
         {
             try
             {
+                VendorName_txt.Enabled = true;
                 ModifyingConsignment = false;
                 if (ConsignmentNumber_txt.Text != "")
                 {
@@ -1092,6 +1093,7 @@ namespace firebirdtest.UI
             try
             {
                 //BalanceNew_txt.Text = VendorBalance_txt.Text;
+                ModifyingConsignment = true; 
                 BalanceNew_txt.Visible = true;
                 if (ConsignmentDetailDataGridView.Enabled == false)
                 {
@@ -1330,31 +1332,32 @@ namespace firebirdtest.UI
             ConsignmentNumberSearch_txt.DroppedDown = true;
         }
 
-        public static int rowIndex = 0;
         private void ConsignmentDetailDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                rowIndex = e.RowIndex;
-                //item
-                ItemCode_txt.Text = ConsignmentDetailDataGridView.Rows[rowIndex].Cells["ITEM_CODE"].Value.ToString();
+                if (ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["ITEM_CODE"].Value != null)
+                {
+                    //item
+                    ItemCode_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["ITEM_CODE"].Value.ToString();
 
-                //Des
-                ItemName_txt.Text = ConsignmentDetailDataGridView.Rows[rowIndex].Cells["ItemName"].Value.ToString();
+                    //Des
+                    ItemName_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["ItemName"].Value.ToString();
 
-                //CTN
-                Ctn_txt.Text = ConsignmentDetailDataGridView.Rows[rowIndex].Cells["Qty"].Value.ToString();
+                    //CTN
+                    Ctn_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Qty"].Value.ToString();
 
-                //QTY
-                Qty_txt.Text = ConsignmentDetailDataGridView.Rows[rowIndex].Cells["Ctn"].Value.ToString(); 
+                    //QTY
+                    Qty_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Ctn"].Value.ToString();
 
-                //Quant
-                Quant_txt.Text = ConsignmentDetailDataGridView.Rows[rowIndex].Cells["Quant"].Value.ToString();
+                    //Quant
+                    Quant_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Quant"].Value.ToString();
 
-                //unit price
-                UnitPrice_txt.Text = ConsignmentDetailDataGridView.Rows[rowIndex].Cells["Price"].Value.ToString();
-                
-                Ctn_txt.Focus();
+                    //unit price
+                    UnitPrice_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Price"].Value.ToString();
+
+                    Ctn_txt.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1505,7 +1508,7 @@ namespace firebirdtest.UI
                     {
 //                        if (VendorDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(ConsignmentDataSet.Tables[0].Rows[loop]["Vendor_ID"].ToString()) == true)
                         {
-                            ConsignmentDataSet.Tables[0].Rows[loop]["VENDOR_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(ConsignmentDataSet.Tables[0].Rows[loop]["VendorID"].ToString(), ConsignmentDataSet.Tables[0].Rows[loop][0].ToString());
+                            //ConsignmentDataSet.Tables[0].Rows[loop]["VENDOR_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(ConsignmentDataSet.Tables[0].Rows[loop]["VendorID"].ToString(), ConsignmentDataSet.Tables[0].Rows[loop][0].ToString());
 //                            ConsignmentDataSet.Tables[0].Rows[loop]["Vendor"] = VendorDataSet.Tables[0].Rows[loop1]["Name"].ToString();
                             break;
                         }
@@ -1640,14 +1643,12 @@ namespace firebirdtest.UI
 
         }
 
-        int SelectedRowIndex = 0;
         private void ItemsDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (ItemsDataGridView.Visible == true)
                 {
-                    SelectedRowIndex = e.RowIndex;
                     Thread.Sleep(100);
                     Qty_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["QTY_BOX"].Value.ToString();
                     UnitPrice_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["PRICE"].Value.ToString().Trim();
@@ -1675,19 +1676,19 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //if (Convert.ToInt32(ItemsDataGridView.Rows[SelectedRowIndex].Cells["T_Quantity"].Value.ToString()) > 0)
+                    //if (Convert.ToInt32(ItemsDataGridView.Rows[.CurrentRow.Index].Cells["T_Quantity"].Value.ToString()) > 0)
                     {
                         ItemsDataGridView.Visible = false;
                         Ctn_txt.Focus();
                         //                        ItemsDataGridView.Rows
-                        //RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["Quantity"].Value.ToString();
-                        ItemCode_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CODE"].Value.ToString().Trim();
+                        //RemainingPcs_txt.Text = ItemsDataGridView.Rows[.CurrentRow.Index].Cells["Quantity"].Value.ToString();
+                        ItemCode_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["CODE"].Value.ToString().Trim();
 
-                        UnitPrice_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["PRICE"].Value.ToString().Trim();
-                        ItemName_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["Model"].Value.ToString().Trim();
-                        Qty_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["QTY_BOX"].Value.ToString();
-                        //RemainingPcs_txt.Text = ItemsDataGridView.Rows[SelectedRowIndex].Cells["CTN_LEFT"].Value.ToString();
-                        //SHIPMENT_ITEM_ID = ItemsDataGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString().Trim();
+                        UnitPrice_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["PRICE"].Value.ToString().Trim();
+                        ItemName_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["Model"].Value.ToString().Trim();
+                        Qty_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["QTY_BOX"].Value.ToString();
+                        //RemainingPcs_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["CTN_LEFT"].Value.ToString();
+                        //SHIPMENT_ITEM_ID = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["ID"].Value.ToString().Trim();
                     }
                     //else
                     //{

@@ -36,7 +36,7 @@ namespace ThePrimeBaby.Database
                     bill.DATED = BillDate;
                     bill.AMOUNT = BillTotal;
                     bill.CUSTOMER_BALANCE = CustomerBalance;
-                    bill.REMARKS = Remarks;
+                    bill.REMARKS = Remarks.Trim();
                 });
                 return true;
             }

@@ -37,7 +37,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() => 
                 {
                     shipment.SHIP_DATE = ShipmentDate;
-                    shipment.DESCRIPTION = ShipmentDesc;
+                    shipment.DESCRIPTION = ShipmentDesc.Trim();
                 });
                 return true;
             }
@@ -47,17 +47,17 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal VendorBalance,Database.Shipment shipment)
+        internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal ShipmentAmount, Database.Shipment shipment)
         {
             try
             {
                 Db.Transact(() =>
                 {
-                    //TODO subtract amount from Vendor here
                     shipment.Vendor.AMOUNT -= shipment.AMOUNT;
-                    shipment.Vendor.AMOUNT += VendorBalance;
-                    shipment.AMOUNT = VendorBalance;
+                    shipment.Vendor.AMOUNT += ShipmentAmount;
+                    shipment.AMOUNT = ShipmentAmount;
                     shipment.VENDOR_BALANCE = shipment.Vendor.AMOUNT;
+                    //TODO modify future Shipments
                 });
                 return true;
             }
@@ -87,7 +87,7 @@ namespace ThePrimeBaby.Database
                     shipment.SHIP_DATE = ShipmentDate;
                     shipment.AMOUNT = ShipmentTotal;
                     shipment.VENDOR_BALANCE = VendorBalance;
-                    shipment.REMARKS = Remarks;
+                    shipment.REMARKS = Remarks.Trim();
                     shipment.TOTAL_CTN = TOTAL_CTN;
                     shipment.Vendor.AMOUNT += ShipmentTotal;
                 });
@@ -106,7 +106,5 @@ namespace ThePrimeBaby.Database
             { return 1; }
 
         }
-
-
     }
 }

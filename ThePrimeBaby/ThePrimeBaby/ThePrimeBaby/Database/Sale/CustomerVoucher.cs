@@ -22,7 +22,7 @@ namespace ThePrimeBaby.Database
                     customerVoucher.Customer = CustomerID;
                     customerVoucher.VOUCHER_DATE = BillDate;
                     customerVoucher.AMOUNT = BillTotal;
-                    customerVoucher.REMARKS = Remarks;
+                    customerVoucher.REMARKS = Remarks.Trim();
                     customerVoucher.CUSTOMER_BALANCE = CustomerBalance;
                     customerVoucher.ID = GetNewVoucherNumber();
                 });

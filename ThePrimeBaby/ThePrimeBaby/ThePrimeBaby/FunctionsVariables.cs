@@ -21,13 +21,14 @@ namespace ThePrimeBaby
             {
                 Db.Transact(() =>
                 {
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Item");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Category");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Vendor");
+                    //Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Item");
+                    //Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Category");
+                    //Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Vendor");
                     Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.VendorVoucher");
                     Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Shipment");
-                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.BillDetail");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.ShipmentDetail");
                     Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Bill");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.BillDetail");
                     Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Customer");
                     Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.CustomerVoucher");
                 });

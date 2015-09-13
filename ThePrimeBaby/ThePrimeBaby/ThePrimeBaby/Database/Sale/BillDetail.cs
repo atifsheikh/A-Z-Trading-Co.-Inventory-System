@@ -15,7 +15,7 @@ namespace ThePrimeBaby.Database
         public decimal UNITPRICE;
         public Customer Customer;
 
-        internal static bool AddSale(decimal UnitPrice, int QTY, Bill BILL_ID, decimal SUBTOTAL, Item ITEM_CODE, int PCS_CTN, int QUANT, Customer CUSTOMER_ID)
+        internal static bool AddSale(decimal UnitPrice, int QTY, Bill BILL_ID, decimal SUBTOTAL, Item item, int PCS_CTN, int QUANT, Customer CUSTOMER_ID)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace ThePrimeBaby.Database
                     BillDetail billDetail = new BillDetail();
                     billDetail.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.BillDetail b").First) + 1;
                     billDetail.Bill = BILL_ID;
-                    billDetail.Item = ITEM_CODE;
+                    billDetail.Item = item;
                     billDetail.QTY = QTY;
                     billDetail.PCS_CTN = PCS_CTN;
                     billDetail.T_QUANTITY =QUANT;

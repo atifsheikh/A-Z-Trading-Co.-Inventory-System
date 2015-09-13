@@ -141,8 +141,8 @@ namespace firebirdtest
                                 ReplaceString += "\"" + TableName + SubtableRow + ",";
                             }
                             ReplaceString = ReplaceString.Remove(ReplaceString.Length - 1);
-                            NestedJson = ReplaceFirst(NestedJson, FindString, ReplaceString);
-                            //NestedJson =NestedJson.Replace(FindString, ReplaceString);
+                            //NestedJson = ReplaceFirst(NestedJson, FindString, ReplaceString);
+                            NestedJson = NestedJson.Replace(FindString, ReplaceString);
                             ReplaceString = "";
                         }
                         FindString = "";
@@ -568,6 +568,7 @@ namespace firebirdtest
 
         internal static void DeleteEverything()
         {
+            GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DeveloperTools");
             GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DelAll");
         }
     }

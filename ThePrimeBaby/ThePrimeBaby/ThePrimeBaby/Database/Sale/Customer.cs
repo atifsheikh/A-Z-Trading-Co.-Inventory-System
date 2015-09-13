@@ -20,10 +20,10 @@ namespace ThePrimeBaby.Database
                 {
                     Customer customer = new Customer();
                     customer.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Customer b").First + 1); 
-                    customer.NAME = Name;
-                    customer.ADDRESS = address;
-                    customer.PHONE = phone;
-                    customer.EMAIL = email;
+                    customer.NAME = Name.Trim();
+                    customer.ADDRESS = address.Trim();
+                    customer.PHONE = phone.Trim();
+                    customer.EMAIL = email.Trim();
                     customer.BALANCE_LIMIT = balance_limit;
                     customer.OPENING_BALANCE = opening_balance;
                 });
@@ -41,7 +41,7 @@ namespace ThePrimeBaby.Database
             {
                 //Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Name = ?", Find).First;
                 Db.Transact(() => {
-                    customer.NAME = Replace;
+                    customer.NAME = Replace.Trim();
                 });
                 return true;
             }
@@ -58,10 +58,10 @@ namespace ThePrimeBaby.Database
                 //Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
-                    customer.NAME = ReplaceName;
-                    customer.ADDRESS = ReplaceAddress;
-                    customer.PHONE = ReplacePhone;
-                    customer.EMAIL = ReplaceEmail;
+                    customer.NAME = ReplaceName.Trim();
+                    customer.ADDRESS = ReplaceAddress.Trim();
+                    customer.PHONE = ReplacePhone.Trim();
+                    customer.EMAIL = ReplaceEmail.Trim();
                     customer.AMOUNT = CalculatedAmount;
                     customer.OPENING_BALANCE = ReplaceOpening_balance;
                 });
@@ -96,7 +96,7 @@ namespace ThePrimeBaby.Database
             {
                 Db.Transact(() =>
                 {
-                    Db.SlowSQL("DELETE FROM Customer WHERE Name = ?",Name);
+                    Db.SlowSQL("DELETE FROM Customer WHERE Name = ?", Name.Trim());
                 });
                 return true;
             }

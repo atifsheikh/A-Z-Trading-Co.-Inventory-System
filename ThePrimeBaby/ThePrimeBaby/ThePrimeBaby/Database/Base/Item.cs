@@ -20,12 +20,12 @@ namespace ThePrimeBaby.Database.Base
                 Db.Transact(() => {
                     Item item = new Item();
                     item.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Base.Item b").First) + 1; 
-                    item.CODE = Code;
-                    item.MODEL = Model;
+                    item.CODE = Code.Trim();
+                    item.MODEL = Model.Trim();
                     item.QTY_BOX = QTY_Box;
                     item.PRICE = Price;
                     item.COSTPRICE = CostPrice;
-                    item.IMAGE = ImagePath;
+                    item.IMAGE = ImagePath.Trim();
                     item.Category = ItemCategory;
                 });
                 return true;
@@ -41,7 +41,7 @@ namespace ThePrimeBaby.Database.Base
             {
                 Db.Transact(() => 
                 {
-                    Db.SlowSQL("DELETE FROM Item Where i.Name = ?", Name);
+                    Db.SlowSQL("DELETE FROM Item Where i.Name = ?", Name.Trim());
                 });
                 return true;
             }
@@ -57,7 +57,7 @@ namespace ThePrimeBaby.Database.Base
                 //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", FindName).First;
                 Db.Transact(() => 
                 {
-                    item.NAME = ReplaceName;
+                    item.NAME = ReplaceName.Trim();
                 });
                 return true;
             }
@@ -74,12 +74,12 @@ namespace ThePrimeBaby.Database.Base
                 Db.Transact(() =>
                 {
                     item.ID = Convert.ToInt32(FindID);
-                    item.CODE = ReplaceCode;
-                    item.MODEL = ReplaceModel;
+                    item.CODE = ReplaceCode.Trim();
+                    item.MODEL = ReplaceModel.Trim();
                     item.QTY_BOX= Convert.ToInt32(ReplaceQuantity);
                     item.PRICE= Convert.ToDecimal(ReplacePrice);
                     item.COSTPRICE = Convert.ToDecimal(ReplaceCostPrice);
-                    item.IMAGE= ReplaceImage;
+                    item.IMAGE = ReplaceImage.Trim();
                     item.Category = Db.SQL<Database.Base.Category>("SELECT c FROM ThePrimeBaby.Database.Base.Category c WHERE c.Name = ?", ItemCategory).First;
                     if (item.Category == null)
                     {

@@ -28,7 +28,7 @@ namespace ThePrimeBaby.Database
                     shipmentDetail.Shipment = Shipment;
                     shipmentDetail.T_QUANTITY = T_QUANTITY;
                     shipmentDetail.QTY_PER_BOX = QTY_PER_BOX;
-                    shipmentDetail.MODEL = MODEL;
+                    shipmentDetail.MODEL = MODEL.Trim();
                     shipmentDetail.CTN = CTN;
                     shipmentDetail.PRICE = PRICE;
                     shipmentDetail.SUBTOTAL = SUBTOTAL;

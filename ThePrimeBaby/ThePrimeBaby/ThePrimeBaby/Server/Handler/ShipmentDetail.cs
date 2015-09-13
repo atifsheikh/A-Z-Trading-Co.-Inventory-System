@@ -51,12 +51,15 @@ namespace ThePrimeBaby.Server.Handler
             {
                 string[] Attributes = r.Body.Split('/');
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.CODE = ?", Attributes[0]).First;
-                Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT c FROM ThePrimeBaby.Database.Shipment c WHERE c.ID = ?", Convert.ToInt32(Attributes[1])).First;
-                if (shipment != null)
+                if (item != null)
                 {
-                    bool Result = ThePrimeBaby.Database.ShipmentDetail.AddShipmentDetail(item,shipment,Convert.ToInt32(Attributes[2]),Convert.ToInt32(Attributes[3]),Attributes[4], Convert.ToInt32(Attributes[5]), Convert.ToDecimal(Attributes[6]), Convert.ToDecimal(Attributes[7]));
-                    if (Result == true)
-                        return 200;
+                    Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT c FROM ThePrimeBaby.Database.Shipment c WHERE c.ID = ?", Convert.ToInt32(Attributes[1])).First;
+                    if (shipment != null)
+                    {
+                        bool Result = ThePrimeBaby.Database.ShipmentDetail.AddShipmentDetail(item, shipment, Convert.ToInt32(Attributes[2]), Convert.ToInt32(Attributes[3]), Attributes[4], Convert.ToInt32(Attributes[5]), Convert.ToDecimal(Attributes[6]), Convert.ToDecimal(Attributes[7]));
+                        if (Result == true)
+                            return 200;
+                    }
                 }
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });

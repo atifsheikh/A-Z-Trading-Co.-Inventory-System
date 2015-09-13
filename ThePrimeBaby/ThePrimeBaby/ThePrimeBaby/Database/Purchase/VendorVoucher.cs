@@ -20,7 +20,7 @@ namespace ThePrimeBaby.Database
                 vendorVoucher.Vendor = VendorID;
                 vendorVoucher.VOUCHER_DATE = BillDate;
                 vendorVoucher.AMOUNT = BillTotal;
-                vendorVoucher.REMARKS = Remarks;
+                vendorVoucher.REMARKS = Remarks.Trim();
                 vendorVoucher.VENDOR_BALANCE = VendorBalance;
                 vendorVoucher.ID = GetNewVoucherNumber();
                 return true;

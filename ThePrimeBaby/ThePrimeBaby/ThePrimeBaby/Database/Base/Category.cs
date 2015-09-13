@@ -12,7 +12,7 @@ namespace ThePrimeBaby.Database.Base
                 Db.Transact(() => 
                 {
                     Category category = new Category();
-                    category.NAME = ItemCategory;
+                    category.NAME = ItemCategory.Trim();
                     category.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Base.Category b").First) + 1; 
                 });
                 return true;
