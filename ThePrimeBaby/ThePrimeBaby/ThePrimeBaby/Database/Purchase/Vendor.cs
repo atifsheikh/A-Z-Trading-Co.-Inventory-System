@@ -25,6 +25,7 @@ namespace ThePrimeBaby.Database
                     vendor.PHONE = phone;
                     vendor.EMAIL = email;
                     vendor.OPENING_BALANCE = opening_balance;
+                    vendor.AMOUNT = opening_balance;
                     vendor.BALANCE_LIMIT = balance_limit;
                 });
                 return true;

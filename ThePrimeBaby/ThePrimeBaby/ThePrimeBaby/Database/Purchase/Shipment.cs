@@ -54,8 +54,10 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() =>
                 {
                     //TODO subtract amount from Vendor here
+                    shipment.Vendor.AMOUNT -= shipment.AMOUNT;
+                    shipment.Vendor.AMOUNT += VendorBalance;
                     shipment.AMOUNT = VendorBalance;
-                    shipment.VENDOR_BALANCE = VendorBalance;
+                    shipment.VENDOR_BALANCE = shipment.Vendor.AMOUNT;
                 });
                 return true;
             }
@@ -87,6 +89,7 @@ namespace ThePrimeBaby.Database
                     shipment.VENDOR_BALANCE = VendorBalance;
                     shipment.REMARKS = Remarks;
                     shipment.TOTAL_CTN = TOTAL_CTN;
+                    shipment.Vendor.AMOUNT += ShipmentTotal;
                 });
                 return true;
             }

@@ -32,6 +32,7 @@ namespace firebirdtest.UI
         {
             try
             {
+                ModifyingConsignment = false;
                 ItemCode_txt.Enabled = true;
                 toolStripButton2.Enabled = true;
                 toolStripButton5.Enabled = false;
@@ -175,6 +176,7 @@ namespace firebirdtest.UI
                 textBox7.Text = (++temp).ToString();
                 RandomAlgos.AddDataInSalesFile((ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString(), VendorName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text);
                 Total_txt.Text = (Convert.ToDecimal(Total_txt.Text) + Convert.ToDecimal(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString();
+                BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
                 ItemCode_txt.Text = "";
                 ItemName_txt.Text = "None";
                 Ctn_txt.Text = "0";
@@ -277,15 +279,22 @@ namespace firebirdtest.UI
                         VendorID_txt.Text = GridViewColumn.ItemArray[0].ToString();//ID
                         VendorAddress_txt.Text = GridViewColumn.ItemArray[2].ToString();//address
                         VendorEmail_txt.Text = GridViewColumn.ItemArray[4].ToString();//phone
-                        VendorBalance_txt.Text = GridViewColumn.ItemArray[5].ToString();//balance
-                        BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
+                        VendorBalance_txt.Text = GridViewColumn.ItemArray[6].ToString();//balance
+                        if (ModifyingConsignment == true)
+                        {
+                            BalanceNew_txt.Text = VendorBalance_txt.Text;
+                        }
+                        else
+                        {
+                            BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
+                        }
                         VendorPhone_txt.Text = GridViewColumn.ItemArray[3].ToString();//email
                         decimal CalculatedBalance = Convert.ToDecimal(DatabaseCalls.GetCurrentRowBalance(VendorID_txt.Text, ConsignmentNumber_txt.Text));
                         if (CalculatedBalance != Convert.ToDecimal(VendorBalance_txt.Text))
                         {
-                            Variables.NotificationStatus = true;
-                            Variables.NotificationMessageTitle = "Inform Atif, Which variable is showing correct value?";
-                            Variables.NotificationMessageText = "Critical : VendorBalance_txt.Text = " + VendorBalance_txt.Text + " AND CalculatedBalance = " + CalculatedBalance;
+                            //Variables.NotificationStatus = true;
+                            //Variables.NotificationMessageTitle = "Inform Atif, Which variable is showing correct value?";
+                            //Variables.NotificationMessageText = "Critical : VendorBalance_txt.Text = " + VendorBalance_txt.Text + " AND CalculatedBalance = " + CalculatedBalance;
                         }
                     }
                 }
@@ -506,8 +515,14 @@ namespace firebirdtest.UI
                     ConsignmentTotal += Convert.ToDecimal(SubTotal.Cells[7].Value);
                 }
                 //if (ConsignmentTotal != 0 && Total_txt.Text == (ConsignmentTotal).ToString())//+ Convert.ToInt32(Quant_txt.Text) * Convert.ToInt32(UnitPrice_txt.Text)
-
-                BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
+                if (ModifyingConsignment == true)
+                {
+                    BalanceNew_txt.Text = Total_txt.Text;
+                }
+                else
+                {
+                    BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -558,6 +573,7 @@ namespace firebirdtest.UI
                 {
                     //            BalanceNew_txt.Visible = false;
                     toolStripButton1_Click(sender, e);
+                    ModifyingConsignment = true;
                     //            ConsignmentDetailDataGridView.Rows.Clear();
                     ConsignmentDetailDataGridView.Enabled = false;
                     ConsignmentDetailDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.Gray;
@@ -647,7 +663,7 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
             }
-            ConsignmentNumber_txt.Focus();
+            SendKeys.Send("{TAB}");
 //            ItemCode_txt.Focus();
             //            ConsignmentDetailDataGridView.Columns["ITEM_CODE"] = Result1.Tables[0].Columns["ITEM_CODE"];
         }
@@ -971,6 +987,7 @@ namespace firebirdtest.UI
         {
             try
             {
+                ModifyingConsignment = false;
                 if (ConsignmentNumber_txt.Text != "")
                 {
                     DataSet ConsignmentDataSet = new DataSet();
@@ -994,7 +1011,7 @@ namespace firebirdtest.UI
                     }
                     decimal VendorNewBalance = Convert.ToDecimal(BalanceNew_txt.Text);
                     //                VendorNewBalance -= Convert.ToDecimal(
-                    DatabaseCalls.ModifyVendor(ConsignmentDataSet.Tables[0].Rows[0]["VendorID"].ToString(), VendorNewBalance.ToString());
+                    //DatabaseCalls.ModifyVendor(ConsignmentDataSet.Tables[0].Rows[0]["VendorID"].ToString(), VendorNewBalance.ToString());
                     DatabaseCalls.DeleteShipmentDetails(ConsignmentNumber_txt.Text);
                     DatabaseCalls.ModifyVoucher(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToDecimal(Total_txt.Text), VendorNewBalance);
                     //DatabaseCalls.DeleteConsignment(ConsignmentNumberSearch_txt.Text);
@@ -1074,7 +1091,7 @@ namespace firebirdtest.UI
         {
             try
             {
-                BalanceNew_txt.Text = VendorBalance_txt.Text;
+                //BalanceNew_txt.Text = VendorBalance_txt.Text;
                 BalanceNew_txt.Visible = true;
                 if (ConsignmentDetailDataGridView.Enabled == false)
                 {
@@ -1082,7 +1099,7 @@ namespace firebirdtest.UI
                     ItemCode_txt.Enabled = true;
                     ConsignmentDetailDataGridView.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
                     ConsignmentDetailDataGridView.Focus();
-                    VendorBalance_txt.Text = (Convert.ToInt32(VendorBalance_txt.Text) - Convert.ToInt32(Total_txt.Text)).ToString();
+                    //VendorBalance_txt.Text = (Convert.ToInt32(VendorBalance_txt.Text) - Convert.ToInt32(Total_txt.Text)).ToString();
                     //            DatabaseCalls.ModifyVendor(Convert.ToInt32(VendorID_txt.Text), Current Blc - Convert.ToInt32(ConsignmentNumber_txt.Text)  );
                     //          ;
                 }
@@ -1699,7 +1716,7 @@ namespace firebirdtest.UI
             {
                 if (Qty_txt.Text != "" && Ctn_txt.Text != "")
                     Quant_txt.Text = (Convert.ToInt32(Qty_txt.Text) * Convert.ToInt32(Ctn_txt.Text)).ToString();
-                else if (Qty_txt.Text != "0")
+                else if (Ctn_txt.Text != ""&& Ctn_txt.Text != "0")
                     Quant_txt.Text = (0 * Convert.ToInt32(Ctn_txt.Text)).ToString();
             }
             catch (Exception ex)
@@ -1818,5 +1835,7 @@ namespace firebirdtest.UI
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+
+        public bool ModifyingConsignment { get; set; }
     }
 }
