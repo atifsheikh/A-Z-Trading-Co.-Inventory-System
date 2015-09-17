@@ -17,18 +17,18 @@ namespace ThePrimeBaby.Server.Handler
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
 
-            Handle.POST("/ThePrimeBaby/ModifyShipmentAmmountByShipmentNumber", (Request r) =>
-            {
-                string[] Attributes = r.Body.Split('/');
-                Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT i FROM ThePrimeBaby.Database.Shipment i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
-                if (shipment != null)
-                {
-                    bool Result = Database.Shipment.ModifyShipmentAmmount(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]), shipment);
-                    return 200;
-                }
-                else
-                    return 209;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+            //Handle.POST("/ThePrimeBaby/ModifyShipmentAmmountByShipmentNumber", (Request r) =>
+            //{
+            //    string[] Attributes = r.Body.Split('/');
+            //    Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT i FROM ThePrimeBaby.Database.Shipment i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
+            //    if (shipment != null)
+            //    {
+            //        bool Result = Database.Shipment.ModifyShipmentAmmount(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]), shipment);
+            //        return 200;
+            //    }
+            //    else
+            //        return 209;
+            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.POST("/ThePrimeBaby/DeleteShipmentDetailsByShipmentNumber", (Request r) =>
             {

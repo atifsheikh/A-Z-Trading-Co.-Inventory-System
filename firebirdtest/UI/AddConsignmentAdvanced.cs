@@ -371,7 +371,8 @@ namespace firebirdtest.UI
                 try
                 {
                     //Add Consignment
-                    Result = DatabaseCalls.AddShipment(ConsignmentNumber_txt.Text, Convert.ToDateTime(ConsignmentDate_txt.Text));
+                    int VendorId = 0;
+                    Result = DatabaseCalls.AddShipment(ConsignmentNumber_txt.Text, Convert.ToDateTime(ConsignmentDate_txt.Text),VendorId);
                     if (Result.StartsWith("Consignment Added with ID") != true)
                     {
                         Variables.NotificationStatus = true;

@@ -200,10 +200,6 @@ namespace firebirdtest
         {
             return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddVendor/6" , Name + "/" + address + "/" + phone + "/" + email + "/" + ballance_limit+ "/" + opening_balance);
         }
-        internal static string ModifyVendor(string Find, string Replace)
-        {
-            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyVendor/2", Find + "/" + Replace);
-        }
         internal static string ModifyVendor(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
         {
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyVendor/7", FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone + "/" + ReplaceEmail + "/" + ReplaceOpening_balance + "/" + CalculatedAmount);
@@ -303,9 +299,9 @@ namespace firebirdtest
         }
 
         //Shipments
-        internal static string AddShipment(string ShipmentNumber, DateTime ShipmentDate)
+        internal static string AddShipment(string ShipmentNumber, DateTime ShipmentDate,int VendorId)
         {
-            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddShipmentByNumber/2" + ShipmentNumber + "/" + ShipmentDate.ToString().Replace('/', '-'), "");
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddShipmentByNumber/4" , ShipmentNumber + "/" + ShipmentDate.ToString().Replace('/', '-')+"/"+VendorId+"/Remarks");
         }
         internal static string ModifyShipment(string FindID, DateTime ShipmentDate, string ShipmentDesc)
         {

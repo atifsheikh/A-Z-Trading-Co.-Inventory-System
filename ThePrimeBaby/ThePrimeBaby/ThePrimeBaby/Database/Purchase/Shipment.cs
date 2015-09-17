@@ -8,11 +8,56 @@ namespace ThePrimeBaby.Database
         public DateTime SHIP_DATE;
         public string DESCRIPTION;
         public Vendor Vendor;
-        public decimal AMOUNT;
         public string REMARKS;
-        public decimal VENDOR_BALANCE;
-        public int TOTAL_CTN;
-        internal static bool AddShipment(int ShipmentNumber, DateTime ShipmentDate)
+        public decimal AMOUNT
+        {
+            get
+            {
+                QueryResultRows<ThePrimeBaby.Database.ShipmentDetail> shipmentDetails = Db.SQL<ThePrimeBaby.Database.ShipmentDetail>("SELECT sd FROM ThePrimeBaby.Database.ShipmentDetail sd WHERE sd.Shipment = ?", this);
+                decimal amountSum = 0.0m;
+                foreach (ShipmentDetail shipmentDetail in shipmentDetails)
+                {
+                    amountSum += shipmentDetail.SUBTOTAL;
+                }
+                return amountSum;
+            }
+        }
+        public decimal VENDOR_BALANCE
+        {
+            get 
+            {
+                QueryResultRows<ThePrimeBaby.Database.Shipment> shipments = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.Vendor = ? AND s.SHIP_DATE <= ? AND s.ID > ? AND s.ID <= ? ", this.Vendor, this.SHIP_DATE, 0, this.ID);
+                
+                decimal vendorBalance = 0.0m;
+                /*QueryResultRows<ThePrimeBaby.Database.Shipment> vouchers = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.Vendor = ? AND s.SHIP_DATE < ? AND s.ID < ? s.ID <= ? ", this.Vendor, this.SHIP_DATE, 0,this.ID);
+                decimal vendorVoucher = 0.0m;
+                foreach (Shipment voucher in vouchers)
+                {
+                    vendorVoucher += voucher.AMOUNT;
+                }*/
+
+                foreach (Shipment shipment in shipments)
+                {
+                    vendorBalance += shipment.AMOUNT;
+                }
+                return (vendorBalance + this.Vendor.OPENING_BALANCE);// - vendorVoucher);
+            }
+        }
+        public int TOTAL_CTN 
+        {
+            get
+            {
+                QueryResultRows<ThePrimeBaby.Database.ShipmentDetail> shipmentDetails = Db.SQL<ThePrimeBaby.Database.ShipmentDetail>("SELECT sd FROM ThePrimeBaby.Database.ShipmentDetail sd WHERE sd.Shipment = ?", this);
+                int totalCtn = 0;
+                foreach (ShipmentDetail shipmentDetail in shipmentDetails)
+                {
+                    totalCtn += shipmentDetail.CTN;
+                }
+                return totalCtn;
+            }
+        }
+
+        internal static bool AddShipment(int ShipmentNumber, DateTime ShipmentDate, Vendor Vendor, string Remarks)
         {
             try
             {
@@ -21,6 +66,8 @@ namespace ThePrimeBaby.Database
                     Shipment shipment = new Shipment();
                     shipment.SHIP_DATE = ShipmentDate;
                     shipment.ID = ShipmentNumber;
+                    shipment.Vendor = Vendor;
+                    shipment.REMARKS = Remarks;
                 });
                 return true;
             }
@@ -30,7 +77,7 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyShipment(string FindID, DateTime ShipmentDate, string ShipmentDesc, Database.Shipment shipment)
+        internal static bool ModifyShipment(DateTime ShipmentDate, string ShipmentDesc, Database.Shipment shipment)
         {
             try
             {
@@ -47,28 +94,28 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal ShipmentAmount, Database.Shipment shipment)
-        {
-            try
-            {
-                Db.Transact(() =>
-                {
-                    shipment.Vendor.AMOUNT -= shipment.AMOUNT;
-                    shipment.Vendor.AMOUNT += ShipmentAmount;
-                    shipment.AMOUNT = ShipmentAmount;
-                    shipment.VENDOR_BALANCE = shipment.Vendor.AMOUNT;
-                    //TODO modify future Shipments
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+        //internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal ShipmentAmount, Database.Shipment shipment)
+        //{
+        //    try
+        //    {
+        //        Db.Transact(() =>
+        //        {
+        //            shipment.Vendor.AMOUNT -= shipment.AMOUNT;
+        //            shipment.Vendor.AMOUNT += ShipmentAmount;
+        //            shipment.AMOUNT = ShipmentAmount;
+        //            shipment.VENDOR_BALANCE = shipment.Vendor.AMOUNT;
+        //            //TODO modify future Shipments
+        //        });
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
         
 
-        internal static bool AddShipment(int shipmentID, Vendor Vendor, DateTime ShipmentDate, decimal ShipmentTotal, decimal VendorBalance, string Remarks, int TOTAL_CTN)
+        internal static bool AddShipment(int shipmentID, Vendor Vendor, DateTime ShipmentDate, string Remarks, int TOTAL_CTN)
         {
             try
             {
@@ -85,11 +132,7 @@ namespace ThePrimeBaby.Database
                     }
                     shipment.Vendor = Vendor;
                     shipment.SHIP_DATE = ShipmentDate;
-                    shipment.AMOUNT = ShipmentTotal;
-                    shipment.VENDOR_BALANCE = VendorBalance;
                     shipment.REMARKS = Remarks.Trim();
-                    shipment.TOTAL_CTN = TOTAL_CTN;
-                    shipment.Vendor.AMOUNT += ShipmentTotal;
                 });
                 return true;
             }

@@ -22,7 +22,7 @@ namespace ThePrimeBaby.Server.Handler
                     Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(Attributes[1])).First;
                     if (vendor != null)
                     {
-                        bool Result = ThePrimeBaby.Database.Shipment.AddShipment(Convert.ToInt32(Attributes[0]), vendor, Convert.ToDateTime(Attributes[2]), Convert.ToDecimal(Attributes[3]), Convert.ToDecimal(Attributes[4]), Attributes[5], Convert.ToInt32(Attributes[6]));
+                        bool Result = ThePrimeBaby.Database.Shipment.AddShipment(Convert.ToInt32(Attributes[0]), vendor, Convert.ToDateTime(Attributes[2]), Attributes[5], Convert.ToInt32(Attributes[6]));
                         if (Result == true)
                             return 200;
                     }
@@ -47,15 +47,19 @@ namespace ThePrimeBaby.Server.Handler
                 return shipmentJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/AddShipmentByNumber/2", (Request r) =>
+            Handle.POST("/ThePrimeBaby/AddShipmentByNumber/4", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
                 Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT c FROM ThePrimeBaby.Database.Shipment c WHERE c.Id = ?", Convert.ToInt32(Attributes[0])).First;
                 if (shipment == null)
                 {
-                    bool Result = ThePrimeBaby.Database.Shipment.AddShipment(Convert.ToInt32(Attributes[0]), Convert.ToDateTime(Attributes[1]));
-                    if (Result == true)
-                        return 200;
+                    Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(Attributes[2])).First;
+                    if (vendor != null)
+                    {
+                        bool Result = ThePrimeBaby.Database.Shipment.AddShipment(Convert.ToInt32(Attributes[0]), Convert.ToDateTime(Attributes[1]), vendor, Attributes[3]);
+                        if (Result == true)
+                            return 200;
+                    }
                 }
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });

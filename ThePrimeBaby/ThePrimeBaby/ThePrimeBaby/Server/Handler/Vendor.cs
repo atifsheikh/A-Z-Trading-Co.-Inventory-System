@@ -49,7 +49,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM ThePrimeBaby.Database.Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
                 if (vendor != null)
                 {
-                    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]),Convert.ToDecimal(Attributes[6]),vendor);
+                    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]),vendor);
                     return 200;
                 }
                 else
@@ -64,32 +64,6 @@ namespace ThePrimeBaby.Server.Handler
                 return vendorJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-
-            Handle.POST("/ThePrimeBaby/ModifyVendor/2", (Request r) =>
-            {
-                string[] Attributes = r.Body.Split('/');
-                Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
-                if (vendor != null)
-                {
-                    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]),vendor);
-                    return 200;
-                }
-                else
-                    return 209;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
-            Handle.POST("/ThePrimeBaby/ModifyVendorBalance/2", (Request r) =>
-            {
-                //string[] Attributes = r.Body.Split('/');
-                //Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM ThePrimeBaby.Database.Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
-                //if (vendor != null)
-                //{
-                //    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]), Convert.ToDecimal(Attributes[6]));
-                //    return 200;
-                //}
-                //else
-                return 209;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.POST("/ThePrimeBaby/DeleteVendor", (Request r) =>
             {

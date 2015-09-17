@@ -8,7 +8,18 @@ namespace ThePrimeBaby.Database
         public string ADDRESS;
         public string EMAIL;
         public string PHONE;
-        public decimal AMOUNT;
+        public decimal AMOUNT{ 
+            get 
+            {
+                QueryResultRows<Database.Shipment> AllShipments = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE Vendor = ?",this);
+                decimal Calc = 0.0m;
+                foreach (Database.Shipment OneShipment in AllShipments)
+                {
+                    Calc += OneShipment.AMOUNT;
+                }
+                return (Calc + this.OPENING_BALANCE);
+            }
+        }
         public decimal TotalAmount { 
             get 
             {
@@ -18,7 +29,7 @@ namespace ThePrimeBaby.Database
                 {
                     Calc += OneShipment.AMOUNT;
                 }
-                return Calc;
+                return (Calc + this.OPENING_BALANCE);
             }
         }
         public decimal OPENING_BALANCE;
@@ -37,7 +48,6 @@ namespace ThePrimeBaby.Database
                     vendor.PHONE = phone.Trim();
                     vendor.EMAIL = email.Trim();
                     vendor.OPENING_BALANCE = opening_balance;
-                    vendor.AMOUNT = opening_balance;
                     vendor.BALANCE_LIMIT = balance_limit;
                 });
                 return true;
@@ -51,7 +61,6 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                //ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.Name = ?", Find).First;
                 Db.Transact(() =>
                 {
                     vendor.NAME = Replace.Trim();
@@ -64,7 +73,7 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyVendor(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount, ThePrimeBaby.Database.Vendor vendor)
+        internal static bool ModifyVendor(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, ThePrimeBaby.Database.Vendor vendor)
         {
             try
             {
@@ -75,7 +84,6 @@ namespace ThePrimeBaby.Database
                     vendor.ADDRESS = ReplaceAddress.Trim();
                     vendor.PHONE = ReplacePhone.Trim();
                     vendor.EMAIL = ReplaceEmail.Trim();
-                    vendor.AMOUNT = CalculatedAmount;
                     vendor.OPENING_BALANCE = ReplaceOpening_balance;
                 });
                 return true;
@@ -86,22 +94,22 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyVendor(int VendorID, decimal NewBalance, ThePrimeBaby.Database.Vendor vendor)
-        {
-            try
-            {
-                //ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(VendorID)).First;
-                Db.Transact(() =>
-                {
-                    vendor.AMOUNT = NewBalance;
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+        //internal static bool ModifyVendor(int VendorID, decimal NewBalance, ThePrimeBaby.Database.Vendor vendor)
+        //{
+        //    try
+        //    {
+        //        //ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(VendorID)).First;
+        //        Db.Transact(() =>
+        //        {
+        //            vendor.AMOUNT = NewBalance;
+        //        });
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
 
         internal static bool DeleteVendor(string Name)
         {
