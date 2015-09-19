@@ -241,6 +241,7 @@ namespace firebirdtest
             }
         }
 
+        AddInvoice _AddInvoice = new AddInvoice();
         AddBill _AddBill = new AddBill();
         private void addSaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -274,15 +275,15 @@ namespace firebirdtest
                     _ItemHistoryReport.Dispose();
 
 
-                if (_AddBill.IsDisposed)
-                    _AddBill = new AddBill();
+                if (_AddInvoice.IsDisposed)
+                    _AddInvoice = new AddInvoice();
 
                 Home.Home_pnl.Visible = false;
 
-                _AddBill.MdiParent = this;
-                _AddBill.WindowState = FormWindowState.Maximized; 
-                _AddBill.Show();
-                _AddBill.Focus();
+                _AddInvoice.MdiParent = this;
+                _AddInvoice.WindowState = FormWindowState.Maximized; 
+                _AddInvoice.Show();
+                _AddInvoice.Focus();
                 
             }
             catch (Exception ex)
@@ -295,18 +296,18 @@ namespace firebirdtest
         {
             try
             {
-                if (_AddBill.IsDisposed == false)
+                if (_AddInvoice.IsDisposed == false)
                 {
-                    _AddBill.Close();
-                    _AddBill = new AddBill();
+                    _AddInvoice.Close();
+                    _AddInvoice = new AddInvoice();
                 }
                 else
                     return;
                 Home.Home_pnl.Visible = false;
 
-                _AddBill.MdiParent = this;
-                _AddBill.WindowState = FormWindowState.Maximized;
-                _AddBill.Show();
+                _AddInvoice.MdiParent = this;
+                _AddInvoice.WindowState = FormWindowState.Maximized;
+                _AddInvoice.Show();
                 _CustomerLedgerStatement.Focus();
                 //_AddBill.Focus();
             }
@@ -469,8 +470,8 @@ namespace firebirdtest
         {
             try
             {
-                _AddBill.Dispose();
-                _AddBill.Close();
+                _AddInvoice.Dispose();
+                _AddInvoice.Close();
             }
             catch (Exception ex)
             { }

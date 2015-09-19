@@ -119,6 +119,12 @@
     <Compile Include="UI\Add Consignment.Designer.cs">
       <DependentUpon>Add Consignment.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Add Invoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Add Invoice.designer.cs">
+      <DependentUpon>Add Invoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AddConsignmentAdvanced.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Add Consignment.resx">
       <DependentUpon>Add Consignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Add Invoice.resx">
+      <DependentUpon>Add Invoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AddVendor.resx">
       <DependentUpon>AddVendor.cs</DependentUpon>
