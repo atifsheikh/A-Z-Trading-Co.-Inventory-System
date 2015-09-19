@@ -387,7 +387,7 @@ namespace firebirdtest
         }
         internal static DataSet GetVouchers()
         {
-            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBills");
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVouchers");
             //return JsonToDataSet(Result);
         }
         internal static DataSet Get_Ctn_Bill()
@@ -566,6 +566,22 @@ namespace firebirdtest
         {
             GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DeveloperTools");
             GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DelAll");
+        }
+
+        internal static DataSet Get_Ctn_Voucher()
+        {
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/Get_Ctn_Voucher");
+        }
+
+        internal static string AddVendorVoucherPayment(int VendorID, DateTime BillDate, Decimal BillTotal, string Remarks)
+        {
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddVendorVoucher/4", VendorID + "/" + BillDate.ToString().Replace('/', '-') + "/" + BillTotal + "/" + Remarks);
+        }
+
+        internal static DataSet GetVendorVoucher()
+        {
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorVouchers");
+
         }
     }
 }

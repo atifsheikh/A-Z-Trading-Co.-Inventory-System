@@ -11,9 +11,9 @@ using System.Threading;
 
 namespace firebirdtest.UI
 {
-    public partial class LedgerStatement : Form
+    public partial class CustomerLedgerStatement : Form
     {
-        public LedgerStatement()
+        public CustomerLedgerStatement()
         {
             InitializeComponent();
         }

@@ -19,7 +19,7 @@ using _ScTemplate_=Starcounter.Templates.Template;
 using __IItSALE_QTY__ = global::ItemSaleHistoryJson.ItemSaleHistoryElementJson.Input.SALE_QTY;
 using __ItemSale1__ = global::ItemSaleHistoryJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::ItemSaleHistoryJson.ItemSaleHistoryElementJson>;
-using __IItBILL_DAT__ = global::ItemSaleHistoryJson.ItemSaleHistoryElementJson.Input.BILL_DATED;
+using __IItDATED__ = global::ItemSaleHistoryJson.ItemSaleHistoryElementJson.Input.DATED;
 using __IItCUSTOMER__ = global::ItemSaleHistoryJson.ItemSaleHistoryElementJson.Input.CUSTOMERS_NAME;
 using __IItSALE_SUB__ = global::ItemSaleHistoryJson.ItemSaleHistoryElementJson.Input.SALE_SUBTOTAL;
 using __IItSALE_UNI__ = global::ItemSaleHistoryJson.ItemSaleHistoryElementJson.Input.SALE_UNITPRICE;
@@ -119,7 +119,7 @@ public class ItemSaleHistoryJson : __Json__ {
         private System.Int64 __bf__SALE_UNITPRICE__;
         private System.Int64 __bf__SALE_SUBTOTAL__;
         private System.String __bf__CUSTOMERS_NAME__;
-        private System.String __bf__BILL_DATED__;
+        private System.String __bf__DATED__;
         #line default
         
         #line hidden
@@ -163,9 +163,9 @@ public class ItemSaleHistoryJson : __Json__ {
                     CUSTOMERS_NAME = Add<__TString__>("CUSTOMERS_NAME");
                     CUSTOMERS_NAME.DefaultValue = "";
                     CUSTOMERS_NAME.SetCustomAccessors((_p_) => { return ((__ItItemSale__)_p_).__bf__CUSTOMERS_NAME__; }, (_p_, _v_) => { ((__ItItemSale__)_p_).__bf__CUSTOMERS_NAME__ = (System.String)_v_; }, false);
-                    BILL_DATED = Add<__TString__>("BILL_DATED");
-                    BILL_DATED.DefaultValue = "";
-                    BILL_DATED.SetCustomAccessors((_p_) => { return ((__ItItemSale__)_p_).__bf__BILL_DATED__; }, (_p_, _v_) => { ((__ItItemSale__)_p_).__bf__BILL_DATED__ = (System.String)_v_; }, false);
+                    DATED = Add<__TString__>("DATED");
+                    DATED.DefaultValue = "";
+                    DATED.SetCustomAccessors((_p_) => { return ((__ItItemSale__)_p_).__bf__DATED__; }, (_p_, _v_) => { ((__ItItemSale__)_p_).__bf__DATED__ = (System.String)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __ItItemSale__(this) { Parent = parent }; }
                 public __TLong__ SALE_ID;
@@ -178,7 +178,7 @@ public class ItemSaleHistoryJson : __Json__ {
                 public __TLong__ SALE_UNITPRICE;
                 public __TLong__ SALE_SUBTOTAL;
                 public __TString__ CUSTOMERS_NAME;
-                public __TString__ BILL_DATED;
+                public __TString__ DATED;
             }
             #line default
         }
@@ -304,15 +304,15 @@ public class ItemSaleHistoryJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
-        public System.String BILL_DATED {
+        public System.String DATED {
 #line 15 "Server\Partials\ItemSaleHistoryJson.json"
     get {
 #line hidden
-        return Template.BILL_DATED.Getter(this); }
+        return Template.DATED.Getter(this); }
 #line 15 "Server\Partials\ItemSaleHistoryJson.json"
     set {
 #line hidden
-        Template.BILL_DATED.Setter(this, value); } }
+        Template.DATED.Setter(this, value); } }
 #line default
 
         
@@ -371,7 +371,7 @@ public class ItemSaleHistoryJson : __Json__ {
             #line default
             
             #line hidden
-            public class BILL_DATED : Input<__ItItemSale__, __TString__, string> {
+            public class DATED : Input<__ItItemSale__, __TString__, string> {
             }
             #line default
         }

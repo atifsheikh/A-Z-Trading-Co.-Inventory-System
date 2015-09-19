@@ -55,7 +55,6 @@ namespace firebirdtest.UI
         {
             // TODO: This line of code loads data into the 'ledgerReport_DataSet.BILL' table. You can move, or remove it, as needed.
             //this.bILLTableAdapter.Adapter.SelectCommand = @"SELECT ID, CUSTOMER_ID, DATED, AMOUNT, REMARKS, CUSTOMER_BALANCE FROM BILL WHERE (DATED BETWEEN "+Ftom_dateTimePicker.Value+" AND " + To_dateTimePicker.Value+")";
-
         }
 
         private void LedgerReports_FormClosed(object sender, FormClosedEventArgs e)

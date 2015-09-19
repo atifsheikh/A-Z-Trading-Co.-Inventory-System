@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.Customer_Strip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Consignment_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -67,6 +67,7 @@
             this.deleteBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
             this.statementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendorStatementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debitorSummeryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -377,7 +378,8 @@
             // toolStripMenuItem18
             // 
             this.toolStripMenuItem18.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statementToolStripMenuItem});
+            this.statementToolStripMenuItem,
+            this.vendorStatementToolStripMenuItem});
             this.toolStripMenuItem18.Name = "toolStripMenuItem18";
             this.toolStripMenuItem18.Size = new System.Drawing.Size(75, 24);
             this.toolStripMenuItem18.Text = "&Leadger";
@@ -385,9 +387,16 @@
             // statementToolStripMenuItem
             // 
             this.statementToolStripMenuItem.Name = "statementToolStripMenuItem";
-            this.statementToolStripMenuItem.Size = new System.Drawing.Size(146, 24);
-            this.statementToolStripMenuItem.Text = "Statement";
+            this.statementToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.statementToolStripMenuItem.Text = "Customer Statement";
             this.statementToolStripMenuItem.Click += new System.EventHandler(this.statementToolStripMenuItem_Click);
+            // 
+            // vendorStatementToolStripMenuItem
+            // 
+            this.vendorStatementToolStripMenuItem.Name = "vendorStatementToolStripMenuItem";
+            this.vendorStatementToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.vendorStatementToolStripMenuItem.Text = "Vendor Statement";
+            this.vendorStatementToolStripMenuItem.Click += new System.EventHandler(this.vendorStatementToolStripMenuItem_Click);
             // 
             // reportsToolStripMenuItem
             // 
@@ -464,9 +473,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.CustomerBill.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(1052, 481);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
@@ -787,7 +796,7 @@
         private System.Windows.Forms.ToolStripMenuItem addVendorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addConsignmentToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem printConsignmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vendorStatementToolStripMenuItem;
         public static System.Windows.Forms.Panel Home_pnl;
-        
     }
 }

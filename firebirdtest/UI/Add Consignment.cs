@@ -1569,15 +1569,13 @@ namespace firebirdtest.UI
         {
             try
             {
-                ////ConsignmentNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
                 ConsignmentDataGridView.DataSource = ConsignmentDataSet.Tables[0];
-                //                ConsignmentDataGridView.Sort(-1);
                 ConsignmentDataGridView.CurrentCell = null;
                 if (ConsignmentDataGridView.Columns.Count > 0)
                 {
                     ConsignmentDataGridView.Columns["ID"].HeaderText = "S.NO";
                     ConsignmentDataGridView.Columns["VENDORNAME"].HeaderText = "Vendor";
-                    ConsignmentDataGridView.Columns["SHIP_DATE"].HeaderText = "Date";
+                    ConsignmentDataGridView.Columns["DATED"].HeaderText = "Date";
                     ConsignmentDataGridView.Columns["TOTAL_CTN"].HeaderText = "Ctn";
                     ConsignmentDataGridView.Columns["VENDOR_BALANCE"].HeaderText = "Balance";
 

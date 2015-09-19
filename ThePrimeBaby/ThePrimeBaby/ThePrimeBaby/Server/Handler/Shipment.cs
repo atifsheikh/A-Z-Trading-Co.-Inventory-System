@@ -63,12 +63,6 @@ namespace ThePrimeBaby.Server.Handler
                 }
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
-            //No calls in EXE
-            //Handle.POST("/ThePrimeBaby/ModifyShipmentById/3", (Request r) =>
-            //{
-            //    //        myCommand.CommandText = "Update SHIPMENT set ID = @ID , SHIP_DATE = @SHIP_DATE , DESCRIPTION = @DESCRIPTION";
-            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
 }

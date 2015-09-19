@@ -6,7 +6,7 @@ namespace ThePrimeBaby.Database
     public class CustomerVoucher : Concept
     {
         public Customer Customer;
-        public DateTime VOUCHER_DATE;
+        public DateTime DATED;
         public decimal AMOUNT;
         public string REMARKS;
         public decimal CUSTOMER_BALANCE;
@@ -20,7 +20,7 @@ namespace ThePrimeBaby.Database
                     CustomerVoucher customerVoucher = new CustomerVoucher();
                     customerVoucher.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.CustomerVoucher b").First) + 1;
                     customerVoucher.Customer = CustomerID;
-                    customerVoucher.VOUCHER_DATE = BillDate;
+                    customerVoucher.DATED = BillDate;
                     customerVoucher.AMOUNT = BillTotal;
                     customerVoucher.REMARKS = Remarks.Trim();
                     customerVoucher.CUSTOMER_BALANCE = CustomerBalance;

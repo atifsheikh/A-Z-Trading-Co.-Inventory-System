@@ -246,10 +246,12 @@ namespace firebirdtest
         {
             try
             {
+                if (_VendorLedgerStatement != null && !_VendorLedgerStatement.IsDisposed)
+                    _VendorLedgerStatement.Dispose();
                 if (_LedgerReports!=null&&!_LedgerReports.IsDisposed)
                     _LedgerReports.Dispose();
-                if (_LedgerStatement != null && !_LedgerStatement.IsDisposed)
-                    _LedgerStatement.Dispose();
+                if (_CustomerLedgerStatement != null && !_CustomerLedgerStatement.IsDisposed)
+                    _CustomerLedgerStatement.Dispose();
                 if (_ListConsignmentDetails!= null && !_ListConsignmentDetails.IsDisposed)
                     _ListConsignmentDetails.Dispose();
                 //if (_ListConsignments!= null && !_ListConsignments.IsDisposed)
@@ -305,7 +307,7 @@ namespace firebirdtest
                 _AddBill.MdiParent = this;
                 _AddBill.WindowState = FormWindowState.Maximized;
                 _AddBill.Show();
-                _LedgerStatement.Focus();
+                _CustomerLedgerStatement.Focus();
                 //_AddBill.Focus();
             }
             catch (Exception ex)
@@ -462,7 +464,7 @@ namespace firebirdtest
             }
         }
 
-        LedgerStatement _LedgerStatement = new LedgerStatement();
+        CustomerLedgerStatement _CustomerLedgerStatement = new CustomerLedgerStatement();
         private void statementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -475,14 +477,14 @@ namespace firebirdtest
 
             try
             {
-                if (_LedgerStatement.IsDisposed)
-                    _LedgerStatement = new LedgerStatement();
+                if (_CustomerLedgerStatement.IsDisposed)
+                    _CustomerLedgerStatement = new CustomerLedgerStatement();
                 Home.Home_pnl.Visible = false;
 
-                _LedgerStatement.MdiParent = this;
-                _LedgerStatement.WindowState = FormWindowState.Maximized;
-                _LedgerStatement.Show();
-                _LedgerStatement.Focus();
+                _CustomerLedgerStatement.MdiParent = this;
+                _CustomerLedgerStatement.WindowState = FormWindowState.Maximized;
+                _CustomerLedgerStatement.Show();
+                _CustomerLedgerStatement.Focus();
             }
             catch (Exception ex)
             {
@@ -626,7 +628,7 @@ namespace firebirdtest
             try
             {
                 Home.Home_pnl.Visible = false;
-                LedgerStatement _LedgerStatement = new LedgerStatement();
+                CustomerLedgerStatement _LedgerStatement = new CustomerLedgerStatement();
                 _LedgerStatement.MdiParent = this;
                 _LedgerStatement.WindowState = FormWindowState.Maximized;
                 _LedgerStatement.Show();
@@ -687,6 +689,10 @@ namespace firebirdtest
                 {
                     switch (Variables.FormRefresh)
                     {
+                        case "VendorLedgerStatement":
+                            Variables.FormRefresh = "";
+                            vendorStatementToolStripMenuItem_Click(sender, e);
+                            break;
                         case "ListConsignmentDetails":
                             Variables.FormRefresh = "";
                             listConsignmentDetailsToolStripMenuItem_Click(sender, e);
@@ -1028,11 +1034,12 @@ namespace firebirdtest
             }
         }
 
-        ItemHistoryView _ItemHistoryReport = new ItemHistoryView();
+        ItemHistoryView _ItemHistoryReport = null;
         private void itemHistoryReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
+                _ItemHistoryReport = new ItemHistoryView();
                 if (_ItemHistoryReport.IsDisposed == true)
                     _ItemHistoryReport = new ItemHistoryView();
                 Home.Home_pnl.Visible = false;
@@ -1077,8 +1084,8 @@ namespace firebirdtest
             {
                 if (_LedgerReports != null && !_LedgerReports.IsDisposed)
                     _LedgerReports.Dispose();
-                if (_LedgerStatement != null && !_LedgerStatement.IsDisposed)
-                    _LedgerStatement.Dispose();
+                if (_CustomerLedgerStatement != null && !_CustomerLedgerStatement.IsDisposed)
+                    _CustomerLedgerStatement.Dispose();
                 if (_ListConsignmentDetails != null && !_ListConsignmentDetails.IsDisposed)
                     _ListConsignmentDetails.Dispose();
                 //if (_ListConsignments != null && !_ListConsignments.IsDisposed)
@@ -1129,6 +1136,34 @@ namespace firebirdtest
                 _ConsignmentPrint.WindowState = FormWindowState.Maximized;
                 _ConsignmentPrint.Show();
                 _ConsignmentPrint.Focus();
+            }
+            catch (Exception ex)
+            {
+                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            }
+        }
+
+        VendorLedgerStatement _VendorLedgerStatement = new VendorLedgerStatement();
+        private void vendorStatementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _AddConsignment.Dispose();
+                _AddConsignment.Close();
+            }
+            catch (Exception ex)
+            { }
+
+            try
+            {
+                if (_VendorLedgerStatement.IsDisposed)
+                    _VendorLedgerStatement = new VendorLedgerStatement();
+                Home.Home_pnl.Visible = false;
+
+                _VendorLedgerStatement.MdiParent = this;
+                _VendorLedgerStatement.WindowState = FormWindowState.Maximized;
+                _VendorLedgerStatement.Show();
+                _VendorLedgerStatement.Focus();
             }
             catch (Exception ex)
             {

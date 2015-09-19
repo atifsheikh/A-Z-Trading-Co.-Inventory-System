@@ -205,11 +205,11 @@
     <Compile Include="UI\LedgerReports.Designer.cs">
       <DependentUpon>LedgerReports.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\LedgerStatement.cs">
+    <Compile Include="UI\CustomerLedgerStatement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\LedgerStatement.Designer.cs">
-      <DependentUpon>LedgerStatement.cs</DependentUpon>
+    <Compile Include="UI\CustomerLedgerStatement.Designer.cs">
+      <DependentUpon>CustomerLedgerStatement.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ListConsignmentDetails.cs">
       <SubType>Form</SubType>
@@ -241,6 +241,12 @@
     </Compile>
     <Compile Include="UI\DialogueBoxes\VoucherPaymentModification.Designer.cs">
       <DependentUpon>VoucherPaymentModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VendorLedgerStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VendorLedgerStatement.designer.cs">
+      <DependentUpon>VendorLedgerStatement.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Reports\CustomerDebitSummeryReport.rdlc">
       <SubType>Designer</SubType>
@@ -300,8 +306,8 @@
     <EmbeddedResource Include="UI\LedgerReports.resx">
       <DependentUpon>LedgerReports.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\LedgerStatement.resx">
-      <DependentUpon>LedgerStatement.cs</DependentUpon>
+    <EmbeddedResource Include="UI\CustomerLedgerStatement.resx">
+      <DependentUpon>CustomerLedgerStatement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ListConsignmentDetails.resx">
       <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
@@ -326,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ItemHistory.rdlc">
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VendorLedgerStatement.resx">
+      <DependentUpon>VendorLedgerStatement.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataSets\CustomerAccountDataSet.xsc">
       <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>

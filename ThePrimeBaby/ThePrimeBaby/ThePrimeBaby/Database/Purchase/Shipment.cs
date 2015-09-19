@@ -5,7 +5,7 @@ namespace ThePrimeBaby.Database
 {
     public class Shipment : Concept
     {
-        public DateTime SHIP_DATE;
+        public DateTime DATED;
         public string DESCRIPTION;
         public Vendor Vendor;
         public string REMARKS;
@@ -26,21 +26,21 @@ namespace ThePrimeBaby.Database
         {
             get 
             {
-                QueryResultRows<ThePrimeBaby.Database.Shipment> shipments = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.Vendor = ? AND s.SHIP_DATE <= ? AND s.ID > ? AND s.ID <= ? ", this.Vendor, this.SHIP_DATE, 0, this.ID);
-                
+                QueryResultRows<ThePrimeBaby.Database.Shipment> shipments = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.Vendor = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.Vendor, this.DATED, 0, this.ID);
                 decimal vendorBalance = 0.0m;
-                /*QueryResultRows<ThePrimeBaby.Database.Shipment> vouchers = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.Vendor = ? AND s.SHIP_DATE < ? AND s.ID < ? s.ID <= ? ", this.Vendor, this.SHIP_DATE, 0,this.ID);
-                decimal vendorVoucher = 0.0m;
-                foreach (Shipment voucher in vouchers)
-                {
-                    vendorVoucher += voucher.AMOUNT;
-                }*/
-
                 foreach (Shipment shipment in shipments)
                 {
                     vendorBalance += shipment.AMOUNT;
                 }
-                return (vendorBalance + this.Vendor.OPENING_BALANCE);// - vendorVoucher);
+
+                QueryResultRows<ThePrimeBaby.Database.VendorVoucher> vouchers = Db.SQL<ThePrimeBaby.Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE s.Vendor = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.Vendor, this.DATED, this.ID, 0);
+                decimal vendorVoucher = 0.0m;
+                foreach (VendorVoucher voucher in vouchers)
+                {
+                    vendorVoucher += voucher.AMOUNT;
+                }
+
+                return ((vendorBalance + this.Vendor.OPENING_BALANCE) - vendorVoucher);
             }
         }
         public int TOTAL_CTN 
@@ -64,7 +64,7 @@ namespace ThePrimeBaby.Database
                 Db.Transact(() => 
                 {
                     Shipment shipment = new Shipment();
-                    shipment.SHIP_DATE = ShipmentDate;
+                    shipment.DATED = ShipmentDate;
                     shipment.ID = ShipmentNumber;
                     shipment.Vendor = Vendor;
                     shipment.REMARKS = Remarks;
@@ -83,7 +83,7 @@ namespace ThePrimeBaby.Database
             {
                 Db.Transact(() => 
                 {
-                    shipment.SHIP_DATE = ShipmentDate;
+                    shipment.DATED = ShipmentDate;
                     shipment.DESCRIPTION = ShipmentDesc.Trim();
                 });
                 return true;
@@ -131,7 +131,7 @@ namespace ThePrimeBaby.Database
                         shipment.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1;
                     }
                     shipment.Vendor = Vendor;
-                    shipment.SHIP_DATE = ShipmentDate;
+                    shipment.DATED = ShipmentDate;
                     shipment.REMARKS = Remarks.Trim();
                 });
                 return true;

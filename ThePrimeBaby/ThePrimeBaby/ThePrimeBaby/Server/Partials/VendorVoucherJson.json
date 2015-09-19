@@ -1,11 +1,13 @@
 {
 	VendorVouchers : [{
 		"ID" : 0,
-		"NAME" : "",
-		"Vendor":"",
-        "VOUCHER_DATE":"",
-        "AMOUNT":0.0,
-        "REMARKS":"",
-        "CUSTOMER_BALANCE":0.0
+		"Vendor":{
+			"ID":0,
+			"NAME":""
+		},
+        "AMOUNT" : 0.0,
+        "VENDOR_BALANCE" : 0.0,
+        "DATED":"",
+        "REMARKS" : ""
 	}]
 }
