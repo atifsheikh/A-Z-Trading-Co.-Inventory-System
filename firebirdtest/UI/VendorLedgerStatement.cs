@@ -87,14 +87,7 @@ namespace firebirdtest.UI
                     LedgerGridView.Columns["VENDOR_BALANCE"].HeaderText = "Balance";
 
                     LedgerGridView.Columns["VendorID"].Visible = false;
-                    if (LedgerGridView.Columns["TOTAL_CTN"] != null)
-                    {
-                        LedgerGridView.Columns["TOTAL_CTN"].Visible = false;
-                    }
-                    if (LedgerGridView.Columns["REMARKS"] != null)
-                    {
-                        LedgerGridView.Columns["REMARKS"].Visible = false;
-                    }
+
                     LedgerGridView.Update();
                 }
 

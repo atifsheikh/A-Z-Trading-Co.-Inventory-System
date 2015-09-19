@@ -23,7 +23,7 @@ namespace ThePrimeBaby
                 {
                     //Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Item");
                     //Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Base.Category");
-                    //Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Vendor");
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Vendor");
                     Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.VendorVoucher");
                     Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.Shipment");
                     Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.ShipmentDetail");

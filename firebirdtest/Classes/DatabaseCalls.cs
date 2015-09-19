@@ -564,7 +564,12 @@ namespace firebirdtest
 
         internal static void DeleteEverything()
         {
-            GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DeveloperTools");
+            try
+            {
+                GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DeveloperTools");
+            }
+            catch (Exception ex)
+            { }
             GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DelAll");
         }
 
