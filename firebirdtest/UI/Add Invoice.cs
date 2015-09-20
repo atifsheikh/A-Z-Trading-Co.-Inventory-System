@@ -95,7 +95,7 @@ namespace firebirdtest.UI
                         {
                             if (ItemsDataGridView.Rows[loop].Visible == true)// && ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString() == ItemCode_txt.Text)
                             {
-                                UnitPrice_txt.Text = ItemsDataGridView.Rows[loop].Cells["COSTPRICE"].Value.ToString().Trim();
+                                UnitPrice_txt.Text = ItemsDataGridView.Rows[loop].Cells["PRICE"].Value.ToString().Trim();
                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Trim();
                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop].Cells["Model"].Value.ToString().Trim();
                                 Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
@@ -637,7 +637,7 @@ namespace firebirdtest.UI
                     {
                         
 
-                        CustomerID_txt.Text = Result1.Tables[0].Rows[0].ItemArray[3].ToString();
+                        CustomerID_txt.Text = Result1.Tables[0].Rows[0].ItemArray[2].ToString();
                         CustomerName_txt.Text = DatabaseCalls.GetCustomerName(Convert.ToInt32(CustomerID_txt.Text));
                         
 
@@ -1499,7 +1499,7 @@ namespace firebirdtest.UI
                     {
 //                        if (CustomerDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(InvoiceDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == true)
                         {
-                            //InvoiceDataSet.Tables[0].Rows[loop]["VENDOR_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(InvoiceDataSet.Tables[0].Rows[loop]["CustomerID"].ToString(), InvoiceDataSet.Tables[0].Rows[loop][0].ToString());
+                            //InvoiceDataSet.Tables[0].Rows[loop]["CUSTOMER_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(InvoiceDataSet.Tables[0].Rows[loop]["CustomerID"].ToString(), InvoiceDataSet.Tables[0].Rows[loop][0].ToString());
 //                            InvoiceDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString();
                             break;
                         }
@@ -1574,15 +1574,12 @@ namespace firebirdtest.UI
                 if (InvoiceDataGridView.Columns.Count > 0)
                 {
                     InvoiceDataGridView.Columns["ID"].HeaderText = "S.NO";
-                    InvoiceDataGridView.Columns["VENDORNAME"].HeaderText = "Customer";
+                    InvoiceDataGridView.Columns["CUSTOMERNAME"].HeaderText = "Customer";
                     InvoiceDataGridView.Columns["DATED"].HeaderText = "Date";
-                    InvoiceDataGridView.Columns["TOTAL_CTN"].HeaderText = "Ctn";
-                    InvoiceDataGridView.Columns["VENDOR_BALANCE"].HeaderText = "Balance";
+                    //InvoiceDataGridView.Columns["TOTAL_CTN"].HeaderText = "Ctn";
+                    InvoiceDataGridView.Columns["CUSTOMER_BALANCE"].HeaderText = "Balance";
 
                     InvoiceDataGridView.Columns["CustomerID"].Visible = false;
-                    InvoiceDataGridView.Columns["DESCRIPTION"].Visible = false;
-                    InvoiceDataGridView.Columns["CustomerID"].Visible = false;
-                    InvoiceDataGridView.Columns["DESCRIPTION"].Visible = false;
                     InvoiceDataGridView.Columns["NAME"].Visible = false;
                     InvoiceDataGridView.Update();
                 }
@@ -1658,7 +1655,7 @@ namespace firebirdtest.UI
 
         }
 
-        string SHIPMENT_ITEM_ID = "";
+        string BILL_ITEM_ID = "";
         private void ItemsDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1677,7 +1674,7 @@ namespace firebirdtest.UI
                         ItemName_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["Model"].Value.ToString().Trim();
                         Qty_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["QTY_BOX"].Value.ToString();
                         //RemainingPcs_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["CTN_LEFT"].Value.ToString();
-                        //SHIPMENT_ITEM_ID = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["ID"].Value.ToString().Trim();
+                        //BILL_ITEM_ID = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["ID"].Value.ToString().Trim();
                     }
                     //else
                     //{

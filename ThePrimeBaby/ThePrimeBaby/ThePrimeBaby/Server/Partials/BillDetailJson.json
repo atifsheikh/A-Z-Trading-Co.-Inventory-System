@@ -2,13 +2,21 @@
 	BillDetails : [{
 		"ID" : 0,
 		"NAME" : "",
-		"QTY" : 0,
-        "PCS_CTN" : 0,
-        "T_QUANTITY" : 0.0,
-        "SUBTOTAL" : 0.0,
-        "UNITPRICE" : 0.0,
-        "Customer" : "",
-		"Item":"",
-		"Bill":""
+		"Bill":{
+			"ID" : 0,
+			"Customer":{
+				"ID" : 0
+			}
+		},
+        "Item":{
+			"CODE" : "",
+			"MODEL" : ""
+		},
+        "T_QUANTITY":0,
+        "QTY_PER_BOX":0,
+        "MODEL":"",
+        "CTN":0,
+        "PRICE":0.0,
+        "SUBTOTAL":0.0
 	}]
 }
