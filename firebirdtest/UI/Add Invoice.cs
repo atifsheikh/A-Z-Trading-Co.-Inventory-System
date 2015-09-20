@@ -98,7 +98,7 @@ namespace firebirdtest.UI
                                 UnitPrice_txt.Text = ItemsDataGridView.Rows[loop].Cells["PRICE"].Value.ToString().Trim();
                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Trim();
                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop].Cells["Model"].Value.ToString().Trim();
-                                Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
+                                Qty_Box_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
                                 //RemainingPcs_txt.Text = ItemsDataGridView.Rows[.CurrentRow.Index].Cells["CTN_LEFT"].Value.ToString();
                                 //Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["INNER_BOX"].Value.ToString();
                                 //Qty_txt.Text = 
@@ -169,19 +169,19 @@ namespace firebirdtest.UI
         {
             try
             {
-                string[] row = { (InvoiceDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString() };
+                string[] row = { (InvoiceDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_Box_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString() };
                 InvoiceDetailDataGridView.Rows.Add(row);
                 InvoiceDetailDataGridView.Update();
                 TOTAL_CTN_txt.Text = (Convert.ToInt32(TOTAL_CTN_txt.Text) + Convert.ToInt32(Ctn_txt.Text)).ToString();
                 int temp = Convert.ToInt32(textBox7.Text);
                 textBox7.Text = (++temp).ToString();
-                RandomAlgos.AddDataInSalesFile((InvoiceDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString(), CustomerName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text);
+                RandomAlgos.AddDataInSalesFile((InvoiceDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_Box_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString(), CustomerName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text);
                 Total_txt.Text = (Convert.ToDecimal(Total_txt.Text) + Convert.ToDecimal(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString();
                 //BalanceNew_txt.Text = (Convert.ToDecimal(CustomerBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
                 ItemCode_txt.Text = "";
                 ItemName_txt.Text = "None";
                 Ctn_txt.Text = "0";
-                Qty_txt.Text = "0";
+                Qty_Box_txt.Text = "0";
                 Quant_txt.Text = "0";
                 UnitPrice_txt.Text = "0";
                 Total_txt_Leave(sender, e);
@@ -481,21 +481,7 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (Ctn_txt.Text == "0" && ItemCode_txt.Text == InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["ITEM_CODE"].Value.ToString())
-                    {
-                        InvoiceDetailDataGridView.Rows.RemoveAt(InvoiceDetailDataGridView.CurrentRow.Index);
-                        ItemCode_txt.Text = "";
-                        ItemName_txt.Text = "None";
-                        Ctn_txt.Text = "0";
-                        Qty_txt.Text = "0";
-                        Quant_txt.Text = "0";
-                        UnitPrice_txt.Text = "0";
-                        //InvoiceDate_txt.Focus();
-                        Total_txt_Leave(sender, e);
-                        ItemCode_txt.Focus();
-                    }
-                    else if (Ctn_txt.Text != "" && Ctn_txt.Text != "0")
-                        UnitPrice_txt.Focus();
+                    Qty_txt.Focus();
                 }
             }
             catch (Exception ex)
@@ -873,7 +859,7 @@ namespace firebirdtest.UI
                                         ItemCode_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Trim();
                                         UnitPrice_txt.Text = ItemsDataGridView.Rows[loop2].Cells["COSTPRICE"].Value.ToString().Trim();
                                         ItemName_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Model"].Value.ToString().Trim();
-                                        Qty_txt.Text = ItemsDataGridView.Rows[loop2].Cells["QTY_BOX"].Value.ToString();
+                                        Qty_Box_txt.Text = ItemsDataGridView.Rows[loop2].Cells["QTY_BOX"].Value.ToString();
                                         //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CTN_LEFT"].Value.ToString();
                                         Ctn_txt.Text = ItemQuantity;
 
@@ -907,7 +893,7 @@ namespace firebirdtest.UI
                                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Trim();
                                                 UnitPrice_txt.Text = ItemsDataGridView.Rows[loop2].Cells["COSTPRICE"].Value.ToString().Trim();
                                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Model"].Value.ToString().Trim();
-                                                Qty_txt.Text = ItemsDataGridView.Rows[loop2].Cells["QTY_BOX"].Value.ToString();
+                                                Qty_Box_txt.Text = ItemsDataGridView.Rows[loop2].Cells["QTY_BOX"].Value.ToString();
                                                 //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CTN_LEFT"].Value.ToString();
                                                 Ctn_txt.Text = ItemQuantity;
 
@@ -924,7 +910,7 @@ namespace firebirdtest.UI
                                     ItemCode_txt.Focus();
                                     ItemCode_txt_Leave(sender, e);
 
-                                    Qty_txt.Text = ItemQuantity;
+                                    Qty_Box_txt.Text = ItemQuantity;
                                     //                                KeyEventArgs KeyEvent = new KeyEventArgs(Keys.Enter);
 //                                    EnterDataInGrid(sender, null);
                                 }
@@ -1179,7 +1165,6 @@ namespace firebirdtest.UI
 
         private void CustomerName_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
             try
             {
                 if (e.KeyChar == 27)
@@ -1218,7 +1203,7 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    SendKeys.Send("{TAB}");
+                    ItemCode_txt.Focus();
                 }
             }
             catch (Exception ex)
@@ -1339,7 +1324,7 @@ namespace firebirdtest.UI
                     Ctn_txt.Text = InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["Qty"].Value.ToString();
 
                     //QTY
-                    Qty_txt.Text = InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["Ctn"].Value.ToString();
+                    Qty_Box_txt.Text = InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["Ctn"].Value.ToString();
 
                     //Quant
                     Quant_txt.Text = InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["Quant"].Value.ToString();
@@ -1453,7 +1438,7 @@ namespace firebirdtest.UI
             try
             {
 //                ItemDetailsDataSet = DatabaseCalls.GetItems();
-                ItemDetailsDataSet = DatabaseCalls.GetItemsForBill();
+                //ItemDetailsDataSet = DatabaseCalls.GetItemsForBill();
                 if (ItemDetailsDataSet != null && ItemDetailsDataSet.Tables.Count > 0)
                 {
                     _ItemDetailsCollectionObject = new object[ItemDetailsDataSet.Tables[0].Rows.Count];
@@ -1636,7 +1621,7 @@ namespace firebirdtest.UI
                 if (ItemsDataGridView.Visible == true)
                 {
                     Thread.Sleep(100);
-                    Qty_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["QTY_BOX"].Value.ToString();
+                    Qty_Box_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["QTY_BOX"].Value.ToString();
                     UnitPrice_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["COSTPRICE"].Value.ToString().Trim();
                     ItemName_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["Model"].Value.ToString().Trim();
                 }
@@ -1672,7 +1657,7 @@ namespace firebirdtest.UI
 
                         UnitPrice_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["COSTPRICE"].Value.ToString().Trim();
                         ItemName_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["Model"].Value.ToString().Trim();
-                        Qty_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["QTY_BOX"].Value.ToString();
+                        Qty_Box_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["QTY_BOX"].Value.ToString();
                         //RemainingPcs_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["CTN_LEFT"].Value.ToString();
                         //BILL_ITEM_ID = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["ID"].Value.ToString().Trim();
                     }
@@ -1701,8 +1686,8 @@ namespace firebirdtest.UI
         {
             try
             {
-                if (Qty_txt.Text != "" && Ctn_txt.Text != "")
-                    Quant_txt.Text = (Convert.ToInt32(Qty_txt.Text) * Convert.ToInt32(Ctn_txt.Text)).ToString();
+                if (Qty_Box_txt.Text != "" && Ctn_txt.Text != "")
+                    Quant_txt.Text = (Convert.ToInt32(Qty_Box_txt.Text) * Convert.ToInt32(Ctn_txt.Text)).ToString();
                 else if (Ctn_txt.Text != ""&& Ctn_txt.Text != "0")
                     Quant_txt.Text = (0 * Convert.ToInt32(Ctn_txt.Text)).ToString();
             }
@@ -1824,5 +1809,24 @@ namespace firebirdtest.UI
         }
 
         public bool ModifyingInvoice { get; set; }
+
+        private void Qty_txt_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (Ctn_txt.Text == "0" && Qty_txt.Text == "0" && ItemCode_txt.Text == InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["ITEM_CODE"].Value.ToString())
+            {
+                InvoiceDetailDataGridView.Rows.RemoveAt(InvoiceDetailDataGridView.CurrentRow.Index);
+                ItemCode_txt.Text = "";
+                ItemName_txt.Text = "None";
+                Ctn_txt.Text = "0";
+                Qty_Box_txt.Text = "0";
+                Quant_txt.Text = "0";
+                UnitPrice_txt.Text = "0";
+                //InvoiceDate_txt.Focus();
+                Total_txt_Leave(sender, e);
+                ItemCode_txt.Focus();
+            }
+            else if (Ctn_txt.Text != "" && Ctn_txt.Text != "0")
+                UnitPrice_txt.Focus();
+        }
     }
 }

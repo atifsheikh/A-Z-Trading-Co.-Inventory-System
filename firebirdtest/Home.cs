@@ -1175,6 +1175,24 @@ namespace firebirdtest
                 notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
             }
         }
+
+        private void addCustomerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_AddCustomer.IsDisposed)
+                    _AddCustomer = new AddCustomer();
+                Home.Home_pnl.Visible = false;
+                _AddCustomer.MdiParent = this;
+                _AddCustomer.WindowState = FormWindowState.Maximized;
+                _AddCustomer.Show();
+                _AddCustomer.Focus();
+            }
+            catch (Exception ex)
+            {
+                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            }
+        }
     }
 }
 //

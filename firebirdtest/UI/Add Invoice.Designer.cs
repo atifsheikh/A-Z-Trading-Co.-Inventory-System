@@ -78,7 +78,7 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Quant_txt = new System.Windows.Forms.TextBox();
-            this.Qty_txt = new System.Windows.Forms.TextBox();
+            this.Qty_Box_txt = new System.Windows.Forms.TextBox();
             this.Ctn_txt = new System.Windows.Forms.TextBox();
             this.CustomerID_txt = new System.Windows.Forms.TextBox();
             this.CustomerBalance_txt = new System.Windows.Forms.TextBox();
@@ -132,6 +132,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SpeedTest_BGWorker = new System.ComponentModel.BackgroundWorker();
+            this.label34 = new System.Windows.Forms.Label();
+            this.Qty_txt = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.AddItemPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).BeginInit();
@@ -160,7 +162,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel2.Controls.Add(this.AddItemPnl);
+            this.panel2.Controls.Add(this.label34);
+            this.panel2.Controls.Add(this.Qty_txt);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.label25);
             this.panel2.Controls.Add(this.label24);
@@ -174,7 +177,7 @@
             this.panel2.Controls.Add(this.textBox7);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.Quant_txt);
-            this.panel2.Controls.Add(this.Qty_txt);
+            this.panel2.Controls.Add(this.Qty_Box_txt);
             this.panel2.Controls.Add(this.Ctn_txt);
             this.panel2.Controls.Add(this.CustomerID_txt);
             this.panel2.Controls.Add(this.CustomerBalance_txt);
@@ -205,6 +208,7 @@
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.CustomerAddress_txt);
             this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.AddItemPnl);
             this.panel2.Location = new System.Drawing.Point(496, 37);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
@@ -483,6 +487,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(47, 33);
             this.button7.TabIndex = 2;
+            this.button7.TabStop = false;
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -515,19 +520,19 @@
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label23.Location = new System.Drawing.Point(635, 180);
+            this.label23.Location = new System.Drawing.Point(549, 180);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(61, 17);
+            this.label23.Size = new System.Drawing.Size(86, 17);
             this.label23.TabIndex = 79;
-            this.label23.Text = "Quantity";
+            this.label23.Text = "Quantity/Ctn";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label22.Location = new System.Drawing.Point(505, 180);
+            this.label22.Location = new System.Drawing.Point(486, 180);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(29, 17);
@@ -660,28 +665,29 @@
             this.Quant_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Quant_txt.Name = "Quant_txt";
             this.Quant_txt.Size = new System.Drawing.Size(133, 22);
-            this.Quant_txt.TabIndex = 13;
+            this.Quant_txt.TabIndex = 5;
             this.Quant_txt.TabStop = false;
             this.Quant_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Quant_txt_KeyPress);
             // 
-            // Qty_txt
+            // Qty_Box_txt
             // 
-            this.Qty_txt.Location = new System.Drawing.Point(596, 196);
-            this.Qty_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.Qty_txt.Name = "Qty_txt";
-            this.Qty_txt.Size = new System.Drawing.Size(133, 22);
-            this.Qty_txt.TabIndex = 12;
-            this.Qty_txt.TextChanged += new System.EventHandler(this.Qty_txt_TextChanged);
-            this.Qty_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Qty_txt_KeyDown);
-            this.Qty_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Qty_txt_KeyPress);
+            this.Qty_Box_txt.Location = new System.Drawing.Point(545, 196);
+            this.Qty_Box_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.Qty_Box_txt.Name = "Qty_Box_txt";
+            this.Qty_Box_txt.Size = new System.Drawing.Size(89, 22);
+            this.Qty_Box_txt.TabIndex = 3;
+            this.Qty_Box_txt.TabStop = false;
+            this.Qty_Box_txt.TextChanged += new System.EventHandler(this.Qty_txt_TextChanged);
+            this.Qty_Box_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Qty_txt_KeyDown);
+            this.Qty_Box_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Qty_txt_KeyPress);
             // 
             // Ctn_txt
             // 
             this.Ctn_txt.Location = new System.Drawing.Point(461, 196);
             this.Ctn_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Ctn_txt.Name = "Ctn_txt";
-            this.Ctn_txt.Size = new System.Drawing.Size(133, 22);
-            this.Ctn_txt.TabIndex = 11;
+            this.Ctn_txt.Size = new System.Drawing.Size(82, 22);
+            this.Ctn_txt.TabIndex = 2;
             this.Ctn_txt.TabStop = false;
             this.Ctn_txt.TextChanged += new System.EventHandler(this.Ctn_txt_TextChanged);
             this.Ctn_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemName_txt_KeyDown);
@@ -726,7 +732,7 @@
             this.label16.Location = new System.Drawing.Point(573, 32);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(211, 25);
+            this.label16.Size = new System.Drawing.Size(153, 25);
             this.label16.TabIndex = 66;
             this.label16.Text = "Invoice Details";
             // 
@@ -738,7 +744,7 @@
             this.label7.Location = new System.Drawing.Point(57, 32);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 25);
+            this.label7.Size = new System.Drawing.Size(105, 25);
             this.label7.TabIndex = 65;
             this.label7.Text = "Customer";
             // 
@@ -750,7 +756,7 @@
             this.ItemCode_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemCode_txt.Name = "ItemCode_txt";
             this.ItemCode_txt.Size = new System.Drawing.Size(129, 24);
-            this.ItemCode_txt.TabIndex = 1;
+            this.ItemCode_txt.TabIndex = 0;
             this.ItemCode_txt.TextChanged += new System.EventHandler(this.ItemCode_txt_TextChanged);
             this.ItemCode_txt.Enter += new System.EventHandler(this.ItemCode_txt_Enter);
             this.ItemCode_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox3_KeyDown_1);
@@ -763,7 +769,7 @@
             this.UnitPrice_txt.Margin = new System.Windows.Forms.Padding(4);
             this.UnitPrice_txt.Name = "UnitPrice_txt";
             this.UnitPrice_txt.Size = new System.Drawing.Size(133, 22);
-            this.UnitPrice_txt.TabIndex = 14;
+            this.UnitPrice_txt.TabIndex = 6;
             this.UnitPrice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UnitPrice_txt_KeyDown);
             this.UnitPrice_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UnitPrice_txt_KeyPress);
             // 
@@ -773,7 +779,7 @@
             this.ItemName_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemName_txt.Name = "ItemName_txt";
             this.ItemName_txt.Size = new System.Drawing.Size(133, 22);
-            this.ItemName_txt.TabIndex = 10;
+            this.ItemName_txt.TabIndex = 1;
             this.ItemName_txt.TabStop = false;
             this.ItemName_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemName_txt_KeyDown);
             // 
@@ -857,7 +863,7 @@
             this.Sr.Frozen = true;
             this.Sr.HeaderText = "Sr #";
             this.Sr.Name = "Sr";
-            this.Sr.Width = 59;
+            this.Sr.Width = 63;
             // 
             // ITEM_CODE
             // 
@@ -865,45 +871,46 @@
             this.ITEM_CODE.HeaderText = "ITEM_CODE";
             this.ITEM_CODE.Name = "ITEM_CODE";
             this.ITEM_CODE.ReadOnly = true;
-            this.ITEM_CODE.Width = 112;
+            this.ITEM_CODE.Width = 116;
             // 
             // ItemName
             // 
             this.ItemName.HeaderText = "Item Name";
             this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 104;
             // 
             // Ctn
             // 
             this.Ctn.HeaderText = "Pcs/Ctn";
             this.Ctn.Name = "Ctn";
-            this.Ctn.Width = 81;
+            this.Ctn.Width = 85;
             // 
             // Qty
             // 
             this.Qty.HeaderText = "Ctn";
             this.Qty.Name = "Qty";
             this.Qty.ReadOnly = true;
-            this.Qty.Width = 54;
+            this.Qty.Width = 58;
             // 
             // Quant
             // 
             this.Quant.HeaderText = "Quant";
             this.Quant.Name = "Quant";
-            this.Quant.Width = 72;
+            this.Quant.Width = 76;
             // 
             // Price
             // 
             this.Price.HeaderText = "UnitPrice";
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
-            this.Price.Width = 90;
+            this.Price.Width = 94;
             // 
             // SubTotal
             // 
             this.SubTotal.HeaderText = "SubTotal";
             this.SubTotal.Name = "SubTotal";
             this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 90;
+            this.SubTotal.Width = 94;
             // 
             // label14
             // 
@@ -947,7 +954,7 @@
             this.label12.Location = new System.Drawing.Point(596, 64);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(102, 17);
+            this.label12.Size = new System.Drawing.Size(64, 17);
             this.label12.TabIndex = 54;
             this.label12.Text = "Invoice #";
             // 
@@ -1035,6 +1042,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
@@ -1061,7 +1069,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(60, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(64, 24);
             this.toolStripButton2.Text = "Save";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -1070,7 +1078,7 @@
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(167, 24);
+            this.toolStripButton6.Size = new System.Drawing.Size(131, 24);
             this.toolStripButton6.Text = "Modify Invoice";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
@@ -1080,7 +1088,7 @@
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(78, 24);
+            this.toolStripButton5.Size = new System.Drawing.Size(82, 24);
             this.toolStripButton5.Text = "Update";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
@@ -1089,7 +1097,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(171, 24);
+            this.toolStripButton3.Size = new System.Drawing.Size(135, 24);
             this.toolStripButton3.Text = "Import Invoices";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -1099,7 +1107,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(217, 24);
+            this.toolStripButton4.Size = new System.Drawing.Size(181, 24);
             this.toolStripButton4.Text = "Save Imported Invoice";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -1111,7 +1119,7 @@
             this.label3.Location = new System.Drawing.Point(4, 71);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 17);
+            this.label3.Size = new System.Drawing.Size(68, 17);
             this.label3.TabIndex = 45;
             this.label3.Text = "Customer";
             // 
@@ -1152,7 +1160,7 @@
             this.label2.Location = new System.Drawing.Point(2, 193);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(197, 25);
+            this.label2.Size = new System.Drawing.Size(139, 25);
             this.label2.TabIndex = 22;
             this.label2.Text = "Invoice Items";
             // 
@@ -1207,7 +1215,7 @@
             this.label6.Location = new System.Drawing.Point(16, 44);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 17);
+            this.label6.Size = new System.Drawing.Size(68, 17);
             this.label6.TabIndex = 38;
             this.label6.Text = "Customer";
             // 
@@ -1295,7 +1303,7 @@
             this.label1.Location = new System.Drawing.Point(16, 76);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 17);
+            this.label1.Size = new System.Drawing.Size(64, 17);
             this.label1.TabIndex = 20;
             this.label1.Text = "Invoice #";
             // 
@@ -1315,6 +1323,27 @@
             // 
             this.SpeedTest_BGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SpeedTest_BGWorker_DoWork);
             this.SpeedTest_BGWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SpeedTest_BGWorker_RunWorkerCompleted);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.BackColor = System.Drawing.Color.Transparent;
+            this.label34.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label34.Location = new System.Drawing.Point(653, 180);
+            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(61, 17);
+            this.label34.TabIndex = 83;
+            this.label34.Text = "Quantity";
+            // 
+            // Qty_txt
+            // 
+            this.Qty_txt.Location = new System.Drawing.Point(636, 196);
+            this.Qty_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.Qty_txt.Name = "Qty_txt";
+            this.Qty_txt.Size = new System.Drawing.Size(93, 22);
+            this.Qty_txt.TabIndex = 4;
+            this.Qty_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Qty_txt_KeyDown_1);
             // 
             // AddInvoice
             // 
@@ -1393,7 +1422,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox CustomerID_txt;
         private System.Windows.Forms.TextBox Quant_txt;
-        private System.Windows.Forms.TextBox Qty_txt;
+        private System.Windows.Forms.TextBox Qty_Box_txt;
         private System.Windows.Forms.TextBox Ctn_txt;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox TOTAL_CTN_txt;
@@ -1444,5 +1473,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox Qty_txt;
     }
 }
