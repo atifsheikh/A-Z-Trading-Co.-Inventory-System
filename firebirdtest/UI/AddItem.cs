@@ -284,6 +284,7 @@ namespace firebirdtest.UI
             ItemQuantity_txt.Text = "0";
             ItemPrice_txt.Text = "0";
             TQUANTITY_txt.Text = "0";
+            ItemCostPrice_txt.Text = "0";
             ItemPictureBox.ImageLocation = "";
             textBox2.Text = "";
             ItemCode_txt.Focus();

@@ -704,12 +704,12 @@ namespace firebirdtest.UI
                 //Vendor Detail
                 foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
                 {
-                    if (GridViewColumn.ItemArray[1].ToString() == VendorNameSearch_txt.Text)
+                    //if (GridViewColumn.ItemArray[1].ToString() == VendorNameSearch_txt.Text)
                     {
                         for (int loop = 0; loop < ConsignmentDataGridView.Rows.Count; loop++)
                         {
                             ConsignmentDataGridView.CurrentCell = null;
-                            if (ConsignmentDataGridView.Rows[loop].Cells["Vendor_ID"].Value.ToString() != (GridViewColumn.ItemArray[0].ToString()))
+                            if (!StaticClass.Contain(ConsignmentDataGridView.Rows[loop].Cells["VENDORNAME"].Value.ToString(), VendorNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase)) 
                             {
                                 ConsignmentDataGridView.Rows[loop].Visible = false;
                             }
