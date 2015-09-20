@@ -224,7 +224,7 @@ namespace firebirdtest
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorByName/" + Name);
             //return JsonToDataSet(Result);
         }
-        internal static DataSet GetCustomer(String Name)
+        internal static DataSet GetCustomerByName(String Name)
         {
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerByName/" + Name);
             //return JsonToDataSet(Result);
@@ -313,9 +313,13 @@ namespace firebirdtest
         }
 
         //Bill
-        internal static string AddBill(int BillID, int CustomerID, DateTime BillDate, decimal BillTotal, decimal CustomerBalance, string Remarks)
+        internal static string AddBill(int BillID, int CustomerID, DateTime BillDate, string Remarks)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddBill/6", BillID + "/" + CustomerID + "/" + BillDate.ToString().Replace('/','-') + "/" + BillTotal+ "/" + CustomerBalance+ "/" + Remarks);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddBill/4", BillID + "/" + CustomerID + "/" + BillDate.ToString().Replace('/', '-') + "/" + Remarks);
+        }
+        internal static string AddBillDetail(string ItemName, string BillID, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
+        {
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddBillDetailByItemName/8", ItemName + "/" + BillID + "/" + T_QUANTITY + "/" + QTY_PER_BOX + "/" + MODEL + "/" + CTN + "/" + PRICE + "/" + SUBTOTAL);
         }
         internal static string DeleteBill(string BillID)
         {
@@ -393,11 +397,6 @@ namespace firebirdtest
         internal static DataSet Get_Ctn_Bill()
         {
             return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/Get_Ctn_Bill");
-            //return JsonToDataSet(Result);
-        }
-        internal static DataSet GetItems()
-        {
-            return GET("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItems");
             //return JsonToDataSet(Result);
         }
         internal static DataSet GetItems(String ItemField)
@@ -542,6 +541,11 @@ namespace firebirdtest
             return GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetNewShipmentNumber");
         }
 
+        internal static string GetNewBillNumber()
+        {
+            return GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetNewBillID");
+        }
+
         internal static string GetVendorName(int ID)
         {
             return GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorName/" + ID);
@@ -552,14 +556,14 @@ namespace firebirdtest
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/DeleteShipmentDetailsByShipmentNumber", ShipmentNumber);
         }
 
-        internal static DataSet GetItemsForShipment()
+        internal static DataSet GetItems()
         {
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetItems");
         }
 
-        internal static string AddShipment(int ShipmentNumber, int VendorID, DateTime ShipmentDate, decimal ShipmentTotal, decimal VendorBalance, string Remarks, int Total_ctn)
+        internal static string AddShipment(int ShipmentNumber, int VendorID, DateTime ShipmentDate, string Remarks)
         {
-            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddShipment/7", ShipmentNumber + "/" + VendorID + "/" + ShipmentDate.ToString().Replace('/', '-') + "/" + ShipmentTotal + "/" + VendorBalance + "/" + Remarks + "/" + Total_ctn);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddShipment/4", ShipmentNumber + "/" + VendorID + "/" + ShipmentDate.ToString().Replace('/', '-') + "/" + Remarks);
         }
 
         internal static void DeleteEverything()

@@ -242,7 +242,7 @@ namespace firebirdtest
         }
 
         AddInvoice _AddInvoice = new AddInvoice();
-        AddBill _AddBill = new AddBill();
+        //AddBill _AddBill = new AddBill();
         private void addSaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -261,16 +261,16 @@ namespace firebirdtest
                 //    _ListCustomers.Dispose();
                 if (_ListInventory!= null && !_ListInventory.IsDisposed)
                     _ListInventory.Dispose();
-                if (_AddConsignmentAdvanced!= null && !_AddConsignmentAdvanced.IsDisposed)
-                    _AddConsignmentAdvanced.Dispose();
+                //if (_AddConsignmentAdvanced!= null && !_AddConsignmentAdvanced.IsDisposed)
+                //    _AddConsignmentAdvanced.Dispose();
                 if (_AddCustomer!= null && !_AddCustomer.IsDisposed)
                     _AddCustomer.Dispose();
                 if (_AddItems!= null && !_AddItems.IsDisposed)
                     _AddItems.Dispose();
                 if (_DebitorSummary!= null && !_DebitorSummary.IsDisposed)
                     _DebitorSummary.Dispose();           
-                if (_DeleteBill!= null && !_DeleteBill.IsDisposed)
-                    _DeleteBill.Dispose();
+                //if (_DeleteBill!= null && !_DeleteBill.IsDisposed)
+                //    _DeleteBill.Dispose();
                 if (_ItemHistoryReport != null && !_ItemHistoryReport.IsDisposed)
                     _ItemHistoryReport.Dispose();
 
@@ -391,18 +391,18 @@ namespace firebirdtest
             }
         }
 
-        AddConsignmentAdvanced _AddConsignmentAdvanced = new AddConsignmentAdvanced();
+        //AddConsignmentAdvanced _AddConsignmentAdvanced = new AddConsignmentAdvanced();
         private void addConsignmentShortToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_AddConsignmentAdvanced.IsDisposed)
-                    _AddConsignmentAdvanced = new AddConsignmentAdvanced();
-                Home.Home_pnl.Visible = false;
-                _AddConsignmentAdvanced.MdiParent = this;
-                _AddConsignmentAdvanced.WindowState = FormWindowState.Maximized;
-                _AddConsignmentAdvanced.Show();
-                _AddConsignmentAdvanced.Focus();
+                //if (_AddConsignmentAdvanced.IsDisposed)
+                //    _AddConsignmentAdvanced = new AddConsignmentAdvanced();
+                //Home.Home_pnl.Visible = false;
+                //_AddConsignmentAdvanced.MdiParent = this;
+                //_AddConsignmentAdvanced.WindowState = FormWindowState.Maximized;
+                //_AddConsignmentAdvanced.Show();
+                //_AddConsignmentAdvanced.Focus();
             }
             catch (Exception ex)
             {
@@ -576,13 +576,13 @@ namespace firebirdtest
             try
             {
                 Home.Home_pnl.Visible = false;
-                if (_AddConsignmentAdvanced.IsDisposed)
-                    _AddConsignmentAdvanced = new AddConsignmentAdvanced();
+                //if (_AddConsignmentAdvanced.IsDisposed)
+                //    _AddConsignmentAdvanced = new AddConsignmentAdvanced();
 
-                _AddConsignmentAdvanced.MdiParent = this;
-                _AddConsignmentAdvanced.WindowState = FormWindowState.Maximized;
-                _AddConsignmentAdvanced.Show();
-                _AddConsignmentAdvanced.Focus();
+                //_AddConsignmentAdvanced.MdiParent = this;
+                //_AddConsignmentAdvanced.WindowState = FormWindowState.Maximized;
+                //_AddConsignmentAdvanced.Show();
+                //_AddConsignmentAdvanced.Focus();
             }
             catch (Exception ex)
             {
@@ -611,12 +611,12 @@ namespace firebirdtest
         {
             try
             {
-                Home.Home_pnl.Visible = false;
-                AddBill _AddBill = new AddBill();
-                _AddBill.MdiParent = this;
-                _AddBill.WindowState = FormWindowState.Maximized;
-                _AddBill.Show();
-                _AddBill.Focus();
+                //Home.Home_pnl.Visible = false;
+                //AddBill _AddBill = new AddBill();
+                //_AddBill.MdiParent = this;
+                //_AddBill.WindowState = FormWindowState.Maximized;
+                //_AddBill.Show();
+                //_AddBill.Focus();
             }
             catch (Exception ex)
             {
@@ -660,19 +660,19 @@ namespace firebirdtest
             }
         }
 
-        DeleteBill _DeleteBill = new DeleteBill();
+        //DeleteBill _DeleteBill = new DeleteBill();
         private void deleteBillToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_DeleteBill.IsDisposed)
-                    _DeleteBill = new DeleteBill();
-                Home.Home_pnl.Visible = false;
+                //if (_DeleteBill.IsDisposed)
+                //    _DeleteBill = new DeleteBill();
+                //Home.Home_pnl.Visible = false;
 
-                _DeleteBill.MdiParent = this;
-                _DeleteBill.WindowState = FormWindowState.Maximized;
-                _DeleteBill.Show();
-                _DeleteBill.Focus();
+                //_DeleteBill.MdiParent = this;
+                //_DeleteBill.WindowState = FormWindowState.Maximized;
+                //_DeleteBill.Show();
+                //_DeleteBill.Focus();
 
             }
             catch (Exception ex)
@@ -690,6 +690,10 @@ namespace firebirdtest
                 {
                     switch (Variables.FormRefresh)
                     {
+                        case "AddInvoice":
+                            Variables.FormRefresh = "";
+                            addSaleToolStripMenuItem_Click(sender, e);
+                            break;
                         case "VendorLedgerStatement":
                             Variables.FormRefresh = "";
                             vendorStatementToolStripMenuItem_Click(sender, e);
@@ -1095,16 +1099,16 @@ namespace firebirdtest
                 //    _ListCustomers.Dispose();
                 if (_ListInventory != null && !_ListInventory.IsDisposed)
                     _ListInventory.Dispose();
-                if (_AddConsignmentAdvanced != null && !_AddConsignmentAdvanced.IsDisposed)
-                    _AddConsignmentAdvanced.Dispose();
+                //if (_AddConsignmentAdvanced != null && !_AddConsignmentAdvanced.IsDisposed)
+                //    _AddConsignmentAdvanced.Dispose();
                 if (_AddVendor != null && !_AddVendor.IsDisposed)
                     _AddVendor.Dispose();
                 if (_AddItems != null && !_AddItems.IsDisposed)
                     _AddItems.Dispose();
                 if (_DebitorSummary != null && !_DebitorSummary.IsDisposed)
                     _DebitorSummary.Dispose();
-                if (_DeleteBill != null && !_DeleteBill.IsDisposed)
-                    _DeleteBill.Dispose();
+                //if (_DeleteBill != null && !_DeleteBill.IsDisposed)
+                //    _DeleteBill.Dispose();
                 if (_ItemHistoryReport != null && !_ItemHistoryReport.IsDisposed)
                     _ItemHistoryReport.Dispose();
 

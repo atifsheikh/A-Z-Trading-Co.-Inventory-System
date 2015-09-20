@@ -238,7 +238,7 @@ namespace firebirdtest.UI
         private void GetItemsForConsignmentPage()
         {
             ConsignmentDetailsDataSet = new DataSet();
-            ConsignmentDetailsDataSet = DatabaseCalls.GetItemsForShipment();//.GetConsignmentDetails();
+            ConsignmentDetailsDataSet = DatabaseCalls.GetItems();//.GetConsignmentDetails();
 
             try
             {
@@ -323,7 +323,7 @@ namespace firebirdtest.UI
                 {
                     ConsignmentNumber_txt.Text = DatabaseCalls.GetNewShipmentNumber();
                 }
-                String Result1 = DatabaseCalls.AddShipment(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToInt32(VendorID_txt.Text), Convert.ToDateTime(DateTime.Now), Convert.ToDecimal(Total_txt.Text), Convert.ToDecimal(BalanceNew_txt.Text), "Consignment", Convert.ToInt32(TOTAL_CTN_txt.Text));
+                String Result1 = DatabaseCalls.AddShipment(Convert.ToInt32(ConsignmentNumber_txt.Text), Convert.ToInt32(VendorID_txt.Text), Convert.ToDateTime(DateTime.Now), "Consignment");
                 if (Result1 == "")
                 {
                     //Add Consignment Details
@@ -1453,7 +1453,7 @@ namespace firebirdtest.UI
             try
             {
 //                ItemDetailsDataSet = DatabaseCalls.GetItems();
-                ItemDetailsDataSet = DatabaseCalls.GetItemsForShipment();
+                ItemDetailsDataSet = DatabaseCalls.GetItems();
                 if (ItemDetailsDataSet != null && ItemDetailsDataSet.Tables.Count > 0)
                 {
                     _ItemDetailsCollectionObject = new object[ItemDetailsDataSet.Tables[0].Rows.Count];

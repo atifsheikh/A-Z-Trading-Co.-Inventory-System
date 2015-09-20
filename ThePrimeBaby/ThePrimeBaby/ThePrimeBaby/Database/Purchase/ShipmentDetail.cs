@@ -15,7 +15,6 @@ namespace ThePrimeBaby.Database
         public decimal PRICE;
         public decimal SUBTOTAL;
 
-
         internal static bool AddShipmentDetail(Item Item, Shipment Shipment, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
         {
             try

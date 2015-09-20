@@ -80,8 +80,8 @@
             this.Quant_txt = new System.Windows.Forms.TextBox();
             this.Qty_txt = new System.Windows.Forms.TextBox();
             this.Ctn_txt = new System.Windows.Forms.TextBox();
-            this.VendorID_txt = new System.Windows.Forms.TextBox();
-            this.VendorBalance_txt = new System.Windows.Forms.TextBox();
+            this.CustomerID_txt = new System.Windows.Forms.TextBox();
+            this.CustomerBalance_txt = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -90,7 +90,7 @@
             this.ItemName_txt = new System.Windows.Forms.TextBox();
             this.BalanceNew_txt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.ConsignmentDetailDataGridView = new System.Windows.Forms.DataGridView();
+            this.InvoiceDetailDataGridView = new System.Windows.Forms.DataGridView();
             this.Sr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ITEM_CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,16 +100,16 @@
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
-            this.StatusConsignment_txt = new System.Windows.Forms.TextBox();
+            this.StatusInvoice_txt = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.ConsignmentNumber_txt = new System.Windows.Forms.TextBox();
+            this.InvoiceNumber_txt = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.Total_txt = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.VendorPhone_txt = new System.Windows.Forms.TextBox();
+            this.CustomerPhone_txt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.VendorName_txt = new System.Windows.Forms.ComboBox();
+            this.CustomerName_txt = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -118,17 +118,17 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.VendorEmail_txt = new System.Windows.Forms.TextBox();
-            this.ConsignmentDate_txt = new System.Windows.Forms.DateTimePicker();
-            this.VendorAddress_txt = new System.Windows.Forms.TextBox();
+            this.CustomerEmail_txt = new System.Windows.Forms.TextBox();
+            this.InvoiceDate_txt = new System.Windows.Forms.DateTimePicker();
+            this.CustomerAddress_txt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
-            this.VendorNameSearch_txt = new System.Windows.Forms.ComboBox();
+            this.CustomerNameSearch_txt = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.ConsignmentNumberSearch_txt = new System.Windows.Forms.ComboBox();
+            this.InvoiceNumberSearch_txt = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.ConsignmentDataGridView = new System.Windows.Forms.DataGridView();
+            this.InvoiceDataGridView = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SpeedTest_BGWorker = new System.ComponentModel.BackgroundWorker();
@@ -136,10 +136,10 @@
             this.AddItemPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDetailDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InvoiceDetailDataGridView)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InvoiceDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label10
@@ -176,8 +176,8 @@
             this.panel2.Controls.Add(this.Quant_txt);
             this.panel2.Controls.Add(this.Qty_txt);
             this.panel2.Controls.Add(this.Ctn_txt);
-            this.panel2.Controls.Add(this.VendorID_txt);
-            this.panel2.Controls.Add(this.VendorBalance_txt);
+            this.panel2.Controls.Add(this.CustomerID_txt);
+            this.panel2.Controls.Add(this.CustomerBalance_txt);
             this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label7);
@@ -186,24 +186,24 @@
             this.panel2.Controls.Add(this.ItemName_txt);
             this.panel2.Controls.Add(this.BalanceNew_txt);
             this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.ConsignmentDetailDataGridView);
+            this.panel2.Controls.Add(this.InvoiceDetailDataGridView);
             this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.StatusConsignment_txt);
+            this.panel2.Controls.Add(this.StatusInvoice_txt);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.ConsignmentNumber_txt);
+            this.panel2.Controls.Add(this.InvoiceNumber_txt);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.Total_txt);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.VendorPhone_txt);
+            this.panel2.Controls.Add(this.CustomerPhone_txt);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.VendorName_txt);
+            this.panel2.Controls.Add(this.CustomerName_txt);
             this.panel2.Controls.Add(this.toolStrip1);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.VendorEmail_txt);
-            this.panel2.Controls.Add(this.ConsignmentDate_txt);
+            this.panel2.Controls.Add(this.CustomerEmail_txt);
+            this.panel2.Controls.Add(this.InvoiceDate_txt);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.VendorAddress_txt);
+            this.panel2.Controls.Add(this.CustomerAddress_txt);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(496, 37);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
@@ -687,24 +687,24 @@
             this.Ctn_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemName_txt_KeyDown);
             this.Ctn_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Ctn_txt_KeyPress);
             // 
-            // VendorID_txt
+            // CustomerID_txt
             // 
-            this.VendorID_txt.Enabled = false;
-            this.VendorID_txt.Location = new System.Drawing.Point(180, 32);
-            this.VendorID_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.VendorID_txt.Name = "VendorID_txt";
-            this.VendorID_txt.Size = new System.Drawing.Size(60, 22);
-            this.VendorID_txt.TabIndex = 0;
+            this.CustomerID_txt.Enabled = false;
+            this.CustomerID_txt.Location = new System.Drawing.Point(180, 32);
+            this.CustomerID_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerID_txt.Name = "CustomerID_txt";
+            this.CustomerID_txt.Size = new System.Drawing.Size(60, 22);
+            this.CustomerID_txt.TabIndex = 0;
             // 
-            // VendorBalance_txt
+            // CustomerBalance_txt
             // 
-            this.VendorBalance_txt.Enabled = false;
-            this.VendorBalance_txt.Location = new System.Drawing.Point(80, 130);
-            this.VendorBalance_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.VendorBalance_txt.Name = "VendorBalance_txt";
-            this.VendorBalance_txt.Size = new System.Drawing.Size(160, 22);
-            this.VendorBalance_txt.TabIndex = 3;
-            this.VendorBalance_txt.Text = "0";
+            this.CustomerBalance_txt.Enabled = false;
+            this.CustomerBalance_txt.Location = new System.Drawing.Point(80, 130);
+            this.CustomerBalance_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerBalance_txt.Name = "CustomerBalance_txt";
+            this.CustomerBalance_txt.Size = new System.Drawing.Size(160, 22);
+            this.CustomerBalance_txt.TabIndex = 3;
+            this.CustomerBalance_txt.Text = "0";
             // 
             // label17
             // 
@@ -728,7 +728,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(211, 25);
             this.label16.TabIndex = 66;
-            this.label16.Text = "Consignment Details";
+            this.label16.Text = "Invoice Details";
             // 
             // label7
             // 
@@ -740,7 +740,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 25);
             this.label7.TabIndex = 65;
-            this.label7.Text = "Vendor";
+            this.label7.Text = "Customer";
             // 
             // ItemCode_txt
             // 
@@ -800,17 +800,17 @@
             this.label15.TabIndex = 59;
             this.label15.Text = "Balance";
             // 
-            // ConsignmentDetailDataGridView
+            // InvoiceDetailDataGridView
             // 
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
-            this.ConsignmentDetailDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.ConsignmentDetailDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.InvoiceDetailDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.InvoiceDetailDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConsignmentDetailDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.ConsignmentDetailDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.ConsignmentDetailDataGridView.BackgroundColor = System.Drawing.Color.White;
-            this.ConsignmentDetailDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.InvoiceDetailDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.InvoiceDetailDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.InvoiceDetailDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.InvoiceDetailDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -818,8 +818,8 @@
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ConsignmentDetailDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.ConsignmentDetailDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.InvoiceDetailDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.InvoiceDetailDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Sr,
             this.ITEM_CODE,
             this.ItemName,
@@ -835,10 +835,10 @@
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ConsignmentDetailDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
-            this.ConsignmentDetailDataGridView.Location = new System.Drawing.Point(8, 224);
-            this.ConsignmentDetailDataGridView.Margin = new System.Windows.Forms.Padding(4);
-            this.ConsignmentDetailDataGridView.Name = "ConsignmentDetailDataGridView";
+            this.InvoiceDetailDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            this.InvoiceDetailDataGridView.Location = new System.Drawing.Point(8, 224);
+            this.InvoiceDetailDataGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.InvoiceDetailDataGridView.Name = "InvoiceDetailDataGridView";
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -846,11 +846,11 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ConsignmentDetailDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.ConsignmentDetailDataGridView.Size = new System.Drawing.Size(1272, 506);
-            this.ConsignmentDetailDataGridView.TabIndex = 15;
-            this.ConsignmentDetailDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConsignmentDetailDataGridView_CellClick);
-            this.ConsignmentDetailDataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.ConsignmentDetailDataGridView_RowsRemoved);
+            this.InvoiceDetailDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.InvoiceDetailDataGridView.Size = new System.Drawing.Size(1272, 506);
+            this.InvoiceDetailDataGridView.TabIndex = 15;
+            this.InvoiceDetailDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceDetailDataGridView_CellClick);
+            this.InvoiceDetailDataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.InvoiceDetailDataGridView_RowsRemoved);
             // 
             // Sr
             // 
@@ -917,15 +917,15 @@
             this.label14.TabIndex = 58;
             this.label14.Text = "Status";
             // 
-            // StatusConsignment_txt
+            // StatusInvoice_txt
             // 
-            this.StatusConsignment_txt.Location = new System.Drawing.Point(867, 60);
-            this.StatusConsignment_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.StatusConsignment_txt.Name = "StatusConsignment_txt";
-            this.StatusConsignment_txt.Size = new System.Drawing.Size(104, 22);
-            this.StatusConsignment_txt.TabIndex = 7;
-            this.StatusConsignment_txt.TabStop = false;
-            this.StatusConsignment_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+            this.StatusInvoice_txt.Location = new System.Drawing.Point(867, 60);
+            this.StatusInvoice_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.StatusInvoice_txt.Name = "StatusInvoice_txt";
+            this.StatusInvoice_txt.Size = new System.Drawing.Size(104, 22);
+            this.StatusInvoice_txt.TabIndex = 7;
+            this.StatusInvoice_txt.TabStop = false;
+            this.StatusInvoice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
             // 
             // label13
             // 
@@ -949,17 +949,17 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(102, 17);
             this.label12.TabIndex = 54;
-            this.label12.Text = "Consignment #";
+            this.label12.Text = "Invoice #";
             // 
-            // ConsignmentNumber_txt
+            // InvoiceNumber_txt
             // 
-            this.ConsignmentNumber_txt.Enabled = false;
-            this.ConsignmentNumber_txt.Location = new System.Drawing.Point(707, 60);
-            this.ConsignmentNumber_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.ConsignmentNumber_txt.Name = "ConsignmentNumber_txt";
-            this.ConsignmentNumber_txt.Size = new System.Drawing.Size(93, 22);
-            this.ConsignmentNumber_txt.TabIndex = 6;
-            this.ConsignmentNumber_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+            this.InvoiceNumber_txt.Enabled = false;
+            this.InvoiceNumber_txt.Location = new System.Drawing.Point(707, 60);
+            this.InvoiceNumber_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.InvoiceNumber_txt.Name = "InvoiceNumber_txt";
+            this.InvoiceNumber_txt.Size = new System.Drawing.Size(93, 22);
+            this.InvoiceNumber_txt.TabIndex = 6;
+            this.InvoiceNumber_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
             // 
             // label11
             // 
@@ -999,14 +999,14 @@
             this.label9.TabIndex = 50;
             this.label9.Text = "Phone";
             // 
-            // VendorPhone_txt
+            // CustomerPhone_txt
             // 
-            this.VendorPhone_txt.Enabled = false;
-            this.VendorPhone_txt.Location = new System.Drawing.Point(80, 98);
-            this.VendorPhone_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.VendorPhone_txt.Name = "VendorPhone_txt";
-            this.VendorPhone_txt.Size = new System.Drawing.Size(160, 22);
-            this.VendorPhone_txt.TabIndex = 2;
+            this.CustomerPhone_txt.Enabled = false;
+            this.CustomerPhone_txt.Location = new System.Drawing.Point(80, 98);
+            this.CustomerPhone_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerPhone_txt.Name = "CustomerPhone_txt";
+            this.CustomerPhone_txt.Size = new System.Drawing.Size(160, 22);
+            this.CustomerPhone_txt.TabIndex = 2;
             // 
             // label8
             // 
@@ -1020,18 +1020,18 @@
             this.label8.TabIndex = 48;
             this.label8.Text = "Email";
             // 
-            // VendorName_txt
+            // CustomerName_txt
             // 
-            this.VendorName_txt.FormattingEnabled = true;
-            this.VendorName_txt.Location = new System.Drawing.Point(80, 65);
-            this.VendorName_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.VendorName_txt.Name = "VendorName_txt";
-            this.VendorName_txt.Size = new System.Drawing.Size(160, 24);
-            this.VendorName_txt.TabIndex = 0;
-            this.VendorName_txt.Enter += new System.EventHandler(this.VendorName_txt_Enter);
-            this.VendorName_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VendorName_txt_KeyPress);
-            this.VendorName_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.VendorName_txt_KeyUp);
-            this.VendorName_txt.Leave += new System.EventHandler(this.VendorName_txt_Leave);
+            this.CustomerName_txt.FormattingEnabled = true;
+            this.CustomerName_txt.Location = new System.Drawing.Point(80, 65);
+            this.CustomerName_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerName_txt.Name = "CustomerName_txt";
+            this.CustomerName_txt.Size = new System.Drawing.Size(160, 24);
+            this.CustomerName_txt.TabIndex = 0;
+            this.CustomerName_txt.Enter += new System.EventHandler(this.CustomerName_txt_Enter);
+            this.CustomerName_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CustomerName_txt_KeyPress);
+            this.CustomerName_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CustomerName_txt_KeyUp);
+            this.CustomerName_txt.Leave += new System.EventHandler(this.CustomerName_txt_Leave);
             // 
             // toolStrip1
             // 
@@ -1071,7 +1071,7 @@
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(167, 24);
-            this.toolStripButton6.Text = "Modify Consignment";
+            this.toolStripButton6.Text = "Modify Invoice";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // toolStripButton5
@@ -1090,7 +1090,7 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(171, 24);
-            this.toolStripButton3.Text = "Import Consignments";
+            this.toolStripButton3.Text = "Import Invoices";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton4
@@ -1100,7 +1100,7 @@
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(217, 24);
-            this.toolStripButton4.Text = "Save Imported Consignment";
+            this.toolStripButton4.Text = "Save Imported Invoice";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // label3
@@ -1113,36 +1113,36 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 17);
             this.label3.TabIndex = 45;
-            this.label3.Text = "Vendor";
+            this.label3.Text = "Customer";
             // 
-            // VendorEmail_txt
+            // CustomerEmail_txt
             // 
-            this.VendorEmail_txt.Enabled = false;
-            this.VendorEmail_txt.Location = new System.Drawing.Point(325, 64);
-            this.VendorEmail_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.VendorEmail_txt.Name = "VendorEmail_txt";
-            this.VendorEmail_txt.Size = new System.Drawing.Size(209, 22);
-            this.VendorEmail_txt.TabIndex = 4;
+            this.CustomerEmail_txt.Enabled = false;
+            this.CustomerEmail_txt.Location = new System.Drawing.Point(325, 64);
+            this.CustomerEmail_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerEmail_txt.Name = "CustomerEmail_txt";
+            this.CustomerEmail_txt.Size = new System.Drawing.Size(209, 22);
+            this.CustomerEmail_txt.TabIndex = 4;
             // 
-            // ConsignmentDate_txt
+            // InvoiceDate_txt
             // 
-            this.ConsignmentDate_txt.Location = new System.Drawing.Point(707, 92);
-            this.ConsignmentDate_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.ConsignmentDate_txt.Name = "ConsignmentDate_txt";
-            this.ConsignmentDate_txt.Size = new System.Drawing.Size(264, 22);
-            this.ConsignmentDate_txt.TabIndex = 8;
-            this.ConsignmentDate_txt.TabStop = false;
-            this.ConsignmentDate_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+            this.InvoiceDate_txt.Location = new System.Drawing.Point(707, 92);
+            this.InvoiceDate_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.InvoiceDate_txt.Name = "InvoiceDate_txt";
+            this.InvoiceDate_txt.Size = new System.Drawing.Size(264, 22);
+            this.InvoiceDate_txt.TabIndex = 8;
+            this.InvoiceDate_txt.TabStop = false;
+            this.InvoiceDate_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
             // 
-            // VendorAddress_txt
+            // CustomerAddress_txt
             // 
-            this.VendorAddress_txt.Enabled = false;
-            this.VendorAddress_txt.Location = new System.Drawing.Point(325, 96);
-            this.VendorAddress_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.VendorAddress_txt.Multiline = true;
-            this.VendorAddress_txt.Name = "VendorAddress_txt";
-            this.VendorAddress_txt.Size = new System.Drawing.Size(209, 52);
-            this.VendorAddress_txt.TabIndex = 5;
+            this.CustomerAddress_txt.Enabled = false;
+            this.CustomerAddress_txt.Location = new System.Drawing.Point(325, 96);
+            this.CustomerAddress_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerAddress_txt.Multiline = true;
+            this.CustomerAddress_txt.Name = "CustomerAddress_txt";
+            this.CustomerAddress_txt.Size = new System.Drawing.Size(209, 52);
+            this.CustomerAddress_txt.TabIndex = 5;
             // 
             // label2
             // 
@@ -1154,7 +1154,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(197, 25);
             this.label2.TabIndex = 22;
-            this.label2.Text = "Consignment Items";
+            this.label2.Text = "Invoice Items";
             // 
             // panel1
             // 
@@ -1162,11 +1162,11 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.VendorNameSearch_txt);
+            this.panel1.Controls.Add(this.CustomerNameSearch_txt);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.ConsignmentNumberSearch_txt);
+            this.panel1.Controls.Add(this.InvoiceNumberSearch_txt);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.ConsignmentDataGridView);
+            this.panel1.Controls.Add(this.InvoiceDataGridView);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, 37);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
@@ -1185,18 +1185,18 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Visible = false;
             // 
-            // VendorNameSearch_txt
+            // CustomerNameSearch_txt
             // 
-            this.VendorNameSearch_txt.FormattingEnabled = true;
-            this.VendorNameSearch_txt.Location = new System.Drawing.Point(145, 38);
-            this.VendorNameSearch_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.VendorNameSearch_txt.Name = "VendorNameSearch_txt";
-            this.VendorNameSearch_txt.Size = new System.Drawing.Size(160, 24);
-            this.VendorNameSearch_txt.TabIndex = 0;
-            this.VendorNameSearch_txt.TextChanged += new System.EventHandler(this.VendorNameSearch_txt_TextChanged);
-            this.VendorNameSearch_txt.Enter += new System.EventHandler(this.VendorNameSearch_txt_Enter_1);
-            this.VendorNameSearch_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VendorNameSearch_txt_KeyPress);
-            this.VendorNameSearch_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.VendorNameSearch_txt_KeyUp);
+            this.CustomerNameSearch_txt.FormattingEnabled = true;
+            this.CustomerNameSearch_txt.Location = new System.Drawing.Point(145, 38);
+            this.CustomerNameSearch_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerNameSearch_txt.Name = "CustomerNameSearch_txt";
+            this.CustomerNameSearch_txt.Size = new System.Drawing.Size(160, 24);
+            this.CustomerNameSearch_txt.TabIndex = 0;
+            this.CustomerNameSearch_txt.TextChanged += new System.EventHandler(this.CustomerNameSearch_txt_TextChanged);
+            this.CustomerNameSearch_txt.Enter += new System.EventHandler(this.CustomerNameSearch_txt_Enter_1);
+            this.CustomerNameSearch_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CustomerNameSearch_txt_KeyPress);
+            this.CustomerNameSearch_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CustomerNameSearch_txt_KeyUp);
             // 
             // label6
             // 
@@ -1209,20 +1209,20 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 17);
             this.label6.TabIndex = 38;
-            this.label6.Text = "Vendor";
+            this.label6.Text = "Customer";
             // 
-            // ConsignmentNumberSearch_txt
+            // InvoiceNumberSearch_txt
             // 
-            this.ConsignmentNumberSearch_txt.FormattingEnabled = true;
-            this.ConsignmentNumberSearch_txt.Location = new System.Drawing.Point(145, 71);
-            this.ConsignmentNumberSearch_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.ConsignmentNumberSearch_txt.Name = "ConsignmentNumberSearch_txt";
-            this.ConsignmentNumberSearch_txt.Size = new System.Drawing.Size(160, 24);
-            this.ConsignmentNumberSearch_txt.TabIndex = 1;
-            this.ConsignmentNumberSearch_txt.TextChanged += new System.EventHandler(this.ConsignmentNumberSearch_txt_TextChanged);
-            this.ConsignmentNumberSearch_txt.Enter += new System.EventHandler(this.ConsignmentNumberSearch_txt_Enter);
-            this.ConsignmentNumberSearch_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ConsignmentNumberSearch_txt_KeyPress);
-            this.ConsignmentNumberSearch_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ConsignmentNumberSearch_txt_KeyUp);
+            this.InvoiceNumberSearch_txt.FormattingEnabled = true;
+            this.InvoiceNumberSearch_txt.Location = new System.Drawing.Point(145, 71);
+            this.InvoiceNumberSearch_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.InvoiceNumberSearch_txt.Name = "InvoiceNumberSearch_txt";
+            this.InvoiceNumberSearch_txt.Size = new System.Drawing.Size(160, 24);
+            this.InvoiceNumberSearch_txt.TabIndex = 1;
+            this.InvoiceNumberSearch_txt.TextChanged += new System.EventHandler(this.InvoiceNumberSearch_txt_TextChanged);
+            this.InvoiceNumberSearch_txt.Enter += new System.EventHandler(this.InvoiceNumberSearch_txt_Enter);
+            this.InvoiceNumberSearch_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InvoiceNumberSearch_txt_KeyPress);
+            this.InvoiceNumberSearch_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.InvoiceNumberSearch_txt_KeyUp);
             // 
             // label4
             // 
@@ -1238,28 +1238,28 @@
             this.label4.TabIndex = 36;
             this.label4.Text = "Search ";
             // 
-            // ConsignmentDataGridView
+            // InvoiceDataGridView
             // 
-            this.ConsignmentDataGridView.AllowUserToAddRows = false;
-            this.ConsignmentDataGridView.AllowUserToDeleteRows = false;
+            this.InvoiceDataGridView.AllowUserToAddRows = false;
+            this.InvoiceDataGridView.AllowUserToDeleteRows = false;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(190)))), ((int)(((byte)(0)))));
-            this.ConsignmentDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.ConsignmentDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.InvoiceDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.InvoiceDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConsignmentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ConsignmentDataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
-            this.ConsignmentDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ConsignmentDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.InvoiceDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.InvoiceDataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
+            this.InvoiceDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.InvoiceDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(190)))), ((int)(((byte)(0)))));
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ConsignmentDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.ConsignmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.InvoiceDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.InvoiceDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1267,12 +1267,12 @@
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(190)))), ((int)(((byte)(0)))));
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ConsignmentDataGridView.DefaultCellStyle = dataGridViewCellStyle11;
-            this.ConsignmentDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
-            this.ConsignmentDataGridView.Location = new System.Drawing.Point(9, 143);
-            this.ConsignmentDataGridView.Margin = new System.Windows.Forms.Padding(4);
-            this.ConsignmentDataGridView.Name = "ConsignmentDataGridView";
-            this.ConsignmentDataGridView.ReadOnly = true;
+            this.InvoiceDataGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            this.InvoiceDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
+            this.InvoiceDataGridView.Location = new System.Drawing.Point(9, 143);
+            this.InvoiceDataGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.InvoiceDataGridView.Name = "InvoiceDataGridView";
+            this.InvoiceDataGridView.ReadOnly = true;
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(255)))), ((int)(((byte)(90)))));
             dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1280,11 +1280,11 @@
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(190)))), ((int)(((byte)(0)))));
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ConsignmentDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.ConsignmentDataGridView.Size = new System.Drawing.Size(477, 666);
-            this.ConsignmentDataGridView.TabIndex = 35;
-            this.ConsignmentDataGridView.DataSourceChanged += new System.EventHandler(this.ConsignmentDataGridView_DataSourceChanged);
-            this.ConsignmentDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConsignmentDataGridView_CellClick);
+            this.InvoiceDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.InvoiceDataGridView.Size = new System.Drawing.Size(477, 666);
+            this.InvoiceDataGridView.TabIndex = 35;
+            this.InvoiceDataGridView.DataSourceChanged += new System.EventHandler(this.InvoiceDataGridView_DataSourceChanged);
+            this.InvoiceDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceDataGridView_CellClick);
             // 
             // label1
             // 
@@ -1297,7 +1297,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 17);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Consignment #";
+            this.label1.Text = "Invoice #";
             // 
             // button1
             // 
@@ -1329,7 +1329,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddInvoice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Consignment";
+            this.Text = "Add Invoice";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddInvoice_FormClosed);
             this.Shown += new System.EventHandler(this.AddInvoice_Load);
@@ -1340,12 +1340,12 @@
             this.AddItemPnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDetailDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InvoiceDetailDataGridView)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InvoiceDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1355,30 +1355,30 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker ConsignmentDate_txt;
-        private System.Windows.Forms.TextBox VendorAddress_txt;
+        private System.Windows.Forms.DateTimePicker InvoiceDate_txt;
+        private System.Windows.Forms.TextBox CustomerAddress_txt;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox ConsignmentNumberSearch_txt;
+        private System.Windows.Forms.ComboBox InvoiceNumberSearch_txt;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView ConsignmentDataGridView;
+        private System.Windows.Forms.DataGridView InvoiceDataGridView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox VendorNameSearch_txt;
+        private System.Windows.Forms.ComboBox CustomerNameSearch_txt;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox VendorPhone_txt;
+        private System.Windows.Forms.TextBox CustomerPhone_txt;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox VendorName_txt;
+        private System.Windows.Forms.ComboBox CustomerName_txt;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.TextBox VendorEmail_txt;
-        private System.Windows.Forms.DataGridView ConsignmentDetailDataGridView;
+        private System.Windows.Forms.TextBox CustomerEmail_txt;
+        private System.Windows.Forms.DataGridView InvoiceDetailDataGridView;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox StatusConsignment_txt;
+        private System.Windows.Forms.TextBox StatusInvoice_txt;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox ConsignmentNumber_txt;
+        private System.Windows.Forms.TextBox InvoiceNumber_txt;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox Total_txt;
         private System.Windows.Forms.TextBox BalanceNew_txt;
@@ -1389,9 +1389,9 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox VendorBalance_txt;
+        private System.Windows.Forms.TextBox CustomerBalance_txt;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox VendorID_txt;
+        private System.Windows.Forms.TextBox CustomerID_txt;
         private System.Windows.Forms.TextBox Quant_txt;
         private System.Windows.Forms.TextBox Qty_txt;
         private System.Windows.Forms.TextBox Ctn_txt;

@@ -307,7 +307,7 @@ namespace firebirdtest.UI
                 if (CustomerName_txt.Text != "")
                 {
                     DataSet Result1 = new DataSet();
-                    Result1 = DatabaseCalls.GetCustomer(CustomerName_txt.Text);
+                    Result1 = DatabaseCalls.GetCustomerByName(CustomerName_txt.Text);
                     
                     foreach (DataRow GridViewColumn in Result1.Tables[0].Rows)
                     {
@@ -340,7 +340,7 @@ namespace firebirdtest.UI
             //Add Bill Number
             try
             {
-                String Result1 = DatabaseCalls.AddBill(Convert.ToInt32(BillNumber_txt.Text), Convert.ToInt32(CustomerID_txt.Text), Convert.ToDateTime(BillDate_txt.Text), Convert.ToDecimal(Total_txt.Text), Convert.ToDecimal(BalanceNew_txt.Text),"Bill");
+                String Result1 = DatabaseCalls.AddBill(Convert.ToInt32(BillNumber_txt.Text), Convert.ToInt32(CustomerID_txt.Text), Convert.ToDateTime(BillDate_txt.Text), "Bill");
                 if (Result1.StartsWith("Bill Added with ID") == true)
                 {
                     //Add Bill Details

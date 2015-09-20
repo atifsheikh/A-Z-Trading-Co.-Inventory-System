@@ -5,18 +5,58 @@ namespace ThePrimeBaby.Database
 {
     public class Bill : Concept
     {
-        public Customer CUSTOMER;
         public DateTime DATED;
-        public decimal AMOUNT;
-        public string REMARKS;
-        public decimal CUSTOMER_BALANCE;
 
-        internal static int CTN_BILL_SUM(int BillID)
+        public Customer CUSTOMER;
+        public string REMARKS;
+        public decimal AMOUNT
         {
-            IObjectView CTN_BILL_SUM = Db.SQL<IObjectView>("SELECT SUM(b.QTY) FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(BillID)).First;
-            return (Convert.ToInt32(CTN_BILL_SUM.GetInt64(0)));
+            get
+            {
+                QueryResultRows<ThePrimeBaby.Database.BillDetail> billDetails = Db.SQL<ThePrimeBaby.Database.BillDetail>("SELECT sd FROM ThePrimeBaby.Database.BillDetail sd WHERE sd.Bill = ?", this);
+                decimal amountSum = 0.0m;
+                foreach (BillDetail billDetail in billDetails)
+                {
+                    amountSum += billDetail.SUBTOTAL;
+                }
+                return amountSum;
+            }
         }
-        internal static bool AddBill(int billID, Customer Customer, DateTime BillDate, decimal BillTotal, decimal CustomerBalance, string Remarks)
+        public decimal CUSTOMER_BALANCE
+        {
+            get
+            {
+                QueryResultRows<ThePrimeBaby.Database.Bill> bills = Db.SQL<ThePrimeBaby.Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE s.Customer = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.CUSTOMER, this.DATED, 0, this.ID);
+                decimal customerBalance = 0.0m;
+                foreach (Bill bill in bills)
+                {
+                    customerBalance += bill.AMOUNT;
+                }
+
+                QueryResultRows<ThePrimeBaby.Database.CustomerVoucher> vouchers = Db.SQL<ThePrimeBaby.Database.CustomerVoucher>("SELECT s FROM ThePrimeBaby.Database.CustomerVoucher s WHERE s.Customer = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.CUSTOMER, this.DATED, this.ID, 0);
+                decimal customerVoucher = 0.0m;
+                foreach (CustomerVoucher voucher in vouchers)
+                {
+                    customerVoucher += voucher.AMOUNT;
+                }
+
+                return ((customerBalance + this.CUSTOMER.OPENING_BALANCE) - customerVoucher);
+            }
+        }
+        public int TOTAL_CTN
+        {
+            get
+            {
+                QueryResultRows<ThePrimeBaby.Database.BillDetail> billDetails = Db.SQL<ThePrimeBaby.Database.BillDetail>("SELECT sd FROM ThePrimeBaby.Database.BillDetail sd WHERE sd.Bill = ?", this);
+                int totalCtn = 0;
+                foreach (BillDetail billDetail in billDetails)
+                {
+                    totalCtn += billDetail.CTN;
+                }
+                return totalCtn;
+            }
+        }
+        internal static bool AddBill(int billID, Customer Customer, DateTime BillDate, string Remarks)
         {
             try
             {
@@ -29,13 +69,10 @@ namespace ThePrimeBaby.Database
                     }
                     else
                     {
-                        bill.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Bill b").First) + 1;
+                        bill.ID = GetNewBillID();
                     }
-                    bill.ID = GetNewBillID();
                     bill.CUSTOMER = Customer;
                     bill.DATED = BillDate;
-                    bill.AMOUNT = BillTotal;
-                    bill.CUSTOMER_BALANCE = CustomerBalance;
                     bill.REMARKS = Remarks.Trim();
                 });
                 return true;
@@ -45,7 +82,6 @@ namespace ThePrimeBaby.Database
                 return false;
             }
         }
-
         internal static int GetNewBillID()
         {
             try
@@ -54,58 +90,6 @@ namespace ThePrimeBaby.Database
             }
             catch (Exception ex)
             { return 1; }
-        }
-
-        internal static bool DeleteBill(string BillID)
-        {
-            try
-            {
-                Db.Transact(() =>
-                {
-                    Db.SlowSQL("DELETE FROM Bill WHERE ID = ?", BillID);
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        internal static bool ModifyVoucher(int ID, decimal UpdateAmount, decimal UpdateCUSTOMER_BALANCE, Database.Bill BillVoucher)
-        {
-            try
-            {
-                //Database.Bill BillVoucher = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(ID)).First;
-                Db.Transact(() =>
-                {
-                    BillVoucher.AMOUNT = UpdateAmount;
-                    BillVoucher.CUSTOMER_BALANCE = UpdateCUSTOMER_BALANCE;
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        internal static bool ModifyBillAmmount(int BillID, decimal CustomerBalance, Database.Bill bill)
-        {
-            try
-            {
-                //Database.Bill bill = Db.SQL<Database.Bill>("SELECT i FROM ThePrimeBaby.Database.Bill i WHERE i.Id = ?", Convert.ToInt32(BillID)).First;
-                Db.Transact(() =>
-                {
-                    bill.AMOUNT = CustomerBalance;
-                    bill.CUSTOMER_BALANCE = CustomerBalance;
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
         }
     }
 }

@@ -49,7 +49,7 @@ namespace ThePrimeBaby.Server.Handler
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/AddBill/6", (Request r) =>
+            Handle.POST("/ThePrimeBaby/AddBill/4", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
                 Database.Bill bill = Db.SQL<Database.Bill>("SELECT c FROM ThePrimeBaby.Database.Bill c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
@@ -58,13 +58,30 @@ namespace ThePrimeBaby.Server.Handler
                     Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[1])).First;
                     if (customer != null)
                     {
-                        bool Result = ThePrimeBaby.Database.Bill.AddBill(Convert.ToInt32(Attributes[0]), customer, Convert.ToDateTime(Attributes[2]), Convert.ToDecimal(Attributes[3]), Convert.ToDecimal(Attributes[4]), Attributes[5]);
+                        bool Result = ThePrimeBaby.Database.Bill.AddBill(Convert.ToInt32(Attributes[0]), customer, Convert.ToDateTime(Attributes[2]), Attributes[3]);
                         if (Result == true)
                             return 200;
                     }
                 }
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+            //Handle.POST("/ThePrimeBaby/AddBill/6", (Request r) =>
+            //{
+            //    string[] Attributes = r.Body.Split('/');
+            //    Database.Bill bill = Db.SQL<Database.Bill>("SELECT c FROM ThePrimeBaby.Database.Bill c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
+            //    if (bill == null)
+            //    {
+            //        Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[1])).First;
+            //        if (customer != null)
+            //        {
+            //            bool Result = ThePrimeBaby.Database.Bill.AddBill(Convert.ToInt32(Attributes[0]), customer, Convert.ToDateTime(Attributes[2]), Convert.ToDecimal(Attributes[3]), Convert.ToDecimal(Attributes[4]), Attributes[5]);
+            //            if (Result == true)
+            //                return 200;
+            //        }
+            //    }
+            //    return 209;
+            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
             
             Handle.GET("/ThePrimeBaby/GetBills", (Request r) =>
             {

@@ -56,66 +56,7 @@ namespace ThePrimeBaby.Database
                 return totalCtn;
             }
         }
-
-        internal static bool AddShipment(int ShipmentNumber, DateTime ShipmentDate, Vendor Vendor, string Remarks)
-        {
-            try
-            {
-                Db.Transact(() => 
-                {
-                    Shipment shipment = new Shipment();
-                    shipment.DATED = ShipmentDate;
-                    shipment.ID = ShipmentNumber;
-                    shipment.Vendor = Vendor;
-                    shipment.REMARKS = Remarks;
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        internal static bool ModifyShipment(DateTime ShipmentDate, string ShipmentDesc, Database.Shipment shipment)
-        {
-            try
-            {
-                Db.Transact(() => 
-                {
-                    shipment.DATED = ShipmentDate;
-                    shipment.DESCRIPTION = ShipmentDesc.Trim();
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        //internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal ShipmentAmount, Database.Shipment shipment)
-        //{
-        //    try
-        //    {
-        //        Db.Transact(() =>
-        //        {
-        //            shipment.Vendor.AMOUNT -= shipment.AMOUNT;
-        //            shipment.Vendor.AMOUNT += ShipmentAmount;
-        //            shipment.AMOUNT = ShipmentAmount;
-        //            shipment.VENDOR_BALANCE = shipment.Vendor.AMOUNT;
-        //            //TODO modify future Shipments
-        //        });
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //}
-        
-
-        internal static bool AddShipment(int shipmentID, Vendor Vendor, DateTime ShipmentDate, string Remarks, int TOTAL_CTN)
+        internal static bool AddShipment(int shipmentID, Vendor Vendor, DateTime ShipmentDate, string Remarks)
         {
             try
             {
@@ -141,7 +82,6 @@ namespace ThePrimeBaby.Database
                 return false;
             }
         }
-
         internal static object GetNewShipmentNumber()
         {
             try { return (Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.Shipment b").First) + 1); }
@@ -149,5 +89,62 @@ namespace ThePrimeBaby.Database
             { return 1; }
 
         }
+
+        //internal static bool AddShipment(int ShipmentNumber, DateTime ShipmentDate, Vendor Vendor, string Remarks)
+        //{
+        //    try
+        //    {
+        //        Db.Transact(() => 
+        //        {
+        //            Shipment shipment = new Shipment();
+        //            shipment.DATED = ShipmentDate;
+        //            shipment.ID = ShipmentNumber;
+        //            shipment.Vendor = Vendor;
+        //            shipment.REMARKS = Remarks;
+        //        });
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //internal static bool ModifyShipment(DateTime ShipmentDate, string ShipmentDesc, Database.Shipment shipment)
+        //{
+        //    try
+        //    {
+        //        Db.Transact(() => 
+        //        {
+        //            shipment.DATED = ShipmentDate;
+        //            shipment.DESCRIPTION = ShipmentDesc.Trim();
+        //        });
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //internal static bool ModifyShipmentAmmount(int ShipmentNumber, decimal ShipmentAmount, Database.Shipment shipment)
+        //{
+        //    try
+        //    {
+        //        Db.Transact(() =>
+        //        {
+        //            shipment.Vendor.AMOUNT -= shipment.AMOUNT;
+        //            shipment.Vendor.AMOUNT += ShipmentAmount;
+        //            shipment.AMOUNT = ShipmentAmount;
+        //            shipment.VENDOR_BALANCE = shipment.Vendor.AMOUNT;
+        //            //TODO modify future Shipments
+        //        });
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }
