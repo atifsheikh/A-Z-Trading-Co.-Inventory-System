@@ -1688,10 +1688,19 @@ namespace firebirdtest.UI
         {
             try
             {
-                if (Qty_Box_txt.Text != "" && Ctn_txt.Text != "" && Qty_txt.Text!="")
-                    Quant_txt.Text = (Convert.ToInt32(Qty_Box_txt.Text) *Convert.ToInt32(Qty_txt.Text)* Convert.ToInt32(Ctn_txt.Text)).ToString();
-                else if (Ctn_txt.Text != ""&& Ctn_txt.Text != "0")
-                    Quant_txt.Text = (0 * Convert.ToInt32(Ctn_txt.Text)).ToString();
+                int Value1 = 0;
+                int Value2 = 0;
+                int Value3 = 0;
+                bool ResutlValue1 = Int32.TryParse(Ctn_txt.Text, out Value1);
+                bool ResutlValue2 = Int32.TryParse(Qty_Box_txt.Text, out Value2);
+                bool ResutlValue3 = Int32.TryParse(Qty_txt.Text, out Value3);
+                if (!ResutlValue1)
+                    Value1 = 0;
+                if (!ResutlValue2)
+                    Value2 = 0;
+                if (!ResutlValue3)
+                    Value3 = 0; 
+                Quant_txt.Text = ((Value1 * Value2) + Value3).ToString();
             }
             catch (Exception ex)
             {
@@ -1813,18 +1822,23 @@ namespace firebirdtest.UI
 
         private void Qty_txt_KeyDown_1(object sender, KeyEventArgs e)
         {
-            if (Ctn_txt.Text == "0" && Qty_txt.Text == "0" && ItemCode_txt.Text == InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["ITEM_CODE"].Value.ToString())
+            if (e.KeyCode == Keys.Enter)
             {
-                InvoiceDetailDataGridView.Rows.RemoveAt(InvoiceDetailDataGridView.CurrentRow.Index);
-                ItemCode_txt.Text = "";
-                ItemName_txt.Text = "None";
-                Ctn_txt.Text = "0";
-                Qty_Box_txt.Text = "0";
-                Quant_txt.Text = "0";
-                UnitPrice_txt.Text = "0";
-                //InvoiceDate_txt.Focus();
-                Total_txt_Leave(sender, e);
-                ItemCode_txt.Focus();
+                UnitPrice_txt.Focus();
+
+                if (Ctn_txt.Text == "0" && Qty_txt.Text == "0" && InvoiceDetailDataGridView.Rows.Count > 0 && ItemCode_txt.Text == InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["ITEM_CODE"].Value.ToString())
+                {
+                    InvoiceDetailDataGridView.Rows.RemoveAt(InvoiceDetailDataGridView.CurrentRow.Index);
+                    ItemCode_txt.Text = "";
+                    ItemName_txt.Text = "None";
+                    Ctn_txt.Text = "0";
+                    Qty_Box_txt.Text = "0";
+                    Quant_txt.Text = "0";
+                    UnitPrice_txt.Text = "0";
+                    //InvoiceDate_txt.Focus();
+                    Total_txt_Leave(sender, e);
+                    ItemCode_txt.Focus();
+                }
             }
         }
 
@@ -1835,16 +1849,16 @@ namespace firebirdtest.UI
                 int Value1 = 0;
                 int Value2 = 0;
                 int Value3 = 0;
-                bool ResutlValue1 = Int32.TryParse(Ctn_txt.Text,out Value1);
+                bool ResutlValue1 = Int32.TryParse(Ctn_txt.Text, out Value1);
                 bool ResutlValue2 = Int32.TryParse(Qty_Box_txt.Text, out Value2);
                 bool ResutlValue3 = Int32.TryParse(Qty_txt.Text, out Value3);
-                if (ResutlValue1 && Value1 == 0)
-                    Value1 = 1;
-                if (ResutlValue2 && Value2 == 0)
-                    Value2 = 1;
-                if (ResutlValue3 && Value3 == 0)
-                    Value3 = 1; 
-                Quant_txt.Text = (Value1 * Value2 * Value3).ToString();
+                if (!ResutlValue1)
+                    Value1 = 0;
+                if (!ResutlValue2)
+                    Value2 = 0;
+                if (!ResutlValue3)
+                    Value3 = 0;
+                Quant_txt.Text = ((Value1 * Value2) + Value3).ToString();
             }
             catch (Exception ex)
             {
