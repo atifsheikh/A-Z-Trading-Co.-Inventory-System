@@ -481,6 +481,8 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
+                    if (Ctn_txt.Text == "")
+                        Ctn_txt.Text = "0";
                     Qty_txt.Focus();
                 }
             }
@@ -1686,8 +1688,8 @@ namespace firebirdtest.UI
         {
             try
             {
-                if (Qty_Box_txt.Text != "" && Ctn_txt.Text != "")
-                    Quant_txt.Text = (Convert.ToInt32(Qty_Box_txt.Text) * Convert.ToInt32(Ctn_txt.Text)).ToString();
+                if (Qty_Box_txt.Text != "" && Ctn_txt.Text != "" && Qty_txt.Text!="")
+                    Quant_txt.Text = (Convert.ToInt32(Qty_Box_txt.Text) *Convert.ToInt32(Qty_txt.Text)* Convert.ToInt32(Ctn_txt.Text)).ToString();
                 else if (Ctn_txt.Text != ""&& Ctn_txt.Text != "0")
                     Quant_txt.Text = (0 * Convert.ToInt32(Ctn_txt.Text)).ToString();
             }
@@ -1697,7 +1699,6 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
             }
-
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -1825,8 +1826,32 @@ namespace firebirdtest.UI
                 Total_txt_Leave(sender, e);
                 ItemCode_txt.Focus();
             }
-            else if (Ctn_txt.Text != "" && Ctn_txt.Text != "0")
-                UnitPrice_txt.Focus();
+        }
+
+        private void Qty_txt_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                int Value1 = 0;
+                int Value2 = 0;
+                int Value3 = 0;
+                bool ResutlValue1 = Int32.TryParse(Ctn_txt.Text,out Value1);
+                bool ResutlValue2 = Int32.TryParse(Qty_Box_txt.Text, out Value2);
+                bool ResutlValue3 = Int32.TryParse(Qty_txt.Text, out Value3);
+                if (ResutlValue1 && Value1 == 0)
+                    Value1 = 1;
+                if (ResutlValue2 && Value2 == 0)
+                    Value2 = 1;
+                if (ResutlValue3 && Value3 == 0)
+                    Value3 = 1; 
+                Quant_txt.Text = (Value1 * Value2 * Value3).ToString();
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = ex.Message;
+            }
         }
     }
 }
