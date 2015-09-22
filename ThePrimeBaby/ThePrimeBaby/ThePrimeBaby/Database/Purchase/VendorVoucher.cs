@@ -13,14 +13,14 @@ namespace ThePrimeBaby.Database
         {
             get
             {
-                QueryResultRows<ThePrimeBaby.Database.Shipment> shipments = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.Vendor = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.Vendor, this.DATED, 0, this.ID);
+                QueryResultRows<ThePrimeBaby.Database.Shipment> shipments = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE s.Vendor = ? AND s.DATED <= ? AND s.ID > ?", this.Vendor, this.DATED, 0);
                 decimal vendorBalance = 0.0m;
                 foreach (Shipment shipment in shipments)
                 {
                     vendorBalance += shipment.AMOUNT;
                 }
 
-                QueryResultRows<ThePrimeBaby.Database.VendorVoucher> vouchers = Db.SQL<ThePrimeBaby.Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE s.Vendor = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.Vendor, this.DATED, this.ID, 0);
+                QueryResultRows<ThePrimeBaby.Database.VendorVoucher> vouchers = Db.SQL<ThePrimeBaby.Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE s.Vendor = ? AND s.DATED <= ? AND s.ID >= ? AND s.ID <= ? ", this.Vendor, this.DATED, this.ID, 0);
                 decimal vendorVoucher = 0.0m;
                 foreach (VendorVoucher voucher in vouchers)
                 {

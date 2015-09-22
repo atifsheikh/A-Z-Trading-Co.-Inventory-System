@@ -72,12 +72,18 @@ namespace firebirdtest.UI
                 VendorVoucherDataSet.Tables[0].Columns.Remove("REMARKS");
                 VendorVoucherDataSet.Tables[0].TableName = "Ledger"; 
                 VendorVoucherDataSet.Merge(ShipmentsDataSet);
+                
                 try
                 {
-                    LedgerGridView.DataSource = VendorVoucherDataSet.Tables[0];
+                    //LedgerGridView.DataSource = VendorVoucherDataSet.Tables["0"];
+                    DataView dv = new DataView(VendorVoucherDataSet.Tables[0]);
+                    dv.Sort = "DATED";
+                    LedgerGridView.DataSource = dv;
                 }
                 catch (Exception ex)
                 { }
+                //LedgerGridView.Columns["DATED"].DefaultCellStyle.Format = "HH MM/dd/yyyy";
+                //LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
                 LedgerGridView.CurrentCell = null;
                 if (LedgerGridView.Columns.Count > 0)
                 {

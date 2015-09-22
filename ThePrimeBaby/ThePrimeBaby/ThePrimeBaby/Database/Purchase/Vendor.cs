@@ -12,12 +12,18 @@ namespace ThePrimeBaby.Database
             get 
             {
                 QueryResultRows<Database.Shipment> AllShipments = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE Vendor = ?",this);
-                decimal Calc = 0.0m;
+                decimal ShipmentCalc = 0.0m;
                 foreach (Database.Shipment OneShipment in AllShipments)
                 {
-                    Calc += OneShipment.AMOUNT;
+                    ShipmentCalc += OneShipment.AMOUNT;
                 }
-                return (Calc + this.OPENING_BALANCE);
+                QueryResultRows<Database.VendorVoucher> AllVendorVouchers = Db.SQL<Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE Vendor = ?", this);
+                decimal VoucherCalc = 0.0m;
+                foreach (Database.VendorVoucher OneVendorVoucher in AllVendorVouchers)
+                {
+                    VoucherCalc += OneVendorVoucher.AMOUNT;
+                }
+                return ((ShipmentCalc + this.OPENING_BALANCE)-VoucherCalc);
             }
         }
         public decimal TotalAmount { 

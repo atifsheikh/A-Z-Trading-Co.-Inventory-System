@@ -181,6 +181,7 @@ namespace firebirdtest.UI
                 ItemCode_txt.Text = "";
                 ItemName_txt.Text = "None";
                 Ctn_txt.Text = "0";
+                Qty_txt.Text = "0";
                 Qty_Box_txt.Text = "0";
                 Quant_txt.Text = "0";
                 UnitPrice_txt.Text = "0";

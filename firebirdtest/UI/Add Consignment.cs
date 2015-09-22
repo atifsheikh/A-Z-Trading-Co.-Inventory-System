@@ -1860,5 +1860,15 @@ namespace firebirdtest.UI
                 UnitPrice_txt_KeyDown(sender, new KeyEventArgs(Keys.Enter));
             }
         }
+
+        private void UnitCostPrice_txt_Enter(object sender, EventArgs e)
+        {
+            ItemCostPriceModified = false;
+        }
+
+        private void UnitSalePrice_txt_TextChanged(object sender, EventArgs e)
+        {
+            ItemCostPriceModified = true;
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace ThePrimeBaby.Database
                     vendorBalance += shipment.AMOUNT;
                 }
 
-                QueryResultRows<ThePrimeBaby.Database.VendorVoucher> vouchers = Db.SQL<ThePrimeBaby.Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE s.Vendor = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.Vendor, this.DATED, this.ID, 0);
+                QueryResultRows<ThePrimeBaby.Database.VendorVoucher> vouchers = Db.SQL<ThePrimeBaby.Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE s.Vendor = ? AND s.DATED <= ? AND s.ID <= ? ", this.Vendor, this.DATED, 0);
                 decimal vendorVoucher = 0.0m;
                 foreach (VendorVoucher voucher in vouchers)
                 {

@@ -771,6 +771,7 @@
             this.UnitCostPrice_txt.Size = new System.Drawing.Size(133, 22);
             this.UnitCostPrice_txt.TabIndex = 14;
             this.UnitCostPrice_txt.TextChanged += new System.EventHandler(this.UnitCostPrice_txt_TextChanged);
+            this.UnitCostPrice_txt.Enter += new System.EventHandler(this.UnitCostPrice_txt_Enter);
             this.UnitCostPrice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UnitPrice_txt_KeyDown);
             this.UnitCostPrice_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UnitPrice_txt_KeyPress);
             // 
@@ -855,7 +856,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ConsignmentDetailDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.ConsignmentDetailDataGridView.Size = new System.Drawing.Size(1272, 506);
-            this.ConsignmentDetailDataGridView.TabIndex = 15;
+            this.ConsignmentDetailDataGridView.TabIndex = 17;
             this.ConsignmentDetailDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConsignmentDetailDataGridView_CellClick);
             this.ConsignmentDetailDataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.ConsignmentDetailDataGridView_RowsRemoved);
             // 
@@ -1344,6 +1345,7 @@
             this.UnitSalePrice_txt.Name = "UnitSalePrice_txt";
             this.UnitSalePrice_txt.Size = new System.Drawing.Size(133, 22);
             this.UnitSalePrice_txt.TabIndex = 15;
+            this.UnitSalePrice_txt.TextChanged += new System.EventHandler(this.UnitSalePrice_txt_TextChanged);
             this.UnitSalePrice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UnitSalePrice_txt_KeyDown);
             // 
             // UpdateItemPrices_btn
