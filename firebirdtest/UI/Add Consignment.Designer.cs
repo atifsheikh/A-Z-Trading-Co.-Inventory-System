@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddConsignment));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -41,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddConsignment));
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.AddItemPnl = new System.Windows.Forms.Panel();
@@ -86,7 +86,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ItemCode_txt = new System.Windows.Forms.ComboBox();
-            this.UnitPrice_txt = new System.Windows.Forms.TextBox();
+            this.UnitCostPrice_txt = new System.Windows.Forms.TextBox();
             this.ItemName_txt = new System.Windows.Forms.TextBox();
             this.BalanceNew_txt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -132,6 +132,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SpeedTest_BGWorker = new System.ComponentModel.BackgroundWorker();
+            this.label34 = new System.Windows.Forms.Label();
+            this.UnitSalePrice_txt = new System.Windows.Forms.TextBox();
+            this.UpdateItemPrices_btn = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.AddItemPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).BeginInit();
@@ -161,6 +164,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel2.Controls.Add(this.AddItemPnl);
+            this.panel2.Controls.Add(this.UpdateItemPrices_btn);
+            this.panel2.Controls.Add(this.label34);
+            this.panel2.Controls.Add(this.UnitSalePrice_txt);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.label25);
             this.panel2.Controls.Add(this.label24);
@@ -182,7 +188,7 @@
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.ItemCode_txt);
-            this.panel2.Controls.Add(this.UnitPrice_txt);
+            this.panel2.Controls.Add(this.UnitCostPrice_txt);
             this.panel2.Controls.Add(this.ItemName_txt);
             this.panel2.Controls.Add(this.BalanceNew_txt);
             this.panel2.Controls.Add(this.label15);
@@ -237,10 +243,10 @@
             this.AddItemPnl.Controls.Add(this.label32);
             this.AddItemPnl.Controls.Add(this.label33);
             this.AddItemPnl.Controls.Add(this.ItemPriceCons_txt);
-            this.AddItemPnl.Location = new System.Drawing.Point(961, 29);
+            this.AddItemPnl.Location = new System.Drawing.Point(961, 27);
             this.AddItemPnl.Margin = new System.Windows.Forms.Padding(4);
             this.AddItemPnl.Name = "AddItemPnl";
-            this.AddItemPnl.Size = new System.Drawing.Size(335, 701);
+            this.AddItemPnl.Size = new System.Drawing.Size(335, 703);
             this.AddItemPnl.TabIndex = 0;
             this.AddItemPnl.Visible = false;
             // 
@@ -491,12 +497,12 @@
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label25.Location = new System.Drawing.Point(895, 180);
+            this.label25.Location = new System.Drawing.Point(882, 180);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(69, 17);
+            this.label25.Size = new System.Drawing.Size(101, 17);
             this.label25.TabIndex = 81;
-            this.label25.Text = "Unit Price";
+            this.label25.Text = "Unit Cost Price";
             // 
             // label24
             // 
@@ -757,15 +763,16 @@
             this.ItemCode_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ItemCode_txt_KeyPress);
             this.ItemCode_txt.Leave += new System.EventHandler(this.ItemCode_txt_Leave);
             // 
-            // UnitPrice_txt
+            // UnitCostPrice_txt
             // 
-            this.UnitPrice_txt.Location = new System.Drawing.Point(865, 196);
-            this.UnitPrice_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.UnitPrice_txt.Name = "UnitPrice_txt";
-            this.UnitPrice_txt.Size = new System.Drawing.Size(133, 22);
-            this.UnitPrice_txt.TabIndex = 14;
-            this.UnitPrice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UnitPrice_txt_KeyDown);
-            this.UnitPrice_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UnitPrice_txt_KeyPress);
+            this.UnitCostPrice_txt.Location = new System.Drawing.Point(865, 196);
+            this.UnitCostPrice_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.UnitCostPrice_txt.Name = "UnitCostPrice_txt";
+            this.UnitCostPrice_txt.Size = new System.Drawing.Size(133, 22);
+            this.UnitCostPrice_txt.TabIndex = 14;
+            this.UnitCostPrice_txt.TextChanged += new System.EventHandler(this.UnitCostPrice_txt_TextChanged);
+            this.UnitCostPrice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UnitPrice_txt_KeyDown);
+            this.UnitCostPrice_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UnitPrice_txt_KeyPress);
             // 
             // ItemName_txt
             // 
@@ -857,7 +864,7 @@
             this.Sr.Frozen = true;
             this.Sr.HeaderText = "Sr #";
             this.Sr.Name = "Sr";
-            this.Sr.Width = 59;
+            this.Sr.Width = 63;
             // 
             // ITEM_CODE
             // 
@@ -865,45 +872,46 @@
             this.ITEM_CODE.HeaderText = "ITEM_CODE";
             this.ITEM_CODE.Name = "ITEM_CODE";
             this.ITEM_CODE.ReadOnly = true;
-            this.ITEM_CODE.Width = 112;
+            this.ITEM_CODE.Width = 116;
             // 
             // ItemName
             // 
             this.ItemName.HeaderText = "Item Name";
             this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 104;
             // 
             // Ctn
             // 
             this.Ctn.HeaderText = "Pcs/Ctn";
             this.Ctn.Name = "Ctn";
-            this.Ctn.Width = 81;
+            this.Ctn.Width = 85;
             // 
             // Qty
             // 
             this.Qty.HeaderText = "Ctn";
             this.Qty.Name = "Qty";
             this.Qty.ReadOnly = true;
-            this.Qty.Width = 54;
+            this.Qty.Width = 58;
             // 
             // Quant
             // 
             this.Quant.HeaderText = "Quant";
             this.Quant.Name = "Quant";
-            this.Quant.Width = 72;
+            this.Quant.Width = 76;
             // 
             // Price
             // 
             this.Price.HeaderText = "UnitPrice";
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
-            this.Price.Width = 90;
+            this.Price.Width = 94;
             // 
             // SubTotal
             // 
             this.SubTotal.HeaderText = "SubTotal";
             this.SubTotal.Name = "SubTotal";
             this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 90;
+            this.SubTotal.Width = 94;
             // 
             // label14
             // 
@@ -1035,6 +1043,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
@@ -1061,7 +1070,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(60, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(64, 24);
             this.toolStripButton2.Text = "Save";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -1070,7 +1079,7 @@
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(167, 24);
+            this.toolStripButton6.Size = new System.Drawing.Size(171, 24);
             this.toolStripButton6.Text = "Modify Consignment";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
@@ -1080,7 +1089,7 @@
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(78, 24);
+            this.toolStripButton5.Size = new System.Drawing.Size(82, 24);
             this.toolStripButton5.Text = "Update";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
@@ -1089,7 +1098,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(171, 24);
+            this.toolStripButton3.Size = new System.Drawing.Size(175, 24);
             this.toolStripButton3.Text = "Import Consignments";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -1099,7 +1108,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(217, 24);
+            this.toolStripButton4.Size = new System.Drawing.Size(221, 24);
             this.toolStripButton4.Text = "Save Imported Consignment";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -1316,6 +1325,39 @@
             this.SpeedTest_BGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SpeedTest_BGWorker_DoWork);
             this.SpeedTest_BGWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SpeedTest_BGWorker_RunWorkerCompleted);
             // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.BackColor = System.Drawing.Color.Transparent;
+            this.label34.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label34.Location = new System.Drawing.Point(1015, 180);
+            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(101, 17);
+            this.label34.TabIndex = 83;
+            this.label34.Text = "Unit Sale Price";
+            // 
+            // UnitSalePrice_txt
+            // 
+            this.UnitSalePrice_txt.Location = new System.Drawing.Point(999, 196);
+            this.UnitSalePrice_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.UnitSalePrice_txt.Name = "UnitSalePrice_txt";
+            this.UnitSalePrice_txt.Size = new System.Drawing.Size(133, 22);
+            this.UnitSalePrice_txt.TabIndex = 15;
+            this.UnitSalePrice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UnitSalePrice_txt_KeyDown);
+            // 
+            // UpdateItemPrices_btn
+            // 
+            this.UpdateItemPrices_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("UpdateItemPrices_btn.BackgroundImage")));
+            this.UpdateItemPrices_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.UpdateItemPrices_btn.Location = new System.Drawing.Point(1140, 197);
+            this.UpdateItemPrices_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.UpdateItemPrices_btn.Name = "UpdateItemPrices_btn";
+            this.UpdateItemPrices_btn.Size = new System.Drawing.Size(22, 22);
+            this.UpdateItemPrices_btn.TabIndex = 16;
+            this.UpdateItemPrices_btn.UseVisualStyleBackColor = true;
+            this.UpdateItemPrices_btn.Click += new System.EventHandler(this.UpdateItemPrices_btn_Click);
+            // 
             // AddConsignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1384,7 +1426,7 @@
         private System.Windows.Forms.TextBox BalanceNew_txt;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox ItemCode_txt;
-        private System.Windows.Forms.TextBox UnitPrice_txt;
+        private System.Windows.Forms.TextBox UnitCostPrice_txt;
         private System.Windows.Forms.TextBox ItemName_txt;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label7;
@@ -1444,5 +1486,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox UnitSalePrice_txt;
+        private System.Windows.Forms.Button UpdateItemPrices_btn;
     }
 }

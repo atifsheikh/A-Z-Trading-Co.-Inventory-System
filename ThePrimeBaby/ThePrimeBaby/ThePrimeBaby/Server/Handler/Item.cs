@@ -123,13 +123,13 @@ namespace ThePrimeBaby.Server.Handler
                 return itemJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/ModifyItemPrice/2", (Request r) =>
+            Handle.POST("/ThePrimeBaby/ModifyItemPrice/3", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", Attributes[0]).First;
                 if (item != null)
                 {
-                    bool Result = Database.Base.Item.ModifyItemPriceByCode(Attributes[0],Convert.ToDecimal(Attributes[1]),item);
+                    bool Result = Database.Base.Item.ModifyItemPriceByCode(Convert.ToDecimal(Attributes[1]), Convert.ToDecimal(Attributes[2]), item);
                     return 200;
                 }
                 else

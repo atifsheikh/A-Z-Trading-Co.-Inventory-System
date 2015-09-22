@@ -111,13 +111,13 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-        internal static bool ModifyItemPriceByCode(string ItemCode, decimal ItemPrice, Database.Base.Item item)
+        internal static bool ModifyItemPriceByCode(decimal ItemCostPrice, decimal ItemPrice, Database.Base.Item item)
         {
             try
             {
-                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Code = ?", ItemCode).First;
                 Db.Transact(() =>
                 {
+                    item.COSTPRICE = ItemCostPrice;
                     item.PRICE = ItemPrice;
                 });
                 return true;

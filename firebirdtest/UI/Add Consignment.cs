@@ -95,7 +95,8 @@ namespace firebirdtest.UI
                         {
                             if (ItemsDataGridView.Rows[loop].Visible == true)// && ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString() == ItemCode_txt.Text)
                             {
-                                UnitPrice_txt.Text = ItemsDataGridView.Rows[loop].Cells["COSTPRICE"].Value.ToString().Trim();
+                                UnitCostPrice_txt.Text = ItemsDataGridView.Rows[loop].Cells["COSTPRICE"].Value.ToString().Trim();
+                                UnitSalePrice_txt.Text = ItemsDataGridView.Rows[loop].Cells["PRICE"].Value.ToString().Trim();
                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Trim();
                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop].Cells["Model"].Value.ToString().Trim();
                                 Qty_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
@@ -169,21 +170,21 @@ namespace firebirdtest.UI
         {
             try
             {
-                string[] row = { (ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString() };
+                string[] row = { (ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitCostPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitCostPrice_txt.Text)).ToString() };
                 ConsignmentDetailDataGridView.Rows.Add(row);
                 ConsignmentDetailDataGridView.Update();
                 TOTAL_CTN_txt.Text = (Convert.ToInt32(TOTAL_CTN_txt.Text) + Convert.ToInt32(Ctn_txt.Text)).ToString();
                 int temp = Convert.ToInt32(textBox7.Text);
                 textBox7.Text = (++temp).ToString();
-                RandomAlgos.AddDataInSalesFile((ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString(), VendorName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text);
-                Total_txt.Text = (Convert.ToDecimal(Total_txt.Text) + Convert.ToDecimal(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString();
+                RandomAlgos.AddDataInSalesFile((ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitCostPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitCostPrice_txt.Text)).ToString(), VendorName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text);
+                Total_txt.Text = (Convert.ToDecimal(Total_txt.Text) + Convert.ToDecimal(Quant_txt.Text) * Convert.ToDecimal(UnitCostPrice_txt.Text)).ToString();
                 //BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
                 ItemCode_txt.Text = "";
                 ItemName_txt.Text = "None";
                 Ctn_txt.Text = "0";
                 Qty_txt.Text = "0";
                 Quant_txt.Text = "0";
-                UnitPrice_txt.Text = "0";
+                UnitCostPrice_txt.Text = "0";
                 Total_txt_Leave(sender, e);
 
             }
@@ -489,13 +490,13 @@ namespace firebirdtest.UI
                         Ctn_txt.Text = "0";
                         Qty_txt.Text = "0";
                         Quant_txt.Text = "0";
-                        UnitPrice_txt.Text = "0";
+                        UnitCostPrice_txt.Text = "0";
                         //ConsignmentDate_txt.Focus();
                         Total_txt_Leave(sender, e);
                         ItemCode_txt.Focus();
                     }
                     else if (Ctn_txt.Text != "" && Ctn_txt.Text != "0")
-                        UnitPrice_txt.Focus();
+                        UnitCostPrice_txt.Focus();
                 }
             }
             catch (Exception ex)
@@ -871,7 +872,7 @@ namespace firebirdtest.UI
                                         MatchFound = true;                //item
                                         //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Quantity"].Value.ToString();
                                         ItemCode_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Trim();
-                                        UnitPrice_txt.Text = ItemsDataGridView.Rows[loop2].Cells["COSTPRICE"].Value.ToString().Trim();
+                                        UnitCostPrice_txt.Text = ItemsDataGridView.Rows[loop2].Cells["COSTPRICE"].Value.ToString().Trim();
                                         ItemName_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Model"].Value.ToString().Trim();
                                         Qty_txt.Text = ItemsDataGridView.Rows[loop2].Cells["QTY_BOX"].Value.ToString();
                                         //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CTN_LEFT"].Value.ToString();
@@ -905,7 +906,7 @@ namespace firebirdtest.UI
                                                 MatchFound = true;                //item
                                                 //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Quantity"].Value.ToString();
                                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Trim();
-                                                UnitPrice_txt.Text = ItemsDataGridView.Rows[loop2].Cells["COSTPRICE"].Value.ToString().Trim();
+                                                UnitCostPrice_txt.Text = ItemsDataGridView.Rows[loop2].Cells["COSTPRICE"].Value.ToString().Trim();
                                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop2].Cells["Model"].Value.ToString().Trim();
                                                 Qty_txt.Text = ItemsDataGridView.Rows[loop2].Cells["QTY_BOX"].Value.ToString();
                                                 //RemainingPcs_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CTN_LEFT"].Value.ToString();
@@ -1345,7 +1346,7 @@ namespace firebirdtest.UI
                     Quant_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Quant"].Value.ToString();
 
                     //unit price
-                    UnitPrice_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Price"].Value.ToString();
+                    UnitCostPrice_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Price"].Value.ToString();
 
                     Ctn_txt.Focus();
                 }
@@ -1364,7 +1365,7 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    UnitPrice_txt.Focus();
+                    UnitCostPrice_txt.Focus();
                 }
             }
             catch (Exception ex)
@@ -1381,25 +1382,32 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    bool Added = false;
-                    for (int loop = 0; loop < ConsignmentDetailDataGridView.Rows.Count; loop++)
+                    if (ItemCostPriceModified == false)
                     {
-                        if (ConsignmentDetailDataGridView.Rows[loop].Cells["ITEM_CODE"].Value != null && ConsignmentDetailDataGridView.Rows[loop].Cells["ITEM_CODE"].Value.Equals(ItemCode_txt.Text))
+                        bool Added = false;
+                        for (int loop = 0; loop < ConsignmentDetailDataGridView.Rows.Count; loop++)
                         {
-                            ConsignmentDetailDataGridView.Rows.RemoveAt(loop);
+                            if (ConsignmentDetailDataGridView.Rows[loop].Cells["ITEM_CODE"].Value != null && ConsignmentDetailDataGridView.Rows[loop].Cells["ITEM_CODE"].Value.Equals(ItemCode_txt.Text))
+                            {
+                                ConsignmentDetailDataGridView.Rows.RemoveAt(loop);
 
-                            //                            Variables.NotificationStatus = true;
-                            //                            Variables.NotificationMessageTitle = this.Name;
-                            //                            Variables.NotificationMessageText = "Item is already added in consignment...";
-                            
-                            //     Added = true;
-                            break;
+                                //                            Variables.NotificationStatus = true;
+                                //                            Variables.NotificationMessageTitle = this.Name;
+                                //                            Variables.NotificationMessageText = "Item is already added in consignment...";
+
+                                //     Added = true;
+                                break;
+                            }
+                        }
+                        if (Added == false)
+                        {
+                            EnterDataInGrid(sender, e);
+                            ItemCode_txt.Focus();
                         }
                     }
-                    if (Added == false)
+                    else 
                     {
-                        EnterDataInGrid(sender, e);
-                        ItemCode_txt.Focus();
+                        UnitSalePrice_txt.Focus();
                     }
                 }
             }
@@ -1640,7 +1648,7 @@ namespace firebirdtest.UI
                 {
                     Thread.Sleep(100);
                     Qty_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["QTY_BOX"].Value.ToString();
-                    UnitPrice_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["COSTPRICE"].Value.ToString().Trim();
+                    UnitCostPrice_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["COSTPRICE"].Value.ToString().Trim();
                     ItemName_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["Model"].Value.ToString().Trim();
                 }
                 //                ItemCode_txt.Text = ItemsDataGridView.Rows[e.RowIndex].Cells["ITEM_CODE"].Value.ToString().Trim();
@@ -1673,7 +1681,7 @@ namespace firebirdtest.UI
                         //RemainingPcs_txt.Text = ItemsDataGridView.Rows[.CurrentRow.Index].Cells["Quantity"].Value.ToString();
                         ItemCode_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["CODE"].Value.ToString().Trim();
 
-                        UnitPrice_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["COSTPRICE"].Value.ToString().Trim();
+                        UnitCostPrice_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["COSTPRICE"].Value.ToString().Trim();
                         ItemName_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["Model"].Value.ToString().Trim();
                         Qty_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["QTY_BOX"].Value.ToString();
                         //RemainingPcs_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["CTN_LEFT"].Value.ToString();
@@ -1827,5 +1835,30 @@ namespace firebirdtest.UI
         }
 
         public bool ModifyingConsignment { get; set; }
+
+        public bool ItemCostPriceModified = false;
+        private void UnitCostPrice_txt_TextChanged(object sender, EventArgs e)
+        {
+            ItemCostPriceModified = true;
+        }
+
+        private void UnitSalePrice_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                UpdateItemPrices_btn.Focus();
+            }
+        }
+
+        private void UpdateItemPrices_btn_Click(object sender, EventArgs e)
+        {
+            if (ItemCostPriceModified == true)
+            {
+                ItemCostPriceModified = false;
+                DatabaseCalls.ModifyItemPrice(ItemCode_txt.Text, Convert.ToDecimal(UnitCostPrice_txt.Text), Convert.ToDecimal(UnitSalePrice_txt.Text));
+                GetItemsForConsignmentPage();
+                UnitPrice_txt_KeyDown(sender, new KeyEventArgs(Keys.Enter));
+            }
+        }
     }
 }

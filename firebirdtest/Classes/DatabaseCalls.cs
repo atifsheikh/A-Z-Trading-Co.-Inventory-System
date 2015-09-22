@@ -293,9 +293,9 @@ namespace firebirdtest
         {
             return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddItemQutantityByName/2", ItemName + "/" + ItemQuantity);
         }
-        internal static string ModifyItemPrice(string ItemName, decimal ItemPrice)
+        internal static string ModifyItemPrice(string ItemName, decimal ItemCostPrice,decimal ItemPrice)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyItemPrice/2", ItemName + "/" + ItemPrice);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyItemPrice/3", ItemName + "/" + ItemCostPrice + "/" + ItemPrice);
         }
 
         //Shipments
