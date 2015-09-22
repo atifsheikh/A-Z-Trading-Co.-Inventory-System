@@ -22,13 +22,13 @@ namespace ThePrimeBaby.Server.Handler
                 return VendorJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/AddVendor/6", (Request r) =>
+            Handle.POST("/ThePrimeBaby/AddVendor/7", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
                 Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.NAME = ?", Attributes[0]).First;
                 if (vendor == null)
                 {
-                    bool Result = ThePrimeBaby.Database.Vendor.AddVendor(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Convert.ToDecimal(Attributes[4]), Convert.ToDecimal(Attributes[5]));
+                    bool Result = ThePrimeBaby.Database.Vendor.AddVendor(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Convert.ToDecimal(Attributes[4]), Convert.ToDecimal(Attributes[5]), Attributes[6]);
                     return 200;
                 }
                 else
@@ -43,13 +43,13 @@ namespace ThePrimeBaby.Server.Handler
                 return vendorJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/ModifyVendor/7", (Request r) =>
+            Handle.POST("/ThePrimeBaby/ModifyVendor/8", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
                 Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT v FROM ThePrimeBaby.Database.Vendor v WHERE v.ID = ?", Convert.ToInt32(Attributes[0])).First;
                 if (vendor != null)
                 {
-                    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]),vendor);
+                    bool Result = ThePrimeBaby.Database.Vendor.ModifyVendor(Convert.ToInt32(Attributes[0]), Attributes[1], Attributes[2], Attributes[3], Attributes[4], Convert.ToDecimal(Attributes[5]), vendor, Attributes[7]);
                     return 200;
                 }
                 else

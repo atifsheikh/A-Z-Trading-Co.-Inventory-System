@@ -41,7 +41,7 @@ namespace firebirdtest.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            String Result = DatabaseCalls.AddCustomer(textBox1.Text,"None","None","None",0,0);
+            String Result = DatabaseCalls.AddCustomer(textBox1.Text,"None","None","None",0,0,"");
             CustomerName_txt.Items.Add(textBox1.Text);
             CustomerName_txt.Text = textBox1.Text;
             button1_Click(sender, e);

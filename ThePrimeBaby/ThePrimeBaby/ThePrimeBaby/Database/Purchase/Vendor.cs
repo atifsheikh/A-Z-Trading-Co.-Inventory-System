@@ -5,6 +5,7 @@ namespace ThePrimeBaby.Database
 {
     public class Vendor : Concept
     {
+        public string BUSINESS_NAME;
         public string ADDRESS;
         public string EMAIL;
         public string PHONE;
@@ -41,7 +42,7 @@ namespace ThePrimeBaby.Database
         public decimal OPENING_BALANCE;
         public decimal BALANCE_LIMIT;
 
-        internal static bool AddVendor(string Name, string address, string phone, string email, decimal balance_limit, decimal opening_balance)
+        internal static bool AddVendor(string Name, string address, string phone, string email, decimal balance_limit, decimal opening_balance, string BusinessName)
         {
             try
             {
@@ -55,6 +56,7 @@ namespace ThePrimeBaby.Database
                     vendor.EMAIL = email.Trim();
                     vendor.OPENING_BALANCE = opening_balance;
                     vendor.BALANCE_LIMIT = balance_limit;
+                    vendor.BUSINESS_NAME = BusinessName;
                 });
                 return true;
             }
@@ -79,7 +81,7 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyVendor(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, ThePrimeBaby.Database.Vendor vendor)
+        internal static bool ModifyVendor(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, ThePrimeBaby.Database.Vendor vendor, string BusinessName)
         {
             try
             {
@@ -91,6 +93,7 @@ namespace ThePrimeBaby.Database
                     vendor.PHONE = ReplacePhone.Trim();
                     vendor.EMAIL = ReplaceEmail.Trim();
                     vendor.OPENING_BALANCE = ReplaceOpening_balance;
+                    vendor.BUSINESS_NAME = BusinessName;
                 });
                 return true;
             }

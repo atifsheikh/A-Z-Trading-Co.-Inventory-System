@@ -41,7 +41,7 @@ namespace firebirdtest.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            String Result = DatabaseCalls.AddVendor(textBox1.Text,"None","None","None",0,0);
+            String Result = DatabaseCalls.AddVendor(textBox1.Text,"None","None","None",0,0,"");
             VendorName_txt.Items.Add(textBox1.Text);
             VendorName_txt.Text = textBox1.Text;
             button1_Click(sender, e);

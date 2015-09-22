@@ -5,14 +5,46 @@ namespace ThePrimeBaby.Database
 {
     public class Customer : Concept
     {
+        public string BUSINESS_NAME;
         public string ADDRESS;
         public string EMAIL;
         public string PHONE;
-        public decimal AMOUNT;
+        public decimal AMOUNT
+        {
+            get
+            {
+                QueryResultRows<Database.Shipment> AllShipments = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE Vendor = ?", this);
+                decimal ShipmentCalc = 0.0m;
+                foreach (Database.Shipment OneShipment in AllShipments)
+                {
+                    ShipmentCalc += OneShipment.AMOUNT;
+                }
+                QueryResultRows<Database.VendorVoucher> AllVendorVouchers = Db.SQL<Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE Vendor = ?", this);
+                decimal VoucherCalc = 0.0m;
+                foreach (Database.VendorVoucher OneVendorVoucher in AllVendorVouchers)
+                {
+                    VoucherCalc += OneVendorVoucher.AMOUNT;
+                }
+                return ((ShipmentCalc + this.OPENING_BALANCE) - VoucherCalc);
+            }
+        }
+        public decimal TotalAmount
+        {
+            get
+            {
+                QueryResultRows<Database.Shipment> AllShipments = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE Vendor = ?", this);
+                decimal Calc = 0.0m;
+                foreach (Database.Shipment OneShipment in AllShipments)
+                {
+                    Calc += OneShipment.AMOUNT;
+                }
+                return (Calc + this.OPENING_BALANCE);
+            }
+        }
         public decimal OPENING_BALANCE;
         public decimal BALANCE_LIMIT;
 
-        internal static bool AddCustomer(string Name, string address, string phone, string email, int balance_limit, int opening_balance)
+        internal static bool AddCustomer(string Name, string address, string phone, string email, int balance_limit, int opening_balance, string BusinessName)
         {
             try
             {
@@ -26,6 +58,7 @@ namespace ThePrimeBaby.Database
                     customer.EMAIL = email.Trim();
                     customer.BALANCE_LIMIT = balance_limit;
                     customer.OPENING_BALANCE = opening_balance;
+                    customer.BUSINESS_NAME = BusinessName;
                 });
                 return true;
             }
@@ -51,7 +84,7 @@ namespace ThePrimeBaby.Database
             }
         }
 
-        internal static bool ModifyCustomer(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount, Database.Customer customer)
+        internal static bool ModifyCustomer(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, Database.Customer customer, string ReplaceBusiness_name)
         {
             try
             {
@@ -62,25 +95,8 @@ namespace ThePrimeBaby.Database
                     customer.ADDRESS = ReplaceAddress.Trim();
                     customer.PHONE = ReplacePhone.Trim();
                     customer.EMAIL = ReplaceEmail.Trim();
-                    customer.AMOUNT = CalculatedAmount;
                     customer.OPENING_BALANCE = ReplaceOpening_balance;
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        internal static bool ModifyCustomer(int CustomerID, decimal NewBalance, Database.Customer customer)
-        {
-            try
-            {
-                //Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Id = ?", Convert.ToInt32(CustomerID)).First;
-                Db.Transact(() =>
-                {
-                    customer.AMOUNT = NewBalance;
+                    customer.BUSINESS_NAME = ReplaceBusiness_name;
                 });
                 return true;
             }

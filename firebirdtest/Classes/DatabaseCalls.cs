@@ -196,13 +196,13 @@ namespace firebirdtest
         {
             return DatabaseCalls.GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendors");
         }
-        internal static string AddVendor(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
+        internal static string AddVendor(string Name, string address, string phone, string email, int ballance_limit, int opening_balance,string BusinessName)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddVendor/6" , Name + "/" + address + "/" + phone + "/" + email + "/" + ballance_limit+ "/" + opening_balance);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddVendor/7", Name + "/" + address + "/" + phone + "/" + email + "/" + ballance_limit + "/" + opening_balance + "/" + BusinessName);
         }
-        internal static string ModifyVendor(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
+        internal static string ModifyVendor(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount, string BusinessName)
         {
-            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyVendor/7", FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone + "/" + ReplaceEmail + "/" + ReplaceOpening_balance + "/" + CalculatedAmount);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyVendor/8", FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone + "/" + ReplaceEmail + "/" + ReplaceOpening_balance + "/" + CalculatedAmount + "/" + BusinessName);
         }
         internal static string ModifyVendorBalance(int VendorID, decimal NewBalance)
         {
@@ -247,17 +247,17 @@ namespace firebirdtest
         //{
         //    return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomers", "");
         //}
-        internal static string AddCustomer(string Name, string address, string phone, string email, int ballance_limit, int opening_balance)
+        internal static string AddCustomer(string Name, string address, string phone, string email, int ballance_limit, int opening_balance, string BusinessName)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddCustomer/6", Name + "/" + address + "/" + phone + "/" + email+ "/" + ballance_limit+ "/" + opening_balance);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddCustomer/7", Name + "/" + address + "/" + phone + "/" + email + "/" + ballance_limit + "/" + opening_balance + "/" + BusinessName);
         }
         internal static string ModifyCustomer(string Find, string Replace)
         {
             return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyCustomer/2", Find+ "/" + Replace);
         }
-        internal static string ModifyCustomer(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount)
+        internal static string ModifyCustomer(string FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, decimal CalculatedAmount, string BusinessName)
         {
-            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyCustomer/7", FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone + "/" + ReplaceEmail + "/" + ReplaceOpening_balance + "/" + CalculatedAmount);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyCustomer/8", FindID + "/" + ReplaceName + "/" + ReplaceAddress + "/" + ReplacePhone + "/" + ReplaceEmail + "/" + ReplaceOpening_balance + "/" + CalculatedAmount + "/" + BusinessName);
         }
         internal static string ModifyCustomer(int CustomerID, decimal NewBalance)
         {

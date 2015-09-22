@@ -2,6 +2,7 @@
 	Customers : [{
 		"ID" : 0,
 		"NAME" : "",
+		"BUSINESS_NAME":"",
 		"ADDRESS" :"",
         "EMAIL":"",
         "PHONE":"",

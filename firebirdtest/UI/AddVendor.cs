@@ -33,7 +33,7 @@ namespace firebirdtest.UI
                 {
                     if (VendorOpeningBalance_txt.Text == "")
                         VendorOpeningBalance_txt.Text = "0";
-                    String Result = DatabaseCalls.AddVendor(VendorName_txt.Text, VendorAddress_txt.Text, VendorPhone_txt.Text, VendorEmail_txt.Text, 0, Convert.ToInt32(VendorOpeningBalance_txt.Text));
+                    String Result = DatabaseCalls.AddVendor(VendorName_txt.Text, VendorAddress_txt.Text, VendorPhone_txt.Text, VendorEmail_txt.Text, 0, Convert.ToInt32(VendorOpeningBalance_txt.Text), BusinessName_txt.Text);
                     if (Result != "")
                     {
                         Variables.NotificationStatus = true;
@@ -84,6 +84,7 @@ namespace firebirdtest.UI
             VendorPhone_txt.Text = "None";
             VendorEmail_txt.Text = "None";
             VendorOpeningBalance_txt.Text = "0";
+            BusinessName_txt.Text = "";
             FormLoading = true;
         }
 
@@ -98,7 +99,8 @@ namespace firebirdtest.UI
                     VendorPhone_txt.Text = VendorsDataGridView.CurrentRow.Cells["PHONE"].Value.ToString();
                     VendorEmail_txt.Text = VendorsDataGridView.CurrentRow.Cells["EMAIL"].Value.ToString();
                     VendorOpeningBalance_txt.Text = VendorsDataGridView.CurrentRow.Cells["OPENING_BALANCE"].Value.ToString();
-                    CurrentAmount = Convert.ToDecimal(VendorsDataGridView.CurrentRow.Cells["AMOUNT"].Value.ToString()); 
+                    CurrentAmount = Convert.ToDecimal(VendorsDataGridView.CurrentRow.Cells["AMOUNT"].Value.ToString());
+                    BusinessName_txt.Text = VendorsDataGridView.CurrentRow.Cells["BUSINESS_NAME"].Value.ToString();
                     PreviousBalance = Convert.ToDecimal(VendorOpeningBalance_txt.Text);                    
                 }
             }
@@ -111,7 +113,7 @@ namespace firebirdtest.UI
         private void button2_Click(object sender, EventArgs e)
         {
             decimal CalculatedAmount= Convert.ToDecimal(VendorOpeningBalance_txt.Text) - PreviousBalance + CurrentAmount;
-            string VendorModifyResult = DatabaseCalls.ModifyVendor(VendorsDataGridView.CurrentRow.Cells["ID"].Value.ToString(), VendorName_txt.Text, VendorAddress_txt.Text, VendorPhone_txt.Text, VendorEmail_txt.Text, Convert.ToInt32(VendorOpeningBalance_txt.Text), CalculatedAmount);
+            string VendorModifyResult = DatabaseCalls.ModifyVendor(VendorsDataGridView.CurrentRow.Cells["ID"].Value.ToString(), VendorName_txt.Text, VendorAddress_txt.Text, VendorPhone_txt.Text, VendorEmail_txt.Text, Convert.ToInt32(VendorOpeningBalance_txt.Text), CalculatedAmount,BusinessName_txt.Text);
 
             if (VendorModifyResult != "")
             {
@@ -267,6 +269,7 @@ namespace firebirdtest.UI
             VendorPhone_txt.Text = "";
             VendorEmail_txt.Text = "None";
             VendorOpeningBalance_txt.Text = "0";
+            BusinessName_txt.Text = "";
         }
 
         private void VendorsDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)

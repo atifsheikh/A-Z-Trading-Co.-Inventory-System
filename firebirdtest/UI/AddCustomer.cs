@@ -29,7 +29,7 @@ namespace firebirdtest.UI
             {
                 try
                 {
-                    String AddCustomerResult = DatabaseCalls.AddCustomer(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text));
+                    String AddCustomerResult = DatabaseCalls.AddCustomer(CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, 0, Convert.ToInt32(CustomerOpeningBalance_txt.Text), BusinessName_txt.Text);
                     if (AddCustomerResult != null)
                     {
                         //DataSet CustomerIDDataSet = DatabaseCalls.GetCustomer(CustomerName_txt.Text);
@@ -82,6 +82,7 @@ namespace firebirdtest.UI
             CustomerPhone_txt.Text = "None";
             CustomerEmail_txt.Text = "None";
             CustomerOpeningBalance_txt.Text = "0";
+            BusinessName_txt.Text = "";
             FormLoading = true;
         }
 
@@ -96,7 +97,8 @@ namespace firebirdtest.UI
                     CustomerPhone_txt.Text = CustomersDataGridView.CurrentRow.Cells["PHONE"].Value.ToString();
                     CustomerEmail_txt.Text = CustomersDataGridView.CurrentRow.Cells["EMAIL"].Value.ToString();
                     CustomerOpeningBalance_txt.Text = CustomersDataGridView.CurrentRow.Cells["OPENING_BALANCE"].Value.ToString();
-                    CurrentAmount = Convert.ToDecimal(CustomersDataGridView.CurrentRow.Cells["AMOUNT"].Value.ToString()); 
+                    CurrentAmount = Convert.ToDecimal(CustomersDataGridView.CurrentRow.Cells["AMOUNT"].Value.ToString());
+                    BusinessName_txt.Text = CustomersDataGridView.CurrentRow.Cells["BUSINESS_NAME"].Value.ToString();
                     PreviousBalance = Convert.ToDecimal(CustomerOpeningBalance_txt.Text);
                     
                 }
@@ -110,7 +112,7 @@ namespace firebirdtest.UI
         private void button2_Click(object sender, EventArgs e)
         {
             decimal CalculatedAmount= Convert.ToDecimal(CustomerOpeningBalance_txt.Text) - PreviousBalance + CurrentAmount;
-            string CustomerModifyResult = DatabaseCalls.ModifyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString(), CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, Convert.ToInt32(CustomerOpeningBalance_txt.Text), CalculatedAmount);
+            string CustomerModifyResult = DatabaseCalls.ModifyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString(), CustomerName_txt.Text, CustomerAddress_txt.Text, CustomerPhone_txt.Text, CustomerEmail_txt.Text, Convert.ToInt32(CustomerOpeningBalance_txt.Text), CalculatedAmount, BusinessName_txt.Text);
 
             //DataSet CusomerBillDataSet = DatabaseCalls.GetBillsbyCustomer(CustomersDataGridView.CurrentRow.Cells["ID"].Value.ToString());
             //foreach (DataRow CustomerBill in CusomerBillDataSet.Tables[0].Rows)
@@ -259,6 +261,7 @@ Variables.FormClosed = true;
             CustomerPhone_txt.Text = "";
             CustomerEmail_txt.Text = "None";
             CustomerOpeningBalance_txt.Text = "0";
+            BusinessName_txt.Text = "";
         }
 
         private void CustomersDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)

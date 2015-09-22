@@ -2,6 +2,7 @@
 	Vendors : [{
 		"ID" : 0,
 		"NAME" : "",
+		"BUSINESS_NAME":"",
 		"ADDRESS" :"",
 		"PHONE" :"",
 		"EMAIL" :"",
