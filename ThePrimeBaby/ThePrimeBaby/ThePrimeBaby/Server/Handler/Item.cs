@@ -135,21 +135,6 @@ namespace ThePrimeBaby.Server.Handler
                 else
                     return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
-            Handle.POST("/ThePrimeBaby/AddItemQutantityByName/2", (Request r) =>
-            {
-                string[] Attributes = r.Body.Split('/');
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Name = ?", Attributes[0]).First;
-                if (item == null)
-                {
-                    bool Result = ThePrimeBaby.Database.Base.Item.AddItemQutantity(Attributes[0], Convert.ToInt32(Attributes[1]),item);
-                    return 200;
-                }
-                else
-                { return 300; }
-                return 209;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
             
             Handle.POST("/ThePrimeBaby/ModifyItemsByName/2", (Request r) =>
             {
@@ -170,7 +155,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
                 if (item != null)
                 {
-                    bool Result = Database.Base.Item.ModifyItems(Attributes[0], Attributes[1], Attributes[2], Attributes[3], Attributes[4], Attributes[5], Attributes[6], Attributes[7], Convert.ToInt32(Attributes[8]),item);
+                    bool Result = Database.Base.Item.ModifyItems(Attributes[0], Attributes[1], Attributes[2], Attributes[4], Attributes[5], Attributes[6], Attributes[7], Convert.ToInt32(Attributes[8]),item);
                     return 200;
                 }
                 else
