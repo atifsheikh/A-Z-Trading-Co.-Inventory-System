@@ -16,10 +16,11 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __SShVendorJs__ = global::ShipmentJson.ShipmentsElementJson.VendorJson;
+using __SShVendorJs1__ = global::ShipmentJson.ShipmentsElementJson.VendorJson.JsonByExample;
 using __Shipment1__ = global::ShipmentJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::ShipmentJson.ShipmentsElementJson>;
 using __SShTOTAL_CT__ = global::ShipmentJson.ShipmentsElementJson.Input.TOTAL_CTN;
+using __SShREMARKS__ = global::ShipmentJson.ShipmentsElementJson.Input.REMARKS;
 using __SShDATED__ = global::ShipmentJson.ShipmentsElementJson.Input.DATED;
 using __SShVENDOR_B__ = global::ShipmentJson.ShipmentsElementJson.Input.VENDOR_BALANCE;
 using __SShAMOUNT__ = global::ShipmentJson.ShipmentsElementJson.Input.AMOUNT;
@@ -28,7 +29,7 @@ using __ShShipment2__ = global::ShipmentJson.ShipmentsElementJson.Input;
 using __SSVeNAME__ = global::ShipmentJson.ShipmentsElementJson.VendorJson.Input.NAME;
 using __SSVeID__ = global::ShipmentJson.ShipmentsElementJson.VendorJson.Input.ID;
 using __SShVendorJs2__ = global::ShipmentJson.ShipmentsElementJson.VendorJson.Input;
-using __SShVendorJs1__ = global::ShipmentJson.ShipmentsElementJson.VendorJson.JsonByExample;
+using __Arr__ = global::Starcounter.Arr<global::ShipmentJson.ShipmentsElementJson>;
 using __Shipment2__ = global::ShipmentJson.Input;
 using __ShShipment1__ = global::ShipmentJson.ShipmentsElementJson.JsonByExample;
 using __TDecimal__ = global::Starcounter.Templates.TDecimal;
@@ -42,7 +43,7 @@ using __Json1__ = global::Starcounter.Json.JsonByExample;
 using __TObject__ = global::Starcounter.Templates.TObject;
 using __Json__ = global::Starcounter.Json;
 using __Shipment__ = global::ShipmentJson;
-using __Arr__ = global::Starcounter.Arr<global::ShipmentJson.ShipmentsElementJson>;
+using __SShVendorJs__ = global::ShipmentJson.ShipmentsElementJson.VendorJson;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -85,11 +86,11 @@ public class ShipmentJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Shipments {
-#line 13 "Server\Partials\ShipmentJson.json"
+#line 14 "Server\Partials\ShipmentJson.json"
     get {
 #line hidden
         return Template.Shipments.Getter(this); }
-#line 13 "Server\Partials\ShipmentJson.json"
+#line 14 "Server\Partials\ShipmentJson.json"
     set {
 #line hidden
         Template.Shipments.Setter(this, value); } }
@@ -115,6 +116,7 @@ public class ShipmentJson : __Json__ {
         private System.Decimal __bf__AMOUNT__;
         private System.Decimal __bf__VENDOR_BALANCE__;
         private System.String __bf__DATED__;
+        private System.String __bf__REMARKS__;
         private System.Int64 __bf__TOTAL_CTN__;
         #line default
         
@@ -143,6 +145,9 @@ public class ShipmentJson : __Json__ {
                     DATED = Add<__TString__>("DATED");
                     DATED.DefaultValue = "";
                     DATED.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__DATED__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__DATED__ = (System.String)_v_; }, false);
+                    REMARKS = Add<__TString__>("REMARKS");
+                    REMARKS.DefaultValue = "";
+                    REMARKS.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__REMARKS__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__REMARKS__ = (System.String)_v_; }, false);
                     TOTAL_CTN = Add<__TLong__>("TOTAL_CTN");
                     TOTAL_CTN.DefaultValue = 0L;
                     TOTAL_CTN.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__TOTAL_CTN__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__TOTAL_CTN__ = (System.Int64)_v_; }, false);
@@ -153,6 +158,7 @@ public class ShipmentJson : __Json__ {
                 public __TDecimal__ AMOUNT;
                 public __TDecimal__ VENDOR_BALANCE;
                 public __TString__ DATED;
+                public __TString__ REMARKS;
                 public __TLong__ TOTAL_CTN;
             }
             #line default
@@ -219,12 +225,24 @@ public class ShipmentJson : __Json__ {
 #line default
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.String REMARKS {
+#line 11 "Server\Partials\ShipmentJson.json"
+    get {
+#line hidden
+        return Template.REMARKS.Getter(this); }
+#line 11 "Server\Partials\ShipmentJson.json"
+    set {
+#line hidden
+        Template.REMARKS.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 TOTAL_CTN {
-#line 12 "Server\Partials\ShipmentJson.json"
+#line 13 "Server\Partials\ShipmentJson.json"
     get {
 #line hidden
         return Template.TOTAL_CTN.Getter(this); }
-#line 12 "Server\Partials\ShipmentJson.json"
+#line 13 "Server\Partials\ShipmentJson.json"
     set {
 #line hidden
         Template.TOTAL_CTN.Setter(this, value); } }
@@ -340,6 +358,11 @@ public class ShipmentJson : __Json__ {
             
             #line hidden
             public class DATED : Input<__ShShipment__, __TString__, string> {
+            }
+            #line default
+            
+            #line hidden
+            public class REMARKS : Input<__ShShipment__, __TString__, string> {
             }
             #line default
             

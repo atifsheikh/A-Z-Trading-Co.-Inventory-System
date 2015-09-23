@@ -281,5 +281,13 @@ namespace firebirdtest.UI
         {
             e.Cancel = true;
         }
+
+        private void BusinessName_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }

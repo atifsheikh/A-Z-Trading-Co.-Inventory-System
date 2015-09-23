@@ -700,7 +700,7 @@ namespace firebirdtest.UI
                         for (int loop = 0; loop < InvoiceDataGridView.Rows.Count; loop++)
                         {
                             InvoiceDataGridView.CurrentCell = null;
-                            if (StaticClass.Contain(InvoiceDataGridView.Rows[loop].Cells["CUSTOMERNAME"].Value.ToString(),CustomerNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
+                            if (!StaticClass.Contain(InvoiceDataGridView.Rows[loop].Cells["CUSTOMERNAME"].Value.ToString(),CustomerNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
                             {
                                 InvoiceDataGridView.Rows[loop].Visible = false;
                             }

@@ -278,5 +278,14 @@ Variables.FormClosed = true;
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+
+        private void BusinessName_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+
+        }
     }
 }

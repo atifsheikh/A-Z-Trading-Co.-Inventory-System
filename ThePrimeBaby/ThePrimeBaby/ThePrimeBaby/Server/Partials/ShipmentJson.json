@@ -8,6 +8,7 @@
         "AMOUNT" : 0.0,
         "VENDOR_BALANCE" : 0.0,
 		"DATED":"",
-		"TOTAL_CTN":0
+		"REMARKS" : "",
+		"TOTAL_CTN":0		
 	}]
 }

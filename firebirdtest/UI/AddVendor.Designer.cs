@@ -209,6 +209,7 @@
             this.BusinessName_txt.Name = "BusinessName_txt";
             this.BusinessName_txt.Size = new System.Drawing.Size(153, 22);
             this.BusinessName_txt.TabIndex = 1;
+            this.BusinessName_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BusinessName_txt_KeyDown);
             // 
             // label6
             // 
