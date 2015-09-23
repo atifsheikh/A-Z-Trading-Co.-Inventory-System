@@ -66,10 +66,10 @@ namespace firebirdtest.UI
             try
             {
                 ShipmentsDataSet = DatabaseCalls.GetShipments();
-                ShipmentsDataSet.Tables[0].Columns.Remove("TOTAL_CTN");
+                //ShipmentsDataSet.Tables[0].Columns.Remove("TOTAL_CTN");
                 ShipmentsDataSet.Tables[0].TableName = "Ledger";
                 VendorVoucherDataSet = DatabaseCalls.GetVendorVoucher();
-                VendorVoucherDataSet.Tables[0].Columns.Remove("REMARKS");
+                //VendorVoucherDataSet.Tables[0].Columns.Remove("REMARKS");
                 VendorVoucherDataSet.Tables[0].TableName = "Ledger"; 
                 VendorVoucherDataSet.Merge(ShipmentsDataSet);
                 

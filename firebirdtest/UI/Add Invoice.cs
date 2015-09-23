@@ -42,6 +42,7 @@ namespace firebirdtest.UI
                 CustomerName_txt.Focus();
                 CustomerAddress_txt.Text = "None";
                 CustomerEmail_txt.Text = "None";
+                BusinessName_txt.Text = "None";
                 CustomerBalance_txt.Text = "0";
                 CustomerPhone_txt.Text = "None";
                 CustomerID_txt.Text = "";
@@ -281,6 +282,7 @@ namespace firebirdtest.UI
                         CustomerID_txt.Text = GridViewColumn.ItemArray[0].ToString();//ID
                         CustomerAddress_txt.Text = GridViewColumn.ItemArray[2].ToString();//address
                         CustomerEmail_txt.Text = GridViewColumn.ItemArray[4].ToString();//phone
+                        BusinessName_txt.Text = GridViewColumn.ItemArray[8].ToString();//Business Name
                         CustomerBalance_txt.Text = GridViewColumn.ItemArray[6].ToString();//balance
                         CustomerPhone_txt.Text = GridViewColumn.ItemArray[3].ToString();//email
                         //if (ModifyingInvoice == true)
@@ -698,7 +700,7 @@ namespace firebirdtest.UI
                         for (int loop = 0; loop < InvoiceDataGridView.Rows.Count; loop++)
                         {
                             InvoiceDataGridView.CurrentCell = null;
-                            if (InvoiceDataGridView.Rows[loop].Cells["Customer_ID"].Value.ToString() != (GridViewColumn.ItemArray[0].ToString()))
+                            if (StaticClass.Contain(InvoiceDataGridView.Rows[loop].Cells["CUSTOMERNAME"].Value.ToString(),CustomerNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
                             {
                                 InvoiceDataGridView.Rows[loop].Visible = false;
                             }

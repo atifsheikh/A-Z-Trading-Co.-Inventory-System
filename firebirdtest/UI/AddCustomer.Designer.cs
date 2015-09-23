@@ -44,6 +44,8 @@
             this.CustomerOpeningBalance_txt = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BusinessName_txt = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
             this.CustomersDataGridView = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.BusinessName_txt = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).BeginInit();
@@ -78,7 +78,7 @@
             this.CustomerName_txt.Margin = new System.Windows.Forms.Padding(4);
             this.CustomerName_txt.Name = "CustomerName_txt";
             this.CustomerName_txt.Size = new System.Drawing.Size(153, 22);
-            this.CustomerName_txt.TabIndex = 1;
+            this.CustomerName_txt.TabIndex = 0;
             this.CustomerName_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerName_txt_KeyDown);
             // 
             // label2
@@ -202,6 +202,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(317, 822);
             this.panel2.TabIndex = 0;
+            // 
+            // BusinessName_txt
+            // 
+            this.BusinessName_txt.Location = new System.Drawing.Point(148, 76);
+            this.BusinessName_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.BusinessName_txt.Name = "BusinessName_txt";
+            this.BusinessName_txt.Size = new System.Drawing.Size(153, 22);
+            this.BusinessName_txt.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label6.Location = new System.Drawing.Point(26, 79);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(114, 17);
+            this.label6.TabIndex = 54;
+            this.label6.Text = "Business Name :";
             // 
             // button6
             // 
@@ -348,26 +368,6 @@
             this.button3.TabIndex = 6;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // BusinessName_txt
-            // 
-            this.BusinessName_txt.Location = new System.Drawing.Point(148, 76);
-            this.BusinessName_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.BusinessName_txt.Name = "BusinessName_txt";
-            this.BusinessName_txt.Size = new System.Drawing.Size(153, 22);
-            this.BusinessName_txt.TabIndex = 53;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label6.Location = new System.Drawing.Point(26, 79);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 17);
-            this.label6.TabIndex = 54;
-            this.label6.Text = "Business Name :";
             // 
             // AddCustomer
             // 

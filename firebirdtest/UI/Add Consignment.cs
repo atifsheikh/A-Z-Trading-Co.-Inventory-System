@@ -42,6 +42,7 @@ namespace firebirdtest.UI
                 VendorName_txt.Focus();
                 VendorAddress_txt.Text = "None";
                 VendorEmail_txt.Text = "None";
+                BusinessName_txt.Text = "None";
                 VendorBalance_txt.Text = "0";
                 VendorPhone_txt.Text = "None";
                 VendorID_txt.Text = "";
@@ -281,6 +282,7 @@ namespace firebirdtest.UI
                         VendorID_txt.Text = GridViewColumn.ItemArray[0].ToString();//ID
                         VendorAddress_txt.Text = GridViewColumn.ItemArray[2].ToString();//address
                         VendorEmail_txt.Text = GridViewColumn.ItemArray[4].ToString();//phone
+                        BusinessName_txt.Text = GridViewColumn.ItemArray[8].ToString();//business name
                         VendorBalance_txt.Text = GridViewColumn.ItemArray[6].ToString();//balance
                         VendorPhone_txt.Text = GridViewColumn.ItemArray[3].ToString();//email
                         //if (ModifyingConsignment == true)
