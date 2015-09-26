@@ -29,6 +29,18 @@ namespace ThePrimeBaby.Server.Handler
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
+            Handle.POST("/ThePrimeBaby/ModifyVendorVoucher/5", (Request r) =>
+            {
+                string[] Attributes = r.Body.Split('/');
+                Database.Vendor vendor = Db.SQL<Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
+                if (vendor != null)
+                {
+                    bool Result = ThePrimeBaby.Database.VendorVoucher.ModifyVoucherPayment(vendor, Convert.ToDateTime(Attributes[1]), Convert.ToDecimal(Attributes[2]), Attributes[3], Convert.ToInt32(Attributes[4]));
+                    if (Result == true)
+                        return 200;
+                
+                return 209;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
 }

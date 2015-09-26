@@ -39,7 +39,7 @@ namespace firebirdtest.UI
                 BillDataSet = DatabaseCalls.GetBills();
                 foreach (DataRow GridViewColumn in BillDataSet.Tables[0].Rows)
                 {
-                    BillNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
+                    BillNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0].ToString());
                 }
 
                 BillDataSet.Tables[0].Columns.Add("Customer");
@@ -48,7 +48,7 @@ namespace firebirdtest.UI
                 {
                     for (int loop1 = 0; loop1 < CustomerDataSet.Tables[0].Rows.Count; loop1++)
                     {
-                        if (CustomerDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(BillDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == true)
+                        if (CustomerDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(BillDataSet.Tables[0].Rows[loop]["CustomerID"].ToString()) == true)
                         {
 //                            BillDataSet.Tables[0].Rows[loop]["CUSTOMER_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(BillDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString(), BillDataSet.Tables[0].Rows[loop][0].ToString());
                             BillDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString();
@@ -64,7 +64,7 @@ namespace firebirdtest.UI
                 BillDataGridView.Columns[0].HeaderText = "Bill Number";
 
 
-                BillDataGridView.Columns["Customer_ID"].Visible = false;
+                BillDataGridView.Columns["CustomerID"].Visible = false;
                 BillDataGridView.Columns["AMOUNT"].Visible = false;
                 BillDataGridView.Columns["REMARKS"].Visible = false;
                 //BillDataGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
@@ -139,6 +139,7 @@ namespace firebirdtest.UI
         {
             try
             {
+                //this.DataSet1 = DatabaseCalls.GetBillDetails("1");
                 this.SALETableAdapter.Fill(this.DataSet1.SALE);
                 DataSet BillDataSet = new DataSet();
                 BillDataSet = DatabaseCalls.GetBill(BillNumberSearch_txt.Text);
@@ -216,7 +217,7 @@ namespace firebirdtest.UI
 
             try
             {
-                if (BillNumberSearch_txt.Text != "" && BillNumberSearch_txt.Items.Contains(Convert.ToInt32(BillNumberSearch_txt.Text)))
+                if (BillNumberSearch_txt.Text != "" && BillNumberSearch_txt.Items.Contains(BillNumberSearch_txt.Text))
                 {
                     try
                     {

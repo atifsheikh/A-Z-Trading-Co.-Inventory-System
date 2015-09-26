@@ -592,5 +592,10 @@ namespace firebirdtest
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetVendorVouchers");
 
         }
+
+        internal static string UpdateVendorVoucherPayment(int VendorID, DateTime BillDate, Decimal BillTotal, string Remarks,string VoucherNumber)
+        {
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyVendorVoucher/5", VendorID + "/" + BillDate.ToString().Replace('/', '-') + "/" + BillTotal + "/" + Remarks + "/" + VoucherNumber);
+        }
     }
 }

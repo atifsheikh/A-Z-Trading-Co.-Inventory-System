@@ -56,5 +56,25 @@ namespace ThePrimeBaby.Database
         {
             return Convert.ToInt32((Int64)Db.SlowSQL("SELECT MIN(b.ID) FROM ThePrimeBaby.Database.VendorVoucher b").First) - 1;
         }
+
+        internal static bool ModifyVoucherPayment(Vendor VendorID, DateTime BillDate, Decimal BillTotal, string Remarks,int VoucherNumber)
+        {
+            try
+            {
+                VendorVoucher vendorVoucher = Db.SQL<VendorVoucher>("SELECT vv FROM VendorVoucher vv WHERE vv.ID = ?", VoucherNumber).First;
+                Db.Transact(() =>
+                {
+                    //vendorVoucher.Vendor = VendorID;
+                    //vendorVoucher.DATED = BillDate;
+                    vendorVoucher.AMOUNT = BillTotal;
+                    vendorVoucher.REMARKS = Remarks.Trim();
+                });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

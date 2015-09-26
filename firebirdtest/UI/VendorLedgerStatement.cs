@@ -161,46 +161,43 @@ namespace firebirdtest.UI
         {
             try
             {
-                VoucherAmount_txt_TextChanged(sender, e);
-                if (VoucherAmount_txt.Text == "0" || VoucherAmount_txt.Text == "")
+                if (VoucherModification == false)
                 {
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = "add amount.";
-                    Variables.NotificationStatus = true;
-                    return;
+                    VoucherAmount_txt_TextChanged(sender, e);
+                    if (VoucherAmount_txt.Text == "0" || VoucherAmount_txt.Text == "")
+                    {
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = "add amount.";
+                        Variables.NotificationStatus = true;
+                        return;
+                    }
+                    //Add Voucher Number
+                    String Result1 = DatabaseCalls.AddVendorVoucherPayment(Convert.ToInt32(VendorID_txt.Text), Voucher_DTPicker.Value, Convert.ToDecimal(VoucherAmount_txt.Text), VoucherRemarks_txt.Text);
+                    if (Result1 != "")
+                    {
+                        Variables.NotificationStatus = true;
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = Result1;
+                        return;
+                    }
                 }
-                int VendorID = Convert.ToInt32(VendorID_txt.Text);
-                //foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
-                //{
-                //    if (GridViewColumn.ItemArray[1].ToString() == VendorName_txt.Text)
-                //    {
-                //        VendorID = Convert.ToInt32(GridViewColumn.ItemArray[0]);
-                //        break;
-                //    }
-                //}
-
-                //Add Voucher Number
-                String Result1 = DatabaseCalls.AddVendorVoucherPayment(VendorID, Voucher_DTPicker.Value, Convert.ToDecimal(VoucherAmount_txt.Text), VoucherRemarks_txt.Text);
-                if (Result1 != "")
+                else
                 {
-                    Variables.NotificationStatus = true;
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = Result1;
-                    return;
+                    //LedgerGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString()
+                    String Result1 = DatabaseCalls.UpdateVendorVoucherPayment(Convert.ToInt32(VendorID_txt.Text), Voucher_DTPicker.Value, Convert.ToDecimal(VoucherAmount_txt.Text), VoucherRemarks_txt.Text, ModifyVoucherNumber);
+                    if (Result1 != "")
+                    {
+                        Variables.NotificationStatus = true;
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = Result1;
+                        return;
+                    }
                 }
-                //LedgerStatement_Load(sender, e);
-                //Variables.FormRefresh = "AddVoucher/Leadger";
                 RemainingBalance_txt.Text = "0";
                 VendorBalance_txt.Text = "0";
                 VoucherAmount_txt.Text = "0";
                 VoucherRemarks_txt.Text = "0";
-                //            VendorName_txt.Text = "";
-                //            VendorName_txt_Enter(sender, e);
-                //            VendorID_txt.Text = "";
-
-
-                //get vendors
-                RefreshVendorData();
+                LedgerStatement_Load(sender, e);
 
                 VendorName_txt.Focus();
             }
@@ -364,12 +361,27 @@ namespace firebirdtest.UI
                 Variables.NotificationStatus = true;
             }
         }
-
+        bool VoucherModification = false;
+        string ModifyVoucherNumber = "";
         private void button3_Click(object sender, EventArgs e)
         {
-            //Convert.ToInt32(LedgerGridView.SelectedRows.ToString());
-
-            //LedgerGridView;
+            try
+            {
+                VoucherModification = true;
+                if (LedgerGridView.CurrentRow.Index >= 0)
+                {
+                    ModifyVoucherNumber = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["ID"].Value.ToString();
+                    VendorName_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["VENDORNAME"].Value.ToString();
+                    Voucher_DTPicker.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["DATED"].Value.ToString();
+                    VoucherRemarks_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["REMARKS"].Value.ToString();
+                    VoucherAmount_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["AMOUNT"].Value.ToString();
+                    VendorID_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["VendorID"].Value.ToString();
+                    VendorBalance_txt.Text = LedgerGridView.Rows[SelectedRowIndex].Cells["VENDOR_BALANCE"].Value.ToString().Trim();
+                    RemainingBalance_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) - Convert.ToDecimal(VoucherAmount_txt.Text)).ToString();
+                }
+            }
+            catch (Exception ex)
+            { }
         }
 
         private void LedgerGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
