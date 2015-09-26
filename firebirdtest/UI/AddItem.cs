@@ -115,13 +115,13 @@ namespace firebirdtest.UI
             ItemsDataGridView.Columns["ID"].Visible = false;
             ItemsDataGridView.Columns["NAME"].Visible = false;
             ItemsDataGridView.Columns["IMAGE"].Visible = false;
-            ItemsDataGridView.Columns["T_QUANTITY"].Visible = false;
             ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
             ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
             ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 2;
             ItemsDataGridView.Columns["COSTPRICE"].DisplayIndex = 3;
             ItemsDataGridView.Columns["PRICE"].DisplayIndex = 4;
             ItemsDataGridView.Columns["CategoryNAME"].DisplayIndex = 7;
+            ItemsDataGridView.Columns["T_QUANTITY"].DisplayIndex = 8;
         }
 
         private void ItemsDataGridView_MouseClick(object sender, MouseEventArgs e)
