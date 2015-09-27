@@ -12,7 +12,7 @@ namespace firebirdtest.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "10.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -23,13 +23,15 @@ namespace firebirdtest.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=Firebird DNS;uid=sysdba;pwd=masterkey")]
-        public string AZ_FireBirdDB {
+        [global::System.Configuration.DefaultSettingValueAttribute("Atif-PC:8080")]
+        public string SC_Server {
             get {
-                return ((string)(this["AZ_FireBirdDB"]));
+                return ((string)(this["SC_Server"]));
+            }
+            set {
+                this["SC_Server"] = value;
             }
         }
         
@@ -44,15 +46,13 @@ namespace firebirdtest.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Atif-PC:8080")]
-        public string SC_Server {
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=Firebird DNS;uid=sysdba;pwd=masterkey")]
+        public string AZ_FireBirdDB {
             get {
-                return ((string)(this["SC_Server"]));
-            }
-            set {
-                this["SC_Server"] = value;
+                return ((string)(this["AZ_FireBirdDB"]));
             }
         }
     }
