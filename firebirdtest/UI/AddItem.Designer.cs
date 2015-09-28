@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddItem));
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -67,6 +67,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.ItemPictureBox = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.RetailPrice_txt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -75,11 +77,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(153, 585);
+            this.button1.Location = new System.Drawing.Point(153, 615);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 9;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -88,13 +90,12 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(41, 144);
+            this.label5.Location = new System.Drawing.Point(39, 144);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 17);
+            this.label5.Size = new System.Drawing.Size(80, 17);
             this.label5.TabIndex = 28;
-            this.label5.Text = "Price :";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.label5.Text = "Sale Price :";
             // 
             // ItemPrice_txt
             // 
@@ -166,8 +167,8 @@
             // 
             this.ItemsDataGridView.AllowUserToAddRows = false;
             this.ItemsDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightBlue;
-            this.ItemsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightBlue;
+            this.ItemsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.ItemsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -175,23 +176,23 @@
             this.ItemsDataGridView.BackgroundColor = System.Drawing.Color.LightBlue;
             this.ItemsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ItemsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ItemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ItemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.ItemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ItemsDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ItemsDataGridView.DefaultCellStyle = dataGridViewCellStyle15;
             this.ItemsDataGridView.Location = new System.Drawing.Point(9, 106);
             this.ItemsDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.ItemsDataGridView.Name = "ItemsDataGridView";
@@ -202,11 +203,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(45, 585);
+            this.button2.Location = new System.Drawing.Point(45, 615);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 7;
+            this.button2.TabIndex = 8;
             this.button2.TabStop = false;
             this.button2.Text = "Update";
             this.button2.UseVisualStyleBackColor = true;
@@ -295,6 +296,8 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.RetailPrice_txt);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.ItemCostPrice_txt);
             this.panel2.Controls.Add(this.button6);
@@ -363,7 +366,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(93, 243);
+            this.label12.Location = new System.Drawing.Point(93, 273);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(95, 17);
@@ -373,7 +376,7 @@
             // 
             // TQUANTITY_txt
             // 
-            this.TQUANTITY_txt.Location = new System.Drawing.Point(179, 239);
+            this.TQUANTITY_txt.Location = new System.Drawing.Point(179, 269);
             this.TQUANTITY_txt.Margin = new System.Windows.Forms.Padding(4);
             this.TQUANTITY_txt.Name = "TQUANTITY_txt";
             this.TQUANTITY_txt.Size = new System.Drawing.Size(157, 22);
@@ -384,11 +387,11 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(296, 199);
+            this.button5.Location = new System.Drawing.Point(296, 229);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(29, 28);
-            this.button5.TabIndex = 46;
+            this.button5.TabIndex = 7;
             this.button5.Text = "+";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -398,18 +401,18 @@
             this.ItemCategory_txt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ItemCategory_txt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ItemCategory_txt.FormattingEnabled = true;
-            this.ItemCategory_txt.Location = new System.Drawing.Point(127, 200);
+            this.ItemCategory_txt.Location = new System.Drawing.Point(127, 230);
             this.ItemCategory_txt.Margin = new System.Windows.Forms.Padding(4);
             this.ItemCategory_txt.Name = "ItemCategory_txt";
             this.ItemCategory_txt.Size = new System.Drawing.Size(160, 24);
-            this.ItemCategory_txt.TabIndex = 5;
+            this.ItemCategory_txt.TabIndex = 6;
             this.ItemCategory_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TQUANTITY_txt_KeyDown);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(41, 204);
+            this.label11.Location = new System.Drawing.Point(41, 234);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 17);
@@ -438,7 +441,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(45, 518);
+            this.button4.Location = new System.Drawing.Point(45, 548);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
@@ -451,7 +454,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(153, 518);
+            this.button3.Location = new System.Drawing.Point(153, 548);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 28);
@@ -466,7 +469,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(41, 562);
+            this.label9.Location = new System.Drawing.Point(41, 592);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 17);
@@ -476,7 +479,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(88, 553);
+            this.textBox2.Location = new System.Drawing.Point(88, 583);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(236, 22);
@@ -489,7 +492,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(24, 243);
+            this.label8.Location = new System.Drawing.Point(24, 273);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 25);
@@ -513,7 +516,7 @@
             // 
             this.ItemPictureBox.BackColor = System.Drawing.Color.Transparent;
             this.ItemPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ItemPictureBox.Location = new System.Drawing.Point(45, 271);
+            this.ItemPictureBox.Location = new System.Drawing.Point(45, 301);
             this.ItemPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.ItemPictureBox.Name = "ItemPictureBox";
             this.ItemPictureBox.Size = new System.Drawing.Size(281, 239);
@@ -533,6 +536,28 @@
             this.button8.TabIndex = 7;
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Location = new System.Drawing.Point(36, 204);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(88, 17);
+            this.label14.TabIndex = 53;
+            this.label14.Text = "Retail Price :";
+            // 
+            // RetailPrice_txt
+            // 
+            this.RetailPrice_txt.Location = new System.Drawing.Point(127, 200);
+            this.RetailPrice_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.RetailPrice_txt.Name = "RetailPrice_txt";
+            this.RetailPrice_txt.Size = new System.Drawing.Size(157, 22);
+            this.RetailPrice_txt.TabIndex = 5;
+            this.RetailPrice_txt.Text = "0";
+            this.RetailPrice_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RetailPrice_txt_KeyDown);
+            this.RetailPrice_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RetailPrice_txt_KeyPress);
             // 
             // AddItem
             // 
@@ -599,6 +624,8 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox ItemCostPrice_txt;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox RetailPrice_txt;
 
     }
 }

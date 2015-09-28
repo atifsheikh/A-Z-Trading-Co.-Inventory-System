@@ -269,9 +269,9 @@ namespace firebirdtest
         }
 
         //Item
-        internal static string AddItem(string Code, String Model, int QTY_Box, decimal Price, decimal CostPrice, String ImagePath, string ItemCategory)
+        internal static string AddItem(string Code, String Model, int QTY_Box, decimal Price, decimal CostPrice, String ImagePath, string ItemCategory, decimal RetailPrice)
         {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddItem/7", Code + "/" + Model + "/" + QTY_Box + "/" + Price+"/"+CostPrice+"/"+ImagePath+"/"+ItemCategory);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddItem/8", Code + "/" + Model + "/" + QTY_Box + "/" + Price + "/" + CostPrice + "/" + ImagePath + "/" + ItemCategory + "/" + RetailPrice);
         }
         internal static string DeleteItem(string Name)
         {
@@ -281,9 +281,9 @@ namespace firebirdtest
         {
             return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyItemsByName/2", FindName + "/" + ReplaceName);
         }
-        internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity)
+        internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity, string RetailPrice)
         {
-            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyItemsById/9", FindID + "/" + ReplaceName + "/" + ReplaceModel + "/" + ReplaceQuantity + "/" + ReplacePrice + "/" + ReplaceCostPrice + "/" + ReplaceImage + "/" + ItemCategory + "/" + T_Quantity);
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyItemsById/10", FindID + "/" + ReplaceName + "/" + ReplaceModel + "/" + ReplaceQuantity + "/" + ReplacePrice + "/" + ReplaceCostPrice + "/" + ReplaceImage + "/" + ItemCategory + "/" + T_Quantity + "/" + RetailPrice);
         }
         internal static string AddCategory(string ItemCategory)
         {

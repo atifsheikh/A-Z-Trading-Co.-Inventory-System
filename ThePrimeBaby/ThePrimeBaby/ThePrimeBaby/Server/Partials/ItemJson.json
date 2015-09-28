@@ -11,6 +11,7 @@
         "T_QUANTITY":0,
         "Category":{
 			"NAME":""
-		}
+		},
+		"RETAILPRICE" : 0.0
 	}]
 }

@@ -39,6 +39,7 @@ namespace firebirdtest.UI
                 toolStripButton5.Enabled = false;
                 ConsignmentDetailDataGridView.Rows.Clear();
                 VendorName_txt.Text = "None";
+                RetailPrice_txt.Text = "0";
                 VendorName_txt.Focus();
                 VendorAddress_txt.Text = "None";
                 VendorEmail_txt.Text = "None";
@@ -182,6 +183,7 @@ namespace firebirdtest.UI
                 //BalanceNew_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) + Convert.ToDecimal(Total_txt.Text)).ToString();
                 ItemCode_txt.Text = "";
                 ItemName_txt.Text = "None";
+                RetailPrice_txt.Text = "0";
                 Ctn_txt.Text = "0";
                 Qty_txt.Text = "0";
                 Quant_txt.Text = "0";
@@ -1755,7 +1757,7 @@ namespace firebirdtest.UI
                 //        ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPEG";
                 //    }
                 //}
-                Result = DatabaseCalls.AddItem(ItemCodeCons_txt.Text, ItemModelCons_txt.Text, Convert.ToInt32(ItemQuantityCons_txt.Text), Convert.ToDecimal(ItemPriceCons_txt.Text), Convert.ToDecimal(ItemCostPriceCons_txt.Text), ItemPictureBox.ImageLocation, ItemCategoryCons_txt.Text);
+                Result = DatabaseCalls.AddItem(ItemCodeCons_txt.Text, ItemModelCons_txt.Text, Convert.ToInt32(ItemQuantityCons_txt.Text), Convert.ToDecimal(ItemPriceCons_txt.Text), Convert.ToDecimal(ItemCostPriceCons_txt.Text), ItemPictureBox.ImageLocation, ItemCategoryCons_txt.Text, Convert.ToDecimal(RetailPrice_txt.Text));
                 ItemCodeCons_txt.Text = "";
                 ItemModelCons_txt.Text= "";
                 ItemQuantityCons_txt.Text= "";
@@ -1871,6 +1873,65 @@ namespace firebirdtest.UI
         private void UnitSalePrice_txt_TextChanged(object sender, EventArgs e)
         {
             ItemCostPriceModified = true;
+        }
+
+        private void RetailPrice_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void RetailPrice_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (Convert.ToDecimal(RetailPrice_txt.Text) > Convert.ToDecimal(ItemCostPriceCons_txt.Text) && Convert.ToDecimal(RetailPrice_txt.Text) < Convert.ToDecimal(ItemPriceCons_txt.Text))
+                {
+                    SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Oay chawal. Retail Price Sale Price se kam or Cost Price se zyada hoti hay");
+                }
+            }
+        }
+
+        private void ItemCostPriceCons_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (Convert.ToDecimal(ItemPriceCons_txt.Text) > Convert.ToDecimal(ItemCostPriceCons_txt.Text))
+                {
+                    SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Oay chawal. Cost Price Sale Price se zyada hoti hay.");
+                }
+            }
+        }
+
+        private void ItemPriceCons_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void ItemQuantityCons_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void ItemModelCons_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
     }
 }

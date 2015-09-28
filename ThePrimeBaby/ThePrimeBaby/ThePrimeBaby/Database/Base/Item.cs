@@ -8,9 +8,11 @@ namespace ThePrimeBaby.Database.Base
         public int QTY_BOX;
         public decimal COSTPRICE;
         public decimal PRICE;
+        public decimal RETAILPRICE;
         public string IMAGE;
         public string MODEL;
         public string CODE;
+
         public int T_QUANTITY 
         {
             get 
@@ -33,7 +35,7 @@ namespace ThePrimeBaby.Database.Base
             }
         }
         public Category Category;
-        internal static bool AddItem(string Code, string Model, int QTY_Box, decimal Price,decimal CostPrice, string ImagePath, Category ItemCategory)
+        internal static bool AddItem(string Code, string Model, int QTY_Box, decimal Price,decimal CostPrice, string ImagePath, Category ItemCategory,decimal RetailPrice)
         {
             try
             {
@@ -47,6 +49,7 @@ namespace ThePrimeBaby.Database.Base
                     item.COSTPRICE = CostPrice;
                     item.IMAGE = ImagePath.Trim();
                     item.Category = ItemCategory;
+                    item.RETAILPRICE = RetailPrice;
                 });
                 return true;
             }
@@ -86,7 +89,7 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-        internal static bool ModifyItems(string FindID, string ReplaceCode, string ReplaceModel, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity, Database.Base.Item item)
+        internal static bool ModifyItems(string FindID, string ReplaceCode, string ReplaceModel, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity, Database.Base.Item item, string RetailPrice)
         {
             try
             {
@@ -105,6 +108,7 @@ namespace ThePrimeBaby.Database.Base
                         item.Category = new Category();
                         item.Category.NAME = ItemCategory;
                     }
+                    item.RETAILPRICE = Convert.ToDecimal(RetailPrice);
                 });
                 return true;
             }

@@ -42,7 +42,7 @@ namespace firebirdtest.UI
                         ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPEG";
                     }
                 }
-                Result = DatabaseCalls.AddItem(ItemCode_txt.Text, ItemName_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text);
+                Result = DatabaseCalls.AddItem(ItemCode_txt.Text, ItemName_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text,Convert.ToDecimal(RetailPrice_txt.Text));
 
                 if (Result!="")
                 {
@@ -146,6 +146,7 @@ namespace firebirdtest.UI
                     ItemPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["PRICE"].Value.ToString();
                     ItemCostPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["COSTPRICE"].Value.ToString();
                     ItemCategory_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CATEGORYNAME"].Value.ToString();
+                    RetailPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["RETAILPRICE"].Value.ToString();
                     TQUANTITY_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["T_QUANTITY"].Value.ToString();
                     //TODO : SC Task
                     //byte[] byteBLOBData = (byte[])ItemsDataGridView.Rows[currentRow].Cells["IMAGE"].Value;
@@ -179,7 +180,7 @@ namespace firebirdtest.UI
                 }
             }
 
-            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemCode_txt.Text, ItemName_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, "Image Blob String", ItemCategory_txt.Text, Convert.ToInt32(TQUANTITY_txt.Text));
+            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemCode_txt.Text, ItemName_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, "Image Blob String", ItemCategory_txt.Text, Convert.ToInt32(TQUANTITY_txt.Text), RetailPrice_txt.Text);
             if (Result != "")
             {
                 Variables.NotificationStatus = true;
@@ -191,11 +192,6 @@ namespace firebirdtest.UI
             RandomAlgos.CleanUpGridView(Result1,ItemsDataGridView);//.DataSource = Result1.Tables[0];
             ItemsDataGridView.Columns[0].Visible = false;
             SortItems();
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -279,6 +275,7 @@ namespace firebirdtest.UI
 
         private void button6_Click(object sender, EventArgs e)
         {
+            RetailPrice_txt.Text = "0";
             ItemCode_txt.Text = "None";
             ItemName_txt.Text = "None";
             ItemQuantity_txt.Text = "0";
@@ -415,7 +412,34 @@ namespace firebirdtest.UI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                SendKeys.Send("{TAB}");
+                if (Convert.ToDecimal(ItemPrice_txt.Text) > Convert.ToDecimal(ItemCostPrice_txt.Text))
+                {
+                    SendKeys.Send("{TAB}");
+                }
+                else 
+                {
+                    MessageBox.Show("Oay chawal. Cost Price Sale Price se zyada hoti hay.");
+                }
+            }
+        }
+
+        private void RetailPrice_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void RetailPrice_txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (Convert.ToDecimal(RetailPrice_txt.Text) > Convert.ToDecimal(ItemCostPrice_txt.Text) && Convert.ToDecimal(RetailPrice_txt.Text) < Convert.ToDecimal(ItemPrice_txt.Text))
+                {
+                    SendKeys.Send("{TAB}");
+                }
+                else 
+                {
+                    MessageBox.Show("Oay chawal. Retail Price Sale Price se kam or Cost Price se zyada hoti hay");
+                }
             }
         }
     }

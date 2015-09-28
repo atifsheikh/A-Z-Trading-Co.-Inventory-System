@@ -19,6 +19,7 @@ using _ScTemplate_=Starcounter.Templates.Template;
 using __IItCategory2__ = global::ItemJson.ItemsElementJson.CategoryJson.Input;
 using __ItemJson1__ = global::ItemJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::ItemJson.ItemsElementJson>;
+using __IItRETAILPR__ = global::ItemJson.ItemsElementJson.Input.RETAILPRICE;
 using __IItT_QUANTI__ = global::ItemJson.ItemsElementJson.Input.T_QUANTITY;
 using __IItCODE__ = global::ItemJson.ItemsElementJson.Input.CODE;
 using __IItMODEL__ = global::ItemJson.ItemsElementJson.Input.MODEL;
@@ -30,8 +31,8 @@ using __IItNAME__ = global::ItemJson.ItemsElementJson.Input.NAME;
 using __IItID__ = global::ItemJson.ItemsElementJson.Input.ID;
 using __ItItemsEle2__ = global::ItemJson.ItemsElementJson.Input;
 using __IICaNAME__ = global::ItemJson.ItemsElementJson.CategoryJson.Input.NAME;
-using __Arr__ = global::Starcounter.Arr<global::ItemJson.ItemsElementJson>;
 using __ItemJson2__ = global::ItemJson.Input;
+using __IItCategory1__ = global::ItemJson.ItemsElementJson.CategoryJson.JsonByExample;
 using __IItCategory__ = global::ItemJson.ItemsElementJson.CategoryJson;
 using __ItItemsEle1__ = global::ItemJson.ItemsElementJson.JsonByExample;
 using __IICaSchema__ = global::ItemJson.ItemsElementJson.CategoryJson.JsonByExample.Schema;
@@ -45,7 +46,7 @@ using __Json1__ = global::Starcounter.Json.JsonByExample;
 using __TObject__ = global::Starcounter.Templates.TObject;
 using __Json__ = global::Starcounter.Json;
 using __ItemJson__ = global::ItemJson;
-using __IItCategory1__ = global::ItemJson.ItemsElementJson.CategoryJson.JsonByExample;
+using __Arr__ = global::Starcounter.Arr<global::ItemJson.ItemsElementJson>;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -88,11 +89,11 @@ public class ItemJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Items {
-#line 16 "Server\Partials\ItemJson.json"
+#line 17 "Server\Partials\ItemJson.json"
     get {
 #line hidden
         return Template.Items.Getter(this); }
-#line 16 "Server\Partials\ItemJson.json"
+#line 17 "Server\Partials\ItemJson.json"
     set {
 #line hidden
         Template.Items.Setter(this, value); } }
@@ -123,6 +124,7 @@ public class ItemJson : __Json__ {
         private System.String __bf__CODE__;
         private System.Int64 __bf__T_QUANTITY__;
         private __IItCategory__ __bf__Category__;
+        private System.Decimal __bf__RETAILPRICE__;
         #line default
         
         #line hidden
@@ -165,6 +167,9 @@ public class ItemJson : __Json__ {
                     T_QUANTITY.SetCustomAccessors((_p_) => { return ((__ItItemsEle__)_p_).__bf__T_QUANTITY__; }, (_p_, _v_) => { ((__ItItemsEle__)_p_).__bf__T_QUANTITY__ = (System.Int64)_v_; }, false);
                     Category = Add<__IICaSchema__>("Category");
                     Category.SetCustomAccessors((_p_) => { return ((__ItItemsEle__)_p_).__bf__Category__; }, (_p_, _v_) => { ((__ItItemsEle__)_p_).__bf__Category__ = (__IItCategory__)_v_; }, false);
+                    RETAILPRICE = Add<__TDecimal__>("RETAILPRICE");
+                    RETAILPRICE.DefaultValue = 0.0m;
+                    RETAILPRICE.SetCustomAccessors((_p_) => { return ((__ItItemsEle__)_p_).__bf__RETAILPRICE__; }, (_p_, _v_) => { ((__ItItemsEle__)_p_).__bf__RETAILPRICE__ = (System.Decimal)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __ItItemsEle__(this) { Parent = parent }; }
                 public __TLong__ ID;
@@ -177,6 +182,7 @@ public class ItemJson : __Json__ {
                 public __TString__ CODE;
                 public __TLong__ T_QUANTITY;
                 public __IICaSchema__ Category;
+                public __TDecimal__ RETAILPRICE;
             }
             #line default
         }
@@ -291,14 +297,26 @@ public class ItemJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public __IItCategory__ Category {
-#line 15 "Server\Partials\ItemJson.json"
+#line 14 "Server\Partials\ItemJson.json"
     get {
 #line hidden
         return (__IItCategory__)Template.Category.Getter(this); }
-#line 15 "Server\Partials\ItemJson.json"
+#line 14 "Server\Partials\ItemJson.json"
     set {
 #line hidden
         Template.Category.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.Decimal RETAILPRICE {
+#line 16 "Server\Partials\ItemJson.json"
+    get {
+#line hidden
+        return Template.RETAILPRICE.Getter(this); }
+#line 16 "Server\Partials\ItemJson.json"
+    set {
+#line hidden
+        Template.RETAILPRICE.Setter(this, value); } }
 #line default
 
         
@@ -413,6 +431,11 @@ public class ItemJson : __Json__ {
             
             #line hidden
             public class T_QUANTITY : Input<__ItItemsEle__, __TLong__, long> {
+            }
+            #line default
+            
+            #line hidden
+            public class RETAILPRICE : Input<__ItItemsEle__, __TDecimal__, Decimal> {
             }
             #line default
         }
