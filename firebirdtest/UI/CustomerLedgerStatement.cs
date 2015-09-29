@@ -18,7 +18,7 @@ namespace firebirdtest.UI
             InitializeComponent();
         }
 
-        static DataSet Ctn_Bill_DataSet = new DataSet();
+        static DataSet Ctn_Voucher_DataSet = new DataSet();
         static DataSet LedgerDataSet = new DataSet();
         static DataSet CustomerDataSet = new DataSet();
 
@@ -46,6 +46,10 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageText = ex.Message;
             }
         }
+
+        static DataSet BillsDataSet = new DataSet();
+        static DataSet CustomerVoucherDataSet = new DataSet();
+        static DataSet CustomerLedgerDataSet = new DataSet();
         private void LedgerStatement_Load(object sender, EventArgs e)
         {
             try
@@ -58,60 +62,92 @@ namespace firebirdtest.UI
 
             //get customers
             RefreshCustomerData();
-            //Bill Detail
+            //Voucher Detail
             try
             {
-                Ctn_Bill_DataSet = DatabaseCalls.Get_Ctn_Bill();
-                LedgerDataSet = DatabaseCalls.GetLedger("All");
-                if (LedgerDataSet.Tables[0].Columns.Count > 0)
+                BillsDataSet = DatabaseCalls.GetBills();
+                //BillsDataSet.Tables[0].Columns.Remove("TOTAL_CTN");
+                BillsDataSet.Tables[0].TableName = "Ledger";
+                CustomerVoucherDataSet = DatabaseCalls.GetCustomerVoucher();
+                //CustomerVoucherDataSet.Tables[0].Columns.Remove("REMARKS");
+                CustomerVoucherDataSet.Tables[0].TableName = "Ledger"; 
+                CustomerVoucherDataSet.Merge(BillsDataSet);
+                
+                try
                 {
-                    LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "BillNo";
-
-                    LedgerDataSet.Tables[0].Columns.Add("Customer");
-                    LedgerDataSet.Tables[0].Columns.Add("TotalCtn");
-                    LedgerDataSet.Tables[0].Columns.Add("Calculator");
-
-                    for (int loop = 0; LedgerDataSet.Tables.Count > 0 && loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
-                    {
-                        if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) > -1)
-                        {
-                            for (int loop1 = 0; loop1 < CustomerDataSet.Tables[0].Rows.Count; loop1++)
-                            {
-                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"]) == Convert.ToInt32(CustomerDataSet.Tables[0].Rows[loop1]["ID"]))
-                                {
-                                    if (LedgerDataSet.Tables[0].Rows[loop]["Customer"].ToString() != CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString())
-                                        LedgerDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"];
-                                }
-                            }
-
-                            for (int loop1 = 0; Ctn_Bill_DataSet.Tables.Count > 0 && loop1 < Ctn_Bill_DataSet.Tables[0].Rows.Count; loop1++)
-                            {
-                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["BillNo"]) == Convert.ToInt32(Ctn_Bill_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
-                                {
-                                    if (LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"].ToString() != Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"].ToString())
-                                        LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"] = Ctn_Bill_DataSet.Tables[0].Rows[loop1]["QTY"];
-                                }
-                            }
-                        }
-                        else if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == -1)
-                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Admin";
-                        else
-                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Error";
-                    }
-
-
-                    LedgerGridView.Visible = false;
-
-                    LedgerGridView.Columns.Clear();
-                    LedgerGridView.DataSource = LedgerDataSet.Tables[0];
-                    LedgerGridView.Columns["Customer_ID"].Visible = false;
-                    LedgerGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
-                    LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
-                    LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
-                    LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
-
-                    LedgerGridView.Visible = true;
+                    //LedgerGridView.DataSource = CustomerVoucherDataSet.Tables["0"];
+                    DataView dv = new DataView(CustomerVoucherDataSet.Tables[0]);
+                    dv.Sort = "DATED";
+                    LedgerGridView.DataSource = dv;
                 }
+                catch (Exception ex)
+                { }
+                //LedgerGridView.Columns["DATED"].DefaultCellStyle.Format = "HH MM/dd/yyyy";
+                //LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
+                LedgerGridView.CurrentCell = null;
+                if (LedgerGridView.Columns.Count > 0)
+                {
+                    LedgerGridView.Columns["ID"].HeaderText = "S.NO";
+                    LedgerGridView.Columns["CUSTOMERNAME"].HeaderText = "Customer";
+                    LedgerGridView.Columns["DATED"].HeaderText = "Date";
+                    LedgerGridView.Columns["CUSTOMER_BALANCE"].HeaderText = "Balance";
+
+                    LedgerGridView.Columns["CustomerID"].Visible = false;
+
+                    LedgerGridView.Update();
+                }
+
+                /*              Ctn_Voucher_DataSet = DatabaseCalls.Get_Ctn_Voucher();
+                                LedgerDataSet = DatabaseCalls.GetLedger("All");
+                                if (LedgerDataSet.Tables[0].Columns.Count > 0)
+                                {
+                                    LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "VoucherNo";
+
+                                    LedgerDataSet.Tables[0].Columns.Add("Customer");
+                                    LedgerDataSet.Tables[0].Columns.Add("TotalCtn");
+                                    LedgerDataSet.Tables[0].Columns.Add("Calculator");
+
+                                    for (int loop = 0; LedgerDataSet.Tables.Count > 0 && loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
+                                    {
+                                        if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) > -1)
+                                        {
+                                            for (int loop1 = 0; loop1 < CustomerDataSet.Tables[0].Rows.Count; loop1++)
+                                            {
+                                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"]) == Convert.ToInt32(CustomerDataSet.Tables[0].Rows[loop1]["ID"]))
+                                                {
+                                                    if (LedgerDataSet.Tables[0].Rows[loop]["Customer"].ToString() != CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString())
+                                                        LedgerDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"];
+                                                }
+                                            }
+
+                                            for (int loop1 = 0; Ctn_Voucher_DataSet.Tables.Count > 0 && loop1 < Ctn_Voucher_DataSet.Tables[0].Rows.Count; loop1++)
+                                            {
+                                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["VoucherNo"]) == Convert.ToInt32(Ctn_Voucher_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
+                                                {
+                                                    if (LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"].ToString() != Ctn_Voucher_DataSet.Tables[0].Rows[loop1]["QTY"].ToString())
+                                                        LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"] = Ctn_Voucher_DataSet.Tables[0].Rows[loop1]["QTY"];
+                                                }
+                                            }
+                                        }
+                                        else if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString()) == -1)
+                                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Admin";
+                                        else
+                                            LedgerDataSet.Tables[0].Rows[loop]["Customer"] = "Error";
+                                    }
+
+
+                                    LedgerGridView.Visible = false;
+
+                                    LedgerGridView.Columns.Clear();
+                                    LedgerGridView.DataSource = LedgerDataSet.Tables[0];
+                                    LedgerGridView.Columns["Customer_ID"].Visible = false;
+                                    LedgerGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
+                                    LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
+                                    LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
+                                    LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
+
+                                    LedgerGridView.Visible = true;
+                                }*/
             }
             catch (Exception ex)
             {
@@ -125,47 +161,41 @@ namespace firebirdtest.UI
         {
             try
             {
-                VoucherAmount_txt_TextChanged(sender, e);
-                if (VoucherAmount_txt.Text == "0" || VoucherAmount_txt.Text == "")
+                if (VoucherModification == false)
                 {
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = "add amount.";
-                    Variables.NotificationStatus = true;
-                    return;
+                    if (VoucherAmount_txt.Text == "0" || VoucherAmount_txt.Text == "")
+                    {
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = "add amount.";
+                        Variables.NotificationStatus = true;
+                        return;
+                    }
+                    //Add Voucher Number
+                    String Result1 = DatabaseCalls.AddCustomerVoucherPayment(Convert.ToInt32(CustomerID_txt.Text), Voucher_DTPicker.Value, Convert.ToDecimal(VoucherAmount_txt.Text), VoucherRemarks_txt.Text);
+                    if (Result1 != "")
+                    {
+                        Variables.NotificationStatus = true;
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = Result1;
+                        return;
+                    }
                 }
-                int CustomerID = Convert.ToInt32(CustomerID_txt.Text);
-                //foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                //{
-                //    if (GridViewColumn.ItemArray[1].ToString() == CustomerName_txt.Text)
-                //    {
-                //        CustomerID = Convert.ToInt32(GridViewColumn.ItemArray[0]);
-                //        break;
-                //    }
-                //}
-                decimal VoucherAmount = Convert.ToDecimal(VoucherAmount_txt.Text) * (-1);
-
-                //Add Bill Number
-                String Result1 = DatabaseCalls.AddVoucherPayment(CustomerID, Voucher_DTPicker.Value, VoucherAmount, VoucherRemarks_txt.Text, Convert.ToDecimal(RemainingBalance_txt.Text));
-                if (Result1.StartsWith("Voucher Added with") != true)
+                else
                 {
-                    Variables.NotificationStatus = true;
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = Result1;
-                    return;
+                    //LedgerGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString()
+                    String Result1 = DatabaseCalls.UpdateCustomerVoucherPayment(Convert.ToInt32(CustomerID_txt.Text), Voucher_DTPicker.Value, Convert.ToDecimal(VoucherAmount_txt.Text), VoucherRemarks_txt.Text, ModifyVoucherNumber);
+                    if (Result1 != "")
+                    {
+                        Variables.NotificationStatus = true;
+                        Variables.NotificationMessageTitle = this.Name;
+                        Variables.NotificationMessageText = Result1;
+                        return;
+                    }
                 }
-                //LedgerStatement_Load(sender, e);
-                //Variables.FormRefresh = "AddBill/Leadger";
-                RemainingBalance_txt.Text = "0";
                 CustomerBalance_txt.Text = "0";
                 VoucherAmount_txt.Text = "0";
                 VoucherRemarks_txt.Text = "0";
-                //            CustomerName_txt.Text = "";
-                //            CustomerName_txt_Enter(sender, e);
-                //            CustomerID_txt.Text = "";
-
-
-                //get customers
-                RefreshCustomerData();
+                LedgerStatement_Load(sender, e);
 
                 CustomerName_txt.Focus();
             }
@@ -175,19 +205,6 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageText = ex.Message;
                 Variables.NotificationStatus = true;
             }
-        }
-
-        private void VoucherAmount_txt_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (VoucherAmount_txt.Text != "")
-                    RemainingBalance_txt.Text = (Convert.ToDecimal(CustomerBalance_txt.Text) - Convert.ToDecimal(VoucherAmount_txt.Text)).ToString();
-                else
-                    RemainingBalance_txt.Text = CustomerBalance_txt.Text;
-            }
-            catch (Exception ex)
-            { }
         }
 
         private void CustomerID_txt_TextChanged(object sender, EventArgs e)
@@ -203,15 +220,15 @@ namespace firebirdtest.UI
                     try
                     {
                         LedgerGridView.CurrentCell = null;
-                        if (LedgerGridView.Rows[loop1].Cells["Customer_ID"].Value.ToString() != (CustomerID_txt.Text))
+                        if (LedgerGridView.Rows[loop1].Cells["CustomerID"].Value.ToString() != (CustomerID_txt.Text))
                         {
                             LedgerGridView.Rows[loop1].Visible = false;
                         }
                         else
                         {
                             LedgerGridView.Rows[loop1].Visible = true;
-                            calculator += Convert.ToInt64(LedgerGridView.Rows[loop1].Cells["AMOUNT"].Value);
-                            LedgerGridView.Rows[loop1].Cells["Calculator"].Value = calculator;
+                            //calculator += Convert.ToInt64(LedgerGridView.Rows[loop1].Cells["AMOUNT"].Value);
+                            //LedgerGridView.Rows[loop1].Cells["Calculator"].Value = calculator;
                         }
                     }
                     catch (Exception ex)
@@ -242,7 +259,7 @@ namespace firebirdtest.UI
 
         private void LedgerGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (Convert.ToInt32( LedgerGridView.Rows[e.RowIndex].Cells["BillNo"].Value) > -1)
+            if (Convert.ToInt32( LedgerGridView.Rows[e.RowIndex].Cells["VoucherNo"].Value) > -1)
                 return;
             VoucherPaymentModification _VoucherPaymentModification = new VoucherPaymentModification(LedgerGridView.Rows[e.RowIndex].Cells["AMOUNT"].Value);
             _VoucherPaymentModification.StartPosition = FormStartPosition.CenterScreen; 
@@ -271,20 +288,19 @@ namespace firebirdtest.UI
 
 
                     //atif work here
-                    DatabaseCalls.ModifyCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value), CustomerNewBalance);
+                    //DatabaseCalls.ModifyCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value), CustomerNewBalance);
                     //CustomerDataSet1 = DatabaseCalls.GetCustomers();//.GetCustomer(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Customer_id"].Value));
-                    DatabaseCalls.ModifyVoucher(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["BillNo"].Value), NewAmount, CustomerNewBalance);
+                    DatabaseCalls.ModifyVoucher(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["VoucherNo"].Value), NewAmount, CustomerNewBalance);
                     LedgerGridView.Rows[e.RowIndex].Cells["Amount"].Value = NewAmount;
-                    RemainingBalance_txt.Text = CustomerBalance_txt.Text = CustomerNewBalance.ToString();
                     VoucherRemarks_txt.Focus();
                 }
-                //Bill Detail
+                //Voucher Detail
                 try
                 {
                     LedgerDataSet = DatabaseCalls.GetLedger("All");
                     if (LedgerDataSet.Tables.Count > 0)
                     {
-                        LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "BillNo";
+                        LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "VoucherNo";
 
                         LedgerDataSet.Tables[0].Columns.Add("Customer");
 
@@ -329,19 +345,33 @@ namespace firebirdtest.UI
                 Variables.NotificationStatus = true;
             }
         }
-
+        bool VoucherModification = false;
+        string ModifyVoucherNumber = "";
         private void button3_Click(object sender, EventArgs e)
         {
-            //Convert.ToInt32(LedgerGridView.SelectedRows.ToString());
-
-            //LedgerGridView;
+            try
+            {
+                VoucherModification = true;
+                if (LedgerGridView.CurrentRow.Index >= 0)
+                {
+                    ModifyVoucherNumber = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["ID"].Value.ToString();
+                    CustomerName_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["CUSTOMERNAME"].Value.ToString();
+                    Voucher_DTPicker.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["DATED"].Value.ToString();
+                    VoucherRemarks_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["REMARKS"].Value.ToString();
+                    VoucherAmount_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["AMOUNT"].Value.ToString();
+                    CustomerID_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["CustomerID"].Value.ToString();
+                    CustomerBalance_txt.Text = LedgerGridView.Rows[SelectedRowIndex].Cells["CUSTOMER_BALANCE"].Value.ToString().Trim();
+                }
+            }
+            catch (Exception ex)
+            { }
         }
 
         private void LedgerGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (int loop = 0; loop < LedgerGridView.Rows.Count - 1; loop++)
             {
-                if (LedgerGridView.Rows[loop].Cells["REMARKS"].Value.ToString().Contains("Bill"))
+                if (LedgerGridView.Rows[loop].Cells["REMARKS"].Value.ToString().Contains("Voucher"))
                     LedgerGridView.Rows[loop].DefaultCellStyle.BackColor = Color.GreenYellow;
                 else
                     LedgerGridView.Rows[loop].DefaultCellStyle.BackColor = Color.SkyBlue;
@@ -352,17 +382,6 @@ namespace firebirdtest.UI
         {
             Variables.FormRefresh = this.Name;
             this.Close();
-
-        }
-
-        private void CustomerName_txt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void CustomerName_txt_KeyUp(object sender, KeyEventArgs e)
-        {
-
         }
 
         private void CustomerName_txt_Enter(object sender, EventArgs e)
@@ -414,7 +433,7 @@ namespace firebirdtest.UI
             }
         }
 
-        string SHIPMENT_ITEM_ID = "";
+        string BILL_ITEM_ID = "";
         private void CustomerNameDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -469,7 +488,7 @@ namespace firebirdtest.UI
             {
                 for (int loop = 0; loop < CustomerNameDataGridView.Rows.Count; loop++)
                 {
-                    if (CustomerNameDataGridView.Rows[loop].Cells["NAME"].Value.ToString().Contains(CustomerName_txt.Text))
+                    if (StaticClass.Contain(CustomerNameDataGridView.Rows[loop].Cells["NAME"].Value.ToString(), CustomerName_txt.Text, StringComparison.OrdinalIgnoreCase))
                     {
                         CustomerNameDataGridView.Rows[loop].Visible = true;
                     }

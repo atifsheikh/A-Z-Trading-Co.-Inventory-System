@@ -5,10 +5,10 @@ namespace ThePrimeBaby.Database
 {
     public class VendorVoucher : Concept
     {
-        public DateTime DATED;
-        public string REMARKS;
         public Vendor Vendor;
+        public DateTime DATED;
         public decimal AMOUNT;
+        public string REMARKS;
         public decimal VENDOR_BALANCE
         {
             get
@@ -30,7 +30,11 @@ namespace ThePrimeBaby.Database
                 return ((vendorBalance + this.Vendor.OPENING_BALANCE) - vendorVoucher);
             }
         }
-        
+        internal static int GetNewVoucherNumber()
+        {
+            return Convert.ToInt32((Int64)Db.SlowSQL("SELECT MIN(b.ID) FROM ThePrimeBaby.Database.VendorVoucher b").First) - 1;
+        }
+
         internal static bool AddVoucherPayment(Vendor VendorID, DateTime BillDate, Decimal BillTotal, string Remarks)
         {
             try
@@ -52,12 +56,8 @@ namespace ThePrimeBaby.Database
                 return false;
             }
         }
-        internal static int GetNewVoucherNumber()
-        {
-            return Convert.ToInt32((Int64)Db.SlowSQL("SELECT MIN(b.ID) FROM ThePrimeBaby.Database.VendorVoucher b").First) - 1;
-        }
 
-        internal static bool ModifyVoucherPayment(Vendor VendorID, DateTime BillDate, Decimal BillTotal, string Remarks,int VoucherNumber)
+        internal static bool ModifyVoucherPayment(Vendor VendorID, DateTime BillDate, Decimal BillTotal, string Remarks, int VoucherNumber)
         {
             try
             {

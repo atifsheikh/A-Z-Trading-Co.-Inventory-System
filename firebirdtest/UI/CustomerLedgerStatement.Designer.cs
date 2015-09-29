@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerLedgerStatement));
             this.label1 = new System.Windows.Forms.Label();
             this.StartDate_DTPicker = new System.Windows.Forms.DateTimePicker();
@@ -44,8 +45,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CustomerBalance_txt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.RemainingBalance_txt = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.VoucherRemarks_txt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,12 +57,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.CustomerID_txt = new System.Windows.Forms.TextBox();
             this.LedgerGridView = new System.Windows.Forms.DataGridView();
-            this.Dated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BillAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -170,8 +163,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.CustomerBalance_txt);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.RemainingBalance_txt);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.VoucherRemarks_txt);
             this.groupBox1.Controls.Add(this.label6);
@@ -209,28 +200,6 @@
             this.label7.Size = new System.Drawing.Size(123, 17);
             this.label7.TabIndex = 13;
             this.label7.Text = "Customer Balance";
-            // 
-            // RemainingBalance_txt
-            // 
-            this.RemainingBalance_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemainingBalance_txt.Enabled = false;
-            this.RemainingBalance_txt.Location = new System.Drawing.Point(1644, 86);
-            this.RemainingBalance_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.RemainingBalance_txt.Name = "RemainingBalance_txt";
-            this.RemainingBalance_txt.Size = new System.Drawing.Size(107, 22);
-            this.RemainingBalance_txt.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(1509, 90);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(130, 17);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Remaining Balance";
             // 
             // button2
             // 
@@ -272,7 +241,6 @@
             this.VoucherAmount_txt.Name = "VoucherAmount_txt";
             this.VoucherAmount_txt.Size = new System.Drawing.Size(107, 22);
             this.VoucherAmount_txt.TabIndex = 3;
-            this.VoucherAmount_txt.TextChanged += new System.EventHandler(this.VoucherAmount_txt_TextChanged);
             this.VoucherAmount_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VoucherAmount_txt_KeyDown);
             // 
             // label5
@@ -405,19 +373,17 @@
             // 
             // LedgerGridView
             // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.LedgerGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.LedgerGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LedgerGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.LedgerGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.LedgerGridView.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.LedgerGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LedgerGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Dated,
-            this.BillNo,
-            this.BillAmount,
-            this.Amount,
-            this.Balance,
-            this.Remarks});
+            this.LedgerGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.LedgerGridView.Location = new System.Drawing.Point(348, 41);
             this.LedgerGridView.Margin = new System.Windows.Forms.Padding(4);
             this.LedgerGridView.Name = "LedgerGridView";
@@ -425,42 +391,6 @@
             this.LedgerGridView.TabIndex = 9;
             this.LedgerGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LedgerGridView_CellDoubleClick);
             this.LedgerGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.LedgerGridView_DataBindingComplete);
-            // 
-            // Dated
-            // 
-            this.Dated.HeaderText = "Dated";
-            this.Dated.Name = "Dated";
-            this.Dated.Visible = false;
-            // 
-            // BillNo
-            // 
-            this.BillNo.HeaderText = "BillNo";
-            this.BillNo.Name = "BillNo";
-            this.BillNo.Visible = false;
-            // 
-            // BillAmount
-            // 
-            this.BillAmount.HeaderText = "BillAmount";
-            this.BillAmount.Name = "BillAmount";
-            this.BillAmount.Visible = false;
-            // 
-            // Amount
-            // 
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            this.Amount.Visible = false;
-            // 
-            // Balance
-            // 
-            this.Balance.HeaderText = "Balance";
-            this.Balance.Name = "Balance";
-            this.Balance.Visible = false;
-            // 
-            // Remarks
-            // 
-            this.Remarks.HeaderText = "Remarks";
-            this.Remarks.Name = "Remarks";
-            this.Remarks.Visible = false;
             // 
             // button4
             // 
@@ -522,18 +452,10 @@
         private System.Windows.Forms.TextBox CustomerName_txt;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView LedgerGridView;
-        private System.Windows.Forms.TextBox RemainingBalance_txt;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox CustomerBalance_txt;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox CustomerID_txt;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dated;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BillAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView CustomerNameDataGridView;
         private System.Windows.Forms.Button button5;

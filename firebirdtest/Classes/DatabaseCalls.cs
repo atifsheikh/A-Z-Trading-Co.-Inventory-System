@@ -593,9 +593,25 @@ namespace firebirdtest
 
         }
 
+        internal static DataSet GetCustomerVoucher()
+        {
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerVouchers");
+
+        }
+
         internal static string UpdateVendorVoucherPayment(int VendorID, DateTime BillDate, Decimal BillTotal, string Remarks,string VoucherNumber)
         {
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyVendorVoucher/5", VendorID + "/" + BillDate.ToString().Replace('/', '-') + "/" + BillTotal + "/" + Remarks + "/" + VoucherNumber);
+        }
+
+        internal static string AddCustomerVoucherPayment(int CustomerID, DateTime BillDate, Decimal BillTotal, string Remarks)
+        {
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddCustomerVoucher/4", CustomerID + "/" + BillDate.ToString().Replace('/', '-') + "/" + BillTotal + "/" + Remarks);
+        }
+
+        internal static string UpdateCustomerVoucherPayment(int CustomerID, DateTime BillDate, Decimal BillTotal, string Remarks, string VoucherNumber)
+        {
+            return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyCustomerVoucher/5", CustomerID + "/" + BillDate.ToString().Replace('/', '-') + "/" + BillTotal + "/" + Remarks + "/" + VoucherNumber);
         }
     }
 }
