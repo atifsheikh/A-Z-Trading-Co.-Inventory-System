@@ -70,6 +70,11 @@ namespace firebirdtest.UI
                 BillsDataSet.Tables[0].TableName = "Ledger";
                 CustomerVoucherDataSet = DatabaseCalls.GetCustomerVoucher();
                 //CustomerVoucherDataSet.Tables[0].Columns.Remove("REMARKS");
+                BillsDataSet.Tables[0].Columns.Remove("NAME");
+                BillsDataSet.Tables[0].Columns["CUSTOMERID"].ColumnName = "CustomerID";
+                BillsDataSet.Tables[0].Columns["CUSTOMERNAME"].ColumnName = "CustomerNAME";
+
+
                 CustomerVoucherDataSet.Tables[0].TableName = "Ledger"; 
                 CustomerVoucherDataSet.Merge(BillsDataSet);
                 
@@ -92,7 +97,10 @@ namespace firebirdtest.UI
                     LedgerGridView.Columns["DATED"].HeaderText = "Date";
                     LedgerGridView.Columns["CUSTOMER_BALANCE"].HeaderText = "Balance";
 
-                    LedgerGridView.Columns["CustomerID"].Visible = false;
+                    LedgerGridView.Columns["CUSTOMERID"].Visible = false;
+                    //LedgerGridView.Columns["Customer"].DisplayIndex = 2;//.Visible 
+                    //LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
+                    LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
 
                     LedgerGridView.Update();
                 }

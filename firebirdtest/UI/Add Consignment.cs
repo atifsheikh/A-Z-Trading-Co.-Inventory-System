@@ -342,15 +342,15 @@ namespace firebirdtest.UI
                             if (AddSaleResult == "")
                             {
                                 ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
-                                int UpdatedItem_Quantity = (Convert.ToInt32(ItemDetails.Tables[0].Rows[0]["T_Quantity"]) - Convert.ToInt32(GridViewRow.Cells[5].Value));
-                                String UpdateItemResult = DatabaseCalls.AddItemQutantity(GridViewRow.Cells[1].Value.ToString(), UpdatedItem_Quantity);
-                                if (UpdateItemResult != "")
-                                {
-                                    Variables.NotificationStatus = true;
-                                    Variables.NotificationMessageTitle = this.Name;
-                                    Variables.NotificationMessageText = UpdateItemResult;
-                                    //return;
-                                }
+                                //int UpdatedItem_Quantity = (Convert.ToInt32(ItemDetails.Tables[0].Rows[0]["T_Quantity"]) - Convert.ToInt32(GridViewRow.Cells[5].Value));
+                                //String UpdateItemResult = DatabaseCalls.AddItemQutantity(GridViewRow.Cells[1].Value.ToString(), UpdatedItem_Quantity);
+                                //if (UpdateItemResult != "")
+                                //{
+                                //    Variables.NotificationStatus = true;
+                                //    Variables.NotificationMessageTitle = this.Name;
+                                //    Variables.NotificationMessageText = UpdateItemResult;
+                                //    //return;
+                                //}
                             }
                         }
                     }
@@ -1033,15 +1033,15 @@ namespace firebirdtest.UI
                             if (AddSaleResult == "")
                             {
                                 ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
-                                int UpdatedItem_Quantity = (Convert.ToInt32(ItemDetails.Tables[0].Rows[0]["T_Quantity"]) - Convert.ToInt32(GridViewRow.Cells[5].Value));
-                                String UpdateItemResult = DatabaseCalls.AddItemQutantity(GridViewRow.Cells[1].Value.ToString(), UpdatedItem_Quantity);
-                                if (UpdateItemResult != "")
-                                {
-                                    Variables.NotificationStatus = true;
-                                    Variables.NotificationMessageTitle = this.Name;
-                                    Variables.NotificationMessageText = UpdateItemResult;
-                                    //return;
-                                }
+                                //int UpdatedItem_Quantity = (Convert.ToInt32(ItemDetails.Tables[0].Rows[0]["T_Quantity"]) - Convert.ToInt32(GridViewRow.Cells[5].Value));
+                                //String UpdateItemResult = DatabaseCalls.AddItemQutantity(GridViewRow.Cells[1].Value.ToString(), UpdatedItem_Quantity);
+                                //if (UpdateItemResult != "")
+                                //{
+                                //    Variables.NotificationStatus = true;
+                                //    Variables.NotificationMessageTitle = this.Name;
+                                //    Variables.NotificationMessageText = UpdateItemResult;
+                                //    //return;
+                                //}
                             }
                         }
                     }
@@ -1932,6 +1932,11 @@ namespace firebirdtest.UI
             {
                 SendKeys.Send("{TAB}");
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            AddItemPnl.Visible = false;
         }
     }
 }

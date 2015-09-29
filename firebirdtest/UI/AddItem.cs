@@ -120,8 +120,9 @@ namespace firebirdtest.UI
             ItemsDataGridView.Columns["QTY_BOX"].DisplayIndex = 2;
             ItemsDataGridView.Columns["COSTPRICE"].DisplayIndex = 3;
             ItemsDataGridView.Columns["PRICE"].DisplayIndex = 4;
-            ItemsDataGridView.Columns["CategoryNAME"].DisplayIndex = 7;
-            ItemsDataGridView.Columns["T_QUANTITY"].DisplayIndex = 8;
+            ItemsDataGridView.Columns["RETAILPRICE"].DisplayIndex = 7;
+            ItemsDataGridView.Columns["CategoryNAME"].DisplayIndex = 8;
+            ItemsDataGridView.Columns["T_QUANTITY"].DisplayIndex = 9;
         }
 
         private void ItemsDataGridView_MouseClick(object sender, MouseEventArgs e)

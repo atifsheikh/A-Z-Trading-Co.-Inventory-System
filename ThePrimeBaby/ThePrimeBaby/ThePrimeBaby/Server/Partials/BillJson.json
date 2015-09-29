@@ -9,6 +9,7 @@
         "DATED" : "",
         "AMOUNT" : 0.0,
         "REMARKS" : "",
-        "CUSTOMER_BALANCE" : 0.0
+        "CUSTOMER_BALANCE" : 0.0,
+		"TOTAL_CTN":0
 	}]
 }

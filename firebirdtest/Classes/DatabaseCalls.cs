@@ -289,10 +289,10 @@ namespace firebirdtest
         {
             return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddCategory" , ItemCategory);
         }
-        internal static string AddItemQutantity(string ItemName, int ItemQuantity)
-        {
-            return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddItemQutantityByName/2", ItemName + "/" + ItemQuantity);
-        }
+        //internal static string AddItemQutantity(string ItemName, int ItemQuantity)
+        //{
+        //    return POST("http://"+global::firebirdtest.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/AddItemQutantityByName/2", ItemName + "/" + ItemQuantity);
+        //}
         internal static string ModifyItemPrice(string ItemName, decimal ItemCostPrice,decimal ItemPrice)
         {
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyItemPrice/3", ItemName + "/" + ItemCostPrice + "/" + ItemPrice);
