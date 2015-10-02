@@ -467,6 +467,13 @@ namespace firebirdtest
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBills");
             //return JsonToDataSet(Result);
         }
+        internal static DataSet GetBillsInvoice(string BillID)
+        {
+            ///ThePrimeBaby/GetBillInvoice/{?}
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/"+BillID);
+            //return JsonToDataSet(Result);
+        }
+
         internal static DataSet GetBill(string BillID)
         {
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillByBillID/" + BillID);

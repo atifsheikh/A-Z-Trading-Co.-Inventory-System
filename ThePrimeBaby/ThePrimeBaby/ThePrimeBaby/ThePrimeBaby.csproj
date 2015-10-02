@@ -143,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <TypedJSON Include="Server\Partials\BillInvoiceJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="weaver.ignore" />
     <TypedJSON Include="Server\Partials\CategoryJson.json">
       <Generator>MsBuild:Compile</Generator>

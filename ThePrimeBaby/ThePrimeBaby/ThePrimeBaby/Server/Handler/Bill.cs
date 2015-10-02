@@ -91,6 +91,18 @@ namespace ThePrimeBaby.Server.Handler
                 return billJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
+            Handle.GET("/ThePrimeBaby/GetBillInvoice/{?}", (string BillID, Request r) =>
+            {
+                QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.Id = ?", Convert.ToInt32(BillID));
+                QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT b FROM ThePrimeBaby.Database.Customer b WHERE b = ?", bill.First.CUSTOMER);
+                QueryResultRows<Database.BillDetail> billdetiail = Db.SQL<Database.BillDetail>("SELECT b FROM ThePrimeBaby.Database.Billdetail b WHERE bill.Id = ?", Convert.ToInt32(BillID));
+                BillInvoiceJson billInvoiceJson = new BillInvoiceJson();
+                billInvoiceJson.CUSTOMER.Data = customer;
+                //billInvoiceJson.Bill.Data = bill;
+                //billInvoiceJson.BillDetails.Data = billdetiail;
+                return billInvoiceJson;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
             Handle.GET("/ThePrimeBaby/GetBillByBillID/{?}", (string BillID, Request r) =>
             {
                 QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.ID = ?", Convert.ToInt32(HttpUtility.UrlDecode(BillID)));
