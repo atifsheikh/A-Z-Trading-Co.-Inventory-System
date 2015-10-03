@@ -58,14 +58,14 @@ namespace WindowsFormsApplication1
             return b_Details;
         }
     }
-    
+
     public class BillDetail
     {
         public BillDetail(string Code, string model, int t_quantity, int price, int subtotal)
         {
             NAME = Code;
-            T_QUANTITY = t_quantity;
             MODEL = model;
+            T_QUANTITY = t_quantity;
             PRICE = price;
             SUBTOTAL = subtotal;
         }
@@ -73,11 +73,9 @@ namespace WindowsFormsApplication1
         public string NAME { get; set; }
         public string MODEL { get; set; }
         public int T_QUANTITY { get; set; }
-        public int CTN { get; set; }
         public int PRICE { get; set; }
         public int SUBTOTAL { get; set; }
     }
-
     public class InvoiceDetails
     {
         public List<BillDetail> BillDetail { get; set; }

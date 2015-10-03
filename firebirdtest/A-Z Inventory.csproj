@@ -61,15 +61,6 @@
     <Compile Include="Classes\RandomAlgos.cs" />
     <Compile Include="Classes\DatabaseCalls.cs" />
     <Compile Include="Classes\StaticClass.cs" />
-    <Compile Include="DataSets\CustomerAccountDataSet.cs">
-      <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataSets\CustomerAccountDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DataSets\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -87,15 +78,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet2.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSets\InvoiceDataSet.cs">
-      <DependentUpon>InvoiceDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataSets\InvoiceDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InvoiceDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSets\ItemHistoryDataSource.cs">
       <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
@@ -330,17 +312,6 @@
     <EmbeddedResource Include="UI\VendorLedgerStatement.resx">
       <DependentUpon>VendorLedgerStatement.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DataSets\CustomerAccountDataSet.xsc">
-      <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\CustomerAccountDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CustomerAccountDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSets\CustomerAccountDataSet.xss">
-      <DependentUpon>CustomerAccountDataSet.xsd</DependentUpon>
-    </None>
     <None Include="DataSets\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
@@ -362,17 +333,6 @@
     </None>
     <None Include="DataSets\DataSet2.xss">
       <DependentUpon>DataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\InvoiceDataSet.xsc">
-      <DependentUpon>InvoiceDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\InvoiceDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>InvoiceDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSets\InvoiceDataSet.xss">
-      <DependentUpon>InvoiceDataSet.xsd</DependentUpon>
     </None>
     <None Include="DataSets\ItemInventory_DataSet1.xsc">
       <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>

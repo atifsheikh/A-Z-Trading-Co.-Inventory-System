@@ -33,10 +33,7 @@ namespace firebirdtest.UI
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BillPrint));
-            this.SALEBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataSet1 = new firebirdtest.DataSets.DataSet1();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.SALETableAdapter = new firebirdtest.DataSets.DataSet1TableAdapters.SALETableAdapter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PrintBatch_CB = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,21 +44,9 @@ namespace firebirdtest.UI
             this.BillDataGridView = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.SALEBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BillDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // SALEBindingSource
-            // 
-            this.SALEBindingSource.DataMember = "SALE";
-            this.SALEBindingSource.DataSource = this.DataSet1;
-            // 
-            // DataSet1
-            // 
-            this.DataSet1.DataSetName = "DataSet1";
-            this.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -69,21 +54,16 @@ namespace firebirdtest.UI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.SALEBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.CustomerBill.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(384, 37);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
             this.reportViewer1.Size = new System.Drawing.Size(1407, 820);
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.ReportRefresh += new System.ComponentModel.CancelEventHandler(this.reportViewer1_ReportRefresh);
             this.reportViewer1.PrintingBegin += new Microsoft.Reporting.WinForms.ReportPrintEventHandler(this.reportViewer1_PrintingBegin);
-            // 
-            // SALETableAdapter
-            // 
-            this.SALETableAdapter.ClearBeforeFill = false;
             // 
             // panel1
             // 
@@ -99,7 +79,7 @@ namespace firebirdtest.UI
             this.panel1.Controls.Add(this.BillDataGridView);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(0, 37);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(387, 821);
             this.panel1.TabIndex = 0;
@@ -110,7 +90,7 @@ namespace firebirdtest.UI
             this.PrintBatch_CB.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.PrintBatch_CB.ForeColor = System.Drawing.Color.Indigo;
             this.PrintBatch_CB.Location = new System.Drawing.Point(67, 111);
-            this.PrintBatch_CB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PrintBatch_CB.Margin = new System.Windows.Forms.Padding(4);
             this.PrintBatch_CB.Name = "PrintBatch_CB";
             this.PrintBatch_CB.Size = new System.Drawing.Size(99, 21);
             this.PrintBatch_CB.TabIndex = 40;
@@ -120,7 +100,7 @@ namespace firebirdtest.UI
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(181, 107);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 28);
             this.button1.TabIndex = 39;
@@ -132,7 +112,7 @@ namespace firebirdtest.UI
             // 
             this.CustomerNameSearch_txt.FormattingEnabled = true;
             this.CustomerNameSearch_txt.Location = new System.Drawing.Point(145, 44);
-            this.CustomerNameSearch_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CustomerNameSearch_txt.Margin = new System.Windows.Forms.Padding(4);
             this.CustomerNameSearch_txt.Name = "CustomerNameSearch_txt";
             this.CustomerNameSearch_txt.Size = new System.Drawing.Size(160, 24);
             this.CustomerNameSearch_txt.TabIndex = 0;
@@ -158,7 +138,7 @@ namespace firebirdtest.UI
             // 
             this.BillNumberSearch_txt.FormattingEnabled = true;
             this.BillNumberSearch_txt.Location = new System.Drawing.Point(145, 78);
-            this.BillNumberSearch_txt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BillNumberSearch_txt.Margin = new System.Windows.Forms.Padding(4);
             this.BillNumberSearch_txt.Name = "BillNumberSearch_txt";
             this.BillNumberSearch_txt.Size = new System.Drawing.Size(160, 24);
             this.BillNumberSearch_txt.TabIndex = 1;
@@ -196,7 +176,7 @@ namespace firebirdtest.UI
             this.BillDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.BillDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BillDataGridView.Location = new System.Drawing.Point(9, 143);
-            this.BillDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BillDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.BillDataGridView.Name = "BillDataGridView";
             this.BillDataGridView.ReadOnly = true;
             this.BillDataGridView.Size = new System.Drawing.Size(367, 674);
@@ -221,7 +201,7 @@ namespace firebirdtest.UI
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.Location = new System.Drawing.Point(4, 4);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(47, 33);
             this.button2.TabIndex = 6;
@@ -237,7 +217,7 @@ namespace firebirdtest.UI
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.reportViewer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BillPrint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Print Bill";
@@ -246,8 +226,6 @@ namespace firebirdtest.UI
             this.Load += new System.EventHandler(this.BillPrint_Load);
             this.Shown += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BillPrint_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.SALEBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BillDataGridView)).EndInit();
@@ -258,9 +236,6 @@ namespace firebirdtest.UI
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource SALEBindingSource;
-        private DataSet1 DataSet1;
-        private firebirdtest.DataSets.DataSet1TableAdapters.SALETableAdapter SALETableAdapter;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox CustomerNameSearch_txt;
         private System.Windows.Forms.Label label6;

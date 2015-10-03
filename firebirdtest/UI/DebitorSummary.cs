@@ -40,7 +40,6 @@ namespace firebirdtest.UI
                 //BillDataGridView.DataSource = CustomerDataSet.Tables[0];
                 //BillDataGridView.Columns[0].HeaderText = "Bill #";
 
-                this.CustomerTableAdapter.Fill(this.customerAccountDataSet1.CUSTOMERS);
                 reportViewer1.RefreshReport();
             }
             catch (Exception ex)

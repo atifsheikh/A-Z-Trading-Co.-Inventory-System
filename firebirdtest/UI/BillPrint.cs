@@ -188,57 +188,7 @@ namespace firebirdtest.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //this.DataSet1 = DatabaseCalls.GetBillDetails("1");
-                this.SALETableAdapter.Fill(this.DataSet1.SALE);
-                DataSet BillDataSet = new DataSet();
-                BillDataSet = DatabaseCalls.GetBill(BillNumberSearch_txt.Text);
-
-
-                ReportParameter[] _ReportParameter = new ReportParameter[8];
-                String CustomerID = BillDataGridView.CurrentRow.Cells["CUSTOMER_ID"].Value.ToString();
-                decimal CalculatedBalance = Convert.ToDecimal(DatabaseCalls.GetCurrentRowBalance(CustomerID, BillNumberSearch_txt.Text));
-                foreach (DataRow GridViewColumn in BillDataSet.Tables[0].Rows)
-                {
-                    _ReportParameter[0] = new ReportParameter("BillNumber", BillNumberSearch_txt.Text);
-                    _ReportParameter[1] = new ReportParameter("InvoiceDate", Convert.ToDateTime(GridViewColumn.ItemArray[2]).ToShortDateString());
-                    _ReportParameter[2] = new ReportParameter("BillBalance", GridViewColumn.ItemArray[5].ToString());
-                    _ReportParameter[6] = new ReportParameter("Total", BillDataGridView.Rows[BillDataGridView.CurrentCell.RowIndex].Cells["CUSTOMER_BALANCE"].Value.ToString());
-                    CustomerID = GridViewColumn.ItemArray[1].ToString();
-                }
-                DataSet CustomerDataSet = new DataSet();
-                CustomerDataSet = DatabaseCalls.GetCustomer(Convert.ToInt32(CustomerID));
-                foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                {
-                    _ReportParameter[3] = new ReportParameter("CustomerName", GridViewColumn.ItemArray[1].ToString());
-                    _ReportParameter[4] = new ReportParameter("CustomerShipAddress", GridViewColumn.ItemArray[4].ToString());
-                    decimal CustomerBalanceCalculated = Convert.ToDecimal(BillDataGridView.Rows[BillDataGridView.CurrentCell.RowIndex].Cells["CUSTOMER_BALANCE"].Value.ToString()) - Convert.ToDecimal(BillDataGridView.Rows[BillDataGridView.CurrentCell.RowIndex].Cells["AMOUNT"].Value.ToString());
-                    _ReportParameter[5] = new ReportParameter("CustomerBalance", CustomerBalanceCalculated.ToString());
-                }
-                DataSet BillDetailDataSet = new DataSet();
-                BillDetailDataSet = DatabaseCalls.GetSale(BillNumberSearch_txt.Text);
-                int TotalCTNs = 0;
-                foreach (DataRow BillDetail in BillDetailDataSet.Tables[0].Rows)
-                {
-                    TotalCTNs += Convert.ToInt32(BillDetail["QTY"].ToString());
-                }
-                _ReportParameter[7] = new ReportParameter("TotalCTN", TotalCTNs.ToString());
-
-                reportViewer1.LocalReport.SetParameters(_ReportParameter);
-                reportViewer1.RefreshReport();
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.ToString().Contains("One or more rows contain values violating non-null, ") == true)
-                    button1_Click(sender, e);
-                else
-                {
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = ex.Message;
-                    Variables.NotificationStatus = true;
-                }
-            }
+                //DisplayReport();
         }
         
 
@@ -314,7 +264,7 @@ namespace firebirdtest.UI
                     {
                         for (int loop = 0; loop < BillDataGridView.Rows.Count; loop++)
                         {
-                            if (CustomerNameSearch_txt.Text != "" && BillDataGridView.Rows[loop].Cells["Customer_ID"].Value.ToString() != (GridViewColumn.ItemArray[0].ToString()))
+                            if (!StaticClass.Contain(BillDataGridView.Rows[loop].Cells["CUSTOMERNAME"].Value.ToString(), CustomerNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
                             {
                                 BillDataGridView.Rows[loop].Visible = false;
                             }
@@ -341,6 +291,9 @@ namespace firebirdtest.UI
                     this.reportViewer1.LocalReport.DisplayName = BillDataGridView.CurrentRow.Cells["NAME"].Value.ToString() + " - " + BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
                     //CustomerNameSearch_txt.Text = BillDataGridView.CurrentRow.Cells["NAME"].Value.ToString();
                     BillNumberSearch_txt.Text = BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
+
+                    DisplayReport();
+
                 }
                 BillNumberSearch_txt.DroppedDown = false;
                 button2.Focus();
@@ -350,6 +303,34 @@ namespace firebirdtest.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
                 Variables.NotificationStatus = true;
+            }
+        }
+
+        private void DisplayReport()
+        {
+            try
+            {
+                string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/" + BillNumberSearch_txt.Text);
+                Invoice invoice = JsonConvert.DeserializeObject<Invoice>(jsonstring);
+                this.reportViewer1.ProcessingMode = ProcessingMode.Local;
+                //                    this.reportViewer1.LocalReport.ReportPath = "CustomerBill.rdlc";
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.InvoiceDetails.GetBillDetail()));
+
+
+                ReportParameter[] param = new ReportParameter[6];
+                param[0] = new ReportParameter("CustomerName", invoice.InvoiceDetails.Customer.NAME);
+                param[1] = new ReportParameter("CustomerBusinessName", invoice.InvoiceDetails.Customer.NAME);
+                param[2] = new ReportParameter("CustomerPhone", invoice.InvoiceDetails.Customer.PHONE);
+                param[3] = new ReportParameter("CustomerBalance", invoice.InvoiceDetails.Customer.AMOUNT.ToString());
+                param[4] = new ReportParameter("InvoiceDate", invoice.InvoiceDetails.Bill.DATED.ToString());
+                param[5] = new ReportParameter("InvoiceNumber", invoice.InvoiceDetails.Bill.ID.ToString());
+
+                this.reportViewer1.LocalReport.SetParameters(param);
+                this.reportViewer1.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -496,34 +477,6 @@ namespace firebirdtest.UI
 
         private void BillPrint_Load(object sender, EventArgs e)
         {
-            try
-            {
-
-                // Set Processing Mode
-                reportViewer1.ProcessingMode = ProcessingMode.Local;
-
-                // Set RDL file
-                reportViewer1.LocalReport.ReportPath = "BillInvoice.rdlc";
-
-                // Supply data corresponding to each report data source.
-
-
-                string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/1");
-                Invoice invoice = JsonConvert.DeserializeObject<Invoice>(jsonstring);
-                try
-                {
-                    Merchant merchant = new Merchant();
-                    this.reportViewer1.ProcessingMode = ProcessingMode.Local;
-                    this.reportViewer1.LocalReport.ReportPath = "Report1.rdlc";
-                    this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Product", merchant.GetProducts()));
-                    this.reportViewer1.RefreshReport();
-
-                    reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("InvoiceDetails", invoice));
-                    //reportViewer1.RefreshReport();
-                }
-                catch (Exception ex)
-                { }
-            }
             //reportViewer1.ProcessingMode = ProcessingMode.Local;
             //reportViewer1.LocalReport.ReportPath = "CustomerBill.rdlc";
 
@@ -566,10 +519,6 @@ namespace firebirdtest.UI
 
 
                 //InvoiceDataSet myDataSet = JsonConvert.DeserializeObject<InvoiceDataSet>(xmlString);
-
-
-            catch (Exception ex)
-            { }
 
         }
     }

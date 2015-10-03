@@ -16,9 +16,7 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __BiInvoiceD__ = global::BillInvoiceJson.InvoiceDetailsJson;
-using __BInCustomer__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson;
-using __BInCustomer1__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.JsonByExample;
+using __BiInvoiceD1__ = global::BillInvoiceJson.InvoiceDetailsJson.JsonByExample;
 using __BInCustomer2__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.Input;
 using __BICuID__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.Input.ID;
 using __BICuNAME__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.Input.NAME;
@@ -27,11 +25,11 @@ using __BICuPHONE__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.In
 using __BICuADDRESS__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.Input.ADDRESS;
 using __BICuAMOUNT__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.Input.AMOUNT;
 using __BICuOPENING___ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.Input.OPENING_BALANCE;
-using __BiInvoiceD1__ = global::BillInvoiceJson.InvoiceDetailsJson.JsonByExample;
 using __BICuBALANCE___ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.Input.BALANCE_LIMIT;
-using __BInBillJson1__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.JsonByExample;
+using __BInCustomer1__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.JsonByExample;
+using __BInBillJson__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson;
 using __BInBillJson2__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Input;
-using __BIBiID1__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Input.ID;
+using __BIBiID__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Input.ID;
 using __BIBiNAME1__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Input.NAME;
 using __BIBiDATED__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Input.DATED;
 using __BIBiAMOUNT__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Input.AMOUNT;
@@ -39,10 +37,10 @@ using __BIBiREMARKS__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Inpu
 using __BIBiCUSTOMER__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Input.CUSTOMER_BALANCE;
 using __BIBiTOTAL_CT__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.Input.TOTAL_CTN;
 using __Arr__ = global::Starcounter.Arr<global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson>;
-using __BInBillJson__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson;
-using __BiInvoiceD2__ = global::BillInvoiceJson.InvoiceDetailsJson.Input;
+using __BInBillJson1__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.JsonByExample;
+using __BInCustomer__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson;
 using __BillInvo2__ = global::BillInvoiceJson.Input;
-using __TArray__ = global::Starcounter.Templates.TArray<global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson>;
+using __BiInvoiceD__ = global::BillInvoiceJson.InvoiceDetailsJson;
 using __BillInvo__ = global::BillInvoiceJson;
 using __Json__ = global::Starcounter.Json;
 using __TObject__ = global::Starcounter.Templates.TObject;
@@ -53,19 +51,18 @@ using __BICuSchema__ = global::BillInvoiceJson.InvoiceDetailsJson.CustomerJson.J
 using __TLong__ = global::Starcounter.Templates.TLong;
 using __TString__ = global::Starcounter.Templates.TString;
 using __BIBiSchema__ = global::BillInvoiceJson.InvoiceDetailsJson.BillJson.JsonByExample.Schema;
-using __BillInvo1__ = global::BillInvoiceJson.JsonByExample;
 using __BInBillDeta__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson;
+using __BIBiSchema1__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.JsonByExample.Schema;
 using __BInBillDeta1__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.JsonByExample;
 using __BInBillDeta2__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input;
-using __BIBiID__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input.ID;
 using __BIBiNAME__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input.NAME;
 using __BIBiMODEL__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input.MODEL;
 using __BIBiT_QUANTI__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input.T_QUANTITY;
-using __BIBiQTY_PER___ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input.QTY_PER_BOX;
-using __BIBiCTN__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input.CTN;
 using __BIBiPRICE__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input.PRICE;
 using __BIBiSUBTOTAL__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.Input.SUBTOTAL;
-using __BIBiSchema1__ = global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson.JsonByExample.Schema;
+using __TArray__ = global::Starcounter.Templates.TArray<global::BillInvoiceJson.InvoiceDetailsJson.BillDetailElementJson>;
+using __BillInvo1__ = global::BillInvoiceJson.JsonByExample;
+using __BiInvoiceD2__ = global::BillInvoiceJson.InvoiceDetailsJson.Input;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -107,11 +104,11 @@ public class BillInvoiceJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __BiInvoiceD__ InvoiceDetails {
-#line 35 "Server\Partials\BillInvoiceJson.json"
+#line 32 "Server\Partials\BillInvoiceJson.json"
     get {
 #line hidden
         return (__BiInvoiceD__)Template.InvoiceDetails.Getter(this); }
-#line 35 "Server\Partials\BillInvoiceJson.json"
+#line 32 "Server\Partials\BillInvoiceJson.json"
     set {
 #line hidden
         Template.InvoiceDetails.Setter(this, value); } }
@@ -190,11 +187,11 @@ public class BillInvoiceJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public __Arr__ BillDetail {
-#line 34 "Server\Partials\BillInvoiceJson.json"
+#line 31 "Server\Partials\BillInvoiceJson.json"
     get {
 #line hidden
         return Template.BillDetail.Getter(this); }
-#line 34 "Server\Partials\BillInvoiceJson.json"
+#line 31 "Server\Partials\BillInvoiceJson.json"
     set {
 #line hidden
         Template.BillDetail.Setter(this, value); } }
@@ -645,12 +642,9 @@ public class BillInvoiceJson : __Json__ {
             [_GEN1_][_GEN2_("Starcounter","2.0")]
             public new __BIBiSchema1__ Template { get { return (__BIBiSchema1__)base.Template; } set { base.Template = value; } }
             public override bool IsCodegenerated { get { return true; } }
-            private System.Int64 __bf__ID__;
             private System.String __bf__NAME__;
             private System.String __bf__MODEL__;
             private System.Int64 __bf__T_QUANTITY__;
-            private System.Int64 __bf__QTY_PER_BOX__;
-            private System.Int64 __bf__CTN__;
             private System.Int64 __bf__PRICE__;
             private System.Int64 __bf__SUBTOTAL__;
             #line default
@@ -666,9 +660,6 @@ public class BillInvoiceJson : __Json__ {
                         InstanceType = typeof(__BInBillDeta__);
                         ClassName = "BillDetailElementJson";
                         Properties.ClearExposed();
-                        ID = Add<__TLong__>("ID");
-                        ID.DefaultValue = 0L;
-                        ID.SetCustomAccessors((_p_) => { return ((__BInBillDeta__)_p_).__bf__ID__; }, (_p_, _v_) => { ((__BInBillDeta__)_p_).__bf__ID__ = (System.Int64)_v_; }, false);
                         NAME = Add<__TString__>("NAME");
                         NAME.DefaultValue = "";
                         NAME.SetCustomAccessors((_p_) => { return ((__BInBillDeta__)_p_).__bf__NAME__; }, (_p_, _v_) => { ((__BInBillDeta__)_p_).__bf__NAME__ = (System.String)_v_; }, false);
@@ -678,12 +669,6 @@ public class BillInvoiceJson : __Json__ {
                         T_QUANTITY = Add<__TLong__>("T_QUANTITY");
                         T_QUANTITY.DefaultValue = 0L;
                         T_QUANTITY.SetCustomAccessors((_p_) => { return ((__BInBillDeta__)_p_).__bf__T_QUANTITY__; }, (_p_, _v_) => { ((__BInBillDeta__)_p_).__bf__T_QUANTITY__ = (System.Int64)_v_; }, false);
-                        QTY_PER_BOX = Add<__TLong__>("QTY_PER_BOX");
-                        QTY_PER_BOX.DefaultValue = 0L;
-                        QTY_PER_BOX.SetCustomAccessors((_p_) => { return ((__BInBillDeta__)_p_).__bf__QTY_PER_BOX__; }, (_p_, _v_) => { ((__BInBillDeta__)_p_).__bf__QTY_PER_BOX__ = (System.Int64)_v_; }, false);
-                        CTN = Add<__TLong__>("CTN");
-                        CTN.DefaultValue = 0L;
-                        CTN.SetCustomAccessors((_p_) => { return ((__BInBillDeta__)_p_).__bf__CTN__; }, (_p_, _v_) => { ((__BInBillDeta__)_p_).__bf__CTN__ = (System.Int64)_v_; }, false);
                         PRICE = Add<__TLong__>("PRICE");
                         PRICE.DefaultValue = 0L;
                         PRICE.SetCustomAccessors((_p_) => { return ((__BInBillDeta__)_p_).__bf__PRICE__; }, (_p_, _v_) => { ((__BInBillDeta__)_p_).__bf__PRICE__ = (System.Int64)_v_; }, false);
@@ -692,12 +677,9 @@ public class BillInvoiceJson : __Json__ {
                         SUBTOTAL.SetCustomAccessors((_p_) => { return ((__BInBillDeta__)_p_).__bf__SUBTOTAL__; }, (_p_, _v_) => { ((__BInBillDeta__)_p_).__bf__SUBTOTAL__ = (System.Int64)_v_; }, false);
                     }
                     public override object CreateInstance(s.Json parent) { return new __BInBillDeta__(this) { Parent = parent }; }
-                    public __TLong__ ID;
                     public __TString__ NAME;
                     public __TString__ MODEL;
                     public __TLong__ T_QUANTITY;
-                    public __TLong__ QTY_PER_BOX;
-                    public __TLong__ CTN;
                     public __TLong__ PRICE;
                     public __TLong__ SUBTOTAL;
                 }
@@ -705,24 +687,12 @@ public class BillInvoiceJson : __Json__ {
             }
             #line default
             [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public System.Int64 ID {
-#line 24 "Server\Partials\BillInvoiceJson.json"
-    get {
-#line hidden
-        return Template.ID.Getter(this); }
-#line 24 "Server\Partials\BillInvoiceJson.json"
-    set {
-#line hidden
-        Template.ID.Setter(this, value); } }
-#line default
-
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
             public System.String NAME {
-#line 25 "Server\Partials\BillInvoiceJson.json"
+#line 24 "Server\Partials\BillInvoiceJson.json"
     get {
 #line hidden
         return Template.NAME.Getter(this); }
-#line 25 "Server\Partials\BillInvoiceJson.json"
+#line 24 "Server\Partials\BillInvoiceJson.json"
     set {
 #line hidden
         Template.NAME.Setter(this, value); } }
@@ -730,11 +700,11 @@ public class BillInvoiceJson : __Json__ {
 
             [_GEN1_][_GEN2_("Starcounter","2.0")]
             public System.String MODEL {
-#line 26 "Server\Partials\BillInvoiceJson.json"
+#line 25 "Server\Partials\BillInvoiceJson.json"
     get {
 #line hidden
         return Template.MODEL.Getter(this); }
-#line 26 "Server\Partials\BillInvoiceJson.json"
+#line 25 "Server\Partials\BillInvoiceJson.json"
     set {
 #line hidden
         Template.MODEL.Setter(this, value); } }
@@ -742,47 +712,23 @@ public class BillInvoiceJson : __Json__ {
 
             [_GEN1_][_GEN2_("Starcounter","2.0")]
             public System.Int64 T_QUANTITY {
-#line 27 "Server\Partials\BillInvoiceJson.json"
+#line 26 "Server\Partials\BillInvoiceJson.json"
     get {
 #line hidden
         return Template.T_QUANTITY.Getter(this); }
-#line 27 "Server\Partials\BillInvoiceJson.json"
+#line 26 "Server\Partials\BillInvoiceJson.json"
     set {
 #line hidden
         Template.T_QUANTITY.Setter(this, value); } }
 #line default
 
             [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public System.Int64 QTY_PER_BOX {
-#line 28 "Server\Partials\BillInvoiceJson.json"
-    get {
-#line hidden
-        return Template.QTY_PER_BOX.Getter(this); }
-#line 28 "Server\Partials\BillInvoiceJson.json"
-    set {
-#line hidden
-        Template.QTY_PER_BOX.Setter(this, value); } }
-#line default
-
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
-            public System.Int64 CTN {
-#line 29 "Server\Partials\BillInvoiceJson.json"
-    get {
-#line hidden
-        return Template.CTN.Getter(this); }
-#line 29 "Server\Partials\BillInvoiceJson.json"
-    set {
-#line hidden
-        Template.CTN.Setter(this, value); } }
-#line default
-
-            [_GEN1_][_GEN2_("Starcounter","2.0")]
             public System.Int64 PRICE {
-#line 30 "Server\Partials\BillInvoiceJson.json"
+#line 27 "Server\Partials\BillInvoiceJson.json"
     get {
 #line hidden
         return Template.PRICE.Getter(this); }
-#line 30 "Server\Partials\BillInvoiceJson.json"
+#line 27 "Server\Partials\BillInvoiceJson.json"
     set {
 #line hidden
         Template.PRICE.Setter(this, value); } }
@@ -790,11 +736,11 @@ public class BillInvoiceJson : __Json__ {
 
             [_GEN1_][_GEN2_("Starcounter","2.0")]
             public System.Int64 SUBTOTAL {
-#line 32 "Server\Partials\BillInvoiceJson.json"
+#line 29 "Server\Partials\BillInvoiceJson.json"
     get {
 #line hidden
         return Template.SUBTOTAL.Getter(this); }
-#line 32 "Server\Partials\BillInvoiceJson.json"
+#line 29 "Server\Partials\BillInvoiceJson.json"
     set {
 #line hidden
         Template.SUBTOTAL.Setter(this, value); } }
@@ -803,12 +749,6 @@ public class BillInvoiceJson : __Json__ {
             
             #line hidden
             public static class Input {
-                
-                #line hidden
-                [_GEN1_][_GEN2_("Starcounter","2.0")]
-                public class ID : Input<__BInBillDeta__, __TLong__, long> {
-                }
-                #line default
                 
                 #line hidden
                 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -825,18 +765,6 @@ public class BillInvoiceJson : __Json__ {
                 #line hidden
                 [_GEN1_][_GEN2_("Starcounter","2.0")]
                 public class T_QUANTITY : Input<__BInBillDeta__, __TLong__, long> {
-                }
-                #line default
-                
-                #line hidden
-                [_GEN1_][_GEN2_("Starcounter","2.0")]
-                public class QTY_PER_BOX : Input<__BInBillDeta__, __TLong__, long> {
-                }
-                #line default
-                
-                #line hidden
-                [_GEN1_][_GEN2_("Starcounter","2.0")]
-                public class CTN : Input<__BInBillDeta__, __TLong__, long> {
                 }
                 #line default
                 

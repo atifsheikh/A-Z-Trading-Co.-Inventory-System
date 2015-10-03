@@ -35,22 +35,22 @@ namespace firebirdtest.Classes
 
     public class BillDetail
     {
-        public int ID { get; set; }
         public string NAME { get; set; }
-        public Item Item { get; set; }
-        public int T_QUANTITY { get; set; }
-        public int QTY_PER_BOX { get; set; }
         public string MODEL { get; set; }
-        public int CTN { get; set; }
+        public int T_QUANTITY { get; set; }
         public int PRICE { get; set; }
         public int SUBTOTAL { get; set; }
     }
-
     public class InvoiceDetails
     {
         public List<BillDetail> BillDetail { get; set; }
         public Customer Customer { get; set; }
-        public Bill Bill { get; set; }        
+        public Bill Bill { get; set; }
+
+        internal List<BillDetail> GetBillDetail()
+        {
+            return BillDetail;
+        }
     }
 
     public class Invoice

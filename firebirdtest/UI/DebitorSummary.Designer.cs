@@ -36,7 +36,6 @@ namespace firebirdtest.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DebitorSummary));
             this.cUSTOMERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customerAccountDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerAccountDataSet1 = new firebirdtest.DataSets.CustomerAccountDataSet();
             this.PrintBatch_CB = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.CustomerNameSearch_txt = new System.Windows.Forms.ComboBox();
@@ -45,11 +44,9 @@ namespace firebirdtest.UI
             this.label4 = new System.Windows.Forms.Label();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.CustomerTableAdapter = new firebirdtest.DataSets.CustomerAccountDataSetTableAdapters.CUSTOMERSTableAdapter();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerAccountDataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerAccountDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BillDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -61,13 +58,7 @@ namespace firebirdtest.UI
             // 
             // customerAccountDataSet1BindingSource
             // 
-            this.customerAccountDataSet1BindingSource.DataSource = this.customerAccountDataSet1;
             this.customerAccountDataSet1BindingSource.Position = 0;
-            // 
-            // customerAccountDataSet1
-            // 
-            this.customerAccountDataSet1.DataSetName = "CustomerAccountDataSet";
-            this.customerAccountDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // PrintBatch_CB
             // 
@@ -185,10 +176,6 @@ namespace firebirdtest.UI
             this.panel1.Size = new System.Drawing.Size(290, 668);
             this.panel1.TabIndex = 2;
             // 
-            // CustomerTableAdapter
-            // 
-            this.CustomerTableAdapter.ClearBeforeFill = true;
-            // 
             // button2
             // 
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
@@ -214,10 +201,6 @@ namespace firebirdtest.UI
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DebitorSummary_FormClosed);
             this.Shown += new System.EventHandler(this.DebitorSummary_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERSBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerAccountDataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerAccountDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BillDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -234,8 +217,6 @@ namespace firebirdtest.UI
         private System.Windows.Forms.Label label4;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.Panel panel1;
-        private DataSets.CustomerAccountDataSet customerAccountDataSet1;
-        private DataSets.CustomerAccountDataSetTableAdapters.CUSTOMERSTableAdapter CustomerTableAdapter;
         private System.Windows.Forms.BindingSource cUSTOMERSBindingSource;
         private System.Windows.Forms.BindingSource customerAccountDataSet1BindingSource;
         private System.Windows.Forms.Button button2;

@@ -21,12 +21,9 @@
         },
         "BillDetail": [
             {
-                "ID": 0,
                 "NAME": "",
                 "MODEL": "",
                 "T_QUANTITY": 0,
-                "QTY_PER_BOX": 0,
-                "CTN": 0,
                 "PRICE": 0,
                 "SUBTOTAL": 0
             }
