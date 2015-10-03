@@ -12,6 +12,8 @@ using FirebirdSql.Data.FirebirdClient;
 using Microsoft.Reporting.WinForms;
 using firebirdtest.Classes;
 using System.Threading;
+using Newtonsoft.Json;
+using System.Xml;
 namespace firebirdtest.UI
 {
     public partial class BillPrint : Form
@@ -25,6 +27,55 @@ namespace firebirdtest.UI
         static DataSet BillDataSet = new DataSet();
         private void Form1_Load(object sender, EventArgs e) 
         {
+
+            //try
+            //{
+            //    string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/1");
+
+
+            //    rptDataSource = new ReportDataSource("sp name from rdlc", dtname);
+            //    rptViewer.LocalReport.DataSources.Add(rptDataSource);
+
+            //    //JObject json = JsonConvert.DeserializeObject<JObject>(jsonstring);
+            //    //foreach (Dictionary<string, object> item in data["Elements"])
+            //    //{
+            //    //    foreach (string val in item.Values)
+            //    //    {
+            //    //        Console.WriteLine(val);
+            //    //    }
+            //    //}
+
+            //    DataTable tester = (DataTable)JsonConvert.DeserializeObject(jsonstring, (typeof(DataTable)));
+
+
+            //    DataSet asdf = JsonConvert.DeserializeObject<DataSet>(jsonstring);
+
+            //    // To convert JSON text contained in string json into an XML node
+            //    XmlDocument doc = JsonConvert.DeserializeXmlNode(jsonstring);
+
+            //    //string xmlString = "";
+            //    //using (var stringWriter = new StringWriter())
+            //    //using (var xmlTextWriter = XmlWriter.Create(stringWriter))
+            //    //{
+            //    //    doc.WriteTo(xmlTextWriter);
+            //    //    xmlTextWriter.Flush();
+            //    //    xmlString = stringWriter.GetStringBuilder().ToString();
+            //    //}
+
+            //    DataSet ds = new DataSet(); byte[] buf = System.Text.ASCIIEncoding.ASCII.GetBytes(doc.OuterXml);
+            //    System.IO.MemoryStream ms = new System.IO.MemoryStream(buf);
+            //    ds.ReadXml(ms, XmlReadMode.InferSchema); ms.Close();
+            //    ds.WriteXmlSchema(@"InvoiceDataSet.xsd");
+
+
+            //    //InvoiceDataSet myDataSet = JsonConvert.DeserializeObject<InvoiceDataSet>(xmlString);
+
+            //}
+            //catch (Exception ex)
+            //{ }
+
+
+
             try
             {
                 System.Drawing.Icon ico = new System.Drawing.Icon("favicon.ico");
@@ -441,6 +492,85 @@ namespace firebirdtest.UI
         private void BillNumberSearch_txt_Enter(object sender, EventArgs e)
         {
             BillNumberSearch_txt.DroppedDown = true;
+        }
+
+        private void BillPrint_Load(object sender, EventArgs e)
+        {
+            try
+            {
+
+                // Set Processing Mode
+                reportViewer1.ProcessingMode = ProcessingMode.Local;
+
+                // Set RDL file
+                reportViewer1.LocalReport.ReportPath = "BillInvoice.rdlc";
+
+                // Supply data corresponding to each report data source.
+
+
+                string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/1");
+                Invoice invoice = JsonConvert.DeserializeObject<Invoice>(jsonstring);
+                try
+                {
+                    Merchant merchant = new Merchant();
+                    this.reportViewer1.ProcessingMode = ProcessingMode.Local;
+                    this.reportViewer1.LocalReport.ReportPath = "Report1.rdlc";
+                    this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Product", merchant.GetProducts()));
+                    this.reportViewer1.RefreshReport();
+
+                    reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("InvoiceDetails", invoice));
+                    //reportViewer1.RefreshReport();
+                }
+                catch (Exception ex)
+                { }
+            }
+            //reportViewer1.ProcessingMode = ProcessingMode.Local;
+            //reportViewer1.LocalReport.ReportPath = "CustomerBill.rdlc";
+
+
+
+                //ReportDataSource rptDataSource = new ReportDataSource("sp name from rdlc", dtname);
+            //reportViewer1.LocalReport.DataSources.Add(rptDataSource);
+
+
+                //JObject json = JsonConvert.DeserializeObject<JObject>(jsonstring);
+            //foreach (Dictionary<string, object> item in data["Elements"])
+            //{
+            //    foreach (string val in item.Values)
+            //    {
+            //        Console.WriteLine(val);
+            //    }
+            //}
+
+                //DataTable tester = (DataTable)JsonConvert.DeserializeObject(jsonstring, (typeof(DataTable)));
+
+
+                //DataSet asdf = JsonConvert.DeserializeObject<DataSet>(jsonstring);
+
+                // To convert JSON text contained in string json into an XML node
+            //XmlDocument doc = JsonConvert.DeserializeXmlNode(jsonstring);
+
+                //string xmlString = "";
+            //using (var stringWriter = new StringWriter())
+            //using (var xmlTextWriter = XmlWriter.Create(stringWriter))
+            //{
+            //    doc.WriteTo(xmlTextWriter);
+            //    xmlTextWriter.Flush();
+            //    xmlString = stringWriter.GetStringBuilder().ToString();
+            //}
+
+                //DataSet ds = new DataSet(); byte[] buf = System.Text.ASCIIEncoding.ASCII.GetBytes(doc.OuterXml);
+            //System.IO.MemoryStream ms = new System.IO.MemoryStream(buf);
+            //ds.ReadXml(ms, XmlReadMode.InferSchema); ms.Close();
+            //ds.WriteXmlSchema(@"InvoiceDataSet.xsd");
+
+
+                //InvoiceDataSet myDataSet = JsonConvert.DeserializeObject<InvoiceDataSet>(xmlString);
+
+
+            catch (Exception ex)
+            { }
+
         }
     }
 }

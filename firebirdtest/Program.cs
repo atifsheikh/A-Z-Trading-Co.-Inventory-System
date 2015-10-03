@@ -8,9 +8,59 @@ using System.Data;
 using Newtonsoft.Json;
 using firebirdtest.DataSets;
 using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace firebirdtest
 {
+/*    public class CUSTOMER
+    {
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public string EMAIL { get; set; }
+        public string PHONE { get; set; }
+        public string ADDRESS { get; set; }
+        public int AMOUNT { get; set; }
+        public int OPENING_BALANCE { get; set; }
+        public int BALANCE_LIMIT { get; set; }
+    }
+
+    public class Bill
+    {
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public string DATED { get; set; }
+        public int AMOUNT { get; set; }
+        public string REMARKS { get; set; }
+        public int CUSTOMER_BALANCE { get; set; }
+        public int TOTAL_CTN { get; set; }
+    }
+
+    public class Item
+    {
+        public string CODE { get; set; }
+    }
+
+    public class BillDetail
+    {
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public Item Item { get; set; }
+        public int T_QUANTITY { get; set; }
+        public int QTY_PER_BOX { get; set; }
+        public string MODEL { get; set; }
+        public int CTN { get; set; }
+        public int PRICE { get; set; }
+        public int SUBTOTAL { get; set; }
+    }
+
+    public class RootObject
+    {
+        public CUSTOMER CUSTOMER { get; set; }
+        public Bill Bill { get; set; }
+        public List<BillDetail> BillDetails { get; set; }
+    }*/
+
+
     static class Program
     {
         /// <summary>
@@ -19,33 +69,6 @@ namespace firebirdtest
         [STAThread]
         static void Main()
         {
-            try
-            {
-                string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/1");
-
-                // To convert JSON text contained in string json into an XML node
-                XmlDocument doc = JsonConvert.DeserializeXmlNode(jsonstring);
-
-                //string xmlString = "";
-                //using (var stringWriter = new StringWriter())
-                //using (var xmlTextWriter = XmlWriter.Create(stringWriter))
-                //{
-                //    doc.WriteTo(xmlTextWriter);
-                //    xmlTextWriter.Flush();
-                //    xmlString = stringWriter.GetStringBuilder().ToString();
-                //}
-
-                DataSet ds = new DataSet(); byte[] buf = System.Text.ASCIIEncoding.ASCII.GetBytes(doc.OuterXml);
-                System.IO.MemoryStream ms = new System.IO.MemoryStream(buf);
-                ds.ReadXml(ms, XmlReadMode.InferSchema); ms.Close();
-                ds.WriteXmlSchema(@"InvoiceDataSet.xsd");
-
-
-                //InvoiceDataSet myDataSet = JsonConvert.DeserializeObject<InvoiceDataSet>(xmlString);
-
-            }
-            catch (Exception ex)
-            { }
 
             try
             {

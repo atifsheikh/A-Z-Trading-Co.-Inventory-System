@@ -1,12 +1,35 @@
 {
-	"CUSTOMER":[{
-		"ID" : 0,
-		"NAME" : "",
-		"EMAIL":"",
-		"PHONE":"",
-		"ADDRESS" :"",
-		"AMOUNT":0.0,
-		"OPENING_BALANCE" : 0.0,
-		"BALANCE_LIMIT":0.0,
-	}],
+    "InvoiceDetails": {
+        "Customer": {
+            "ID": 0,
+            "NAME": "",
+            "EMAIL": "",
+            "PHONE": "",
+            "ADDRESS": "",
+            "AMOUNT": 0,
+            "OPENING_BALANCE": 0,
+            "BALANCE_LIMIT": 0
+        },
+        "Bill": {
+            "ID": 0,
+            "NAME": "",
+            "DATED": "",
+            "AMOUNT": 0,
+            "REMARKS": "",
+            "CUSTOMER_BALANCE": 0,
+            "TOTAL_CTN": 0
+        },
+        "BillDetail": [
+            {
+                "ID": 0,
+                "NAME": "",
+                "MODEL": "",
+                "T_QUANTITY": 0,
+                "QTY_PER_BOX": 0,
+                "CTN": 0,
+                "PRICE": 0,
+                "SUBTOTAL": 0
+            }
+        ]
+    }
 }
