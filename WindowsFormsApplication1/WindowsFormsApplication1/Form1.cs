@@ -24,6 +24,17 @@ namespace WindowsFormsApplication1
             this.reportViewer1.ProcessingMode = ProcessingMode.Local;
             this.reportViewer1.LocalReport.ReportPath = "CustomerBill.rdlc";
             this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.GetBillDetail()));
+
+
+            ReportParameter[] param = new ReportParameter[6];
+            param[0] = new ReportParameter("CustomerName", "Atif");
+            param[1] = new ReportParameter("CustomerBusinessName", "Atif");
+            param[2] = new ReportParameter("CustomerPhone", "Atif");
+            param[3] = new ReportParameter("CustomerBalance", "0");
+            param[4] = new ReportParameter("InvoiceDate", DateTime.Now.ToString());
+            param[5] = new ReportParameter("InvoiceNumber", "0");
+
+            this.reportViewer1.LocalReport.SetParameters(param);
             this.reportViewer1.Dock = DockStyle.Fill;
             this.reportViewer1.RefreshReport();
         }
@@ -36,9 +47,9 @@ namespace WindowsFormsApplication1
         public Invoice()
         {
             b_Details = new List<BillDetail>();
-            b_Details.Add(new BillDetail(0, "Notebook", 2, 4, "model", 1, 15, 15)); 
-            b_Details.Add(new BillDetail(1, "Pen", 6, 8, "model", 1, 25, 25));
-            b_Details.Add(new BillDetail(2,"Pencil",10,12,"model",1,30, 30));
+            b_Details.Add(new BillDetail("Notebook", "model",30, 1, 30));
+            b_Details.Add(new BillDetail("Pen", "model", 15, 2, 30));
+            b_Details.Add(new BillDetail("Pencil","model",10,3, 30));
             
         }
 
@@ -46,35 +57,22 @@ namespace WindowsFormsApplication1
         {
             return b_Details;
         }
-
-
-        public InvoiceDetails InvoiceDetails { get; set; }
-
-        internal InvoiceDetails GetInvoiceDetails()
-        {
-            return InvoiceDetails;
-        }
     }
     
     public class BillDetail
     {
-        public BillDetail(int id, string name, int t_quantity, int qty_per_box, string model, int ctn, int price, int subtotal)
+        public BillDetail(string Code, string model, int t_quantity, int price, int subtotal)
         {
-            ID = id;
-            NAME = name;
+            NAME = Code;
             T_QUANTITY = t_quantity;
-            QTY_PER_BOX = qty_per_box;
             MODEL = model;
-            CTN = ctn;
             PRICE = price;
             SUBTOTAL = subtotal;
         }
 
-        public int ID { get; set; }
         public string NAME { get; set; }
         public string MODEL { get; set; }
         public int T_QUANTITY { get; set; }
-        public int QTY_PER_BOX { get; set; }
         public int CTN { get; set; }
         public int PRICE { get; set; }
         public int SUBTOTAL { get; set; }
