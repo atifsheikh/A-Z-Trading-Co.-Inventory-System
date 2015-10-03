@@ -97,9 +97,9 @@ namespace ThePrimeBaby.Server.Handler
                 QueryResultRows<Database.Customer> customer = Db.SQL<Database.Customer>("SELECT b FROM ThePrimeBaby.Database.Customer b WHERE b = ?", bill.First.CUSTOMER);
                 QueryResultRows<Database.BillDetail> billdetiail = Db.SQL<Database.BillDetail>("SELECT b FROM ThePrimeBaby.Database.Billdetail b WHERE bill.Id = ?", Convert.ToInt32(BillID));
                 BillInvoiceJson billInvoiceJson = new BillInvoiceJson();
-                billInvoiceJson.InvoiceDetails.Customer.Data = customer.First;
-                billInvoiceJson.InvoiceDetails.Bill.Data = bill.First;
-                billInvoiceJson.InvoiceDetails.BillDetail.Data = billdetiail;
+                billInvoiceJson.Customer.Data = customer.First;
+                billInvoiceJson.Bill.Data = bill.First;
+                billInvoiceJson.BillDetail.Data = billdetiail;
                 return billInvoiceJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

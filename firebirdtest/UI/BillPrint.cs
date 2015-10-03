@@ -314,16 +314,16 @@ namespace firebirdtest.UI
                 Invoice invoice = JsonConvert.DeserializeObject<Invoice>(jsonstring);
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 //                    this.reportViewer1.LocalReport.ReportPath = "CustomerBill.rdlc";
-                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.InvoiceDetails.GetBillDetail()));
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.GetBillDetail()));
 
 
                 ReportParameter[] param = new ReportParameter[6];
-                param[0] = new ReportParameter("CustomerName", invoice.InvoiceDetails.Customer.NAME);
-                param[1] = new ReportParameter("CustomerBusinessName", invoice.InvoiceDetails.Customer.NAME);
-                param[2] = new ReportParameter("CustomerPhone", invoice.InvoiceDetails.Customer.PHONE);
-                param[3] = new ReportParameter("CustomerBalance", invoice.InvoiceDetails.Customer.AMOUNT.ToString());
-                param[4] = new ReportParameter("InvoiceDate", invoice.InvoiceDetails.Bill.DATED.ToString());
-                param[5] = new ReportParameter("InvoiceNumber", invoice.InvoiceDetails.Bill.ID.ToString());
+                param[0] = new ReportParameter("CustomerName", invoice.Customer.NAME);
+                param[1] = new ReportParameter("CustomerBusinessName", invoice.Customer.NAME);
+                param[2] = new ReportParameter("CustomerPhone", invoice.Customer.PHONE);
+                param[3] = new ReportParameter("CustomerBalance", invoice.Customer.AMOUNT.ToString());
+                param[4] = new ReportParameter("InvoiceDate", invoice.Bill.DATED.ToString());
+                param[5] = new ReportParameter("InvoiceNumber", invoice.Bill.ID.ToString());
 
                 this.reportViewer1.LocalReport.SetParameters(param);
                 this.reportViewer1.RefreshReport();

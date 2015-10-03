@@ -1,32 +1,30 @@
 {
-    "InvoiceDetails": {
-        "Customer": {
-            "ID": 0,
+    "Customer": {
+        "ID": 0,
+        "NAME": "",
+        "EMAIL": "",
+        "PHONE": "",
+        "ADDRESS": "",
+        "AMOUNT": 0,
+        "OPENING_BALANCE": 0,
+        "BALANCE_LIMIT": 0
+    },
+    "Bill": {
+        "ID": 0,
+        "NAME": "",
+        "DATED": "",
+        "AMOUNT": 0,
+        "REMARKS": "",
+        "CUSTOMER_BALANCE": 0,
+        "TOTAL_CTN": 0
+    },
+    "BillDetail": [
+        {
             "NAME": "",
-            "EMAIL": "",
-            "PHONE": "",
-            "ADDRESS": "",
-            "AMOUNT": 0,
-            "OPENING_BALANCE": 0,
-            "BALANCE_LIMIT": 0
-        },
-        "Bill": {
-            "ID": 0,
-            "NAME": "",
-            "DATED": "",
-            "AMOUNT": 0,
-            "REMARKS": "",
-            "CUSTOMER_BALANCE": 0,
-            "TOTAL_CTN": 0
-        },
-        "BillDetail": [
-            {
-                "NAME": "",
-                "MODEL": "",
-                "T_QUANTITY": 0,
-                "PRICE": 0,
-                "SUBTOTAL": 0
-            }
-        ]
-    }
+            "MODEL": "",
+            "T_QUANTITY": 0,
+            "PRICE": 0,
+            "SUBTOTAL": 0
+        }
+    ]
 }

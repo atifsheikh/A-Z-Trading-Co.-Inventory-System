@@ -240,8 +240,7 @@ namespace firebirdtest
         }
         internal static DataSet GetCustomer(int ID)
         {
-            string Result = POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerById/" + ID, "");
-            return JsonToDataSet(Result);
+            return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerById/" + ID.ToString());
         }
         //internal static string GetCustomers()
         //{

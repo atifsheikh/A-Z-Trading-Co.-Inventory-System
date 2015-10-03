@@ -25,9 +25,13 @@ namespace ThePrimeBaby.Server.Handler
                     Database.Bill bill = Db.SQL<Database.Bill>("SELECT c FROM ThePrimeBaby.Database.Bill c WHERE c.ID = ?", Convert.ToInt32(Attributes[1])).First;
                     if (bill != null)
                     {
-                        bool Result = ThePrimeBaby.Database.BillDetail.AddBillDetail(item, bill, Convert.ToInt32(Attributes[2]), Convert.ToInt32(Attributes[3]), Convert.ToInt32(Attributes[5]), Convert.ToDecimal(Attributes[6]), Convert.ToDecimal(Attributes[7]));
-                        if (Result == true)
-                            return 200;
+                        Database.BillDetail ExistingBillDetails = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c WHERE c.Item = ?",item).First;
+                        if (ExistingBillDetails == null)
+                        {
+                            bool Result = ThePrimeBaby.Database.BillDetail.AddBillDetail(item, bill, Convert.ToInt32(Attributes[2]), Convert.ToInt32(Attributes[3]), Convert.ToInt32(Attributes[5]), Convert.ToDecimal(Attributes[6]), Convert.ToDecimal(Attributes[7]));
+                            if (Result == true)
+                                return 200;
+                        }
                     }
                 }
                 return 209;
@@ -36,7 +40,7 @@ namespace ThePrimeBaby.Server.Handler
             Handle.POST("/ThePrimeBaby/DeleteBillDetailsByBillID", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
-                Db.Transact(() => { Db.SlowSQL("DELETE FROM BillDetail v WHERE v.Bill.ID = ?", Attributes[0]); });
+                Db.Transact(() => { Db.SlowSQL("DELETE FROM BillDetail WHERE Bill.ID = ?", Convert.ToInt32(Attributes[0])); });
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

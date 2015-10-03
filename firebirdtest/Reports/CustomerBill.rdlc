@@ -1043,7 +1043,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=(Parameters!CustomerBalance.Value)-Sum(Fields!SUBTOTAL.Value)</Value>
+                    <Value>=Parameters!CustomerBalance.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -1258,7 +1258,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!CustomerBalance.Value</Value>
+                    <Value>=(Parameters!CustomerBalance.Value)+Sum(Fields!SUBTOTAL.Value)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>18pt</FontSize>
@@ -1379,7 +1379,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!CustomerBalance.Value</Value>
+                    <Value>=(Parameters!CustomerBalance.Value)+Sum(Fields!SUBTOTAL.Value)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>18pt</FontSize>

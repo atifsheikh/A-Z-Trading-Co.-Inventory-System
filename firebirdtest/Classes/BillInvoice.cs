@@ -28,11 +28,6 @@ namespace firebirdtest.Classes
         public int TOTAL_CTN { get; set; }
     }
 
-    public class Item
-    {
-        public string CODE { get; set; }
-    }
-
     public class BillDetail
     {
         public string NAME { get; set; }
@@ -41,20 +36,15 @@ namespace firebirdtest.Classes
         public int PRICE { get; set; }
         public int SUBTOTAL { get; set; }
     }
-    public class InvoiceDetails
+    public class Invoice
     {
-        public List<BillDetail> BillDetail { get; set; }
         public Customer Customer { get; set; }
         public Bill Bill { get; set; }
 
+        public List<BillDetail> BillDetail { get; set; }
         internal List<BillDetail> GetBillDetail()
         {
             return BillDetail;
         }
-    }
-
-    public class Invoice
-    {
-        public InvoiceDetails InvoiceDetails { get; set; }
     }
 }
