@@ -209,6 +209,8 @@ namespace firebirdtest.UI
                 string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/" + BillNumberSearch_txt.Text);
                 Invoice invoice = JsonConvert.DeserializeObject<Invoice>(jsonstring);
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
+                this.reportViewer1.Clear();
+                this.reportViewer1.LocalReport.DataSources.Clear();
                 this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.GetBillDetail()));
 
 

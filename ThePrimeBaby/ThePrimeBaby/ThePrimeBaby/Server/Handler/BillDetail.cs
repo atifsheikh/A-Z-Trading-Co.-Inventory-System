@@ -25,14 +25,18 @@ namespace ThePrimeBaby.Server.Handler
                     Database.Bill bill = Db.SQL<Database.Bill>("SELECT c FROM ThePrimeBaby.Database.Bill c WHERE c.ID = ?", Convert.ToInt32(Attributes[1])).First;
                     if (bill != null)
                     {
-                        Database.BillDetail ExistingBillDetails = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c WHERE c.Item = ?",item).First;
+                        Database.BillDetail ExistingBillDetails = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c WHERE c.Item = ? AND c.Bill = ?",item,bill).First;
                         if (ExistingBillDetails == null)
                         {
                             bool Result = ThePrimeBaby.Database.BillDetail.AddBillDetail(item, bill, Convert.ToInt32(Attributes[2]), Convert.ToInt32(Attributes[3]), Convert.ToInt32(Attributes[5]), Convert.ToDecimal(Attributes[6]), Convert.ToDecimal(Attributes[7]));
                             if (Result == true)
                                 return 200;
+                            else
+                                return 206;
                         }
+                        return 207;
                     }
+                    return 208;
                 }
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });

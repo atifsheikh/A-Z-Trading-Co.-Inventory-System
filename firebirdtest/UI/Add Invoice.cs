@@ -444,14 +444,17 @@ namespace firebirdtest.UI
                     ItemCode_txt.Enabled = false;
                     toolStripButton5.Enabled = true;
 
-
                     Total_txt.Text = InvoiceDataGridView.Rows[InvoiceDataGridView.CurrentRow.Index].Cells[5].Value.ToString();
+
+                    CustomerID_txt.Text = InvoiceDataGridView.Rows[InvoiceDataGridView.CurrentRow.Index].Cells["Customerid"].Value.ToString();
+                    CustomerName_txt.Text = DatabaseCalls.GetCustomerName(Convert.ToInt32(CustomerID_txt.Text));
+                    InvoiceNumber_txt.Text = InvoiceDataGridView.Rows[InvoiceDataGridView.CurrentRow.Index].Cells["ID"].Value.ToString();
+                    CustomerName_txt_Leave(this, null);
+
 
                     InvoiceDetailDataGridView.Focus();
 
                     Result1 = DatabaseCalls.GetBillDetails(InvoiceDataGridView.Rows[InvoiceDataGridView.CurrentRow.Index].Cells[0].Value.ToString());
-                    
-
                 }
                 catch (Exception ex)
                 {
@@ -460,13 +463,11 @@ namespace firebirdtest.UI
                     Variables.NotificationMessageText = ex.Message;
                 }
 
-
-                if (Result1.Tables.Count > 0 && Result1.Tables[0].Rows.Count > 0)
+                if (Result1.Tables.Count > 0)// && Result1.Tables[0].Rows.Count > 0)
                 {
                     int CostAmmount = 0;
                     try
-                    {
-                        
+                    {   
                         for (int r = 0; r <= (Result1.Tables[0].Rows.Count - 1); r++)
                         {
                             InvoiceDetailDataGridView.Rows.Add();
@@ -484,28 +485,6 @@ namespace firebirdtest.UI
                             CostAmmount += Convert.ToInt32(InvoiceDetailDataGridView.Rows[r].Cells["SUBTOTAL"].Value);
                         }
                         Total_txt.Text = CostAmmount.ToString();
-                    }
-                    catch (Exception ex)
-                    {
-                        Variables.NotificationStatus = true;
-                        Variables.NotificationMessageTitle = this.Name;
-                        Variables.NotificationMessageText = ex.Message;
-                    }
-                    
-                    try
-                    {
-                        
-
-                        CustomerID_txt.Text = Result1.Tables[0].Rows[0].ItemArray[2].ToString();
-                        CustomerName_txt.Text = DatabaseCalls.GetCustomerName(Convert.ToInt32(CustomerID_txt.Text));
-                        
-
-                        InvoiceNumber_txt.Text = Result1.Tables[0].Rows[0].ItemArray[2].ToString();
-                        
-
-                        CustomerName_txt_Leave(this, null);
-                        
-
                     }
                     catch (Exception ex)
                     {
