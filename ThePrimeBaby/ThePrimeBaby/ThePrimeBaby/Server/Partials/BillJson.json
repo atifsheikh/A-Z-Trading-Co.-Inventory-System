@@ -10,6 +10,7 @@
         "AMOUNT" : 0.0,
         "REMARKS" : "",
         "CUSTOMER_BALANCE" : 0.0,
-		"TOTAL_CTN":0
+		"TOTAL_CTN":0,
+		"QUANT_TOTAL":0
 	}]
 }

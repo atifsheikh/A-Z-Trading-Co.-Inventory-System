@@ -276,7 +276,10 @@ Variables.FormClosed = true;
 
         private void CustomerOpeningBalance_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
         }
 
         private void BusinessName_txt_KeyDown(object sender, KeyEventArgs e)

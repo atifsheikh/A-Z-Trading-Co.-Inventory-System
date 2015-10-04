@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-//using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -27,55 +26,6 @@ namespace firebirdtest.UI
         static DataSet BillDataSet = new DataSet();
         private void Form1_Load(object sender, EventArgs e) 
         {
-
-            //try
-            //{
-            //    string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/1");
-
-
-            //    rptDataSource = new ReportDataSource("sp name from rdlc", dtname);
-            //    rptViewer.LocalReport.DataSources.Add(rptDataSource);
-
-            //    //JObject json = JsonConvert.DeserializeObject<JObject>(jsonstring);
-            //    //foreach (Dictionary<string, object> item in data["Elements"])
-            //    //{
-            //    //    foreach (string val in item.Values)
-            //    //    {
-            //    //        Console.WriteLine(val);
-            //    //    }
-            //    //}
-
-            //    DataTable tester = (DataTable)JsonConvert.DeserializeObject(jsonstring, (typeof(DataTable)));
-
-
-            //    DataSet asdf = JsonConvert.DeserializeObject<DataSet>(jsonstring);
-
-            //    // To convert JSON text contained in string json into an XML node
-            //    XmlDocument doc = JsonConvert.DeserializeXmlNode(jsonstring);
-
-            //    //string xmlString = "";
-            //    //using (var stringWriter = new StringWriter())
-            //    //using (var xmlTextWriter = XmlWriter.Create(stringWriter))
-            //    //{
-            //    //    doc.WriteTo(xmlTextWriter);
-            //    //    xmlTextWriter.Flush();
-            //    //    xmlString = stringWriter.GetStringBuilder().ToString();
-            //    //}
-
-            //    DataSet ds = new DataSet(); byte[] buf = System.Text.ASCIIEncoding.ASCII.GetBytes(doc.OuterXml);
-            //    System.IO.MemoryStream ms = new System.IO.MemoryStream(buf);
-            //    ds.ReadXml(ms, XmlReadMode.InferSchema); ms.Close();
-            //    ds.WriteXmlSchema(@"InvoiceDataSet.xsd");
-
-
-            //    //InvoiceDataSet myDataSet = JsonConvert.DeserializeObject<InvoiceDataSet>(xmlString);
-
-            //}
-            //catch (Exception ex)
-            //{ }
-
-
-
             try
             {
                 System.Drawing.Icon ico = new System.Drawing.Icon("favicon.ico");
@@ -101,7 +51,6 @@ namespace firebirdtest.UI
                     {
                         if (CustomerDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(BillDataSet.Tables[0].Rows[loop]["CustomerID"].ToString()) == true)
                         {
-//                            BillDataSet.Tables[0].Rows[loop]["CUSTOMER_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(BillDataSet.Tables[0].Rows[loop]["Customer_ID"].ToString(), BillDataSet.Tables[0].Rows[loop][0].ToString());
                             BillDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString();
                             break;
                         }
@@ -118,12 +67,10 @@ namespace firebirdtest.UI
                 BillDataGridView.Columns["CustomerID"].Visible = false;
                 BillDataGridView.Columns["AMOUNT"].Visible = false;
                 BillDataGridView.Columns["REMARKS"].Visible = false;
-                //BillDataGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
                 BillDataGridView.Columns["NAME"].Visible = false;
 
                 BillDataGridView.Columns["Customer"].DisplayIndex = 1;
-                BillDataGridView.Update();
-                //                BillDataGridView.Columns["Customer_ID"].HeaderText = "Customer";
+                BillDataGridView.Update();                
             }
             catch (Exception ex)
             {
@@ -132,42 +79,11 @@ namespace firebirdtest.UI
                 Variables.NotificationStatus = true;
             }
             
-            ////Bills
-            //try
-            //{
-            //    DataSet Result2 = new DataSet();
-            //    Result2 = DatabaseCalls.GetBills();
-            //    foreach (DataRow GridViewColumn in Result2.Tables[0].Rows)
-            //    {
-            //        if (Convert.ToInt32(GridViewColumn.ItemArray[0]) > -1)
-            //        {
-            //            BillNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
-            //        }
-            //        else
-            //        {
-            //            GridViewColumn.Delete();
-            //        }
-            //    } 
-            //    BillDataGridView.DataSource = Result2.Tables[0];
-            //    BillDataGridView.Columns[0].HeaderText = "Bill #";
-            //    BillDataGridView.Columns["Customer_ID"].Visible = false;
-                
-            //    //BillNumber_txt.Text = (++Result1).ToString();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Variables.NotificationStatus = true;
-            //Variables.NotificationMessageTitle = this.Name;
-            //Variables.NotificationMessageText = ex.Message;
-            //}
-
             //Customers
             try
             {
                 CustomerDataSet = DatabaseCalls.GetCustomers();
-                //BillDataGridView.DataSource = CustomerDataSet.Tables[0];
-                //BillDataGridView.Columns[0].Visible = false;
-
+                
                 foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
                 {
                     CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
@@ -180,11 +96,6 @@ namespace firebirdtest.UI
             Variables.NotificationStatus = true;
             }
         }
-
-        //string MakeImageSrcData(byte[] filebytes)
-        //{
-        //    return "data:image/png;base64," + Convert.ToBase64String(filebytes, Base64FormattingOptions.None);
-        //}
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -202,20 +113,6 @@ namespace firebirdtest.UI
 
         private void BillNumberSearch_txt_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                {
-                    //if (BillNumberSearch_txt.Text != null)
-                    //    RandomAlgos.comboKeyPressed(BillNumberSearch_txt);
-                }
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationStatus = true;
-            }
-
             try
             {
                 if (BillNumberSearch_txt.Text != "" && BillNumberSearch_txt.Items.Contains(BillNumberSearch_txt.Text))
@@ -289,7 +186,6 @@ namespace firebirdtest.UI
                 if (PrintBatch_CB.Checked == false)
                 {
                     this.reportViewer1.LocalReport.DisplayName = BillDataGridView.CurrentRow.Cells["NAME"].Value.ToString() + " - " + BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
-                    //CustomerNameSearch_txt.Text = BillDataGridView.CurrentRow.Cells["NAME"].Value.ToString();
                     BillNumberSearch_txt.Text = BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
 
                     DisplayReport();
@@ -313,7 +209,6 @@ namespace firebirdtest.UI
                 string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/" + BillNumberSearch_txt.Text);
                 Invoice invoice = JsonConvert.DeserializeObject<Invoice>(jsonstring);
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
-                //                    this.reportViewer1.LocalReport.ReportPath = "CustomerBill.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.GetBillDetail()));
 
 
@@ -362,10 +257,7 @@ namespace firebirdtest.UI
 
         public static void PrintwithDialog(Microsoft.Reporting.WinForms.ReportViewer viewer)
         {
-            {
-                object[] parms = { viewer};
-             //   ExecuteFunction(viewer, parms, "OnPrint");
-            }
+            object[] parms = { viewer};
         }
 
         public bool RenderingComp { get; set; }
@@ -382,21 +274,21 @@ namespace firebirdtest.UI
 
                     if (BillDataGridView.SelectedRows.Count > 0)
                     {
-                        //reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Dataset1", BillDataGridView.SelectedRows[0].Cells["ID"].Value.ToString()));
                         BillNumberSearch_txt.Text = BillDataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
                         BillDataGridView.SelectedRows[0].Selected = false;
 
                         Variables.NotificationMessageTitle = this.Name;
                         Variables.NotificationMessageText = BillDataGridView.SelectedRows.Count.ToString();
                         Variables.NotificationStatus = true;
-
-                        //reportViewer1.PrintDialog();
                     }
                 }
             }
             catch (Exception ex)
-            { }
-            //           PrintwithDialog(reportViewer1);
+            {
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationStatus = true;
+            }
         }
 
         private void reportViewer1_PrintingBegin(object sender, ReportPrintEventArgs e)
@@ -477,49 +369,6 @@ namespace firebirdtest.UI
 
         private void BillPrint_Load(object sender, EventArgs e)
         {
-            //reportViewer1.ProcessingMode = ProcessingMode.Local;
-            //reportViewer1.LocalReport.ReportPath = "CustomerBill.rdlc";
-
-
-
-                //ReportDataSource rptDataSource = new ReportDataSource("sp name from rdlc", dtname);
-            //reportViewer1.LocalReport.DataSources.Add(rptDataSource);
-
-
-                //JObject json = JsonConvert.DeserializeObject<JObject>(jsonstring);
-            //foreach (Dictionary<string, object> item in data["Elements"])
-            //{
-            //    foreach (string val in item.Values)
-            //    {
-            //        Console.WriteLine(val);
-            //    }
-            //}
-
-                //DataTable tester = (DataTable)JsonConvert.DeserializeObject(jsonstring, (typeof(DataTable)));
-
-
-                //DataSet asdf = JsonConvert.DeserializeObject<DataSet>(jsonstring);
-
-                // To convert JSON text contained in string json into an XML node
-            //XmlDocument doc = JsonConvert.DeserializeXmlNode(jsonstring);
-
-                //string xmlString = "";
-            //using (var stringWriter = new StringWriter())
-            //using (var xmlTextWriter = XmlWriter.Create(stringWriter))
-            //{
-            //    doc.WriteTo(xmlTextWriter);
-            //    xmlTextWriter.Flush();
-            //    xmlString = stringWriter.GetStringBuilder().ToString();
-            //}
-
-                //DataSet ds = new DataSet(); byte[] buf = System.Text.ASCIIEncoding.ASCII.GetBytes(doc.OuterXml);
-            //System.IO.MemoryStream ms = new System.IO.MemoryStream(buf);
-            //ds.ReadXml(ms, XmlReadMode.InferSchema); ms.Close();
-            //ds.WriteXmlSchema(@"InvoiceDataSet.xsd");
-
-
-                //InvoiceDataSet myDataSet = JsonConvert.DeserializeObject<InvoiceDataSet>(xmlString);
-
         }
     }
 }

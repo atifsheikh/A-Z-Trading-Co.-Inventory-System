@@ -16,9 +16,10 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 0108
 #pragma warning disable 1591
 
-using __BBiCUSTOMER1__ = global::BillJson.BillsElementJson.CUSTOMERJson.JsonByExample;
+using __BBiCUSTOMER2__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input;
 using __BillJson1__ = global::BillJson.JsonByExample;
 using __TArray__ = global::Starcounter.Templates.TArray<global::BillJson.BillsElementJson>;
+using __BBiQUANT_TO__ = global::BillJson.BillsElementJson.Input.QUANT_TOTAL;
 using __BBiTOTAL_CT__ = global::BillJson.BillsElementJson.Input.TOTAL_CTN;
 using __BBiCUSTOMER3__ = global::BillJson.BillsElementJson.Input.CUSTOMER_BALANCE;
 using __BBiREMARKS__ = global::BillJson.BillsElementJson.Input.REMARKS;
@@ -29,7 +30,7 @@ using __BBiID__ = global::BillJson.BillsElementJson.Input.ID;
 using __BiBillsEle2__ = global::BillJson.BillsElementJson.Input;
 using __BBCUNAME__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input.NAME;
 using __BBCUID__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input.ID;
-using __BBiCUSTOMER2__ = global::BillJson.BillsElementJson.CUSTOMERJson.Input;
+using __Arr__ = global::Starcounter.Arr<global::BillJson.BillsElementJson>;
 using __BillJson2__ = global::BillJson.Input;
 using __BBiCUSTOMER__ = global::BillJson.BillsElementJson.CUSTOMERJson;
 using __BiBillsEle1__ = global::BillJson.BillsElementJson.JsonByExample;
@@ -44,7 +45,7 @@ using __Json1__ = global::Starcounter.Json.JsonByExample;
 using __TObject__ = global::Starcounter.Templates.TObject;
 using __Json__ = global::Starcounter.Json;
 using __BillJson__ = global::BillJson;
-using __Arr__ = global::Starcounter.Arr<global::BillJson.BillsElementJson>;
+using __BBiCUSTOMER1__ = global::BillJson.BillsElementJson.CUSTOMERJson.JsonByExample;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -87,11 +88,11 @@ public class BillJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ Bills {
-#line 15 "Server\Partials\BillJson.json"
+#line 16 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.Bills.Getter(this); }
-#line 15 "Server\Partials\BillJson.json"
+#line 16 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.Bills.Setter(this, value); } }
@@ -120,6 +121,7 @@ public class BillJson : __Json__ {
         private System.String __bf__REMARKS__;
         private System.Decimal __bf__CUSTOMER_BALANCE__;
         private System.Int64 __bf__TOTAL_CTN__;
+        private System.Int64 __bf__QUANT_TOTAL__;
         #line default
         
         #line hidden
@@ -156,6 +158,9 @@ public class BillJson : __Json__ {
                     TOTAL_CTN = Add<__TLong__>("TOTAL_CTN");
                     TOTAL_CTN.DefaultValue = 0L;
                     TOTAL_CTN.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__TOTAL_CTN__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__TOTAL_CTN__ = (System.Int64)_v_; }, false);
+                    QUANT_TOTAL = Add<__TLong__>("QUANT_TOTAL");
+                    QUANT_TOTAL.DefaultValue = 0L;
+                    QUANT_TOTAL.SetCustomAccessors((_p_) => { return ((__BiBillsEle__)_p_).__bf__QUANT_TOTAL__; }, (_p_, _v_) => { ((__BiBillsEle__)_p_).__bf__QUANT_TOTAL__ = (System.Int64)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __BiBillsEle__(this) { Parent = parent }; }
                 public __TLong__ ID;
@@ -166,6 +171,7 @@ public class BillJson : __Json__ {
                 public __TString__ REMARKS;
                 public __TDecimal__ CUSTOMER_BALANCE;
                 public __TLong__ TOTAL_CTN;
+                public __TLong__ QUANT_TOTAL;
             }
             #line default
         }
@@ -256,14 +262,26 @@ public class BillJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Int64 TOTAL_CTN {
-#line 14 "Server\Partials\BillJson.json"
+#line 13 "Server\Partials\BillJson.json"
     get {
 #line hidden
         return Template.TOTAL_CTN.Getter(this); }
-#line 14 "Server\Partials\BillJson.json"
+#line 13 "Server\Partials\BillJson.json"
     set {
 #line hidden
         Template.TOTAL_CTN.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.Int64 QUANT_TOTAL {
+#line 15 "Server\Partials\BillJson.json"
+    get {
+#line hidden
+        return Template.QUANT_TOTAL.Getter(this); }
+#line 15 "Server\Partials\BillJson.json"
+    set {
+#line hidden
+        Template.QUANT_TOTAL.Setter(this, value); } }
 #line default
 
         
@@ -391,6 +409,11 @@ public class BillJson : __Json__ {
             
             #line hidden
             public class TOTAL_CTN : Input<__BiBillsEle__, __TLong__, long> {
+            }
+            #line default
+            
+            #line hidden
+            public class QUANT_TOTAL : Input<__BiBillsEle__, __TLong__, long> {
             }
             #line default
         }

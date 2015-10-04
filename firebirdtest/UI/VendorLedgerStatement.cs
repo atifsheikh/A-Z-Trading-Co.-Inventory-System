@@ -66,24 +66,20 @@ namespace firebirdtest.UI
             try
             {
                 ShipmentsDataSet = DatabaseCalls.GetShipments();
-                //ShipmentsDataSet.Tables[0].Columns.Remove("TOTAL_CTN");
                 ShipmentsDataSet.Tables[0].TableName = "Ledger";
                 VendorVoucherDataSet = DatabaseCalls.GetVendorVoucher();
-                //VendorVoucherDataSet.Tables[0].Columns.Remove("REMARKS");
                 VendorVoucherDataSet.Tables[0].TableName = "Ledger"; 
                 VendorVoucherDataSet.Merge(ShipmentsDataSet);
                 
                 try
                 {
-                    //LedgerGridView.DataSource = VendorVoucherDataSet.Tables["0"];
                     DataView dv = new DataView(VendorVoucherDataSet.Tables[0]);
                     dv.Sort = "DATED";
                     LedgerGridView.DataSource = dv;
                 }
                 catch (Exception ex)
                 { }
-                //LedgerGridView.Columns["DATED"].DefaultCellStyle.Format = "HH MM/dd/yyyy";
-                //LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
+                
                 LedgerGridView.CurrentCell = null;
                 if (LedgerGridView.Columns.Count > 0)
                 {
@@ -96,58 +92,6 @@ namespace firebirdtest.UI
 
                     LedgerGridView.Update();
                 }
-
-                /*              Ctn_Voucher_DataSet = DatabaseCalls.Get_Ctn_Voucher();
-                                LedgerDataSet = DatabaseCalls.GetLedger("All");
-                                if (LedgerDataSet.Tables[0].Columns.Count > 0)
-                                {
-                                    LedgerDataSet.Tables[0].Columns["ID"].ColumnName = "VoucherNo";
-
-                                    LedgerDataSet.Tables[0].Columns.Add("Vendor");
-                                    LedgerDataSet.Tables[0].Columns.Add("TotalCtn");
-                                    LedgerDataSet.Tables[0].Columns.Add("Calculator");
-
-                                    for (int loop = 0; LedgerDataSet.Tables.Count > 0 && loop < LedgerDataSet.Tables[0].Rows.Count; loop++)
-                                    {
-                                        if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Vendor_ID"].ToString()) > -1)
-                                        {
-                                            for (int loop1 = 0; loop1 < VendorDataSet.Tables[0].Rows.Count; loop1++)
-                                            {
-                                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["Vendor_ID"]) == Convert.ToInt32(VendorDataSet.Tables[0].Rows[loop1]["ID"]))
-                                                {
-                                                    if (LedgerDataSet.Tables[0].Rows[loop]["Vendor"].ToString() != VendorDataSet.Tables[0].Rows[loop1]["Name"].ToString())
-                                                        LedgerDataSet.Tables[0].Rows[loop]["Vendor"] = VendorDataSet.Tables[0].Rows[loop1]["Name"];
-                                                }
-                                            }
-
-                                            for (int loop1 = 0; Ctn_Voucher_DataSet.Tables.Count > 0 && loop1 < Ctn_Voucher_DataSet.Tables[0].Rows.Count; loop1++)
-                                            {
-                                                if (Convert.ToInt32(LedgerDataSet.Tables[0].Rows[loop]["VoucherNo"]) == Convert.ToInt32(Ctn_Voucher_DataSet.Tables[0].Rows[loop1]["BILL_ID"]))
-                                                {
-                                                    if (LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"].ToString() != Ctn_Voucher_DataSet.Tables[0].Rows[loop1]["QTY"].ToString())
-                                                        LedgerDataSet.Tables[0].Rows[loop]["TotalCtn"] = Ctn_Voucher_DataSet.Tables[0].Rows[loop1]["QTY"];
-                                                }
-                                            }
-                                        }
-                                        else if (Convert.ToInt16(LedgerDataSet.Tables[0].Rows[loop]["Vendor_ID"].ToString()) == -1)
-                                            LedgerDataSet.Tables[0].Rows[loop]["Vendor"] = "Admin";
-                                        else
-                                            LedgerDataSet.Tables[0].Rows[loop]["Vendor"] = "Error";
-                                    }
-
-
-                                    LedgerGridView.Visible = false;
-
-                                    LedgerGridView.Columns.Clear();
-                                    LedgerGridView.DataSource = LedgerDataSet.Tables[0];
-                                    LedgerGridView.Columns["Vendor_ID"].Visible = false;
-                                    LedgerGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
-                                    LedgerGridView.Columns["Vendor"].DisplayIndex = 2;//.Visible 
-                                    LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
-                                    LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
-
-                                    LedgerGridView.Visible = true;
-                                }*/
             }
             catch (Exception ex)
             {
@@ -183,7 +127,6 @@ namespace firebirdtest.UI
                 }
                 else
                 {
-                    //LedgerGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString()
                     String Result1 = DatabaseCalls.UpdateVendorVoucherPayment(Convert.ToInt32(VendorID_txt.Text), Voucher_DTPicker.Value, Convert.ToDecimal(VoucherAmount_txt.Text), VoucherRemarks_txt.Text, ModifyVoucherNumber);
                     if (Result1 != "")
                     {
@@ -224,7 +167,7 @@ namespace firebirdtest.UI
 
         private void VendorID_txt_TextChanged(object sender, EventArgs e)
         {
-            //if (VendorID_txt.Text != "")
+            
             try
             {
                 if (VendorID_txt.Text == "")
@@ -242,8 +185,7 @@ namespace firebirdtest.UI
                         else
                         {
                             LedgerGridView.Rows[loop1].Visible = true;
-                            //calculator += Convert.ToInt64(LedgerGridView.Rows[loop1].Cells["AMOUNT"].Value);
-                            //LedgerGridView.Rows[loop1].Cells["Calculator"].Value = calculator;
+                            
                         }
                     }
                     catch (Exception ex)
@@ -302,9 +244,6 @@ namespace firebirdtest.UI
                     VendorNewBalance += UpdateAmount;
 
 
-                    //atif work here
-                    //DatabaseCalls.ModifyVendor(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Vendor_id"].Value), VendorNewBalance);
-                    //VendorDataSet1 = DatabaseCalls.GetVendors();//.GetVendor(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["Vendor_id"].Value));
                     DatabaseCalls.ModifyVoucher(Convert.ToInt32(LedgerGridView.Rows[e.RowIndex].Cells["VoucherNo"].Value), NewAmount, VendorNewBalance);
                     LedgerGridView.Rows[e.RowIndex].Cells["Amount"].Value = NewAmount;
                     RemainingBalance_txt.Text = VendorBalance_txt.Text = VendorNewBalance.ToString();
@@ -343,8 +282,8 @@ namespace firebirdtest.UI
                     LedgerGridView.DataSource = LedgerDataSet.Tables[0];
 
                     LedgerGridView.Columns["Vendor_ID"].Visible = false;
-                    LedgerGridView.Columns["Vendor"].DisplayIndex = 2;//.Visible 
-                    LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;//.Visible 
+                    LedgerGridView.Columns["Vendor"].DisplayIndex = 2;
+                    LedgerGridView.Columns["TotalCtn"].DisplayIndex = 4;
                     LedgerGridView.Columns["DATED"].SortMode = DataGridViewColumnSortMode.Automatic;
                 }
                 catch (Exception ex)
@@ -457,16 +396,13 @@ namespace firebirdtest.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    //if (Convert.ToInt32(VendorNameDataGridView.Rows[SelectedRowIndex].Cells["Quantity"].Value.ToString()) > 0)
-                    {
-                        VendorNameDataGridView.Visible = false;
-                        VendorName_txt.Text = VendorNameDataGridView.Rows[SelectedRowIndex].Cells["Name"].Value.ToString().Trim();
-                        VendorID_txt.Text = VendorNameDataGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString().Trim();
-                        VendorBalance_txt.Text = VendorNameDataGridView.Rows[SelectedRowIndex].Cells["AMOUNT"].Value.ToString().Trim();
+                    VendorNameDataGridView.Visible = false;
+                    VendorName_txt.Text = VendorNameDataGridView.Rows[SelectedRowIndex].Cells["Name"].Value.ToString().Trim();
+                    VendorID_txt.Text = VendorNameDataGridView.Rows[SelectedRowIndex].Cells["ID"].Value.ToString().Trim();
+                    VendorBalance_txt.Text = VendorNameDataGridView.Rows[SelectedRowIndex].Cells["AMOUNT"].Value.ToString().Trim();
 
 
-                        Voucher_DTPicker.Focus();
-                    }
+                    Voucher_DTPicker.Focus();
                 }
                 else if (e.KeyCode == Keys.Escape)
                 {
@@ -573,14 +509,13 @@ namespace firebirdtest.UI
                 {
                     if (VendorName_txt.Text == "")
                     {
-                        //VendorID_txt.Focus();
                         return;
                     }
                     if (VendorNameDataGridView.SelectedRows.Count <= 0)
                     {
                         for (int loop = 0; loop < VendorNameDataGridView.Rows.Count; loop++)
                         {
-                            if (VendorNameDataGridView.Rows[loop].Visible == true)// && ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString() == ItemCode_txt.Text)
+                            if (VendorNameDataGridView.Rows[loop].Visible == true)
                             {
                                 VendorName_txt.Text = VendorNameDataGridView.Rows[loop].Cells["Name"].Value.ToString().Trim();
                                 VendorID_txt.Text = VendorNameDataGridView.Rows[loop].Cells["ID"].Value.ToString().Trim();

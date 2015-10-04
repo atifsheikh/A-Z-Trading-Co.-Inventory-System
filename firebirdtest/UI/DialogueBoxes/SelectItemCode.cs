@@ -18,7 +18,6 @@ namespace firebirdtest.UI
 
         public SelectItemCode(string ItemCode)
         {
-            // TODO: Complete member initialization
             InitializeComponent();
             ItemCode_txt.Text = ItemCode;
         }

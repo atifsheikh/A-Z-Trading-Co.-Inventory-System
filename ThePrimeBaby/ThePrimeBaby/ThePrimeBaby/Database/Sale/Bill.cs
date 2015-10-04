@@ -56,6 +56,19 @@ namespace ThePrimeBaby.Database
                 return totalCtn;
             }
         }
+        public int QUANT_TOTAL
+        {
+            get
+            {
+                QueryResultRows<ThePrimeBaby.Database.BillDetail> billDetails = Db.SQL<ThePrimeBaby.Database.BillDetail>("SELECT sd FROM ThePrimeBaby.Database.BillDetail sd WHERE sd.Bill = ?", this);
+                int totalQuant = 0;
+                foreach (BillDetail billDetail in billDetails)
+                {
+                    totalQuant += billDetail.T_QUANTITY;
+                }
+                return totalQuant;
+            }
+        }
         internal static bool AddBill(int billID, Customer Customer, DateTime BillDate, string Remarks)
         {
             try

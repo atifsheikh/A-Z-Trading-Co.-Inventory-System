@@ -19,7 +19,6 @@ namespace firebirdtest.UI
 
         public AddItem(string SelectedItemCode)
         {
-            // TODO: Complete member initialization
             InitializeComponent();
             this.SelectedItemCode = SelectedItemCode;
         }
@@ -51,7 +50,7 @@ namespace firebirdtest.UI
 
                 DataSet Result1 = new DataSet();
                 Result1 = DatabaseCalls.GetItems();
-                RandomAlgos.CleanUpGridView(Result1, ItemsDataGridView);//ItemsDataGridView.DataSource = Result1.Tables[0];
+                RandomAlgos.CleanUpGridView(Result1, ItemsDataGridView);
                 ItemsDataGridView.Columns[0].Visible = false;
             }
             catch (Exception ex)
@@ -80,13 +79,13 @@ namespace firebirdtest.UI
                 DataSet ItemsDataset = new DataSet();
                 ItemsDataset = DatabaseCalls.GetItems();
                 RandomAlgos.CleanUpGridView(ItemsDataset, ItemsDataGridView);
-                //ItemsDataGridView.DataSource = Result1.Tables[0];
+                
                 
                 if (ItemsDataset.Tables.Count > 0)
                 {
-                    //Result1.Tables[0].Columns["Item_Code"].ColumnName = "Item Code";
+                    
                     ItemCodeSearch_txt.Items.Clear();
-                    for (int loop = 0; loop < ItemsDataset.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
+                    for (int loop = 0; loop < ItemsDataset.Tables[0].Rows.Count; loop++)
                     {
                         ItemCodeSearch_txt.Items.Add(ItemsDataset.Tables[0].Rows[loop]["CODE"]);
                     }
@@ -141,7 +140,7 @@ namespace firebirdtest.UI
                     currentRow = ItemsDataGridView.CurrentCell.RowIndex;
                     ItemName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["NAME"].Value.ToString();
                     ItemCode_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
-                    //ItemCodeSearch_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CODE"].Value.ToString();
+                    
                     ItemName_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["MODEL"].Value.ToString();
                     ItemQuantity_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["QTY_BOX"].Value.ToString();
                     ItemPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["PRICE"].Value.ToString();
@@ -149,14 +148,6 @@ namespace firebirdtest.UI
                     ItemCategory_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CATEGORYNAME"].Value.ToString();
                     RetailPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["RETAILPRICE"].Value.ToString();
                     TQUANTITY_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["T_QUANTITY"].Value.ToString();
-                    //TODO : SC Task
-                    //byte[] byteBLOBData = (byte[])ItemsDataGridView.Rows[currentRow].Cells["IMAGE"].Value;
-                    //System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
-                    //Image img = (Image)converter.ConvertFrom(byteBLOBData);
-                    //MemoryStream ms = new MemoryStream(byteBLOBData); 
-                    //ms.Write(byteBLOBData, 0, byteBLOBData.Length);
-                    //ms.Position = 0; // THIS !!!!!
-                    //ItemPictureBox.Image = Image.FromStream(ms, true); 
                 }
             }
             catch (Exception ex)
@@ -190,7 +181,7 @@ namespace firebirdtest.UI
             }
             DataSet Result1 = new DataSet();
             Result1 = DatabaseCalls.GetItems();
-            RandomAlgos.CleanUpGridView(Result1,ItemsDataGridView);//.DataSource = Result1.Tables[0];
+            RandomAlgos.CleanUpGridView(Result1,ItemsDataGridView);
             ItemsDataGridView.Columns[0].Visible = false;
             SortItems();
         }
@@ -303,7 +294,6 @@ namespace firebirdtest.UI
 
         private void ItemName_txt_KeyDown(object sender, KeyEventArgs e)
         {
-            //comboKeyPressed(ItemName_txt);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -331,50 +321,13 @@ namespace firebirdtest.UI
 
         }
 
-        private void ItemName_txt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if (e.KeyChar == 27)
-            //{
-            //    this.AllowDrop = false;
-            //}
-            //(e.KeyChar
-        }
-
-        private void ItemName_txt_KeyUp(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode!= Keys.Enter && e.KeyValue != 27)
-            //    {
-            //        if (ItemCodeSearch_txt.Text != null)
-            //            RandomAlgos.comboKeyPressed(ItemCodeSearch_txt);
-            //    }
-            //    else if (e.KeyCode == Keys.Enter)
-            //    {
-            //        //ItemName_txt.Text = ItemName_txt.;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Variables.NotificationMessageTitle = this.Name;
-            //    Variables.NotificationMessageText = ex.Message;
-            //    Variables.NotificationStatus = true;
-            //}
-
-        }
-
-        private void ItemName_txt_Enter(object sender, EventArgs e)
-        {
-            //ItemCodeSearch_txt.DroppedDown = true;
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 for (int loop = 0; loop < ItemsDataGridView.Rows.Count; loop++)
                 {
-                    if (ItemsDataGridView.Rows[loop].Cells["MODEL"].Value.ToString().Contains(textBox1.Text))//(GridViewColumn.ItemArray[0].ToString()))
+                    if (ItemsDataGridView.Rows[loop].Cells["MODEL"].Value.ToString().Contains(textBox1.Text))
                     {
                         ItemsDataGridView.Rows[loop].Visible = true;
                     }
@@ -401,46 +354,41 @@ namespace firebirdtest.UI
 
         private void ItemPrice_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
         }
 
         private void ItemCostPrice_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
         }
 
         private void ItemCostPrice_txt_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (Convert.ToDecimal(ItemPrice_txt.Text) > Convert.ToDecimal(ItemCostPrice_txt.Text))
-                {
-                    SendKeys.Send("{TAB}");
-                }
-                else 
-                {
-                    MessageBox.Show("Oay chawal. Cost Price Sale Price se zyada hoti hay.");
-                }
+                SendKeys.Send("{TAB}");
             }
         }
 
         private void RetailPrice_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
         }
 
         private void RetailPrice_txt_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (Convert.ToDecimal(RetailPrice_txt.Text) > Convert.ToDecimal(ItemCostPrice_txt.Text) && Convert.ToDecimal(RetailPrice_txt.Text) < Convert.ToDecimal(ItemPrice_txt.Text))
-                {
                     SendKeys.Send("{TAB}");
-                }
-                else 
-                {
-                    MessageBox.Show("Oay chawal. Retail Price Sale Price se kam or Cost Price se zyada hoti hay");
-                }
             }
         }
     }
