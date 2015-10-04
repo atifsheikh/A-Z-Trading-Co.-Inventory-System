@@ -257,7 +257,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!T_QUANTITY.Value)</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
                                 <FontSize>11pt</FontSize>
@@ -921,7 +921,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!InvoiceDate.Value</Value>
+                <Value>=FormatDateTime(Parameters!InvoiceDate.Value)</Value>
                 <Style>
                   <FontFamily>Cambria</FontFamily>
                 </Style>
@@ -1338,131 +1338,12 @@
           <BackgroundColor>Black</BackgroundColor>
         </Style>
       </Rectangle>
-      <Rectangle Name="Rectangle4">
-        <ReportItems>
-          <Textbox Name="Textbox170">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Balance</Value>
-                    <Style>
-                      <FontFamily>Cambria</FontFamily>
-                      <FontSize>8pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox161</rd:DefaultName>
-            <Top>0.23957in</Top>
-            <Left>0.40625in</Left>
-            <Height>0.23264in</Height>
-            <Width>0.54166in</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox32">
-            <CanGrow>true</CanGrow>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=(Parameters!CustomerBalance.Value)+Sum(Fields!SUBTOTAL.Value)</Value>
-                    <Style>
-                      <FontFamily>Cambria</FontFamily>
-                      <FontSize>18pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox29</rd:DefaultName>
-            <Top>0.02084in</Top>
-            <Left>0.81424in</Left>
-            <Height>0.3229in</Height>
-            <Width>1.90626in</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Color>YellowGreen</Color>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-              <Direction>RTL</Direction>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox34">
-            <CanGrow>true</CanGrow>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>.Rs</Value>
-                    <Style>
-                      <FontFamily>Cambria</FontFamily>
-                      <FontSize>16pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox29</rd:DefaultName>
-            <Top>0.02084in</Top>
-            <Left>0.28125in</Left>
-            <Height>0.3229in</Height>
-            <Width>0.54166in</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Color>YellowGreen</Color>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-              <Direction>RTL</Direction>
-            </Style>
-          </Textbox>
-        </ReportItems>
-        <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
-        <Top>4.52432in</Top>
-        <Left>4.512in</Left>
-        <Height>0.48957in</Height>
-        <Width>2.9705in</Width>
-        <ZIndex>13</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>White</BackgroundColor>
-        </Style>
-      </Rectangle>
       <Rectangle Name="Rectangle5">
         <KeepTogether>true</KeepTogether>
         <Top>5.08333in</Top>
         <Height>0.33333in</Height>
         <Width>7.86458in</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1478,7 +1359,7 @@
         <Left>0.125in</Left>
         <Height>0.87674in</Height>
         <Width>3.125in</Width>
-        <ZIndex>15</ZIndex>
+        <ZIndex>14</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1506,7 +1387,7 @@
         <Left>0.25in</Left>
         <Height>0.25348in</Height>
         <Width>1.19791in</Width>
-        <ZIndex>16</ZIndex>
+        <ZIndex>15</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1539,7 +1420,7 @@
         <Left>1.4618in</Left>
         <Height>0.25348in</Height>
         <Width>2.9375in</Width>
-        <ZIndex>17</ZIndex>
+        <ZIndex>16</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>

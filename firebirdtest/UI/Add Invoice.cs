@@ -274,10 +274,10 @@ namespace firebirdtest.UI
                             // PCS_CTN, QUANT, CUSTOMER_ID
 
                             string AddSaleResult = DatabaseCalls.AddBillDetail(GridViewRow.Cells["ITEM_CODE"].Value.ToString(), InvoiceNumber_txt.Text, Convert.ToInt32(GridViewRow.Cells["QUANT"].Value), Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), GridViewRow.Cells["ItemName"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["Qty"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["SubTotal"].Value));
-                            if (AddSaleResult == "")
-                            {
-                                ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
-                            }
+                            //if (AddSaleResult == "")
+                            //{
+                            //    ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
+                            //}
                         }
                     }
 
@@ -868,10 +868,10 @@ namespace firebirdtest.UI
                         if (GridViewRow.Cells[2].Value != null)
                         {
                             string AddSaleResult = DatabaseCalls.AddBillDetail(GridViewRow.Cells["ITEM_CODE"].Value.ToString(), InvoiceNumber_txt.Text, Convert.ToInt32(GridViewRow.Cells["QUANT"].Value), Convert.ToInt32(GridViewRow.Cells["Ctn"].Value), GridViewRow.Cells["ItemName"].Value.ToString(), Convert.ToInt32(GridViewRow.Cells["Qty"].Value), Convert.ToDecimal(GridViewRow.Cells["Price"].Value), Convert.ToDecimal(GridViewRow.Cells["SubTotal"].Value));
-                            if (AddSaleResult == "")
-                            {
-                                ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
-                            }
+                            //if (AddSaleResult == "")
+                            //{
+                            //    ItemDetails = DatabaseCalls.GetItems(GridViewRow.Cells[1].Value.ToString());
+                            //}
                         }
                     }
 

@@ -214,10 +214,12 @@ namespace firebirdtest.UI
 
                 ReportParameter[] param = new ReportParameter[6];
                 param[0] = new ReportParameter("CustomerName", invoice.Customer.NAME);
-                param[1] = new ReportParameter("CustomerBusinessName", invoice.Customer.NAME);
+                param[1] = new ReportParameter("CustomerBusinessName", invoice.Customer.BUSINESS_NAME);
                 param[2] = new ReportParameter("CustomerPhone", invoice.Customer.PHONE);
                 param[3] = new ReportParameter("CustomerBalance", invoice.Customer.AMOUNT.ToString());
-                param[4] = new ReportParameter("InvoiceDate", invoice.Bill.DATED.ToString());
+                DateTime BillDate = Convert.ToDateTime(invoice.Bill.DATED.ToString());
+                string BillDateString = BillDate.ToShortDateString();
+                param[4] = new ReportParameter("InvoiceDate", BillDateString);
                 param[5] = new ReportParameter("InvoiceNumber", invoice.Bill.ID.ToString());
 
                 this.reportViewer1.LocalReport.SetParameters(param);
