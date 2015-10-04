@@ -54,13 +54,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.ItemCodeCons_txt = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.PicPath_txt = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.ItemPictureBox = new System.Windows.Forms.PictureBox();
             this.ItemModelCons_txt = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
@@ -70,7 +64,6 @@
             this.ItemPriceCons_txt = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.BusinessName_txt = new System.Windows.Forms.TextBox();
-            this.UpdateItemPrices_btn = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
             this.UnitSalePrice_txt = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
@@ -99,14 +92,6 @@
             this.BalanceNew_txt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.ConsignmentDetailDataGridView = new System.Windows.Forms.DataGridView();
-            this.Sr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ITEM_CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ctn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.StatusConsignment_txt = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -140,9 +125,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SpeedTest_BGWorker = new System.ComponentModel.BackgroundWorker();
+            this.label37 = new System.Windows.Forms.Label();
+            this.Qty_Box_txt = new System.Windows.Forms.TextBox();
+            this.Sr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ITEM_CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ctn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.AddItemPnl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDetailDataGridView)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -168,10 +162,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.label37);
+            this.panel2.Controls.Add(this.Qty_Box_txt);
             this.panel2.Controls.Add(this.AddItemPnl);
             this.panel2.Controls.Add(this.label35);
             this.panel2.Controls.Add(this.BusinessName_txt);
-            this.panel2.Controls.Add(this.UpdateItemPrices_btn);
             this.panel2.Controls.Add(this.label34);
             this.panel2.Controls.Add(this.UnitSalePrice_txt);
             this.panel2.Controls.Add(this.button7);
@@ -239,13 +234,7 @@
             this.AddItemPnl.Controls.Add(this.label26);
             this.AddItemPnl.Controls.Add(this.label27);
             this.AddItemPnl.Controls.Add(this.ItemCodeCons_txt);
-            this.AddItemPnl.Controls.Add(this.button4);
-            this.AddItemPnl.Controls.Add(this.button2);
-            this.AddItemPnl.Controls.Add(this.label28);
-            this.AddItemPnl.Controls.Add(this.PicPath_txt);
-            this.AddItemPnl.Controls.Add(this.label29);
             this.AddItemPnl.Controls.Add(this.label30);
-            this.AddItemPnl.Controls.Add(this.ItemPictureBox);
             this.AddItemPnl.Controls.Add(this.ItemModelCons_txt);
             this.AddItemPnl.Controls.Add(this.label31);
             this.AddItemPnl.Controls.Add(this.button6);
@@ -372,62 +361,6 @@
             this.ItemCodeCons_txt.TabIndex = 0;
             this.ItemCodeCons_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemCodeCons_txt_KeyDown);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(33, 610);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 28);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Browse";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(141, 610);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Location = new System.Drawing.Point(29, 654);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(37, 17);
-            this.label28.TabIndex = 38;
-            this.label28.Text = "Path";
-            this.label28.Visible = false;
-            // 
-            // PicPath_txt
-            // 
-            this.PicPath_txt.Location = new System.Drawing.Point(76, 646);
-            this.PicPath_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.PicPath_txt.Name = "PicPath_txt";
-            this.PicPath_txt.Size = new System.Drawing.Size(236, 22);
-            this.PicPath_txt.TabIndex = 8;
-            this.PicPath_txt.Visible = false;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label29.Location = new System.Drawing.Point(12, 336);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(71, 25);
-            this.label29.TabIndex = 36;
-            this.label29.Text = "Image";
-            this.label29.Visible = false;
-            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -438,19 +371,6 @@
             this.label30.Size = new System.Drawing.Size(79, 17);
             this.label30.TabIndex = 35;
             this.label30.Text = "Description";
-            // 
-            // ItemPictureBox
-            // 
-            this.ItemPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.ItemPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ItemPictureBox.Location = new System.Drawing.Point(33, 364);
-            this.ItemPictureBox.Margin = new System.Windows.Forms.Padding(4);
-            this.ItemPictureBox.Name = "ItemPictureBox";
-            this.ItemPictureBox.Size = new System.Drawing.Size(281, 239);
-            this.ItemPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ItemPictureBox.TabIndex = 34;
-            this.ItemPictureBox.TabStop = false;
-            this.ItemPictureBox.Visible = false;
             // 
             // ItemModelCons_txt
             // 
@@ -549,18 +469,6 @@
             this.BusinessName_txt.Size = new System.Drawing.Size(209, 22);
             this.BusinessName_txt.TabIndex = 84;
             // 
-            // UpdateItemPrices_btn
-            // 
-            this.UpdateItemPrices_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("UpdateItemPrices_btn.BackgroundImage")));
-            this.UpdateItemPrices_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.UpdateItemPrices_btn.Location = new System.Drawing.Point(1140, 197);
-            this.UpdateItemPrices_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.UpdateItemPrices_btn.Name = "UpdateItemPrices_btn";
-            this.UpdateItemPrices_btn.Size = new System.Drawing.Size(22, 22);
-            this.UpdateItemPrices_btn.TabIndex = 16;
-            this.UpdateItemPrices_btn.UseVisualStyleBackColor = true;
-            this.UpdateItemPrices_btn.Click += new System.EventHandler(this.UpdateItemPrices_btn_Click);
-            // 
             // label34
             // 
             this.label34.AutoSize = true;
@@ -624,7 +532,7 @@
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label23.Location = new System.Drawing.Point(635, 180);
+            this.label23.Location = new System.Drawing.Point(655, 180);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(61, 17);
@@ -775,10 +683,10 @@
             // 
             // Qty_txt
             // 
-            this.Qty_txt.Location = new System.Drawing.Point(596, 196);
+            this.Qty_txt.Location = new System.Drawing.Point(636, 196);
             this.Qty_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Qty_txt.Name = "Qty_txt";
-            this.Qty_txt.Size = new System.Drawing.Size(133, 22);
+            this.Qty_txt.Size = new System.Drawing.Size(93, 22);
             this.Qty_txt.TabIndex = 12;
             this.Qty_txt.TextChanged += new System.EventHandler(this.Qty_txt_TextChanged);
             this.Qty_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Qty_txt_KeyDown);
@@ -789,7 +697,7 @@
             this.Ctn_txt.Location = new System.Drawing.Point(461, 196);
             this.Ctn_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Ctn_txt.Name = "Ctn_txt";
-            this.Ctn_txt.Size = new System.Drawing.Size(133, 22);
+            this.Ctn_txt.Size = new System.Drawing.Size(82, 22);
             this.Ctn_txt.TabIndex = 11;
             this.Ctn_txt.TabStop = false;
             this.Ctn_txt.TextChanged += new System.EventHandler(this.Ctn_txt_TextChanged);
@@ -960,60 +868,6 @@
             this.ConsignmentDetailDataGridView.TabIndex = 17;
             this.ConsignmentDetailDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConsignmentDetailDataGridView_CellClick);
             this.ConsignmentDetailDataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.ConsignmentDetailDataGridView_RowsRemoved);
-            // 
-            // Sr
-            // 
-            this.Sr.Frozen = true;
-            this.Sr.HeaderText = "Sr #";
-            this.Sr.Name = "Sr";
-            this.Sr.Width = 63;
-            // 
-            // ITEM_CODE
-            // 
-            this.ITEM_CODE.Frozen = true;
-            this.ITEM_CODE.HeaderText = "ITEM_CODE";
-            this.ITEM_CODE.Name = "ITEM_CODE";
-            this.ITEM_CODE.ReadOnly = true;
-            this.ITEM_CODE.Width = 116;
-            // 
-            // ItemName
-            // 
-            this.ItemName.HeaderText = "Item Name";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.Width = 104;
-            // 
-            // Ctn
-            // 
-            this.Ctn.HeaderText = "Pcs/Ctn";
-            this.Ctn.Name = "Ctn";
-            this.Ctn.Width = 85;
-            // 
-            // Qty
-            // 
-            this.Qty.HeaderText = "Ctn";
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            this.Qty.Width = 58;
-            // 
-            // Quant
-            // 
-            this.Quant.HeaderText = "Quant";
-            this.Quant.Name = "Quant";
-            this.Quant.Width = 76;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "UnitPrice";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Width = 94;
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "SubTotal";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 94;
             // 
             // label14
             // 
@@ -1427,6 +1281,81 @@
             this.SpeedTest_BGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SpeedTest_BGWorker_DoWork);
             this.SpeedTest_BGWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SpeedTest_BGWorker_RunWorkerCompleted);
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.BackColor = System.Drawing.Color.Transparent;
+            this.label37.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label37.Location = new System.Drawing.Point(544, 180);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(103, 17);
+            this.label37.TabIndex = 87;
+            this.label37.Text = "Quantity/Ctn) +";
+            // 
+            // Qty_Box_txt
+            // 
+            this.Qty_Box_txt.Location = new System.Drawing.Point(545, 196);
+            this.Qty_Box_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.Qty_Box_txt.Name = "Qty_Box_txt";
+            this.Qty_Box_txt.Size = new System.Drawing.Size(89, 22);
+            this.Qty_Box_txt.TabIndex = 86;
+            this.Qty_Box_txt.TabStop = false;
+            // 
+            // Sr
+            // 
+            this.Sr.Frozen = true;
+            this.Sr.HeaderText = "Sr #";
+            this.Sr.Name = "Sr";
+            this.Sr.Width = 63;
+            // 
+            // ITEM_CODE
+            // 
+            this.ITEM_CODE.Frozen = true;
+            this.ITEM_CODE.HeaderText = "ITEM_CODE";
+            this.ITEM_CODE.Name = "ITEM_CODE";
+            this.ITEM_CODE.ReadOnly = true;
+            this.ITEM_CODE.Width = 116;
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Item Name";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 104;
+            // 
+            // Ctn
+            // 
+            this.Ctn.HeaderText = "Pcs";
+            this.Ctn.Name = "Ctn";
+            this.Ctn.Width = 60;
+            // 
+            // Qty
+            // 
+            this.Qty.HeaderText = "Ctn";
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            this.Qty.Width = 58;
+            // 
+            // Quant
+            // 
+            this.Quant.HeaderText = "Quant";
+            this.Quant.Name = "Quant";
+            this.Quant.Width = 76;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "UnitPrice";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 94;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.HeaderText = "SubTotal";
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 94;
+            // 
             // AddConsignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1449,7 +1378,6 @@
             this.panel2.PerformLayout();
             this.AddItemPnl.ResumeLayout(false);
             this.AddItemPnl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDetailDataGridView)).EndInit();
             this.toolStrip1.ResumeLayout(false);
@@ -1532,13 +1460,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox ItemCodeCons_txt;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox PicPath_txt;
-        private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.PictureBox ItemPictureBox;
         private System.Windows.Forms.TextBox ItemModelCons_txt;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Button button6;
@@ -1547,6 +1469,15 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TextBox ItemPriceCons_txt;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox UnitSalePrice_txt;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox BusinessName_txt;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.TextBox RetailPrice_txt;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox Qty_Box_txt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ITEM_CODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
@@ -1555,13 +1486,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox UnitSalePrice_txt;
-        private System.Windows.Forms.Button UpdateItemPrices_btn;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox BusinessName_txt;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TextBox RetailPrice_txt;
-        private System.Windows.Forms.Button button8;
     }
 }

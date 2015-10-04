@@ -231,12 +231,12 @@ namespace firebirdtest.UI
                     
                     foreach (DataRow GridViewColumn in Result1.Tables[0].Rows)
                     {
-                        CustomerID_txt.Text = GridViewColumn.ItemArray[0].ToString();//ID
-                        CustomerAddress_txt.Text = GridViewColumn.ItemArray[2].ToString();//address
-                        CustomerEmail_txt.Text = GridViewColumn.ItemArray[4].ToString();//phone
-                        BusinessName_txt.Text = GridViewColumn.ItemArray[8].ToString();//Business Name
-                        CustomerBalance_txt.Text = GridViewColumn.ItemArray[6].ToString();//balance
-                        CustomerPhone_txt.Text = GridViewColumn.ItemArray[3].ToString();//email
+                        CustomerID_txt.Text = GridViewColumn.ItemArray[0].ToString();
+                        CustomerAddress_txt.Text = GridViewColumn.ItemArray[2].ToString();
+                        CustomerEmail_txt.Text = GridViewColumn.ItemArray[4].ToString();
+                        BusinessName_txt.Text = GridViewColumn.ItemArray[8].ToString();
+                        CustomerBalance_txt.Text = GridViewColumn.ItemArray[6].ToString();
+                        CustomerPhone_txt.Text = GridViewColumn.ItemArray[3].ToString();
                     }
                 }
             }
@@ -1267,17 +1267,6 @@ namespace firebirdtest.UI
                     _InvoiceCollectionArray.Add(GridViewColumn.ItemArray[0].ToString());
                 }
                 _InvoiceCollectionObject = _InvoiceCollectionArray.ToArray();
-
-                //for (int loop = 0; loop < InvoiceDataSet.Tables[0].Rows.Count; loop++)
-                //{
-                //    {
-                //        {
-                //            break;
-                //        }
-                //    }
-                //    if (Convert.ToInt32(InvoiceDataSet.Tables[0].Rows[loop]["ID"]) < 0)
-                //        InvoiceDataSet.Tables[0].Rows[loop].Delete();
-                //}
             }
             catch (Exception ex)
             {

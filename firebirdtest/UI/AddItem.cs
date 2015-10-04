@@ -30,18 +30,7 @@ namespace firebirdtest.UI
             {
                 if (ItemCode_txt.Text == "")
                     return;
-                if (ItemPictureBox.ImageLocation == null || ItemPictureBox.ImageLocation == "")
-                {
-                    if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPG") == true)
-                    {
-                        ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPG";
-                    }
-                    else if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPEG") == true)
-                    {
-                        ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPEG";
-                    }
-                }
-                Result = DatabaseCalls.AddItem(ItemCode_txt.Text, ItemName_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), ItemPictureBox.ImageLocation, ItemCategory_txt.Text,Convert.ToDecimal(RetailPrice_txt.Text));
+                Result = DatabaseCalls.AddItem(ItemCode_txt.Text, ItemName_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), "", ItemCategory_txt.Text,Convert.ToDecimal(RetailPrice_txt.Text));
 
                 if (Result!="")
                 {
@@ -147,7 +136,6 @@ namespace firebirdtest.UI
                     ItemCostPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["COSTPRICE"].Value.ToString();
                     ItemCategory_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CATEGORYNAME"].Value.ToString();
                     RetailPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["RETAILPRICE"].Value.ToString();
-                    TQUANTITY_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["T_QUANTITY"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -160,19 +148,7 @@ namespace firebirdtest.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (ItemPictureBox.ImageLocation == null || ItemPictureBox.ImageLocation == "")
-            {
-                if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPG") == true)
-                {
-                    ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPG";
-                }
-                else if (File.Exists("ItemImages\\" + ItemCode_txt.Text + ".JPEG") == true)
-                {
-                    ItemPictureBox.ImageLocation = Directory.GetCurrentDirectory() + "\\ItemImages\\" + ItemCode_txt.Text + ".JPEG";
-                }
-            }
-
-            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemCode_txt.Text, ItemName_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, "Image Blob String", ItemCategory_txt.Text, Convert.ToInt32(TQUANTITY_txt.Text), RetailPrice_txt.Text);
+            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemCode_txt.Text, ItemName_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, "Image Blob String", ItemCategory_txt.Text, Convert.ToInt32("0"), RetailPrice_txt.Text);
             if (Result != "")
             {
                 Variables.NotificationStatus = true;
@@ -185,26 +161,6 @@ namespace firebirdtest.UI
             ItemsDataGridView.Columns[0].Visible = false;
             SortItems();
         }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ItemPictureBox.Image = null;
-            textBox2.Text = "";
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ItemFileBrowser_Dialogue = new OpenFileDialog();
-            ItemFileBrowser_Dialogue.ShowDialog();
-            ItemPictureBox.ImageLocation = textBox2.Text = ItemFileBrowser_Dialogue.FileName;
-            
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             string AddCategoryResult = DatabaseCalls.AddCategory(ItemCategory_txt.Text);
@@ -272,10 +228,7 @@ namespace firebirdtest.UI
             ItemName_txt.Text = "None";
             ItemQuantity_txt.Text = "0";
             ItemPrice_txt.Text = "0";
-            TQUANTITY_txt.Text = "0";
             ItemCostPrice_txt.Text = "0";
-            ItemPictureBox.ImageLocation = "";
-            textBox2.Text = "";
             ItemCode_txt.Focus();
         }
 
