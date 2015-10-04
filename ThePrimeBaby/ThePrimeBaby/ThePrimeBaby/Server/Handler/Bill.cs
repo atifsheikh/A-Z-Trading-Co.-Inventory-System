@@ -100,6 +100,7 @@ namespace ThePrimeBaby.Server.Handler
                 billInvoiceJson.Customer.Data = customer.First;
                 billInvoiceJson.Bill.Data = bill.First;
                 billInvoiceJson.BillDetail.Data = billdetiail;
+                billInvoiceJson.CustomerPreviousBalance = ThePrimeBaby.Database.Customer.PreviousBalance(customer.First, bill.First.DATED);
                 return billInvoiceJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

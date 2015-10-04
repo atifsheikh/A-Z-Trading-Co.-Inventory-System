@@ -39,6 +39,7 @@ namespace firebirdtest.Classes
     }
     public class Invoice
     {
+        public string CustomerPreviousBalance;
         public Customer Customer { get; set; }
         public Bill Bill { get; set; }
 

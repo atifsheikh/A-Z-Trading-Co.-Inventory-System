@@ -238,10 +238,6 @@ namespace firebirdtest
         {
             return GET("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomerById/" + ID.ToString());
         }
-        //internal static string GetCustomers()
-        //{
-        //    return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetCustomers", "");
-        //}
         internal static string AddCustomer(string Name, string address, string phone, string email, int ballance_limit, int opening_balance, string BusinessName)
         {
             return POST("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddCustomer/7", Name + "/" + address + "/" + phone + "/" + email + "/" + ballance_limit + "/" + opening_balance + "/" + BusinessName);

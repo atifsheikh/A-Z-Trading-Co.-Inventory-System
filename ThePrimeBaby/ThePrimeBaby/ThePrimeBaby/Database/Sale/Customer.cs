@@ -13,30 +13,30 @@ namespace ThePrimeBaby.Database
         {
             get
             {
-                QueryResultRows<Database.Shipment> AllShipments = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE Vendor = ?", this);
-                decimal ShipmentCalc = 0.0m;
-                foreach (Database.Shipment OneShipment in AllShipments)
+                QueryResultRows<Database.Bill> AllBills = Db.SQL<Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE Customer = ?", this);
+                decimal BillCalc = 0.0m;
+                foreach (Database.Bill OneBill in AllBills)
                 {
-                    ShipmentCalc += OneShipment.AMOUNT;
+                    BillCalc += OneBill.AMOUNT;
                 }
-                QueryResultRows<Database.VendorVoucher> AllVendorVouchers = Db.SQL<Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE Vendor = ?", this);
-                decimal VoucherCalc = 0.0m;
-                foreach (Database.VendorVoucher OneVendorVoucher in AllVendorVouchers)
+                QueryResultRows<Database.CustomerVoucher> AllCustomerVouchers = Db.SQL<Database.CustomerVoucher>("SELECT s FROM ThePrimeBaby.Database.CustomerVoucher s WHERE Customer = ?", this);
+                decimal CustomerCalc = 0.0m;
+                foreach (Database.CustomerVoucher OneCustomerVoucher in AllCustomerVouchers)
                 {
-                    VoucherCalc += OneVendorVoucher.AMOUNT;
+                    CustomerCalc += OneCustomerVoucher.AMOUNT;
                 }
-                return ((ShipmentCalc + this.OPENING_BALANCE) - VoucherCalc);
+                return ((BillCalc + this.OPENING_BALANCE) - CustomerCalc);
             }
         }
         public decimal TotalAmount
         {
             get
             {
-                QueryResultRows<Database.Shipment> AllShipments = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE Vendor = ?", this);
+                QueryResultRows<Database.Bill> AllBills = Db.SQL<Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE Customer = ?", this);
                 decimal Calc = 0.0m;
-                foreach (Database.Shipment OneShipment in AllShipments)
+                foreach (Database.Bill OneBill in AllBills)
                 {
-                    Calc += OneShipment.AMOUNT;
+                    Calc += OneBill.AMOUNT;
                 }
                 return (Calc + this.OPENING_BALANCE);
             }
@@ -44,6 +44,23 @@ namespace ThePrimeBaby.Database
         public decimal OPENING_BALANCE;
         public decimal BALANCE_LIMIT;
 
+        internal static string PreviousBalance(Database.Customer customer, DateTime dateTime)
+        {
+            QueryResultRows<Database.Bill> AllBills = Db.SQL<Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE Customer = ? AND DATED < ?", customer, dateTime);
+            decimal BillCalc = 0.0m;
+            foreach (Database.Bill OneBill in AllBills)
+            {
+                BillCalc += OneBill.AMOUNT;
+            }
+            QueryResultRows<Database.CustomerVoucher> AllCustomerVouchers = Db.SQL<Database.CustomerVoucher>("SELECT s FROM ThePrimeBaby.Database.CustomerVoucher s WHERE Customer = ? AND DATED < ?", customer, dateTime);
+            decimal CustomerCalc = 0.0m;
+            foreach (Database.CustomerVoucher OneCustomerVoucher in AllCustomerVouchers)
+            {
+                CustomerCalc += OneCustomerVoucher.AMOUNT;
+            }
+            return ((BillCalc + customer.OPENING_BALANCE) - CustomerCalc).ToString();
+
+        }
         internal static bool AddCustomer(string Name, string address, string phone, string email, int balance_limit, int opening_balance, string BusinessName)
         {
             try

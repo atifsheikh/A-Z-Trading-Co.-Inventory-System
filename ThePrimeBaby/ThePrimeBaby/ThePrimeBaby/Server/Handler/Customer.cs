@@ -70,6 +70,18 @@ namespace ThePrimeBaby.Server.Handler
                 else
                     return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+            Handle.POST("/ThePrimeBaby/GerCustomerPreviousBalance", (Request r) =>
+            {
+                string[] Attributes = r.Body.Split('/');
+                Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(Attributes[0])).First;
+                if (customer != null)
+                {
+                    return ThePrimeBaby.Database.Customer.PreviousBalance(customer, Convert.ToDateTime(Attributes[1]));
+                }
+                else
+                    return 209;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
 }
