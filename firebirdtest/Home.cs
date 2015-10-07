@@ -5,10 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using firebirdtest.UI;
+using InventoryManagement.UI;
 using System.IO;
 
-namespace firebirdtest
+namespace InventoryManagement
 {
     public partial class Home : Form
     {
@@ -249,8 +249,8 @@ namespace firebirdtest
             {
                 if (_VendorLedgerStatement != null && !_VendorLedgerStatement.IsDisposed)
                     _VendorLedgerStatement.Dispose();
-                if (_LedgerReports!=null&&!_LedgerReports.IsDisposed)
-                    _LedgerReports.Dispose();
+                //if (_LedgerReports!=null&&!_LedgerReports.IsDisposed)
+                //    _LedgerReports.Dispose();
                 if (_CustomerLedgerStatement != null && !_CustomerLedgerStatement.IsDisposed)
                     _CustomerLedgerStatement.Dispose();
                 if (_ListConsignmentDetails!= null && !_ListConsignmentDetails.IsDisposed)
@@ -259,8 +259,8 @@ namespace firebirdtest
                 //    _ListConsignments.Dispose();
                 //if (_ListCustomers!= null && !_ListCustomers.IsDisposed)
                 //    _ListCustomers.Dispose();
-                if (_ListInventory!= null && !_ListInventory.IsDisposed)
-                    _ListInventory.Dispose();
+                //if (_ListInventory!= null && !_ListInventory.IsDisposed)
+                //    _ListInventory.Dispose();
                 //if (_AddConsignmentAdvanced!= null && !_AddConsignmentAdvanced.IsDisposed)
                 //    _AddConsignmentAdvanced.Dispose();
                 if (_AddCustomer!= null && !_AddCustomer.IsDisposed)
@@ -451,13 +451,13 @@ namespace firebirdtest
         {
             try
             {
-                if (_ListInventory.IsDisposed)
-                    _ListInventory = new ListInventory();
-                Home.Home_pnl.Visible = false;
-                _ListInventory.MdiParent = this;
-                _ListInventory.WindowState = FormWindowState.Maximized;
-                _ListInventory.Show();
-                _ListInventory.Focus();
+                //if (_ListInventory.IsDisposed)
+                //    _ListInventory = new ListInventory();
+                //Home.Home_pnl.Visible = false;
+                //_ListInventory.MdiParent = this;
+                //_ListInventory.WindowState = FormWindowState.Maximized;
+                //_ListInventory.Show();
+                //_ListInventory.Focus();
             }
             catch (Exception ex)
             {
@@ -1000,22 +1000,22 @@ namespace firebirdtest
             }
         }
 
-        LedgerReports _LedgerReports = new LedgerReports();
+        //LedgerReports _LedgerReports = new LedgerReports();
         private void leadgerReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_LedgerReports.IsDisposed == true)
-                    _LedgerReports = new LedgerReports();
-                var point = Home_pnl.Location;
-                point.X += 2000;
-//                point.Y += 40;
-                Home_pnl.Anchor = System.Windows.Forms.AnchorStyles.None;
-                Home_pnl.Location = point;
-                _LedgerReports.MdiParent = this;
-                _LedgerReports.WindowState = FormWindowState.Maximized;
-                _LedgerReports.Show();
-                _LedgerReports.Focus();
+//                if (_LedgerReports.IsDisposed == true)
+//                    _LedgerReports = new LedgerReports();
+//                var point = Home_pnl.Location;
+//                point.X += 2000;
+////                point.Y += 40;
+//                Home_pnl.Anchor = System.Windows.Forms.AnchorStyles.None;
+//                Home_pnl.Location = point;
+//                _LedgerReports.MdiParent = this;
+//                _LedgerReports.WindowState = FormWindowState.Maximized;
+//                _LedgerReports.Show();
+//                _LedgerReports.Focus();
             }
             catch (Exception ex)
             {
@@ -1091,8 +1091,8 @@ namespace firebirdtest
         {
             try
             {
-                if (_LedgerReports != null && !_LedgerReports.IsDisposed)
-                    _LedgerReports.Dispose();
+                //if (_LedgerReports != null && !_LedgerReports.IsDisposed)
+                //    _LedgerReports.Dispose();
                 if (_CustomerLedgerStatement != null && !_CustomerLedgerStatement.IsDisposed)
                     _CustomerLedgerStatement.Dispose();
                 if (_ListConsignmentDetails != null && !_ListConsignmentDetails.IsDisposed)
@@ -1101,8 +1101,8 @@ namespace firebirdtest
                 //    _ListConsignments.Dispose();
                 //if (_ListCustomers != null && !_ListCustomers.IsDisposed)
                 //    _ListCustomers.Dispose();
-                if (_ListInventory != null && !_ListInventory.IsDisposed)
-                    _ListInventory.Dispose();
+                //if (_ListInventory != null && !_ListInventory.IsDisposed)
+                //    _ListInventory.Dispose();
                 //if (_AddConsignmentAdvanced != null && !_AddConsignmentAdvanced.IsDisposed)
                 //    _AddConsignmentAdvanced.Dispose();
                 if (_AddVendor != null && !_AddVendor.IsDisposed)

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class SelectVendorName : Form
     {

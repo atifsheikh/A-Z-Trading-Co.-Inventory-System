@@ -6,7 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Data;
 
-namespace firebirdtest.Classes
+namespace InventoryManagement.Classes
 {
     public class RandomAlgos
     {

@@ -1,4 +1,4 @@
-﻿namespace firebirdtest.UI
+﻿namespace InventoryManagement.UI
 {
     partial class LedgerReports
     {
@@ -33,7 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LedgerReports));
             this.bILLBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ledgerReportDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ledgerReport_DataSet = new firebirdtest.DataSets.LedgerReport_DataSet();
+            //this.ledgerReport_DataSet = new InventoryManagement.DataSets.LedgerReport_DataSet();
             this.Ftom_dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.To_dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
@@ -41,10 +41,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.CustomerName_txt = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.bILLTableAdapter = new firebirdtest.DataSets.LedgerReport_DataSetTableAdapters.BILLTableAdapter();
+            //this.bILLTableAdapter = new InventoryManagement.DataSets.LedgerReport_DataSetTableAdapters.BILLTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.bILLBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ledgerReportDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ledgerReport_DataSet)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.ledgerReport_DataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,13 +55,13 @@
             // 
             // ledgerReportDataSetBindingSource
             // 
-            this.ledgerReportDataSetBindingSource.DataSource = this.ledgerReport_DataSet;
+            //this.ledgerReportDataSetBindingSource.DataSource = this.ledgerReport_DataSet;
             this.ledgerReportDataSetBindingSource.Position = 0;
             // 
             // ledgerReport_DataSet
             // 
-            this.ledgerReport_DataSet.DataSetName = "LedgerReport_DataSet";
-            this.ledgerReport_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //this.ledgerReport_DataSet.DataSetName = "LedgerReport_DataSet";
+            //this.ledgerReport_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // Ftom_dateTimePicker
             // 
@@ -95,7 +95,7 @@
             reportDataSource1.Name = "LedgerReportDataSet1";
             reportDataSource1.Value = this.bILLBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.LeadgerReport1.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "InventoryManagement.Reports.LeadgerReport1.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(290, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(1053, 664);
@@ -139,7 +139,7 @@
             // 
             // bILLTableAdapter
             // 
-            this.bILLTableAdapter.ClearBeforeFill = true;
+            //this.bILLTableAdapter.ClearBeforeFill = true;
             // 
             // LedgerReports
             // 
@@ -155,7 +155,7 @@
             this.Shown += new System.EventHandler(this.LedgerReports_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bILLBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ledgerReportDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ledgerReport_DataSet)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.ledgerReport_DataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -167,10 +167,10 @@
         private System.Windows.Forms.DateTimePicker To_dateTimePicker;
         private System.Windows.Forms.Button button1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private firebirdtest.DataSets.LedgerReport_DataSet ledgerReport_DataSet;
+        //private InventoryManagement.DataSets.LedgerReport_DataSet ledgerReport_DataSet;
         private System.Windows.Forms.BindingSource ledgerReportDataSetBindingSource;
         private System.Windows.Forms.BindingSource bILLBindingSource;
-        private firebirdtest.DataSets.LedgerReport_DataSetTableAdapters.BILLTableAdapter bILLTableAdapter;
+        //private InventoryManagement.DataSets.LedgerReport_DataSetTableAdapters.BILLTableAdapter bILLTableAdapter;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox CustomerName_txt;

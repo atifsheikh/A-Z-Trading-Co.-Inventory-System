@@ -5,9 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using firebirdtest.Classes;
+using InventoryManagement.Classes;
 
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class AddCustomer : Form
     {

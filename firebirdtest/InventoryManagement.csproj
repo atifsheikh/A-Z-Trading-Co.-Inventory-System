@@ -7,8 +7,8 @@
     <ProjectGuid>{1D892FE3-7146-4B82-9E0C-89E1E8A477A3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>firebirdtest</RootNamespace>
-    <AssemblyName>A-Z Inventory</AssemblyName>
+    <RootNamespace>InventoryManagement</RootNamespace>
+    <AssemblyName>InventoryManagement</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -36,11 +36,6 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.5.2.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\FirebirdSql.Data.FirebirdClient.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -49,9 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -61,51 +54,6 @@
     <Compile Include="Classes\RandomAlgos.cs" />
     <Compile Include="Classes\DatabaseCalls.cs" />
     <Compile Include="Classes\StaticClass.cs" />
-    <Compile Include="DataSets\DataSet1.cs">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataSets\DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSets\DataSet2.cs">
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataSets\DataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSets\ItemHistoryDataSource.cs">
-      <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataSets\ItemInventory_DataSet1.cs">
-      <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataSets\ItemInventory_DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSets\LedgerReport_DataSet.cs">
-      <DependentUpon>LedgerReport_DataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataSets\LedgerReport_DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LedgerReport_DataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSets\ItemHistoryDataSource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
-    </Compile>
     <Compile Include="UI\Add Consignment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,10 +146,10 @@
     <Compile Include="UI\ListConsignmentDetails.Designer.cs">
       <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ListInventory.cs">
+    <Compile Include="UI\Not in use\ListInventory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ListInventory.Designer.cs">
+    <Compile Include="UI\Not in use\ListInventory.Designer.cs">
       <DependentUpon>ListInventory.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\DialogueBoxes\SelectCustomerName.cs">
@@ -288,7 +236,7 @@
     <EmbeddedResource Include="UI\ListConsignmentDetails.resx">
       <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ListInventory.resx">
+    <EmbeddedResource Include="UI\Not in use\ListInventory.resx">
       <DependentUpon>ListInventory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\LeadgerReport1.rdlc">
@@ -312,61 +260,6 @@
     <EmbeddedResource Include="UI\VendorLedgerStatement.resx">
       <DependentUpon>VendorLedgerStatement.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DataSets\DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\DataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSets\DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\DataSet2.xsc">
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\DataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSets\DataSet2.xss">
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\ItemInventory_DataSet1.xsc">
-      <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\ItemInventory_DataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ItemInventory_DataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSets\ItemInventory_DataSet1.xss">
-      <DependentUpon>ItemInventory_DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\LedgerReport_DataSet.xsc">
-      <DependentUpon>LedgerReport_DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\LedgerReport_DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LedgerReport_DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSets\LedgerReport_DataSet.xss">
-      <DependentUpon>LedgerReport_DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\ItemHistoryDataSource.xsc">
-      <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\ItemHistoryDataSource.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ItemHistoryDataSource.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSets\ItemHistoryDataSource.xss">
-      <DependentUpon>ItemHistoryDataSource.xsd</DependentUpon>
-    </None>
     <None Include="firebirdtest.Classes.InvoiceDetails.datasource" />
     <None Include="firebirdtest.Classes.RandomAlgos.datasource" />
     <None Include="packages.config" />
@@ -408,9 +301,7 @@
       <Name>ExcelReader</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\Not in use\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,6 @@
-﻿using firebirdtest.DataSets;
+﻿//using InventoryManagement.DataSets;
 
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     partial class DebitorSummary
     {
@@ -153,7 +153,7 @@ namespace firebirdtest.UI
             reportDataSource1.Name = "CustomerAccount";
             reportDataSource1.Value = this.cUSTOMERSBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.CustomerDebitSummeryReport.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "InventoryManagement.Reports.CustomerDebitSummeryReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(288, 30);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;

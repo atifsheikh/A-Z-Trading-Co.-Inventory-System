@@ -43,7 +43,7 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>LedgerReport_DataSet</rd:DataSetName>
-        <rd:SchemaPath>M:\OMER\firebirdtest\firebirdtest\LedgerReport_DataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>M:\OMER\InventoryManagement\InventoryManagement\LedgerReport_DataSet.xsd</rd:SchemaPath>
         <rd:TableName>BILL</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

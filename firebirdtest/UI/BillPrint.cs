@@ -7,13 +7,12 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using FirebirdSql.Data.FirebirdClient;
 using Microsoft.Reporting.WinForms;
-using firebirdtest.Classes;
+using InventoryManagement.Classes;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Xml;
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class BillPrint : Form
     {
@@ -206,7 +205,7 @@ namespace firebirdtest.UI
         {
             try
             {
-                string jsonstring = DatabaseCalls.GET_String("http://" + global::firebirdtest.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/" + BillNumberSearch_txt.Text);
+                string jsonstring = DatabaseCalls.GET_String("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/" + BillNumberSearch_txt.Text);
                 Invoice invoice = JsonConvert.DeserializeObject<Invoice>(jsonstring);
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.Clear();

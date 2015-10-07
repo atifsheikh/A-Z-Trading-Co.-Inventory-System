@@ -1,5 +1,4 @@
-﻿using firebirdtest.DataSets;
-namespace firebirdtest.UI
+﻿namespace InventoryManagement.UI
 {
     partial class ConsignmentPrint
     {
@@ -34,9 +33,9 @@ namespace firebirdtest.UI
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsignmentPrint));
             this.SALEBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataSet1 = new firebirdtest.DataSets.DataSet1();
+            //this.DataSet1 = new InventoryManagement.DataSets.DataSet1();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.SALETableAdapter = new firebirdtest.DataSets.DataSet1TableAdapters.SALETableAdapter();
+            //this.SALETableAdapter = new InventoryManagement.DataSets.DataSet1TableAdapters.SALETableAdapter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PrintBatch_CB = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -48,7 +47,7 @@ namespace firebirdtest.UI
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SALEBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DataSet1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -56,12 +55,12 @@ namespace firebirdtest.UI
             // SALEBindingSource
             // 
             this.SALEBindingSource.DataMember = "SALE";
-            this.SALEBindingSource.DataSource = this.DataSet1;
+            //this.SALEBindingSource.DataSource = this.DataSet1;
             // 
             // DataSet1
             // 
-            this.DataSet1.DataSetName = "DataSet1";
-            this.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //this.DataSet1.DataSetName = "DataSet1";
+            //this.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -71,7 +70,7 @@ namespace firebirdtest.UI
             reportDataSource1.Name = "DataSet1";
             reportDataSource1.Value = this.SALEBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.VendorConsignment.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "InventoryManagement.Reports.VendorConsignment.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(288, 30);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
@@ -82,7 +81,7 @@ namespace firebirdtest.UI
             // 
             // SALETableAdapter
             // 
-            this.SALETableAdapter.ClearBeforeFill = false;
+            //this.SALETableAdapter.ClearBeforeFill = false;
             // 
             // panel1
             // 
@@ -234,7 +233,7 @@ namespace firebirdtest.UI
             this.Shown += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsignmentPrint_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.SALEBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DataSet1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsignmentDataGridView)).EndInit();
@@ -246,8 +245,8 @@ namespace firebirdtest.UI
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource SALEBindingSource;
-        private DataSet1 DataSet1;
-        private firebirdtest.DataSets.DataSet1TableAdapters.SALETableAdapter SALETableAdapter;
+        //private DataSet1 DataSet1;
+        //private InventoryManagement.DataSets.DataSet1TableAdapters.SALETableAdapter SALETableAdapter;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox VendorNameSearch_txt;
         private System.Windows.Forms.Label label6;

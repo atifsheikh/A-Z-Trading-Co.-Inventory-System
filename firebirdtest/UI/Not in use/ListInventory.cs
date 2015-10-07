@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using firebirdtest.Classes;
+using InventoryManagement.Classes;
 
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class ListInventory : Form
     {
@@ -31,7 +31,7 @@ namespace firebirdtest.UI
             // TODO: This line of code loads data into the 'itemInventoryDataSet.ITEMINVENTORY' table. You can move, or remove it, as needed.
             try
             {
-                this.iTEMINVENTORYTableAdapter.Fill(this.itemInventory_DataSet1.ITEMINVENTORY);
+                //this.iTEMINVENTORYTableAdapter.Fill(this.itemInventory_DataSet1.ITEMINVENTORY);
                 reportViewer1.RefreshReport();
 
             }

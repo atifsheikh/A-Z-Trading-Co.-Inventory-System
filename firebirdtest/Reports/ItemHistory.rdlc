@@ -55,7 +55,7 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>ItemHistoryDataSource</rd:DataSetName>
-        <rd:SchemaPath>M:\OMER\firebirdtest\firebirdtest\ItemHistoryDataSource.xsd</rd:SchemaPath>
+        <rd:SchemaPath>M:\OMER\InventoryManagement\InventoryManagement\ItemHistoryDataSource.xsd</rd:SchemaPath>
         <rd:TableName>ITEMHISTORY</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

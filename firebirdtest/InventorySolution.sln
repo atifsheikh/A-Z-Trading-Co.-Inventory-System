@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A-Z Inventory", "A-Z Inventory.csproj", "{1D892FE3-7146-4B82-9E0C-89E1E8A477A3}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement", "InventoryManagement.csproj", "{1D892FE3-7146-4B82-9E0C-89E1E8A477A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReader", "..\ExcelParse\ExcelReader.csproj", "{E214FD66-D235-40DE-8D34-3A4798E9F0F1}"
 EndProject

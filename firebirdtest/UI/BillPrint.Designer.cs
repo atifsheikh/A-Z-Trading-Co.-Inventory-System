@@ -1,5 +1,4 @@
-﻿using firebirdtest.DataSets;
-namespace firebirdtest.UI
+﻿namespace InventoryManagement.UI
 {
     partial class BillPrint
     {
@@ -55,7 +54,7 @@ namespace firebirdtest.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             reportDataSource1.Name = "DataSet1";
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.CustomerBill.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "InventoryManagement.Reports.CustomerBill.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(384, 37);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";

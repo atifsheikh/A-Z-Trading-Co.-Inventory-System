@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class LedgerReports : Form
     {
@@ -43,10 +43,10 @@ namespace firebirdtest.UI
             }
 
             // TODO: This line of code loads data into the 'ledgerReport_DataSet.BILL' table. You can move, or remove it, as needed.
-            if (CustomerName_txt.Text != "" && CustomerName_txt.Items.Contains(CustomerName_txt.Text))
-                this.bILLTableAdapter.Fill(this.ledgerReport_DataSet.BILL,CustomerName_txt.Text);
-            else
-                this.bILLTableAdapter.FillBy(this.ledgerReport_DataSet.BILL);
+            //if (CustomerName_txt.Text != "" && CustomerName_txt.Items.Contains(CustomerName_txt.Text))
+            //    this.bILLTableAdapter.Fill(this.ledgerReport_DataSet.BILL,CustomerName_txt.Text);
+            //else
+            //    this.bILLTableAdapter.FillBy(this.ledgerReport_DataSet.BILL);
 
             this.reportViewer1.RefreshReport();
         }
@@ -71,10 +71,10 @@ namespace firebirdtest.UI
 
         private void CustomerName_txt_TextChanged(object sender, EventArgs e)
         {
-            if (CustomerName_txt.Text != "" && CustomerName_txt.Items.Contains(CustomerName_txt.Text))
-                this.bILLTableAdapter.Fill(this.ledgerReport_DataSet.BILL, CustomerName_txt.Text);
-            else
-                this.bILLTableAdapter.FillBy(this.ledgerReport_DataSet.BILL);
+            //if (CustomerName_txt.Text != "" && CustomerName_txt.Items.Contains(CustomerName_txt.Text))
+            //    this.bILLTableAdapter.Fill(this.ledgerReport_DataSet.BILL, CustomerName_txt.Text);
+            //else
+                //this.bILLTableAdapter.FillBy(this.ledgerReport_DataSet.BILL);
 
             this.reportViewer1.RefreshReport();
 

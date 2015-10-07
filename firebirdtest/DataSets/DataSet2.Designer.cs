@@ -5476,13 +5476,13 @@ namespace firebirdtest.DataSets.DataSet2TableAdapters {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class ITEMCATEGORYTableAdapter : global::System.ComponentModel.Component {
         
-        private global::FirebirdSql.Data.FirebirdClient.FbDataAdapter _adapter;
+        //private global::FirebirdSql.Data.FirebirdClient.FbDataAdapter _adapter;
         
-        private global::FirebirdSql.Data.FirebirdClient.FbConnection _connection;
+        //private global::FirebirdSql.Data.FirebirdClient.FbConnection _connection;
         
-        private global::FirebirdSql.Data.FirebirdClient.FbTransaction _transaction;
+        //private global::FirebirdSql.Data.FirebirdClient.FbTransaction _transaction;
         
-        private global::FirebirdSql.Data.FirebirdClient.FbCommand[] _commandCollection;
+        //private global::FirebirdSql.Data.FirebirdClient.FbCommand[] _commandCollection;
         
         private bool _clearBeforeFill;
         

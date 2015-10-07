@@ -1,4 +1,4 @@
-﻿namespace firebirdtest
+﻿namespace InventoryManagement
 {
     partial class Home
     {
@@ -473,7 +473,7 @@
             reportDataSource1.Name = "DataSet1";
             reportDataSource1.Value = null;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.CustomerBill.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "InventoryManagement.Reports.CustomerBill.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(1052, 481);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
@@ -551,7 +551,7 @@
             // notifyIcon1
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "A-Z Notifications";
+            this.notifyIcon1.Text = "InventoryManagement Notifications";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
             // 

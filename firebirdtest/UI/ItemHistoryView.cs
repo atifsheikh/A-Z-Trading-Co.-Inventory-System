@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using firebirdtest.Classes;
+using InventoryManagement.Classes;
 
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class ItemHistoryView : Form
     {

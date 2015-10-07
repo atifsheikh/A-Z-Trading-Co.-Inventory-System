@@ -1,5 +1,4 @@
-﻿using firebirdtest.DataSets;
-namespace firebirdtest.UI
+﻿namespace InventoryManagement.UI
 {
     partial class ListInventory
     {
@@ -35,7 +34,7 @@ namespace firebirdtest.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListInventory));
             this.iTEMINVENTORYBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemInventoryDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemInventory_DataSet1 = new firebirdtest.DataSets.ItemInventory_DataSet1();
+            //this.itemInventory_DataSet1 = new InventoryManagement.DataSets.ItemInventory_DataSet1();
             this.PrintBatch_CB = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -45,10 +44,10 @@ namespace firebirdtest.UI
             this.BillDataGridView = new System.Windows.Forms.DataGridView();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.button2 = new System.Windows.Forms.Button();
-            this.iTEMINVENTORYTableAdapter = new firebirdtest.DataSets.ItemInventory_DataSet1TableAdapters.ITEMINVENTORYTableAdapter();
+            //this.iTEMINVENTORYTableAdapter = new InventoryManagement.DataSets.ItemInventory_DataSet1TableAdapters.ITEMINVENTORYTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.iTEMINVENTORYBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemInventoryDataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemInventory_DataSet1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.itemInventory_DataSet1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BillDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -61,14 +60,14 @@ namespace firebirdtest.UI
             // 
             // itemInventoryDataSet1BindingSource
             // 
-            this.itemInventoryDataSet1BindingSource.DataSource = this.itemInventory_DataSet1;
+            //this.itemInventoryDataSet1BindingSource.DataSource = this.itemInventory_DataSet1;
             this.itemInventoryDataSet1BindingSource.Position = 0;
             this.itemInventoryDataSet1BindingSource.CurrentChanged += new System.EventHandler(this.itemInventoryDataSet1BindingSource_CurrentChanged);
             // 
             // itemInventory_DataSet1
             // 
-            this.itemInventory_DataSet1.DataSetName = "ItemInventory_DataSet1";
-            this.itemInventory_DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //this.itemInventory_DataSet1.DataSetName = "ItemInventory_DataSet1";
+            //this.itemInventory_DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // PrintBatch_CB
             // 
@@ -188,7 +187,7 @@ namespace firebirdtest.UI
             reportDataSource1.Name = "ListInventoryDataSet";
             reportDataSource1.Value = this.iTEMINVENTORYBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "firebirdtest.Reports.ItemInventoyrReport.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "InventoryManagement.Reports.ItemInventoyrReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(384, 37);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reportViewer1.Name = "reportViewer1";
@@ -210,7 +209,7 @@ namespace firebirdtest.UI
             // 
             // iTEMINVENTORYTableAdapter
             // 
-            this.iTEMINVENTORYTableAdapter.ClearBeforeFill = true;
+            //this.iTEMINVENTORYTableAdapter.ClearBeforeFill = true;
             // 
             // ListInventory
             // 
@@ -231,8 +230,8 @@ namespace firebirdtest.UI
             this.Shown += new System.EventHandler(this.ListInventory_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListInventory_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.iTEMINVENTORYBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemInventoryDataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.itemInventory_DataSet1)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.itemInventoryDataSet1BindingSource)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.itemInventory_DataSet1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BillDataGridView)).EndInit();
@@ -250,10 +249,10 @@ namespace firebirdtest.UI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView BillDataGridView;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private ItemInventory_DataSet1 itemInventory_DataSet1;
+        //private ItemInventory_DataSet1 itemInventory_DataSet1;
         private System.Windows.Forms.BindingSource itemInventoryDataSet1BindingSource;
         private System.Windows.Forms.BindingSource iTEMINVENTORYBindingSource;
-        private firebirdtest.DataSets.ItemInventory_DataSet1TableAdapters.ITEMINVENTORYTableAdapter iTEMINVENTORYTableAdapter;
+        //private InventoryManagement.DataSets.ItemInventory_DataSet1TableAdapters.ITEMINVENTORYTableAdapter iTEMINVENTORYTableAdapter;
         private System.Windows.Forms.Button button2;
     }
 }

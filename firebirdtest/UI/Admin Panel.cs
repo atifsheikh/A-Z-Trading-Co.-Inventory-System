@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class Admin_Panel : Form
     {
@@ -23,16 +23,16 @@ namespace firebirdtest.UI
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            global::firebirdtest.Properties.Settings.Default.SC_Server = DBAddress_txt.Text;
-            //global::firebirdtest.Properties.Settings.Default.AZ_FireBirdDB = DSN_txt.Text;
+            global::InventoryManagement.Properties.Settings.Default.SC_Server = DBAddress_txt.Text;
+            //global::InventoryManagement.Properties.Settings.Default.AZ_FireBirdDB = DSN_txt.Text;
 
-            global::firebirdtest.Properties.Settings.Default.Save();
+            global::InventoryManagement.Properties.Settings.Default.Save();
             this.Close();
         }
 
         private void Admin_Panel_Load(object sender, EventArgs e)
         {
-            DBAddress_txt.Text = global::firebirdtest.Properties.Settings.Default.SC_Server;
+            DBAddress_txt.Text = global::InventoryManagement.Properties.Settings.Default.SC_Server;
         }
 
         private void button1_Click(object sender, EventArgs e)

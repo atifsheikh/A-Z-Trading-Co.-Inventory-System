@@ -55,7 +55,7 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>ItemInventory_DataSet1</rd:DataSetName>
-        <rd:SchemaPath>M:\OMER\firebirdtest\firebirdtest\ItemInventory_DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>M:\OMER\InventoryManagement\InventoryManagement\ItemInventory_DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>ITEMINVENTORY</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

@@ -1,26 +1,9 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="firebirdtest.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="InventoryManagement.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="SC_Server" Type="System.String" Scope="User">
       <Value Profile="(Default)">Atif-PC:8080</Value>
-    </Setting>
-    <Setting Name="ConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;User=SYSDBA; Password=masterkey;Database=Atif-PC:E:\A-Z.FDB;DataSource=localhost;Port=3050;Dialect=3;Charset=NONE;
-&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;FirebirdSql.Data.FirebirdClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">User=SYSDBA; Password=masterkey;Database=Atif-PC:E:\A-Z.FDB;DataSource=localhost;Port=3050;Dialect=3;Charset=NONE;
-</Value>
-    </Setting>
-    <Setting Name="AZ_FireBirdDB" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Dsn=Firebird DNS;uid=sysdba;pwd=masterkey&lt;/ConnectionString&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Dsn=Firebird DNS;uid=sysdba;pwd=masterkey</Value>
     </Setting>
   </Settings>
 </SettingsFile>

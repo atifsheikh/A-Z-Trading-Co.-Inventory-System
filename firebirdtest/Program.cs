@@ -6,11 +6,10 @@ using System.Windows.Forms;
 using System.IO;
 using System.Data;
 using Newtonsoft.Json;
-using firebirdtest.DataSets;
 using System.Xml;
 using Newtonsoft.Json.Linq;
 
-namespace firebirdtest
+namespace InventoryManagement
 {
 /*    public class CUSTOMER
     {
@@ -77,7 +76,7 @@ namespace firebirdtest
                     Directory.CreateDirectory("ItemImages");
                 }
 
-                if (File.Exists("A-Z.png") == true && File.Exists("Interop.VBIDE.dll") == true && File.Exists("Interop.Microsoft.Office.Interop.Excel.dll") == true && File.Exists("ExcelParse.exe") == true && File.Exists("FirebirdSql.Data.FirebirdClient.dll") == true)
+                if (File.Exists("A-Z.png") == true && File.Exists("Interop.VBIDE.dll") == true && File.Exists("Interop.Microsoft.Office.Interop.Excel.dll") == true && File.Exists("ExcelParse.exe") == true)
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);

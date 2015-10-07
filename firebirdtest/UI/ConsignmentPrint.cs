@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-//using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using FirebirdSql.Data.FirebirdClient;
 using Microsoft.Reporting.WinForms;
-using firebirdtest.Classes;
+using InventoryManagement.Classes;
 using System.Threading;
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class ConsignmentPrint : Form
     {
@@ -139,7 +137,7 @@ namespace firebirdtest.UI
         {
             try
             {
-                this.SALETableAdapter.Fill(this.DataSet1.SALE);
+                //this.SALETableAdapter.Fill(this.DataSet1.SALE);
                 DataSet ConsignmentDataSet = new DataSet();
                 ConsignmentDataSet = DatabaseCalls.GetShipment(ConsignmentNumberSearch_txt.Text);
 

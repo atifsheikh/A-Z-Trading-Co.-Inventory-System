@@ -51,7 +51,7 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>CustomerAccountDataSet</rd:DataSetName>
-        <rd:SchemaPath>M:\OMER\firebirdtest\firebirdtest\CustomerAccountDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>M:\OMER\InventoryManagement\InventoryManagement\CustomerAccountDataSet.xsd</rd:SchemaPath>
         <rd:TableName>CUSTOMERS</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

@@ -6,10 +6,10 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using firebirdtest.Classes;
+using InventoryManagement.Classes;
 using System.Threading;
 
-namespace firebirdtest.UI
+namespace InventoryManagement.UI
 {
     public partial class AddConsignment : Form
     {
@@ -186,16 +186,16 @@ namespace firebirdtest.UI
                 catch (Exception ex)
                 { }
                 SpeedTest_BGWorker.RunWorkerAsync();                //TO GET Consingment Detail LIST
-                try
-                {
-                    GetItemsForConsignmentPage();
-                }
-                catch (Exception ex)
-                {
-                    Variables.NotificationStatus = true;
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = ex.Message;
-                }
+                //try
+                //{
+                //    GetItemsForConsignmentPage();
+                //}
+                //catch (Exception ex)
+                //{
+                //    Variables.NotificationStatus = true;
+                //    Variables.NotificationMessageTitle = this.Name;
+                //    Variables.NotificationMessageText = ex.Message;
+                //}
             }
             catch (Exception ex)
             {
@@ -209,7 +209,7 @@ namespace firebirdtest.UI
         {
             ConsignmentDetailsDataSet = new DataSet();
             ConsignmentDetailsDataSet = DatabaseCalls.GetItems();
-
+            
             try
             {
                 if (ConsignmentDetailsDataSet != null && ConsignmentDetailsDataSet.Tables.Count > 0)
@@ -226,6 +226,27 @@ namespace firebirdtest.UI
                         ItemsDataGridView.Columns["T_QUANTITY"].DisplayIndex = 4;
                         ItemsDataGridView.Columns["PRICE"].DisplayIndex = 5;
                     }
+                }
+
+                try
+                {
+                    ItemDetailsDataSet = ConsignmentDetailsDataSet;
+                    if (ItemDetailsDataSet != null && ItemDetailsDataSet.Tables.Count > 0)
+                    {
+                        _ItemDetailsCollectionObject = new object[ItemDetailsDataSet.Tables[0].Rows.Count];
+
+                        foreach (DataRow asdf in ItemDetailsDataSet.Tables[0].Rows)
+                        {
+                            _ItemDetailsCollectionArray.Add(asdf.ItemArray[6].ToString());
+                        }
+                    }
+                    _ItemDetailsCollectionObject = _ItemDetailsCollectionArray.ToArray();
+                }
+                catch (Exception ex)
+                {
+                    Variables.NotificationStatus = true;
+                    Variables.NotificationMessageTitle = this.Name;
+                    Variables.NotificationMessageText = ex.Message;
                 }
             }
             catch (Exception ex)
@@ -1295,28 +1316,7 @@ namespace firebirdtest.UI
 
 
             //TO GET ITEM LIST
-            try
-            {
-                ItemDetailsDataSet = DatabaseCalls.GetItems();
-                if (ItemDetailsDataSet != null && ItemDetailsDataSet.Tables.Count > 0)
-                {
-                    _ItemDetailsCollectionObject = new object[ItemDetailsDataSet.Tables[0].Rows.Count];
-
-                    foreach (DataRow asdf in ItemDetailsDataSet.Tables[0].Rows)
-                    {
-                        _ItemDetailsCollectionArray.Add(asdf.ItemArray[6].ToString());
-                    }
-                }
-                _ItemDetailsCollectionObject = _ItemDetailsCollectionArray.ToArray();
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationStatus = true;
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = ex.Message;
-            }
-
-
+            GetItemsForConsignmentPage();
 
             //Consignments
             try

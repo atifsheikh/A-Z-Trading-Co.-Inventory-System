@@ -1,4 +1,4 @@
-﻿namespace firebirdtest.UI
+﻿namespace InventoryManagement.UI
 {
     partial class Admin_Panel
     {
