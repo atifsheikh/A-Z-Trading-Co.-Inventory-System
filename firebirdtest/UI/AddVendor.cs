@@ -289,5 +289,13 @@ namespace InventoryManagement.UI
                 SendKeys.Send("{TAB}");
             }
         }
+
+        private void VendorOpeningBalance_txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-')
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

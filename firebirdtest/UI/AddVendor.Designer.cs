@@ -163,6 +163,7 @@
             this.VendorOpeningBalance_txt.TabIndex = 5;
             this.VendorOpeningBalance_txt.Text = "0";
             this.VendorOpeningBalance_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VendorName_txt_KeyDown);
+            this.VendorOpeningBalance_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VendorOpeningBalance_txt_KeyPress);
             // 
             // button1
             // 
