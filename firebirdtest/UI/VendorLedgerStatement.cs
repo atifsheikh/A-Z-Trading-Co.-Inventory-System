@@ -327,7 +327,7 @@ namespace InventoryManagement.UI
         {
             for (int loop = 0; loop < LedgerGridView.Rows.Count - 1; loop++)
             {
-                if (LedgerGridView.Rows[loop].Cells["REMARKS"].Value.ToString().Contains("Voucher"))
+                if (LedgerGridView.Rows[loop].Cells["REMARKS"].Value.ToString().Contains("Consignment"))
                     LedgerGridView.Rows[loop].DefaultCellStyle.BackColor = Color.GreenYellow;
                 else
                     LedgerGridView.Rows[loop].DefaultCellStyle.BackColor = Color.SkyBlue;

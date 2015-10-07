@@ -253,8 +253,8 @@ namespace InventoryManagement
                 //    _LedgerReports.Dispose();
                 if (_CustomerLedgerStatement != null && !_CustomerLedgerStatement.IsDisposed)
                     _CustomerLedgerStatement.Dispose();
-                if (_ListConsignmentDetails!= null && !_ListConsignmentDetails.IsDisposed)
-                    _ListConsignmentDetails.Dispose();
+                //if (_ListConsignmentDetails!= null && !_ListConsignmentDetails.IsDisposed)
+                //    _ListConsignmentDetails.Dispose();
                 //if (_ListConsignments!= null && !_ListConsignments.IsDisposed)
                 //    _ListConsignments.Dispose();
                 //if (_ListCustomers!= null && !_ListCustomers.IsDisposed)
@@ -372,18 +372,18 @@ namespace InventoryManagement
             //}
         }
 
-        ListConsignmentDetails _ListConsignmentDetails = new ListConsignmentDetails();
+        //ListConsignmentDetails _ListConsignmentDetails = new ListConsignmentDetails();
         private void listConsignmentDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_ListConsignmentDetails.IsDisposed)
-                    _ListConsignmentDetails = new ListConsignmentDetails();
+                //if (_ListConsignmentDetails.IsDisposed)
+                //    _ListConsignmentDetails = new ListConsignmentDetails();
                 Home.Home_pnl.Visible = false;
-                _ListConsignmentDetails.MdiParent = this;
-                _ListConsignmentDetails.WindowState = FormWindowState.Maximized;
-                _ListConsignmentDetails.Show();
-                _ListConsignmentDetails.Focus();
+                //_ListConsignmentDetails.MdiParent = this;
+                //_ListConsignmentDetails.WindowState = FormWindowState.Maximized;
+                //_ListConsignmentDetails.Show();
+                //_ListConsignmentDetails.Focus();
             }
             catch (Exception ex)
             {
@@ -446,7 +446,7 @@ namespace InventoryManagement
             //}
         }
 
-        ListInventory _ListInventory = new ListInventory();
+        //ListInventory _ListInventory = new ListInventory();
         private void listInventoryToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             try
@@ -506,22 +506,22 @@ namespace InventoryManagement
             }
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Home.Home_pnl.Visible = false;
-                ListInventory _ListInventory = new ListInventory();
-                _ListInventory.MdiParent = this;
-                _ListInventory.WindowState = FormWindowState.Maximized;
-                _ListInventory.Show();
-                _ListInventory.Focus();
-            }
-            catch (Exception ex)
-            {
-                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
-            }
-        }
+        //private void pictureBox3_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        Home.Home_pnl.Visible = false;
+        //        ListInventory _ListInventory = new ListInventory();
+        //        _ListInventory.MdiParent = this;
+        //        _ListInventory.WindowState = FormWindowState.Maximized;
+        //        _ListInventory.Show();
+        //        _ListInventory.Focus();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+        //    }
+        //}
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
@@ -1095,8 +1095,8 @@ namespace InventoryManagement
                 //    _LedgerReports.Dispose();
                 if (_CustomerLedgerStatement != null && !_CustomerLedgerStatement.IsDisposed)
                     _CustomerLedgerStatement.Dispose();
-                if (_ListConsignmentDetails != null && !_ListConsignmentDetails.IsDisposed)
-                    _ListConsignmentDetails.Dispose();
+                //if (_ListConsignmentDetails != null && !_ListConsignmentDetails.IsDisposed)
+                //    _ListConsignmentDetails.Dispose();
                 //if (_ListConsignments != null && !_ListConsignments.IsDisposed)
                 //    _ListConsignments.Dispose();
                 //if (_ListCustomers != null && !_ListCustomers.IsDisposed)

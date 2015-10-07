@@ -128,29 +128,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\LedgerReports.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\LedgerReports.Designer.cs">
-      <DependentUpon>LedgerReports.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\CustomerLedgerStatement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\CustomerLedgerStatement.Designer.cs">
       <DependentUpon>CustomerLedgerStatement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\ListConsignmentDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\ListConsignmentDetails.Designer.cs">
-      <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Not in use\ListInventory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Not in use\ListInventory.Designer.cs">
-      <DependentUpon>ListInventory.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\DialogueBoxes\SelectCustomerName.cs">
       <SubType>Form</SubType>
@@ -227,17 +209,8 @@
     <EmbeddedResource Include="Reports\CustomerBill.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\LedgerReports.resx">
-      <DependentUpon>LedgerReports.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\CustomerLedgerStatement.resx">
       <DependentUpon>CustomerLedgerStatement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\ListConsignmentDetails.resx">
-      <DependentUpon>ListConsignmentDetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Not in use\ListInventory.resx">
-      <DependentUpon>ListInventory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\LeadgerReport1.rdlc">
       <SubType>Designer</SubType>
@@ -301,7 +274,9 @@
       <Name>ExcelReader</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UI\Not in use\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
