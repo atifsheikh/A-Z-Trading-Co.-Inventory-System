@@ -166,14 +166,14 @@ namespace InventoryManagement.Classes
             return combo;
         }
 
-        internal static void AddDataInSalesFile(string SrNo, string ItemCode, string ItemName, string Ctn, string Qty, string Quant, string UnitPrice, string SubTotal, string CustomerName, string BalanceNew, string Total, string textBox8, string textBox7)
+        internal static void AddDataInSalesFile(string SrNo, string ItemCode, string ItemName, string Ctn, string Qty, string Quant, string UnitPrice, string SubTotal, string CustomerName, string BalanceNew, string Total, string textBox8, string textBox7,string FileName)
         {
             try
             {
                 // Compose a string that consists of three lines.
                 string lines = SrNo + ";" + ItemCode + ";" + ItemName + ";" + Ctn + ";" + Qty + ";" + Quant + ";" + UnitPrice + ";" + SubTotal + "\r\n<>\r\n" + CustomerName + ";" + BalanceNew + ";" + Total + ";" + textBox8 + ";" + textBox7 + ";\r\n";
                 // Write the string to a file.
-                System.IO.StreamWriter file = new System.IO.StreamWriter("Sales.txt", true);
+                System.IO.StreamWriter file = new System.IO.StreamWriter(FileName, true);
                 file.WriteLine(lines);
 
                 file.Close();
@@ -186,16 +186,16 @@ namespace InventoryManagement.Classes
             }
         }
 
-        internal static void RestoreOldSlaesDataInGrid(System.Windows.Forms.DataGridView BillDetailDataGridView, System.Windows.Forms.ComboBox CustomerName_txt, System.Windows.Forms.TextBox BalanceNew_txt, System.Windows.Forms.TextBox Total_txt, System.Windows.Forms.TextBox textBox8, System.Windows.Forms.TextBox textBox7, System.Windows.Forms.TextBox CustomerBalance_txt)
+        internal static void RestoreOldSlaesDataInGrid(System.Windows.Forms.DataGridView BillDetailDataGridView, System.Windows.Forms.ComboBox CustomerName_txt, System.Windows.Forms.TextBox BalanceNew_txt, System.Windows.Forms.TextBox Total_txt, System.Windows.Forms.TextBox textBox8, System.Windows.Forms.TextBox textBox7, System.Windows.Forms.TextBox CustomerBalance_txt, string FileName)
         {
-            if (File.Exists("Sales.txt") == false)
+            if (File.Exists(FileName) == false)
                 return;
             ///////////
             string lines = "";
             string[] row = new string[1];
             try
             {
-                System.IO.StreamReader file = new System.IO.StreamReader("Sales.txt");
+                System.IO.StreamReader file = new System.IO.StreamReader(FileName);
                 while (lines != null)
                 {
                     lines = file.ReadLine();
@@ -228,11 +228,11 @@ namespace InventoryManagement.Classes
             }
         }
 
-        internal static void DeleteSalesFile()
+        internal static void DeleteSalesFile(string FileName)
         {
             try
             {
-                File.Delete("Sales.txt");
+                File.Delete(FileName);
             }
             catch (Exception ex)
             {

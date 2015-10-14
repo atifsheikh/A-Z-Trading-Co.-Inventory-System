@@ -159,7 +159,7 @@ namespace InventoryManagement.UI
                     //}
                     if (VendorsDataGridView.Columns.Count > 0)
                     {
-                        VendorsDataGridView.Columns["AMOUNT"].Visible = false;
+                        //VendorsDataGridView.Columns["AMOUNT"].Visible = false;
                         VendorsDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
                     }
                 }

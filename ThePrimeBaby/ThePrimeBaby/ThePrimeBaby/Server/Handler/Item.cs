@@ -90,13 +90,33 @@ namespace ThePrimeBaby.Server.Handler
                 return item.T_QUANTITY;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
+            Handle.GET("/ThePrimeBaby/GetItemShipmentHistory/{?}", (string ItemName, Request r) =>
+            {
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemName)).First;
+                if (item != null)
+                {
+                    QueryResultRows<IObjectView> billDetail = Db.SQL<IObjectView>("Select a.ID, a.SHIP_ID, a.ITEM_CODE, a.T_QUANTITY, a.QTY_PER_BOX, a.MODEL, a.CTN, a.PRICE, a.SUBTOTAL ,b.SHIP_DATE from ShipmentDetail a,Shipment b where ITEM_CODE = ? AND a.SHIP_ID = b.ID > ?", item, 0);
+                    ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
+                    itemSaleHistoryJson.ItemSaleHistory.Data = billDetail;
+                    return itemSaleHistoryJson;
+                }
+                else
+                    return null;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+
             Handle.GET("/ThePrimeBaby/GetItemSaleHistory/{?}", (string ItemName, Request r) =>
             {
-                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Name = ?", HttpUtility.UrlDecode(ItemName)).First;
-                QueryResultRows<IObjectView> billDetail = Db.SQL<IObjectView>("SELECT bd.ID, bd.QTY, bd.Bill.Id, bd.Item.ITEM_CODE, bd.Item.ITEM_NAME, bd.PCS_CTN, bd.T_QUANTITY, bd.UNITPRICE, bd.SUBTOTAL, bd.Customer.NAME , bd.Bill.DATED FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Item = ? AND bd.Bill.Id > ?", item, 0);
-                ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
-                itemSaleHistoryJson.ItemSaleHistory.Data = billDetail;
-                return itemSaleHistoryJson;
+                Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemName)).First;
+                if (item != null)
+                {
+                    QueryResultRows<IObjectView> billDetail = Db.SQL<IObjectView>("SELECT bd.ID, bd.ctn, bd.Bill.Id, bd.Item.code, bd.Item.model, bd.QTY_PER_BOX, bd.T_QUANTITY, bd.PRICE, bd.SUBTOTAL, bd.bill.Customer.NAME , bd.Bill.DATED FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Item = ? AND bd.Bill.Id > ?", item, 0);
+                    ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
+                    itemSaleHistoryJson.ItemSaleHistory.Data = billDetail;
+                    return itemSaleHistoryJson;
+                }
+                else 
+                    return null;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetItemDetails/{?}", (string FindString,Request r) =>

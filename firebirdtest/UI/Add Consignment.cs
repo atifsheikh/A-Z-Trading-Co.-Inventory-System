@@ -143,7 +143,7 @@ namespace InventoryManagement.UI
                     TOTAL_CTN_txt.Text = (Convert.ToInt32(TOTAL_CTN_txt.Text) + Convert.ToInt32(Ctn_txt.Text)).ToString();
                     int temp = Convert.ToInt32(textBox7.Text);
                     textBox7.Text = (++temp).ToString();
-                    RandomAlgos.AddDataInSalesFile((ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitCostPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitCostPrice_txt.Text)).ToString(), VendorName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text);
+                    RandomAlgos.AddDataInSalesFile((ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitCostPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitCostPrice_txt.Text)).ToString(), VendorName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text, "Consignment.txt");
                 }
                 Total_txt.Text = (Convert.ToDecimal(Total_txt.Text) + Convert.ToDecimal(Quant_txt.Text) * Convert.ToDecimal(UnitCostPrice_txt.Text)).ToString();
                 
@@ -375,7 +375,7 @@ namespace InventoryManagement.UI
 
             try
             {
-                RandomAlgos.DeleteSalesFile();
+                RandomAlgos.DeleteSalesFile("Consignment.txt");
             }
             catch (Exception ex)
             {
@@ -691,7 +691,7 @@ namespace InventoryManagement.UI
                 decimal CostAmmount = 0;
                 int NumberOfItems = 0;
                 int NumberOfCTN = 0;
-                RandomAlgos.DeleteSalesFile();
+                RandomAlgos.DeleteSalesFile("Consignment.txt");
                 for (int loop = 0; loop < ConsignmentDetailDataGridView.Rows.Count - 1; loop++)
                 {
                     RandomAlgos.AddDataInSalesFile(ConsignmentDetailDataGridView.Rows[loop].Cells[0].Value.ToString(),
@@ -702,7 +702,7 @@ namespace InventoryManagement.UI
                         ConsignmentDetailDataGridView.Rows[loop].Cells[5].Value.ToString(),
                         ConsignmentDetailDataGridView.Rows[loop].Cells[6].Value.ToString(),
                         ConsignmentDetailDataGridView.Rows[loop].Cells[7].Value.ToString(),
-                        VendorName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text);
+                        VendorName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_CTN_txt.Text, textBox7.Text, "Consignment.txt");
                     CostAmmount += Convert.ToDecimal(ConsignmentDetailDataGridView.Rows[loop].Cells["SUBTOTAL"].Value);
                     NumberOfItems++;
                     if (ConsignmentDetailDataGridView.Rows[loop].Cells["Qty"].Value != "")
@@ -1035,8 +1035,11 @@ namespace InventoryManagement.UI
         {
             try
             {
-                if (ConsignmentDataGridView.Columns.Count> 0)
+                if (ConsignmentDataGridView.Columns.Count > 0)
+                {
                     ConsignmentDataGridView.Columns["ID"].SortMode = DataGridViewColumnSortMode.NotSortable;
+                    ConsignmentDataGridView.Sort(ConsignmentDataGridView.Columns["DATED"], ListSortDirection.Descending);
+                }
                 for (int loop = 0; loop < ConsignmentDataGridView.Rows.Count; loop++)
                 {
                     if (Convert.ToInt32(ConsignmentDataGridView.Rows[loop].Cells["ID"].Value) < 0)
@@ -1344,7 +1347,7 @@ namespace InventoryManagement.UI
 
             try
             {
-                RandomAlgos.RestoreOldSlaesDataInGrid(ConsignmentDetailDataGridView, VendorName_txt, BalanceNew_txt, Total_txt, TOTAL_CTN_txt, textBox7, VendorBalance_txt);
+                RandomAlgos.RestoreOldSlaesDataInGrid(ConsignmentDetailDataGridView, VendorName_txt, BalanceNew_txt, Total_txt, TOTAL_CTN_txt, textBox7, VendorBalance_txt,"Consignment.txt");
                 VendorName_txt_Leave(sender, e);
             }
             catch (Exception ex)

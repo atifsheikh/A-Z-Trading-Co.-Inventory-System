@@ -128,7 +128,7 @@ namespace InventoryManagement.UI
 
                 int temp = Convert.ToInt32(textBox7.Text);
                 textBox7.Text = (++temp).ToString();
-                RandomAlgos.AddDataInSalesFile((InvoiceDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_Box_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString(), CustomerName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_ITEMS_txt.Text, textBox7.Text);
+                RandomAlgos.AddDataInSalesFile((InvoiceDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_Box_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString(), CustomerName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_ITEMS_txt.Text, textBox7.Text, "Sales.txt");
                 Total_txt.Text = (Convert.ToDecimal(Total_txt.Text) + Convert.ToDecimal(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString();
 
                 ItemCode_txt.Text = "";
@@ -319,7 +319,7 @@ namespace InventoryManagement.UI
 
             try
             {
-                RandomAlgos.DeleteSalesFile();
+                RandomAlgos.DeleteSalesFile("Sales.txt");
             }
             catch (Exception ex)
             {
@@ -593,7 +593,7 @@ namespace InventoryManagement.UI
                 decimal CostAmmount = 0;
                 int NumberOfItems = 0;
                 int NumberOfCTN = 0;
-                RandomAlgos.DeleteSalesFile();
+                RandomAlgos.DeleteSalesFile("Sales.txt");
                 for (int loop = 0; loop < InvoiceDetailDataGridView.Rows.Count - 1; loop++)
                 {
                     RandomAlgos.AddDataInSalesFile(InvoiceDetailDataGridView.Rows[loop].Cells[0].Value.ToString(),
@@ -604,7 +604,7 @@ namespace InventoryManagement.UI
                         InvoiceDetailDataGridView.Rows[loop].Cells[5].Value.ToString(),
                         InvoiceDetailDataGridView.Rows[loop].Cells[6].Value.ToString(),
                         InvoiceDetailDataGridView.Rows[loop].Cells[7].Value.ToString(),
-                        CustomerName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_ITEMS_txt.Text, textBox7.Text);
+                        CustomerName_txt.Text, BalanceNew_txt.Text, Total_txt.Text, TOTAL_ITEMS_txt.Text, textBox7.Text, "Sales.txt");
                     CostAmmount += Convert.ToDecimal(InvoiceDetailDataGridView.Rows[loop].Cells["SUBTOTAL"].Value);
                     NumberOfItems++;
                     TOTAL_ITEMS_txt.Text = (InvoiceDetailDataGridView.Rows[loop].Cells["Quant"].Value == "" ? 0 : (Convert.ToInt32(InvoiceDetailDataGridView.Rows[loop].Cells["Quant"].Value) + Convert.ToInt32(TOTAL_ITEMS_txt.Text))).ToString();
@@ -927,8 +927,11 @@ namespace InventoryManagement.UI
         {
             try
             {
-                if (InvoiceDataGridView.Columns.Count> 0)
+                if (InvoiceDataGridView.Columns.Count > 0)
+                {
                     InvoiceDataGridView.Columns["ID"].SortMode = DataGridViewColumnSortMode.NotSortable;
+                    InvoiceDataGridView.Sort(InvoiceDataGridView.Columns["DATED"], ListSortDirection.Descending);
+                }
                 for (int loop = 0; loop < InvoiceDataGridView.Rows.Count; loop++)
                 {
                     if (Convert.ToInt32(InvoiceDataGridView.Rows[loop].Cells["ID"].Value) < 0)
@@ -1263,7 +1266,7 @@ namespace InventoryManagement.UI
 
             try
             {
-                RandomAlgos.RestoreOldSlaesDataInGrid(InvoiceDetailDataGridView, CustomerName_txt, BalanceNew_txt, Total_txt, TOTAL_ITEMS_txt, textBox7, CustomerBalance_txt);
+                RandomAlgos.RestoreOldSlaesDataInGrid(InvoiceDetailDataGridView, CustomerName_txt, BalanceNew_txt, Total_txt, TOTAL_ITEMS_txt, textBox7, CustomerBalance_txt,"Sales.txt");
                 CustomerName_txt_Leave(sender, e);
             }
             catch (Exception ex)

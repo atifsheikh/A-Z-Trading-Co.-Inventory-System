@@ -130,9 +130,6 @@ namespace InventoryManagement.UI
             }
             catch (Exception ex)
             {
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationStatus = true;
             }
 
         }

@@ -156,8 +156,8 @@ namespace InventoryManagement.UI
                     CustomersDataGridView.Columns["PHONE"].DisplayIndex = 2;
                     CustomersDataGridView.Columns["EMAIL"].DisplayIndex = 3;
                     CustomersDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 4;
+                    CustomersDataGridView.Columns["AMOUNT"].DisplayIndex = 5; 
                     CustomersDataGridView.Columns["ID"].Visible = false;
-                    CustomersDataGridView.Columns["AMOUNT"].Visible = false;
                     CustomersDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
                 }
             }

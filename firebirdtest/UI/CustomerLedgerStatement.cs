@@ -379,7 +379,7 @@ namespace InventoryManagement.UI
         {
             for (int loop = 0; loop < LedgerGridView.Rows.Count - 1; loop++)
             {
-                if (LedgerGridView.Rows[loop].Cells["REMARKS"].Value.ToString().Contains("Invoice"))
+                if (Convert.ToInt32(LedgerGridView.Rows[loop].Cells["ID"].Value.ToString()) < 0)
                     LedgerGridView.Rows[loop].DefaultCellStyle.BackColor = Color.GreenYellow;
                 else
                     LedgerGridView.Rows[loop].DefaultCellStyle.BackColor = Color.SkyBlue;

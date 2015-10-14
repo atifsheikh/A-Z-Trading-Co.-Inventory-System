@@ -406,8 +406,7 @@ namespace InventoryManagement
         }
         internal static DataSet GetItemShipmentHistory(string p)
         {
-            string Result = POST("http://"+global::InventoryManagement.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemShipmentHistory/" + p, "");
-            return JsonToDataSet(Result);
+            return GET("http://"+global::InventoryManagement.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/GetItemShipmentHistory/" + p);
         }
         internal static DataSet GetItemsForSale()
         {
