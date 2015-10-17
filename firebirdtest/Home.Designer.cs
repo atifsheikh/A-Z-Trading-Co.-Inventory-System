@@ -117,7 +117,7 @@
             this.Customer_Strip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.Customer_Strip.Name = "contextMenuStrip1";
             this.Customer_Strip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.Customer_Strip.Size = new System.Drawing.Size(61, 4);
+            this.Customer_Strip.Size = new System.Drawing.Size(67, 4);
             // 
             // Consignment_strip
             // 
@@ -264,14 +264,14 @@
             // addVendorToolStripMenuItem
             // 
             this.addVendorToolStripMenuItem.Name = "addVendorToolStripMenuItem";
-            this.addVendorToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.addVendorToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.addVendorToolStripMenuItem.Text = "Add Vendor";
             this.addVendorToolStripMenuItem.Click += new System.EventHandler(this.addVendorToolStripMenuItem_Click);
             // 
             // addCustomerToolStripMenuItem1
             // 
             this.addCustomerToolStripMenuItem1.Name = "addCustomerToolStripMenuItem1";
-            this.addCustomerToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.addCustomerToolStripMenuItem1.Size = new System.Drawing.Size(179, 26);
             this.addCustomerToolStripMenuItem1.Text = "Add Customer";
             this.addCustomerToolStripMenuItem1.Click += new System.EventHandler(this.addCustomerToolStripMenuItem1_Click);
             // 
