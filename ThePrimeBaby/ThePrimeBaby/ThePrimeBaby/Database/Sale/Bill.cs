@@ -26,14 +26,14 @@ namespace ThePrimeBaby.Database
         {
             get
             {
-                QueryResultRows<ThePrimeBaby.Database.Bill> bills = Db.SQL<ThePrimeBaby.Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE s.Customer = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.CUSTOMER, this.DATED, 0, this.ID);
+                QueryResultRows<ThePrimeBaby.Database.Bill> bills = Db.SQL<ThePrimeBaby.Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE s.Customer = ? AND s.DATED <= ? AND s.ID > ?", this.CUSTOMER, this.DATED, 0);
                 decimal customerBalance = 0.0m;
                 foreach (Bill bill in bills)
                 {
                     customerBalance += bill.AMOUNT;
                 }
 
-                QueryResultRows<ThePrimeBaby.Database.CustomerVoucher> vouchers = Db.SQL<ThePrimeBaby.Database.CustomerVoucher>("SELECT s FROM ThePrimeBaby.Database.CustomerVoucher s WHERE s.Customer = ? AND s.DATED <= ? AND s.ID > ? AND s.ID <= ? ", this.CUSTOMER, this.DATED, this.ID, 0);
+                QueryResultRows<ThePrimeBaby.Database.CustomerVoucher> vouchers = Db.SQL<ThePrimeBaby.Database.CustomerVoucher>("SELECT s FROM ThePrimeBaby.Database.CustomerVoucher s WHERE s.Customer = ? AND s.DATED <= ? AND s.ID <= ? ", this.CUSTOMER, this.DATED, 0);
                 decimal customerVoucher = 0.0m;
                 foreach (CustomerVoucher voucher in vouchers)
                 {
@@ -43,6 +43,7 @@ namespace ThePrimeBaby.Database
                 return ((customerBalance + this.CUSTOMER.OPENING_BALANCE) - customerVoucher);
             }
         }
+
         public int TOTAL_CTN
         {
             get

@@ -37,6 +37,8 @@ namespace InventoryManagement.UI
                     VendorNameDataGridView.Columns["EMAIL"].Visible = false;
                     VendorNameDataGridView.Columns["PHONE"].Visible = false;
                     VendorNameDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                    VendorNameDataGridView.Columns["BUSINESS_NAME"].Visible = false;
+                    VendorNameDataGridView.Columns["AMOUNT"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -315,7 +317,7 @@ namespace InventoryManagement.UI
                     VoucherRemarks_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["REMARKS"].Value.ToString();
                     VoucherAmount_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["AMOUNT"].Value.ToString();
                     VendorID_txt.Text = LedgerGridView.Rows[LedgerGridView.CurrentRow.Index].Cells["VendorID"].Value.ToString();
-                    VendorBalance_txt.Text = LedgerGridView.Rows[SelectedRowIndex].Cells["VENDOR_BALANCE"].Value.ToString().Trim();
+                    VendorBalance_txt.Text = LedgerGridView.Rows[SelectedRowIndex].Cells["AMOUNT"].Value.ToString().Trim();
                     RemainingBalance_txt.Text = (Convert.ToDecimal(VendorBalance_txt.Text) - Convert.ToDecimal(VoucherAmount_txt.Text)).ToString();
                 }
             }

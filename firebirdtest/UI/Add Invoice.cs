@@ -100,7 +100,7 @@ namespace InventoryManagement.UI
                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Trim();
                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop].Cells["Model"].Value.ToString().Trim();
                                 Qty_Box_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
-                                Ctn_txt.Focus();
+                                Qty_txt.Focus();
                                 break;
                             }
                         }
@@ -1126,7 +1126,7 @@ namespace InventoryManagement.UI
                     Qty_Box_txt.Text = InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["Ctn"].Value.ToString();
                     Quant_txt.Text = InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["Quant"].Value.ToString();
                     UnitPrice_txt.Text = InvoiceDetailDataGridView.Rows[InvoiceDetailDataGridView.CurrentRow.Index].Cells["Price"].Value.ToString();
-                    Ctn_txt.Focus();
+                    Qty_txt.Focus();
                 }
             }
             catch (Exception ex)
@@ -1387,12 +1387,13 @@ namespace InventoryManagement.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
+                    int CurrentRow = ItemsDataGridView.CurrentRow.Index;
                     ItemsDataGridView.Visible = false;
-                    Ctn_txt.Focus();
-                    ItemCode_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["CODE"].Value.ToString().Trim();
-                    UnitPrice_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["PRICE"].Value.ToString().Trim();
-                    ItemName_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["Model"].Value.ToString().Trim();
-                    Qty_Box_txt.Text = ItemsDataGridView.Rows[ItemsDataGridView.CurrentRow.Index].Cells["QTY_BOX"].Value.ToString();
+                    Qty_txt.Focus();
+                    ItemCode_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["CODE"].Value.ToString().Trim();
+                    UnitPrice_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["PRICE"].Value.ToString().Trim();
+                    ItemName_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["Model"].Value.ToString().Trim();
+                    Qty_Box_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["QTY_BOX"].Value.ToString();
                 }
                 else if (e.KeyCode == Keys.Escape)
                 {

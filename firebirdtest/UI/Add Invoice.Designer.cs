@@ -48,9 +48,6 @@
             this.label34 = new System.Windows.Forms.Label();
             this.Qty_txt = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.ItemsDataGridView = new System.Windows.Forms.DataGridView();
@@ -58,9 +55,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.Quant_txt = new System.Windows.Forms.TextBox();
-            this.Qty_Box_txt = new System.Windows.Forms.TextBox();
-            this.Ctn_txt = new System.Windows.Forms.TextBox();
             this.CustomerID_txt = new System.Windows.Forms.TextBox();
             this.CustomerBalance_txt = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -72,14 +66,6 @@
             this.BalanceNew_txt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.InvoiceDetailDataGridView = new System.Windows.Forms.DataGridView();
-            this.Sr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ITEM_CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ctn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.StatusInvoice_txt = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -113,6 +99,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SpeedTest_BGWorker = new System.ComponentModel.BackgroundWorker();
+            this.label24 = new System.Windows.Forms.Label();
+            this.Quant_txt = new System.Windows.Forms.TextBox();
+            this.Qty_Box_txt = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.Ctn_txt = new System.Windows.Forms.TextBox();
+            this.Sr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ITEM_CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ctn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InvoiceDetailDataGridView)).BeginInit();
@@ -218,16 +218,16 @@
             this.label34.AutoSize = true;
             this.label34.BackColor = System.Drawing.Color.Transparent;
             this.label34.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label34.Location = new System.Drawing.Point(653, 180);
+            this.label34.Location = new System.Drawing.Point(481, 180);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(86, 17);
+            this.label34.Size = new System.Drawing.Size(61, 17);
             this.label34.TabIndex = 83;
-            this.label34.Text = "Quantity)   =";
+            this.label34.Text = "Quantity";
             // 
             // Qty_txt
             // 
-            this.Qty_txt.Location = new System.Drawing.Point(636, 196);
+            this.Qty_txt.Location = new System.Drawing.Point(464, 196);
             this.Qty_txt.Margin = new System.Windows.Forms.Padding(4);
             this.Qty_txt.Name = "Qty_txt";
             this.Qty_txt.Size = new System.Drawing.Size(93, 22);
@@ -240,48 +240,12 @@
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label25.Location = new System.Drawing.Point(895, 180);
+            this.label25.Location = new System.Drawing.Point(591, 180);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(69, 17);
             this.label25.TabIndex = 81;
             this.label25.Text = "Unit Price";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label24.Location = new System.Drawing.Point(748, 180);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(97, 17);
-            this.label24.TabIndex = 80;
-            this.label24.Text = "Total Quantity";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label23.Location = new System.Drawing.Point(544, 180);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(103, 17);
-            this.label23.TabIndex = 79;
-            this.label23.Text = "Quantity/Ctn) +";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label22.Location = new System.Drawing.Point(486, 180);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(60, 17);
-            this.label22.TabIndex = 78;
-            this.label22.Text = "((Ctn    *";
             // 
             // label21
             // 
@@ -403,40 +367,6 @@
             this.label5.TabIndex = 72;
             this.label5.Text = "No Of different Items";
             // 
-            // Quant_txt
-            // 
-            this.Quant_txt.Location = new System.Drawing.Point(731, 196);
-            this.Quant_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.Quant_txt.Name = "Quant_txt";
-            this.Quant_txt.Size = new System.Drawing.Size(133, 22);
-            this.Quant_txt.TabIndex = 5;
-            this.Quant_txt.TabStop = false;
-            this.Quant_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Quant_txt_KeyPress);
-            // 
-            // Qty_Box_txt
-            // 
-            this.Qty_Box_txt.Location = new System.Drawing.Point(545, 196);
-            this.Qty_Box_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.Qty_Box_txt.Name = "Qty_Box_txt";
-            this.Qty_Box_txt.Size = new System.Drawing.Size(89, 22);
-            this.Qty_Box_txt.TabIndex = 3;
-            this.Qty_Box_txt.TabStop = false;
-            this.Qty_Box_txt.TextChanged += new System.EventHandler(this.Qty_txt_TextChanged);
-            this.Qty_Box_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Qty_txt_KeyDown);
-            this.Qty_Box_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Qty_txt_KeyPress);
-            // 
-            // Ctn_txt
-            // 
-            this.Ctn_txt.Location = new System.Drawing.Point(461, 196);
-            this.Ctn_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.Ctn_txt.Name = "Ctn_txt";
-            this.Ctn_txt.Size = new System.Drawing.Size(82, 22);
-            this.Ctn_txt.TabIndex = 2;
-            this.Ctn_txt.TabStop = false;
-            this.Ctn_txt.TextChanged += new System.EventHandler(this.Ctn_txt_TextChanged);
-            this.Ctn_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemName_txt_KeyDown);
-            this.Ctn_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Ctn_txt_KeyPress);
-            // 
             // CustomerID_txt
             // 
             this.CustomerID_txt.Enabled = false;
@@ -509,7 +439,7 @@
             // 
             // UnitPrice_txt
             // 
-            this.UnitPrice_txt.Location = new System.Drawing.Point(865, 196);
+            this.UnitPrice_txt.Location = new System.Drawing.Point(561, 196);
             this.UnitPrice_txt.Margin = new System.Windows.Forms.Padding(4);
             this.UnitPrice_txt.Name = "UnitPrice_txt";
             this.UnitPrice_txt.Size = new System.Drawing.Size(133, 22);
@@ -601,60 +531,6 @@
             this.InvoiceDetailDataGridView.TabIndex = 15;
             this.InvoiceDetailDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceDetailDataGridView_CellClick);
             this.InvoiceDetailDataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.InvoiceDetailDataGridView_RowsRemoved);
-            // 
-            // Sr
-            // 
-            this.Sr.Frozen = true;
-            this.Sr.HeaderText = "Sr #";
-            this.Sr.Name = "Sr";
-            this.Sr.Width = 63;
-            // 
-            // ITEM_CODE
-            // 
-            this.ITEM_CODE.Frozen = true;
-            this.ITEM_CODE.HeaderText = "ITEM_CODE";
-            this.ITEM_CODE.Name = "ITEM_CODE";
-            this.ITEM_CODE.ReadOnly = true;
-            this.ITEM_CODE.Width = 116;
-            // 
-            // ItemName
-            // 
-            this.ItemName.HeaderText = "Item Name";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.Width = 104;
-            // 
-            // Ctn
-            // 
-            this.Ctn.HeaderText = "Pcs/Ctn";
-            this.Ctn.Name = "Ctn";
-            this.Ctn.Width = 85;
-            // 
-            // Qty
-            // 
-            this.Qty.HeaderText = "Ctn";
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            this.Qty.Width = 58;
-            // 
-            // Quant
-            // 
-            this.Quant.HeaderText = "Quant";
-            this.Quant.Name = "Quant";
-            this.Quant.Width = 76;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "UnitPrice";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Width = 94;
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "SubTotal";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 94;
             // 
             // label14
             // 
@@ -1068,6 +944,140 @@
             this.SpeedTest_BGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SpeedTest_BGWorker_DoWork);
             this.SpeedTest_BGWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SpeedTest_BGWorker_RunWorkerCompleted);
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Transparent;
+            this.label24.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label24.Location = new System.Drawing.Point(1194, 180);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(97, 17);
+            this.label24.TabIndex = 80;
+            this.label24.Text = "Total Quantity";
+            this.label24.Visible = false;
+            // 
+            // Quant_txt
+            // 
+            this.Quant_txt.Location = new System.Drawing.Point(1177, 196);
+            this.Quant_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.Quant_txt.Name = "Quant_txt";
+            this.Quant_txt.Size = new System.Drawing.Size(133, 22);
+            this.Quant_txt.TabIndex = 5;
+            this.Quant_txt.TabStop = false;
+            this.Quant_txt.Text = "0";
+            this.Quant_txt.Visible = false;
+            this.Quant_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Quant_txt_KeyPress);
+            // 
+            // Qty_Box_txt
+            // 
+            this.Qty_Box_txt.Location = new System.Drawing.Point(1086, 196);
+            this.Qty_Box_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.Qty_Box_txt.Name = "Qty_Box_txt";
+            this.Qty_Box_txt.Size = new System.Drawing.Size(89, 22);
+            this.Qty_Box_txt.TabIndex = 3;
+            this.Qty_Box_txt.TabStop = false;
+            this.Qty_Box_txt.Text = "0";
+            this.Qty_Box_txt.Visible = false;
+            this.Qty_Box_txt.TextChanged += new System.EventHandler(this.Qty_txt_TextChanged);
+            this.Qty_Box_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Qty_txt_KeyDown);
+            this.Qty_Box_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Qty_txt_KeyPress);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label23.Location = new System.Drawing.Point(1085, 180);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(103, 17);
+            this.label23.TabIndex = 79;
+            this.label23.Text = "Quantity/Ctn) +";
+            this.label23.Visible = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label22.Location = new System.Drawing.Point(1027, 180);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(60, 17);
+            this.label22.TabIndex = 78;
+            this.label22.Text = "((Ctn    *";
+            this.label22.Visible = false;
+            // 
+            // Ctn_txt
+            // 
+            this.Ctn_txt.Location = new System.Drawing.Point(1002, 196);
+            this.Ctn_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.Ctn_txt.Name = "Ctn_txt";
+            this.Ctn_txt.Size = new System.Drawing.Size(82, 22);
+            this.Ctn_txt.TabIndex = 2;
+            this.Ctn_txt.TabStop = false;
+            this.Ctn_txt.Text = "0";
+            this.Ctn_txt.Visible = false;
+            this.Ctn_txt.TextChanged += new System.EventHandler(this.Ctn_txt_TextChanged);
+            this.Ctn_txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemName_txt_KeyDown);
+            this.Ctn_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Ctn_txt_KeyPress);
+            // 
+            // Sr
+            // 
+            this.Sr.Frozen = true;
+            this.Sr.HeaderText = "Sr #";
+            this.Sr.Name = "Sr";
+            this.Sr.Width = 63;
+            // 
+            // ITEM_CODE
+            // 
+            this.ITEM_CODE.Frozen = true;
+            this.ITEM_CODE.HeaderText = "ITEM_CODE";
+            this.ITEM_CODE.Name = "ITEM_CODE";
+            this.ITEM_CODE.ReadOnly = true;
+            this.ITEM_CODE.Width = 116;
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Item Name";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 104;
+            // 
+            // Ctn
+            // 
+            this.Ctn.HeaderText = "Pcs/Ctn";
+            this.Ctn.Name = "Ctn";
+            this.Ctn.Width = 85;
+            // 
+            // Qty
+            // 
+            this.Qty.HeaderText = "Ctn";
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            this.Qty.Visible = false;
+            this.Qty.Width = 58;
+            // 
+            // Quant
+            // 
+            this.Quant.HeaderText = "Quant";
+            this.Quant.Name = "Quant";
+            this.Quant.Width = 76;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "UnitPrice";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 94;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.HeaderText = "SubTotal";
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 94;
+            // 
             // AddInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1141,9 +1151,6 @@
         private System.Windows.Forms.TextBox CustomerBalance_txt;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox CustomerID_txt;
-        private System.Windows.Forms.TextBox Quant_txt;
-        private System.Windows.Forms.TextBox Qty_Box_txt;
-        private System.Windows.Forms.TextBox Ctn_txt;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox TOTAL_ITEMS_txt;
         private System.Windows.Forms.Label label18;
@@ -1157,11 +1164,18 @@
         private System.ComponentModel.BackgroundWorker SpeedTest_BGWorker;
         private System.Windows.Forms.DataGridView ItemsDataGridView;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox Qty_txt;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox BusinessName_txt;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox Quant_txt;
+        private System.Windows.Forms.TextBox Qty_Box_txt;
+        private System.Windows.Forms.TextBox Ctn_txt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ITEM_CODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
@@ -1170,9 +1184,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox Qty_txt;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox BusinessName_txt;
     }
 }
