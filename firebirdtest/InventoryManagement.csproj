@@ -248,10 +248,7 @@
     <EmbeddedResource Include="UI\VendorLedgerStatement.resx">
       <DependentUpon>VendorLedgerStatement.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="firebirdtest.Classes.InvoiceDetails.datasource" />
-    <None Include="firebirdtest.Classes.RandomAlgos.datasource" />
     <None Include="packages.config" />
-    <None Include="Product.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
