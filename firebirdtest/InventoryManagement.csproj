@@ -64,7 +64,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\BillInvoice.cs" />
+    <Compile Include="DataSets\BillInvoice.cs" />
+    <Compile Include="DataSets\DebitorSummaryDataSet.cs" />
     <Compile Include="Classes\Demo.cs" />
     <Compile Include="Classes\RandomAlgos.cs" />
     <Compile Include="Classes\DatabaseCalls.cs" />

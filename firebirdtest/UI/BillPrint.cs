@@ -12,6 +12,7 @@ using InventoryManagement.Classes;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Xml;
+using InventoryManagement.DataSets;
 namespace InventoryManagement.UI
 {
     public partial class BillPrint : Form
