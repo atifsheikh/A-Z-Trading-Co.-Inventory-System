@@ -527,8 +527,8 @@ namespace InventoryManagement.UI
             catch (Exception ex)
             {
                 Variables.NotificationStatus = true;
-            Variables.NotificationMessageTitle = this.Name;
-            Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = ex.Message;
             }
         }
 

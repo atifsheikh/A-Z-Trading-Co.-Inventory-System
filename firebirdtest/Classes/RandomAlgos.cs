@@ -73,6 +73,10 @@ namespace InventoryManagement.Classes
         public static IEnumerable<object> newList = originalList;
         public static System.Windows.Forms.ComboBox comboKeyPressed(System.Windows.Forms.ComboBox combo)
         {
+            if (string.IsNullOrEmpty(combo.Text))
+            {
+                return combo;
+            }
             try
             {
                 try
@@ -107,7 +111,7 @@ namespace InventoryManagement.Classes
                     }
 
                     // clear list (loop through it, otherwise the cursor would move to the beginning of the textbox...)
-                    while (combo.Items.Count >= 0)
+                    while (combo.Items.Count > 0)
                     {
                         try
                         {
@@ -314,6 +318,29 @@ namespace InventoryManagement.Classes
                 Variables.NotificationMessageText = ex.Message;
                 Variables.NotificationStatus = true;
             }
+        }
+
+        internal static System.Windows.Forms.ComboBox comboKeyPressedNew(System.Windows.Forms.ComboBox combo)
+        {
+            if (string.IsNullOrEmpty(combo.Text))
+            {
+                return combo;
+            }
+            System.Windows.Forms.ComboBox Combo2 = new System.Windows.Forms.ComboBox();
+            //Combo2.Items.Clear();
+            foreach (string item in combo.Items)
+            {
+                if (StaticClass.Contain(combo.Text, item, StringComparison.OrdinalIgnoreCase))
+                {
+                    Combo2.Items.Add(item);
+                }
+            }
+            combo.Items.Clear();
+            foreach (string item in Combo2.Items)
+            {
+                combo.Items.Add(item);
+            }
+            return combo;
         }
     }
 }

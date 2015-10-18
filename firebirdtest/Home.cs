@@ -690,6 +690,10 @@ namespace InventoryManagement
                 {
                     switch (Variables.FormRefresh)
                     {
+                        case "ItemHistoryView":
+                            Variables.FormRefresh = "";
+                            itemHistoryReportToolStripMenuItem_Click(sender, e);
+                            break;
                         case "AddInvoice":
                             Variables.FormRefresh = "";
                             addSaleToolStripMenuItem_Click(sender, e);

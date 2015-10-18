@@ -14,18 +14,23 @@ namespace InventoryManagement.UI
     {
         private string p;
 
+        DataSet ItemsDataSet = new DataSet();
         public ItemHistoryView()
         {
             InitializeComponent();
-            DataSet Result1 = new DataSet();
-            Result1 = DatabaseCalls.GetItems();
+            ItemsDataSet = DatabaseCalls.GetItems();
+            PopulateItemNames();
+        }
+
+        private void PopulateItemNames()
+        {
 
             //Result1.Tables[0].Columns["Item_Code"].ColumnName = "Item Code";
-            if (Result1.Tables.Count > 0)
+            if (ItemsDataSet.Tables.Count > 0)
             {
-                for (int loop = 0; loop < Result1.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
+                for (int loop = 0; loop < ItemsDataSet.Tables[0].Rows.Count; loop++)//each (DataRow asdf in Result1.Tables[0].Rows[]["CODE"])
                 {
-                    ItemName_txt.Items.Add(Result1.Tables[0].Rows[loop]["CODE"]);
+                    ItemName_txt.Items.Add(ItemsDataSet.Tables[0].Rows[loop]["CODE"]);
                 }
             }
         }
@@ -34,40 +39,39 @@ namespace InventoryManagement.UI
         {
             try
             {
-                try
+                bool exist = false;
+                foreach (string item in ItemName_txt.Items)
                 {
+                    if (StaticClass.Contain(ItemName_txt.Text, item, StringComparison.OrdinalIgnoreCase))
                     {
-                        //if (ItemName_txt.Text != null)
-                        //    RandomAlgos.comboKeyPressed(ItemName_txt);
+                        exist = true;
+                        break;
                     }
                 }
-                catch (Exception ex)
+                if (exist == false)
+                    return;
+
+                var GetItemSaleHistoryDataSource = DatabaseCalls.GetItemSaleHistory(ItemName_txt.Text);
+                if (GetItemSaleHistoryDataSource.Tables.Count > 0)
                 {
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = ex.Message;
-                    Variables.NotificationStatus = true;
+                    SaleHistoryDataGridView.DataSource = GetItemSaleHistoryDataSource.Tables[0];
+                    if (SaleHistoryDataGridView.Columns.Count > 0)
+                    {
+                        //costumer name / item code / item name / qty per ctn / t qty / price / amount
+                        SaleHistoryDataGridView.Columns["ID"].Visible = false;
+                        SaleHistoryDataGridView.Columns["BILL_ID"].DisplayIndex = 0;
+                        SaleHistoryDataGridView.Columns["BILL_ID"].HeaderText = "BILL #";
+                        SaleHistoryDataGridView.Columns["CUSTOMERS_NAME"].DisplayIndex = 1;
+                        SaleHistoryDataGridView.Columns["CUSTOMERS_NAME"].HeaderText = "Customer Name";
+                        SaleHistoryDataGridView.Columns["ITEM_CODE"].DisplayIndex = 2;
+                        SaleHistoryDataGridView.Columns["ITEM_NAME"].DisplayIndex = 3;
+                        SaleHistoryDataGridView.Columns["QTY"].DisplayIndex = 4;
+                        SaleHistoryDataGridView.Columns["PCS_CTN"].DisplayIndex = 5;
+                        SaleHistoryDataGridView.Columns["T_QUANTITY"].DisplayIndex = 6;
+                        SaleHistoryDataGridView.Columns["UNITPRICE"].DisplayIndex = 7;
+                        SaleHistoryDataGridView.Columns["SUBTOTAL"].DisplayIndex = 8;
+                    }
                 }
-            }
-            catch (Exception ex)
-            { }
-            try
-            {
-                SaleHistoryDataGridView.DataSource = DatabaseCalls.GetItemSaleHistory(ItemName_txt.Text).Tables[0];
-                //costumer name / item code / item name / qty per ctn / t qty / price / amount
-                SaleHistoryDataGridView.Columns["ID"].Visible = false;
-                SaleHistoryDataGridView.Columns["BILL_ID"].DisplayIndex = 0;
-                SaleHistoryDataGridView.Columns["BILL_ID"].HeaderText = "BILL #";
-                SaleHistoryDataGridView.Columns["NAME"].DisplayIndex = 1;
-                SaleHistoryDataGridView.Columns["NAME"].HeaderText = "Customer Name";
-                SaleHistoryDataGridView.Columns["ITEM_CODE"].DisplayIndex = 2;
-                SaleHistoryDataGridView.Columns["ITEM_NAME"].DisplayIndex = 3;
-                SaleHistoryDataGridView.Columns["QTY"].DisplayIndex = 4;
-                SaleHistoryDataGridView.Columns["PCS_CTN"].DisplayIndex = 5;
-                SaleHistoryDataGridView.Columns["T_QUANTITY"].DisplayIndex = 6;
-                SaleHistoryDataGridView.Columns["UNITPRICE"].DisplayIndex = 7;
-                SaleHistoryDataGridView.Columns["SUBTOTAL"].DisplayIndex = 8;
-
-
             }
             catch (Exception ex)
             {
@@ -77,19 +81,26 @@ namespace InventoryManagement.UI
             }
             try
             {
-                ShipmentHistoryDataGridView.DataSource = DatabaseCalls.GetItemShipmentHistory(ItemName_txt.Text).Tables[0];
-                ShipmentHistoryDataGridView.Columns["ID"].Visible = false;
-                //ship ID / item code / discreption / ctn / qty per box / t quantity / price / t amount
-                ShipmentHistoryDataGridView.Columns["SHIP_ID"].DisplayIndex = 0;
-                ShipmentHistoryDataGridView.Columns["ITEM_CODE"].DisplayIndex = 1;
-                ShipmentHistoryDataGridView.Columns["MODEL"].DisplayIndex = 2;
+                var GetItemShipmentHistoryDataSource = DatabaseCalls.GetItemShipmentHistory(ItemName_txt.Text);
+                if (GetItemShipmentHistoryDataSource.Tables.Count > 0)
+                {
+                    ShipmentHistoryDataGridView.DataSource = GetItemShipmentHistoryDataSource.Tables[0];
+                    if (ShipmentHistoryDataGridView.Columns.Count > 0)
+                    {
+                        ShipmentHistoryDataGridView.Columns["SHIP_ID"].Visible = false;
+                        //ship ID / item code / discreption / ctn / qty per box / t quantity / price / t amount
+                        ShipmentHistoryDataGridView.Columns["SHIP_ID"].DisplayIndex = 0;
+                        ShipmentHistoryDataGridView.Columns["ITEM_CODE"].DisplayIndex = 1;
+                        ShipmentHistoryDataGridView.Columns["MODEL"].DisplayIndex = 2;
 
-                ShipmentHistoryDataGridView.Columns["CTN"].DisplayIndex = 3;
+                        ShipmentHistoryDataGridView.Columns["CTN"].DisplayIndex = 3;
 
-                ShipmentHistoryDataGridView.Columns["QTY_PER_BOX"].DisplayIndex = 4;
-                ShipmentHistoryDataGridView.Columns["T_QUANTITY"].DisplayIndex = 5;
-                ShipmentHistoryDataGridView.Columns["PRICE"].DisplayIndex = 6;
-                ShipmentHistoryDataGridView.Columns["SUBTOTAL"].DisplayIndex = 7;
+                        ShipmentHistoryDataGridView.Columns["QTY_PER_BOX"].DisplayIndex = 4;
+                        ShipmentHistoryDataGridView.Columns["T_QUANTITY"].DisplayIndex = 5;
+                        ShipmentHistoryDataGridView.Columns["PRICE"].DisplayIndex = 6;
+                        ShipmentHistoryDataGridView.Columns["SUBTOTAL"].DisplayIndex = 7;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -138,15 +149,47 @@ namespace InventoryManagement.UI
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.AllowDrop = false;
+                ItemName_txt.DroppedDown = false;
             }
+        }
 
+        private void ItemHistoryView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Variables.FormClosed = true;
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Variables.FormRefresh = this.Name;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                Variables.NotificationStatus = true;
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = ex.Message;
+            }
+        }
+
+        private void ItemName_txt_KeyUp(object sender, KeyEventArgs e)
+        {
             try
             {
                 if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode != Keys.Enter && e.KeyValue != 27)
                 {
-                    if (ItemName_txt.Text != null)
+                    if (!string.IsNullOrEmpty(ItemName_txt.Text))
+                    {
+                        //RandomAlgos.comboKeyPressedNew(ItemName_txt);
                         RandomAlgos.comboKeyPressed(ItemName_txt);
+                    }
+                    else
+                    {
+                        ItemName_txt.Items.Clear();
+                        PopulateItemNames();
+                    }
                 }
             }
             catch (Exception ex)
@@ -157,10 +200,9 @@ namespace InventoryManagement.UI
             }
         }
 
-        private void ItemHistoryView_FormClosed(object sender, FormClosedEventArgs e)
+        private void ItemName_txt_Enter(object sender, EventArgs e)
         {
-            Variables.FormClosed = true;
-
+            ItemName_txt.DroppedDown = true;
         }
     }
 }

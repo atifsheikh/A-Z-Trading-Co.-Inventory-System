@@ -1,15 +1,15 @@
 {
     "ItemSaleHistory": [
         {
-            "SALE_ID": 0,
-            "SALE_QTY": 0,
-            "SALE_BILL_ID": 0,
-            "SALE_ITEM_CODE": "",
-            "SALE_ITEM_NAME": "",
-            "SALE_PCS_CTN": 0,
-            "SALE_T_QUANTITY": 0,
-            "SALE_UNITPRICE": 0,
-            "SALE_SUBTOTAL": 0,
+            "ID": 0,
+            "QTY": 0,
+            "BILL_ID": 0,
+            "ITEM_CODE": "",
+            "ITEM_NAME": "",
+            "PCS_CTN": 0,
+            "T_QUANTITY": 0,
+            "UNITPRICE": "",
+            "SUBTOTAL": "",
             "CUSTOMERS_NAME": "",
             "DATED": ""
         }

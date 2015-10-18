@@ -95,10 +95,23 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemName)).First;
                 if (item != null)
                 {
-                    QueryResultRows<IObjectView> billDetail = Db.SQL<IObjectView>("Select a.ID, a.SHIP_ID, a.ITEM_CODE, a.T_QUANTITY, a.QTY_PER_BOX, a.MODEL, a.CTN, a.PRICE, a.SUBTOTAL ,b.SHIP_DATE from ShipmentDetail a,Shipment b where ITEM_CODE = ? AND a.SHIP_ID = b.ID > ?", item, 0);
-                    ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
-                    itemSaleHistoryJson.ItemSaleHistory.Data = billDetail;
-                    return itemSaleHistoryJson;
+                    QueryResultRows<IObjectView> ShipmentDetails = Db.SQL<IObjectView>("SELECT sd.Shipment.Id, sd.Item.code, sd.Item.model, sd.CTN, sd.QTY_PER_BOX, sd.T_QUANTITY, sd.PRICE, sd.SUBTOTAL, sd.Shipment.DATED from ShipmentDetail sd where sd.Item = ? AND sd.Shipment.Id > ?", item, 0);
+                    ItemShipmentHistoryJson itemShipmentHistoryJson = new ItemShipmentHistoryJson();
+                    foreach (IObjectView ShipmentDetail in ShipmentDetails)
+                    {
+                        var itemShipmentHistory = itemShipmentHistoryJson.ItemShipmentHistory.Add();//.Data = billDetails;
+                        //itemSaleHistory.Data = billDetail;
+                        itemShipmentHistory.SHIP_ID = long.Parse(ShipmentDetail.GetString(0));
+                        itemShipmentHistory.ITEM_CODE = ShipmentDetail.GetString(1);
+                        itemShipmentHistory.MODEL = ShipmentDetail.GetString(2);
+                        itemShipmentHistory.CTN = long.Parse(ShipmentDetail.GetString(3));
+                        itemShipmentHistory.QTY_PER_BOX = long.Parse(ShipmentDetail.GetString(4));
+                        itemShipmentHistory.T_QUANTITY = long.Parse(ShipmentDetail.GetString(5));
+                        itemShipmentHistory.PRICE = ShipmentDetail.GetString(6);
+                        itemShipmentHistory.SUBTOTAL = ShipmentDetail.GetString(7);
+                        itemShipmentHistory.DATED = ShipmentDetail.GetString(8);
+                    }
+                    return itemShipmentHistoryJson;
                 }
                 else
                     return null;
@@ -110,9 +123,24 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemName)).First;
                 if (item != null)
                 {
-                    QueryResultRows<IObjectView> billDetail = Db.SQL<IObjectView>("SELECT bd.ID, bd.ctn, bd.Bill.Id, bd.Item.code, bd.Item.model, bd.QTY_PER_BOX, bd.T_QUANTITY, bd.PRICE, bd.SUBTOTAL, bd.bill.Customer.NAME , bd.Bill.DATED FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Item = ? AND bd.Bill.Id > ?", item, 0);
+                    QueryResultRows<IObjectView> billDetails = Db.SQL<IObjectView>("SELECT bd.ID, bd.ctn, bd.Bill.Id, bd.Item.code, bd.Item.model, bd.QTY_PER_BOX, bd.T_QUANTITY, bd.PRICE, bd.SUBTOTAL, bd.bill.Customer.NAME , bd.Bill.DATED FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Item = ? AND bd.Bill.Id > ?", item, 0);
                     ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
-                    itemSaleHistoryJson.ItemSaleHistory.Data = billDetail;
+                    foreach (IObjectView billDetail in billDetails) 
+                    {
+                        var itemSaleHistory = itemSaleHistoryJson.ItemSaleHistory.Add();//.Data = billDetails;
+                        //itemSaleHistory.Data = billDetail;
+                        itemSaleHistory.ID = long.Parse(billDetail.GetString(0));
+                        itemSaleHistory.QTY = long.Parse(billDetail.GetString(1));
+                        itemSaleHistory.BILL_ID = long.Parse(billDetail.GetString(2));
+                        itemSaleHistory.ITEM_CODE= billDetail.GetString(3);
+                        itemSaleHistory.ITEM_NAME= billDetail.GetString(4);
+                        itemSaleHistory.PCS_CTN = long.Parse(billDetail.GetString(5));
+                        itemSaleHistory.T_QUANTITY = long.Parse(billDetail.GetString(6));
+                        itemSaleHistory.UNITPRICE = billDetail.GetString(7);
+                        itemSaleHistory.SUBTOTAL = billDetail.GetString(8);
+                        itemSaleHistory.CUSTOMERS_NAME = billDetail.GetString(9);
+                        itemSaleHistory.DATED = billDetail.GetString(10);
+                    }
                     return itemSaleHistoryJson;
                 }
                 else 

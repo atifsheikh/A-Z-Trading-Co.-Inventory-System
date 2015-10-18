@@ -146,6 +146,9 @@
     <TypedJSON Include="Server\Partials\BillInvoiceJson.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="Server\Partials\ItemShipmentHistoryJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="weaver.ignore" />
     <TypedJSON Include="Server\Partials\CategoryJson.json">
       <Generator>MsBuild:Compile</Generator>

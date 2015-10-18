@@ -1,0 +1,15 @@
+{
+    "ItemShipmentHistory": [
+        {
+            "SHIP_ID": 0,
+            "ITEM_CODE": "",
+            "MODEL": "",
+            "CTN": 0,
+            "QTY_PER_BOX": 0,
+            "T_QUANTITY": 0,
+            "PRICE": "",
+            "SUBTOTAL": "",
+            "DATED": ""
+        }
+    ]
+}
