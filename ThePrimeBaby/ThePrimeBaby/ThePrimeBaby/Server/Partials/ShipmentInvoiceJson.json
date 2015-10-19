@@ -1,0 +1,32 @@
+{
+	"VendorPreviousBalance" : "",
+    "Vendor": {
+        "ID": 0,
+        "NAME": "",
+		"BUSINESS_NAME":"",
+        "EMAIL": "",
+        "PHONE": "",
+        "ADDRESS": "",
+        "AMOUNT": 0,
+        "OPENING_BALANCE": 0,
+        "BALANCE_LIMIT": 0
+    },
+    "Shipment": {
+        "ID": 0,
+        "NAME": "",
+        "DATED": "",
+        "AMOUNT": 0,
+        "REMARKS": "",
+        "CUSTOMER_BALANCE": 0,
+        "TOTAL_CTN": 0
+    },
+    "ShipmentDetail": [
+        {
+            "NAME": "",
+            "MODEL": "",
+            "T_QUANTITY": 0,
+            "PRICE": 0,
+            "SUBTOTAL": 0
+        }
+    ]
+}

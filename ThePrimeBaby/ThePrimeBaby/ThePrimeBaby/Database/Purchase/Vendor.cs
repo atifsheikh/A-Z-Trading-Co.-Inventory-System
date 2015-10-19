@@ -41,6 +41,23 @@ namespace ThePrimeBaby.Database
         }
         public decimal OPENING_BALANCE;
         public decimal BALANCE_LIMIT;
+        internal static string PreviousBalance(Database.Vendor vendor, DateTime dateTime)
+        {
+            QueryResultRows<Database.Shipment> AllShipments = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE Vendor = ? AND DATED < ?", vendor, dateTime);
+            decimal ShipmentCalc = 0.0m;
+            foreach (Database.Shipment OneShipment in AllShipments)
+            {
+                ShipmentCalc += OneShipment.AMOUNT;
+            }
+            QueryResultRows<Database.VendorVoucher> AllVendorVouchers = Db.SQL<Database.VendorVoucher>("SELECT s FROM ThePrimeBaby.Database.VendorVoucher s WHERE Vendor = ? AND DATED < ?", vendor, dateTime);
+            decimal VendorCalc = 0.0m;
+            foreach (Database.VendorVoucher OneVendorVoucher in AllVendorVouchers)
+            {
+                VendorCalc += OneVendorVoucher.AMOUNT;
+            }
+            return ((ShipmentCalc + vendor.OPENING_BALANCE) - VendorCalc).ToString();
+
+        }
 
         internal static bool AddVendor(string Name, string address, string phone, string email, decimal balance_limit, decimal opening_balance, string BusinessName)
         {

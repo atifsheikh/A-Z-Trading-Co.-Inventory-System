@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using InventoryManagement.Classes;
 using System.Threading;
+using Newtonsoft.Json;
+using System.Xml;
+using InventoryManagement.DataSets;
 namespace InventoryManagement.UI
 {
     public partial class ConsignmentPrint : Form
@@ -37,7 +40,7 @@ namespace InventoryManagement.UI
                 ConsignmentDataSet = DatabaseCalls.GetShipments();
                 foreach (DataRow GridViewColumn in ConsignmentDataSet.Tables[0].Rows)
                 {
-                    ConsignmentNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
+                    ConsignmentNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0].ToString());
                 }
 
                 ConsignmentDataSet.Tables[0].Columns.Add("Vendor");
@@ -48,7 +51,6 @@ namespace InventoryManagement.UI
                     {
                         if (VendorDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(ConsignmentDataSet.Tables[0].Rows[loop]["VendorID"].ToString()) == true)
                         {
-//                            ConsignmentDataSet.Tables[0].Rows[loop]["CUSTOMER_BALANCE"] = DatabaseCalls.GetCurrentRowBalance(ConsignmentDataSet.Tables[0].Rows[loop]["Vendor_ID"].ToString(), ConsignmentDataSet.Tables[0].Rows[loop][0].ToString());
                             ConsignmentDataSet.Tables[0].Rows[loop]["Vendor"] = VendorDataSet.Tables[0].Rows[loop1]["Name"].ToString();
                             break;
                         }
@@ -64,14 +66,12 @@ namespace InventoryManagement.UI
 
 
                 ConsignmentDataGridView.Columns["VendorID"].Visible = false;
-                //ConsignmentDataGridView.Columns["AMOUNT"].Visible = false;
-                //ConsignmentDataGridView.Columns["REMARKS"].Visible = false;
-                ////ConsignmentDataGridView.Columns["CUSTOMER_BALANCE"].Visible = false;
-                //ConsignmentDataGridView.Columns["NAME"].Visible = false;
+                ConsignmentDataGridView.Columns["AMOUNT"].Visible = false;
+                ConsignmentDataGridView.Columns["REMARKS"].Visible = false;
+                ConsignmentDataGridView.Columns["NAME"].Visible = false;
 
                 ConsignmentDataGridView.Columns["Vendor"].DisplayIndex = 1;
-                ConsignmentDataGridView.Update();
-                //                ConsignmentDataGridView.Columns["Vendor_ID"].HeaderText = "Vendor";
+                ConsignmentDataGridView.Update();                
             }
             catch (Exception ex)
             {
@@ -80,42 +80,11 @@ namespace InventoryManagement.UI
                 Variables.NotificationStatus = true;
             }
             
-            ////Consignments
-            //try
-            //{
-            //    DataSet Result2 = new DataSet();
-            //    Result2 = DatabaseCalls.GetConsignments();
-            //    foreach (DataRow GridViewColumn in Result2.Tables[0].Rows)
-            //    {
-            //        if (Convert.ToInt32(GridViewColumn.ItemArray[0]) > -1)
-            //        {
-            //            ConsignmentNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
-            //        }
-            //        else
-            //        {
-            //            GridViewColumn.Delete();
-            //        }
-            //    } 
-            //    ConsignmentDataGridView.DataSource = Result2.Tables[0];
-            //    ConsignmentDataGridView.Columns[0].HeaderText = "Consignment #";
-            //    ConsignmentDataGridView.Columns["Vendor_ID"].Visible = false;
-                
-            //    //ConsignmentNumber_txt.Text = (++Result1).ToString();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Variables.NotificationStatus = true;
-            //Variables.NotificationMessageTitle = this.Name;
-            //Variables.NotificationMessageText = ex.Message;
-            //}
-
             //Vendors
             try
             {
                 VendorDataSet = DatabaseCalls.GetVendors();
-                //ConsignmentDataGridView.DataSource = VendorDataSet.Tables[0];
-                //ConsignmentDataGridView.Columns[0].Visible = false;
-
+                
                 foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
                 {
                     VendorNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
@@ -129,63 +98,9 @@ namespace InventoryManagement.UI
             }
         }
 
-        //string MakeImageSrcData(byte[] filebytes)
-        //{
-        //    return "data:image/png;base64," + Convert.ToBase64String(filebytes, Base64FormattingOptions.None);
-        //}
-
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //this.SALETableAdapter.Fill(this.DataSet1.SALE);
-                DataSet ConsignmentDataSet = new DataSet();
-                ConsignmentDataSet = DatabaseCalls.GetShipment(ConsignmentNumberSearch_txt.Text);
-
-
-                ReportParameter[] _ReportParameter = new ReportParameter[8];
-                String VendorID = ConsignmentDataGridView.CurrentRow.Cells["CUSTOMER_ID"].Value.ToString();
-                decimal CalculatedBalance = Convert.ToDecimal(DatabaseCalls.GetCurrentRowBalance(VendorID, ConsignmentNumberSearch_txt.Text));
-                foreach (DataRow GridViewColumn in ConsignmentDataSet.Tables[0].Rows)
-                {
-                    _ReportParameter[0] = new ReportParameter("ConsignmentNumber", ConsignmentNumberSearch_txt.Text);
-                    _ReportParameter[1] = new ReportParameter("InvoiceDate", Convert.ToDateTime(GridViewColumn.ItemArray[2]).ToShortDateString());
-                    _ReportParameter[2] = new ReportParameter("ConsignmentBalance", GridViewColumn.ItemArray[5].ToString());
-                    _ReportParameter[6] = new ReportParameter("Total", ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentCell.RowIndex].Cells["CUSTOMER_BALANCE"].Value.ToString());
-                    VendorID = GridViewColumn.ItemArray[1].ToString();
-                }
-                DataSet VendorDataSet = new DataSet();
-                VendorDataSet = DatabaseCalls.GetVendor(Convert.ToInt32(VendorID));
-                foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
-                {
-                    _ReportParameter[3] = new ReportParameter("VendorName", GridViewColumn.ItemArray[1].ToString());
-                    _ReportParameter[4] = new ReportParameter("VendorShipAddress", GridViewColumn.ItemArray[4].ToString());
-                    decimal VendorBalanceCalculated = Convert.ToDecimal(ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentCell.RowIndex].Cells["CUSTOMER_BALANCE"].Value.ToString()) - Convert.ToDecimal(ConsignmentDataGridView.Rows[ConsignmentDataGridView.CurrentCell.RowIndex].Cells["AMOUNT"].Value.ToString());
-                    _ReportParameter[5] = new ReportParameter("VendorBalance", VendorBalanceCalculated.ToString());
-                }
-                DataSet ConsignmentDetailDataSet = new DataSet();
-                ConsignmentDetailDataSet = DatabaseCalls.GetSale(ConsignmentNumberSearch_txt.Text);
-                int TotalCTNs = 0;
-                foreach (DataRow ConsignmentDetail in ConsignmentDetailDataSet.Tables[0].Rows)
-                {
-                    TotalCTNs += Convert.ToInt32(ConsignmentDetail["QTY"].ToString());
-                }
-                _ReportParameter[7] = new ReportParameter("TotalCTN", TotalCTNs.ToString());
-
-                reportViewer1.LocalReport.SetParameters(_ReportParameter);
-                reportViewer1.RefreshReport();
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.ToString().Contains("One or more rows contain values violating non-null, ") == true)
-                    button1_Click(sender, e);
-                else
-                {
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = ex.Message;
-                    Variables.NotificationStatus = true;
-                }
-            }
+                //DisplayReport();
         }
         
 
@@ -201,21 +116,7 @@ namespace InventoryManagement.UI
         {
             try
             {
-                {
-                    //if (ConsignmentNumberSearch_txt.Text != null)
-                    //    RandomAlgos.comboKeyPressed(ConsignmentNumberSearch_txt);
-                }
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationStatus = true;
-            }
-
-            try
-            {
-                if (ConsignmentNumberSearch_txt.Text != "" && ConsignmentNumberSearch_txt.Items.Contains(Convert.ToInt32(ConsignmentNumberSearch_txt.Text)))
+                if (ConsignmentNumberSearch_txt.Text != "" && ConsignmentNumberSearch_txt.Items.Contains(ConsignmentNumberSearch_txt.Text))
                 {
                     try
                     {
@@ -261,7 +162,7 @@ namespace InventoryManagement.UI
                     {
                         for (int loop = 0; loop < ConsignmentDataGridView.Rows.Count; loop++)
                         {
-                            if (VendorNameSearch_txt.Text != "" && ConsignmentDataGridView.Rows[loop].Cells["Vendor_ID"].Value.ToString() != (GridViewColumn.ItemArray[0].ToString()))
+                            if (!StaticClass.Contain(ConsignmentDataGridView.Rows[loop].Cells["CUSTOMERNAME"].Value.ToString(), VendorNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
                             {
                                 ConsignmentDataGridView.Rows[loop].Visible = false;
                             }
@@ -285,9 +186,11 @@ namespace InventoryManagement.UI
             {
                 if (PrintBatch_CB.Checked == false)
                 {
-                    this.reportViewer1.LocalReport.DisplayName = ConsignmentDataGridView.CurrentRow.Cells["NAME"].Value.ToString() + " - " + ConsignmentDataGridView.CurrentRow.Cells["ID"].Value.ToString();
-                    //VendorNameSearch_txt.Text = ConsignmentDataGridView.CurrentRow.Cells["NAME"].Value.ToString();
+                    this.reportViewer1.LocalReport.DisplayName = ConsignmentDataGridView.CurrentRow.Cells["VendorNAME"].Value.ToString() + " - " + ConsignmentDataGridView.CurrentRow.Cells["ID"].Value.ToString();
                     ConsignmentNumberSearch_txt.Text = ConsignmentDataGridView.CurrentRow.Cells["ID"].Value.ToString();
+
+                    DisplayReport();
+
                 }
                 ConsignmentNumberSearch_txt.DroppedDown = false;
                 button2.Focus();
@@ -297,6 +200,41 @@ namespace InventoryManagement.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
                 Variables.NotificationStatus = true;
+            }
+        }
+
+        private void DisplayReport()
+        {
+            try
+            {
+                string jsonstring = DatabaseCalls.GET_String("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetConsignmentInvoice/" + ConsignmentNumberSearch_txt.Text);
+                VendorInvoice vendorInvoice = JsonConvert.DeserializeObject<VendorInvoice>(jsonstring);
+                this.reportViewer1.ProcessingMode = ProcessingMode.Local;
+                this.reportViewer1.Clear();
+                this.reportViewer1.LocalReport.DataSources.Clear();
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", vendorInvoice.GetShipmentDetail()));
+
+                DateTime ConsignmentDate = Convert.ToDateTime(vendorInvoice.Shipment.DATED.ToString());
+                string ConsignmentDateString = ConsignmentDate.ToShortDateString();
+
+                ReportParameter[] param = new ReportParameter[7];
+                param[0] = new ReportParameter("VendorName", vendorInvoice.Vendor.NAME);
+                param[1] = new ReportParameter("VendorBusinessName", vendorInvoice.Vendor.BUSINESS_NAME);
+                param[2] = new ReportParameter("VendorPhone", vendorInvoice.Vendor.PHONE);
+                param[3] = new ReportParameter("VendorBalance", vendorInvoice.Vendor.AMOUNT.ToString());
+                param[4] = new ReportParameter("InvoiceDate", ConsignmentDateString);
+                param[5] = new ReportParameter("InvoiceNumber", vendorInvoice.Shipment.ID.ToString());
+                int PreviousBalance = decimal.ToInt32(Convert.ToDecimal(vendorInvoice.VendorPreviousBalance));
+                if (PreviousBalance > 0)
+                    param[6] = new ReportParameter("PreviousBalance", PreviousBalance.ToString());
+                else
+                    param[6] = new ReportParameter("PreviousBalance", "0");
+                this.reportViewer1.LocalReport.SetParameters(param);
+                this.reportViewer1.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -328,10 +266,7 @@ namespace InventoryManagement.UI
 
         public static void PrintwithDialog(Microsoft.Reporting.WinForms.ReportViewer viewer)
         {
-            {
-                object[] parms = { viewer};
-             //   ExecuteFunction(viewer, parms, "OnPrint");
-            }
+            object[] parms = { viewer};
         }
 
         public bool RenderingComp { get; set; }
@@ -348,21 +283,21 @@ namespace InventoryManagement.UI
 
                     if (ConsignmentDataGridView.SelectedRows.Count > 0)
                     {
-                        //reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Dataset1", ConsignmentDataGridView.SelectedRows[0].Cells["ID"].Value.ToString()));
                         ConsignmentNumberSearch_txt.Text = ConsignmentDataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
                         ConsignmentDataGridView.SelectedRows[0].Selected = false;
 
                         Variables.NotificationMessageTitle = this.Name;
                         Variables.NotificationMessageText = ConsignmentDataGridView.SelectedRows.Count.ToString();
                         Variables.NotificationStatus = true;
-
-                        //reportViewer1.PrintDialog();
                     }
                 }
             }
             catch (Exception ex)
-            { }
-            //           PrintwithDialog(reportViewer1);
+            {
+                Variables.NotificationMessageTitle = this.Name;
+                Variables.NotificationMessageText = ex.Message;
+                Variables.NotificationStatus = true;
+            }
         }
 
         private void reportViewer1_PrintingBegin(object sender, ReportPrintEventArgs e)
@@ -439,6 +374,10 @@ namespace InventoryManagement.UI
         private void ConsignmentNumberSearch_txt_Enter(object sender, EventArgs e)
         {
             ConsignmentNumberSearch_txt.DroppedDown = true;
+        }
+
+        private void ConsignmentPrint_Load(object sender, EventArgs e)
+        {
         }
     }
 }

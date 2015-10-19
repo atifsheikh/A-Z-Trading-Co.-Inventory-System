@@ -15,15 +15,15 @@ using System.Xml;
 using InventoryManagement.DataSets;
 namespace InventoryManagement.UI
 {
-    public partial class BillPrint : Form
+    public partial class ConsignmentPrint : Form
     {
-        public BillPrint()
+        public ConsignmentPrint()
         {
             InitializeComponent();
         }
 
-        static DataSet CustomerDataSet = new DataSet();
-        static DataSet BillDataSet = new DataSet();
+        static DataSet VendorDataSet = new DataSet();
+        static DataSet ConsignmentDataSet = new DataSet();
         private void Form1_Load(object sender, EventArgs e) 
         {
             try
@@ -33,45 +33,45 @@ namespace InventoryManagement.UI
             }
             catch (Exception ex)
             { }
-            //Bills
+            //Consignments
             try
             {
-                CustomerDataSet = DatabaseCalls.GetCustomers();
-                BillDataSet = DatabaseCalls.GetBills();
-                foreach (DataRow GridViewColumn in BillDataSet.Tables[0].Rows)
+                VendorDataSet = DatabaseCalls.GetVendors();
+                ConsignmentDataSet = DatabaseCalls.GetConsignments();
+                foreach (DataRow GridViewColumn in ConsignmentDataSet.Tables[0].Rows)
                 {
-                    BillNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0].ToString());
+                    ConsignmentNumberSearch_txt.Items.Add(GridViewColumn.ItemArray[0].ToString());
                 }
 
-                BillDataSet.Tables[0].Columns.Add("Customer");
+                ConsignmentDataSet.Tables[0].Columns.Add("Vendor");
 
-                for (int loop = 0; loop < BillDataSet.Tables[0].Rows.Count; loop++)
+                for (int loop = 0; loop < ConsignmentDataSet.Tables[0].Rows.Count; loop++)
                 {
-                    for (int loop1 = 0; loop1 < CustomerDataSet.Tables[0].Rows.Count; loop1++)
+                    for (int loop1 = 0; loop1 < VendorDataSet.Tables[0].Rows.Count; loop1++)
                     {
-                        if (CustomerDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(BillDataSet.Tables[0].Rows[loop]["CustomerID"].ToString()) == true)
+                        if (VendorDataSet.Tables[0].Rows[loop1]["ID"].ToString().Equals(ConsignmentDataSet.Tables[0].Rows[loop]["VendorID"].ToString()) == true)
                         {
-                            BillDataSet.Tables[0].Rows[loop]["Customer"] = CustomerDataSet.Tables[0].Rows[loop1]["Name"].ToString();
+                            ConsignmentDataSet.Tables[0].Rows[loop]["Vendor"] = VendorDataSet.Tables[0].Rows[loop1]["Name"].ToString();
                             break;
                         }
                     }
-                    if (Convert.ToInt32(BillDataSet.Tables[0].Rows[loop]["ID"]) < 0)
-                        BillDataSet.Tables[0].Rows[loop].Delete();
+                    if (Convert.ToInt32(ConsignmentDataSet.Tables[0].Rows[loop]["ID"]) < 0)
+                        ConsignmentDataSet.Tables[0].Rows[loop].Delete();
                 }
 
-                BillDataGridView.DataSource = BillDataSet.Tables[0];
-                BillDataGridView.Sort(BillDataGridView.Columns["DATED"], ListSortDirection.Descending);
-                BillDataGridView.CurrentCell = null;
-                BillDataGridView.Columns[0].HeaderText = "Bill Number";
+                ConsignmentDataGridView.DataSource = ConsignmentDataSet.Tables[0];
+                ConsignmentDataGridView.Sort(ConsignmentDataGridView.Columns["DATED"], ListSortDirection.Descending);
+                ConsignmentDataGridView.CurrentCell = null;
+                ConsignmentDataGridView.Columns[0].HeaderText = "Consignment Number";
 
 
-                BillDataGridView.Columns["CustomerID"].Visible = false;
-                BillDataGridView.Columns["AMOUNT"].Visible = false;
-                BillDataGridView.Columns["REMARKS"].Visible = false;
-                BillDataGridView.Columns["NAME"].Visible = false;
+                ConsignmentDataGridView.Columns["VendorID"].Visible = false;
+                ConsignmentDataGridView.Columns["AMOUNT"].Visible = false;
+                ConsignmentDataGridView.Columns["REMARKS"].Visible = false;
+                ConsignmentDataGridView.Columns["NAME"].Visible = false;
 
-                BillDataGridView.Columns["Customer"].DisplayIndex = 1;
-                BillDataGridView.Update();                
+                ConsignmentDataGridView.Columns["Vendor"].DisplayIndex = 1;
+                ConsignmentDataGridView.Update();                
             }
             catch (Exception ex)
             {
@@ -80,14 +80,14 @@ namespace InventoryManagement.UI
                 Variables.NotificationStatus = true;
             }
             
-            //Customers
+            //Vendors
             try
             {
-                CustomerDataSet = DatabaseCalls.GetCustomers();
+                VendorDataSet = DatabaseCalls.GetVendors();
                 
-                foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
+                foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
                 {
-                    CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
+                    VendorNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
                 }
             }
             catch (Exception ex)
@@ -104,7 +104,7 @@ namespace InventoryManagement.UI
         }
         
 
-        private void BillNumber_Txt_KeyDown(object sender, KeyEventArgs e)
+        private void ConsignmentNumber_Txt_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -112,11 +112,11 @@ namespace InventoryManagement.UI
             }
         }
 
-        private void BillNumberSearch_txt_TextChanged(object sender, EventArgs e)
+        private void ConsignmentNumberSearch_txt_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (BillNumberSearch_txt.Text != "" && BillNumberSearch_txt.Items.Contains(BillNumberSearch_txt.Text))
+                if (ConsignmentNumberSearch_txt.Text != "" && ConsignmentNumberSearch_txt.Items.Contains(ConsignmentNumberSearch_txt.Text))
                 {
                     try
                     {
@@ -134,10 +134,10 @@ namespace InventoryManagement.UI
                             button1_Click(sender, e);
                     }
                 }
-                else if (BillNumberSearch_txt.Text != "")
+                else if (ConsignmentNumberSearch_txt.Text != "")
                 {
                     Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = "Invalid Bill Number.";
+                    Variables.NotificationMessageText = "Invalid Consignment Number.";
                     Variables.NotificationStatus = true;
                 }
             }
@@ -150,24 +150,24 @@ namespace InventoryManagement.UI
         }
 
 
-        private void CustomerNameSearch_txt_TextChanged(object sender, EventArgs e)
+        private void VendorNameSearch_txt_TextChanged(object sender, EventArgs e)
         {
-            //Customer Detail
+            //Vendor Detail
             try
             {
-                BillDataGridView.CurrentCell = null;
-                foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
+                ConsignmentDataGridView.CurrentCell = null;
+                foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
                 {
-                    if (GridViewColumn.ItemArray[1].ToString().Contains(CustomerNameSearch_txt.Text) == true)
+                    if (GridViewColumn.ItemArray[1].ToString().Contains(VendorNameSearch_txt.Text) == true)
                     {
-                        for (int loop = 0; loop < BillDataGridView.Rows.Count; loop++)
+                        for (int loop = 0; loop < ConsignmentDataGridView.Rows.Count; loop++)
                         {
-                            if (!StaticClass.Contain(BillDataGridView.Rows[loop].Cells["CUSTOMERNAME"].Value.ToString(), CustomerNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
+                            if (!StaticClass.Contain(ConsignmentDataGridView.Rows[loop].Cells["CUSTOMERNAME"].Value.ToString(), VendorNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
                             {
-                                BillDataGridView.Rows[loop].Visible = false;
+                                ConsignmentDataGridView.Rows[loop].Visible = false;
                             }
                             else
-                                BillDataGridView.Rows[loop].Visible = true;
+                                ConsignmentDataGridView.Rows[loop].Visible = true;
                         }
                     }
                 }
@@ -180,19 +180,19 @@ namespace InventoryManagement.UI
             }
         }
 
-        private void BillDataGridView_MouseClick(object sender, MouseEventArgs e)
+        private void ConsignmentDataGridView_MouseClick(object sender, MouseEventArgs e)
         {
             try
             {
                 if (PrintBatch_CB.Checked == false)
                 {
-                    this.reportViewer1.LocalReport.DisplayName = BillDataGridView.CurrentRow.Cells["NAME"].Value.ToString() + " - " + BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
-                    BillNumberSearch_txt.Text = BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
+                    this.reportViewer1.LocalReport.DisplayName = ConsignmentDataGridView.CurrentRow.Cells["NAME"].Value.ToString() + " - " + ConsignmentDataGridView.CurrentRow.Cells["ID"].Value.ToString();
+                    ConsignmentNumberSearch_txt.Text = ConsignmentDataGridView.CurrentRow.Cells["ID"].Value.ToString();
 
                     DisplayReport();
 
                 }
-                BillNumberSearch_txt.DroppedDown = false;
+                ConsignmentNumberSearch_txt.DroppedDown = false;
                 button2.Focus();
             }
             catch (Exception ex)
@@ -207,24 +207,24 @@ namespace InventoryManagement.UI
         {
             try
             {
-                string jsonstring = DatabaseCalls.GET_String("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/" + BillNumberSearch_txt.Text);
-                CustomerInvoice invoice = JsonConvert.DeserializeObject<CustomerInvoice>(jsonstring);
+                string jsonstring = DatabaseCalls.GET_String("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetConsignmentInvoice/" + ConsignmentNumberSearch_txt.Text);
+                Invoice invoice = JsonConvert.DeserializeObject<Invoice>(jsonstring);
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.Clear();
                 this.reportViewer1.LocalReport.DataSources.Clear();
-                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.GetBillDetail()));
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.GetConsignmentDetail()));
 
-                DateTime BillDate = Convert.ToDateTime(invoice.Bill.DATED.ToString());
-                string BillDateString = BillDate.ToShortDateString();
+                DateTime ConsignmentDate = Convert.ToDateTime(invoice.Consignment.DATED.ToString());
+                string ConsignmentDateString = ConsignmentDate.ToShortDateString();
 
                 ReportParameter[] param = new ReportParameter[7];
-                param[0] = new ReportParameter("CustomerName", invoice.Customer.NAME);
-                param[1] = new ReportParameter("CustomerBusinessName", invoice.Customer.BUSINESS_NAME);
-                param[2] = new ReportParameter("CustomerPhone", invoice.Customer.PHONE);
-                param[3] = new ReportParameter("CustomerBalance", invoice.Customer.AMOUNT.ToString());
-                param[4] = new ReportParameter("InvoiceDate", BillDateString);
-                param[5] = new ReportParameter("InvoiceNumber", invoice.Bill.ID.ToString());
-                int PreviousBalance = decimal.ToInt32(Convert.ToDecimal(invoice.CustomerPreviousBalance));
+                param[0] = new ReportParameter("VendorName", invoice.Vendor.NAME);
+                param[1] = new ReportParameter("VendorBusinessName", invoice.Vendor.BUSINESS_NAME);
+                param[2] = new ReportParameter("VendorPhone", invoice.Vendor.PHONE);
+                param[3] = new ReportParameter("VendorBalance", invoice.Vendor.AMOUNT.ToString());
+                param[4] = new ReportParameter("InvoiceDate", ConsignmentDateString);
+                param[5] = new ReportParameter("InvoiceNumber", invoice.Consignment.ID.ToString());
+                int PreviousBalance = decimal.ToInt32(Convert.ToDecimal(invoice.VendorPreviousBalance));
                 if (PreviousBalance > 0)
                     param[6] = new ReportParameter("PreviousBalance", PreviousBalance.ToString());
                 else
@@ -240,12 +240,12 @@ namespace InventoryManagement.UI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (BillDataGridView.SelectedRows.Count > 0)
+            if (ConsignmentDataGridView.SelectedRows.Count > 0)
             {
-                if (BillNumberSearch_txt.Text != BillDataGridView.SelectedRows[0].Cells["ID"].Value.ToString())
+                if (ConsignmentNumberSearch_txt.Text != ConsignmentDataGridView.SelectedRows[0].Cells["ID"].Value.ToString())
                 {
-                    BillNumberSearch_txt.Text = BillDataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
-                    BillDataGridView.SelectedRows[0].Selected = false;
+                    ConsignmentNumberSearch_txt.Text = ConsignmentDataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
+                    ConsignmentDataGridView.SelectedRows[0].Selected = false;
                 }
                 else
                     reportViewer1.RefreshReport();
@@ -257,7 +257,7 @@ namespace InventoryManagement.UI
             Variables.FormClosed = true;
         }
 
-        private void BillPrint_KeyDown(object sender, KeyEventArgs e)
+        private void ConsignmentPrint_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData.ToString().Contains("W, Control"))
                 this.Close();
@@ -281,13 +281,13 @@ namespace InventoryManagement.UI
                     _PrinterSettings.PrinterName = Variables.PrinterName;
                     reportViewer1.PrintDialog(_PrinterSettings);
 
-                    if (BillDataGridView.SelectedRows.Count > 0)
+                    if (ConsignmentDataGridView.SelectedRows.Count > 0)
                     {
-                        BillNumberSearch_txt.Text = BillDataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
-                        BillDataGridView.SelectedRows[0].Selected = false;
+                        ConsignmentNumberSearch_txt.Text = ConsignmentDataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
+                        ConsignmentDataGridView.SelectedRows[0].Selected = false;
 
                         Variables.NotificationMessageTitle = this.Name;
-                        Variables.NotificationMessageText = BillDataGridView.SelectedRows.Count.ToString();
+                        Variables.NotificationMessageText = ConsignmentDataGridView.SelectedRows.Count.ToString();
                         Variables.NotificationStatus = true;
                     }
                 }
@@ -310,12 +310,12 @@ namespace InventoryManagement.UI
                     _PrinterSettings.PrinterName = Variables.PrinterName;
                     reportViewer1.PrintDialog(_PrinterSettings);
 
-                    if (BillDataGridView.SelectedRows.Count > 0)
+                    if (ConsignmentDataGridView.SelectedRows.Count > 0)
                     {
-                        BillNumberSearch_txt.Text = BillDataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
-                        BillDataGridView.SelectedRows[0].Selected = false;
+                        ConsignmentNumberSearch_txt.Text = ConsignmentDataGridView.SelectedRows[0].Cells["ID"].Value.ToString();
+                        ConsignmentDataGridView.SelectedRows[0].Selected = false;
                         Variables.NotificationMessageTitle = this.Name;
-                        Variables.NotificationMessageText = BillDataGridView.SelectedRows.Count.ToString();
+                        Variables.NotificationMessageText = ConsignmentDataGridView.SelectedRows.Count.ToString();
                         Variables.NotificationStatus = true;
                     }
                 }
@@ -331,7 +331,7 @@ namespace InventoryManagement.UI
 
         }
 
-        private void CustomerNameSearch_txt_KeyPress(object sender, KeyPressEventArgs e)
+        private void VendorNameSearch_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 27)
             {
@@ -339,7 +339,7 @@ namespace InventoryManagement.UI
             }
         }
 
-        private void BillNumberSearch_txt_KeyPress(object sender, KeyPressEventArgs e)
+        private void ConsignmentNumberSearch_txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 27)
             {
@@ -347,14 +347,14 @@ namespace InventoryManagement.UI
             }
         }
 
-        private void CustomerNameSearch_txt_KeyUp(object sender, KeyEventArgs e)
+        private void VendorNameSearch_txt_KeyUp(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Down && e.KeyCode!= Keys.Enter && e.KeyValue != 27)
                 {
-                    if (CustomerNameSearch_txt.Text != null)
-                        RandomAlgos.comboKeyPressed(CustomerNameSearch_txt);
+                    if (VendorNameSearch_txt.Text != null)
+                        RandomAlgos.comboKeyPressed(VendorNameSearch_txt);
                 }
             }
             catch (Exception ex)
@@ -366,17 +366,17 @@ namespace InventoryManagement.UI
 
         }
 
-        private void CustomerNameSearch_txt_Enter(object sender, EventArgs e)
+        private void VendorNameSearch_txt_Enter(object sender, EventArgs e)
         {
-            CustomerNameSearch_txt.DroppedDown = true;
+            VendorNameSearch_txt.DroppedDown = true;
         }
 
-        private void BillNumberSearch_txt_Enter(object sender, EventArgs e)
+        private void ConsignmentNumberSearch_txt_Enter(object sender, EventArgs e)
         {
-            BillNumberSearch_txt.DroppedDown = true;
+            ConsignmentNumberSearch_txt.DroppedDown = true;
         }
 
-        private void BillPrint_Load(object sender, EventArgs e)
+        private void ConsignmentPrint_Load(object sender, EventArgs e)
         {
         }
     }

@@ -41,7 +41,16 @@ namespace InventoryManagement.DataSets
         public int CUSTOMER_BALANCE { get; set; }
         public int TOTAL_CTN { get; set; }
     }
-
+    public class Shipment
+    {
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public string DATED { get; set; }
+        public int AMOUNT { get; set; }
+        public string REMARKS { get; set; }
+        public int VENDOR_BALANCE { get; set; }
+        public int TOTAL_CTN { get; set; }
+    }
     public class BillDetail
     {
         public string NAME { get; set; }
@@ -50,7 +59,15 @@ namespace InventoryManagement.DataSets
         public int PRICE { get; set; }
         public int SUBTOTAL { get; set; }
     }
-    public class Invoice
+    public class ShipmentDetail
+    {
+        public string NAME { get; set; }
+        public string MODEL { get; set; }
+        public int T_QUANTITY { get; set; }
+        public int PRICE { get; set; }
+        public int SUBTOTAL { get; set; }
+    }
+    public class CustomerInvoice
     {
         public string CustomerPreviousBalance;
         public Customer Customer { get; set; }
@@ -60,6 +77,19 @@ namespace InventoryManagement.DataSets
         internal List<BillDetail> GetBillDetail()
         {
             return BillDetail;
+        }
+    }
+
+    public class VendorInvoice
+    {
+        public string VendorPreviousBalance;
+        public Customer Vendor { get; set; }
+        public Shipment Shipment { get; set; }
+
+        public List<ShipmentDetail> ShipmentDetail { get; set; }
+        internal List<ShipmentDetail> GetShipmentDetail()
+        {
+            return ShipmentDetail;
         }
     }
 }

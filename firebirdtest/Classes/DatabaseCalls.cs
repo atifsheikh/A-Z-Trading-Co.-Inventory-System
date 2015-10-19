@@ -588,5 +588,10 @@ namespace InventoryManagement
         {
             return POST("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyCustomerVoucher/5", CustomerID + "/" + BillDate.ToString().Replace('/', '-') + "/" + BillTotal + "/" + Remarks + "/" + VoucherNumber);
         }
+
+        internal static DataSet GetConsignments()
+        {
+            return GET("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetConsignments");
+        }
     }
 }

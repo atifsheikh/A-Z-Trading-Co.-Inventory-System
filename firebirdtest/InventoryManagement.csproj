@@ -186,6 +186,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Report1.rdlc" />
+    <EmbeddedResource Include="Reports\VendorConsignment.rdlc" />
     <EmbeddedResource Include="Reports\VendorCreditSummaryReport.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>

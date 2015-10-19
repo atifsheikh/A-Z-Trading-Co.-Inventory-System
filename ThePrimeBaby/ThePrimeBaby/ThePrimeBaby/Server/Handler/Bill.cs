@@ -91,6 +91,14 @@ namespace ThePrimeBaby.Server.Handler
                 return billJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
+            Handle.GET("/ThePrimeBaby/GetConsignments", (Request r) =>
+            {
+                QueryResultRows<Database.Shipment> shipment = Db.SQL<Database.Shipment>("SELECT b FROM ThePrimeBaby.Database.Shipment b");
+                BillJson billJson = new BillJson();
+                billJson.Bills.Data = shipment;
+                return billJson;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
             Handle.GET("/ThePrimeBaby/GetCreditorSummary", (Request r) =>
             {
                 QueryResultRows<Database.Vendor> vendors = Db.SQL<Database.Vendor>("SELECT b FROM ThePrimeBaby.Database.Vendor b");
@@ -122,6 +130,19 @@ namespace ThePrimeBaby.Server.Handler
                 billInvoiceJson.BillDetail.Data = billdetiail;
                 billInvoiceJson.CustomerPreviousBalance = ThePrimeBaby.Database.Customer.PreviousBalance(customer.First, bill.First.DATED);
                 return billInvoiceJson;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+            Handle.GET("/ThePrimeBaby/GetConsignmentInvoice/{?}", (string ConsignmentID, Request r) =>
+            {
+                QueryResultRows<Database.Shipment> shipment = Db.SQL<Database.Shipment>("SELECT b FROM ThePrimeBaby.Database.Shipment b WHERE b.Id = ?", Convert.ToInt32(ConsignmentID));
+                QueryResultRows<Database.Vendor> vendor = Db.SQL<Database.Vendor>("SELECT b FROM ThePrimeBaby.Database.Vendor b WHERE b = ?", shipment.First.Vendor);
+                QueryResultRows<Database.ShipmentDetail> shipmentdetiail = Db.SQL<Database.ShipmentDetail>("SELECT b FROM ThePrimeBaby.Database.Shipmentdetail b WHERE shipment.Id = ?", Convert.ToInt32(ConsignmentID));
+                ShipmentInvoiceJson shipmentInvoiceJson = new ShipmentInvoiceJson();
+                shipmentInvoiceJson.Vendor.Data = vendor.First;
+                shipmentInvoiceJson.Shipment.Data = shipment.First;
+                shipmentInvoiceJson.ShipmentDetail.Data = shipmentdetiail;
+                shipmentInvoiceJson.VendorPreviousBalance = ThePrimeBaby.Database.Vendor.PreviousBalance(vendor.First, shipment.First.DATED);
+                return shipmentInvoiceJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetBillByBillID/{?}", (string BillID, Request r) =>
