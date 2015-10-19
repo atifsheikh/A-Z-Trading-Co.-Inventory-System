@@ -317,7 +317,7 @@
             this.CustomersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CustomersDataGridView.BackgroundColor = System.Drawing.Color.LightBlue;
             this.CustomersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.CustomersDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.CustomersDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightBlue;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -344,7 +344,6 @@
             this.CustomersDataGridView.TabStop = false;
             this.CustomersDataGridView.CurrentCellChanged += new System.EventHandler(this.ItemsDataGridView_CurrentCellChanged);
             this.CustomersDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.CustomersDataGridView_DataError);
-            this.CustomersDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.CustomersDataGridView_RowsAdded);
             // 
             // label13
             // 

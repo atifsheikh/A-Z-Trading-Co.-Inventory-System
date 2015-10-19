@@ -272,11 +272,6 @@ namespace InventoryManagement.UI
             BusinessName_txt.Text = "";
         }
 
-        private void VendorsDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            VendorsDataGridView.Sort(VendorsDataGridView.Columns["NAME"], ListSortDirection.Ascending);
-        }
-
         private void VendorsDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;

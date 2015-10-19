@@ -264,11 +264,6 @@ Variables.FormClosed = true;
             BusinessName_txt.Text = "";
         }
 
-        private void CustomersDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            CustomersDataGridView.Sort(CustomersDataGridView.Columns["NAME"], ListSortDirection.Ascending);
-        }
-
         private void CustomersDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;
