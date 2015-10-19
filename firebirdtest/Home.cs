@@ -642,7 +642,7 @@ namespace InventoryManagement
         }
 
         DebitorSummary _DebitorSummary = new DebitorSummary();
-        private void debitorSummeryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void debitorSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -756,7 +756,7 @@ namespace InventoryManagement
                             break;
                         case "DebitorSummary":
                             Variables.FormRefresh = "";
-                            debitorSummeryToolStripMenuItem_Click(sender, e);
+                            debitorSummaryToolStripMenuItem_Click(sender, e);
                             break;
                         case "AddConsignment":
                             Variables.FormRefresh = "";

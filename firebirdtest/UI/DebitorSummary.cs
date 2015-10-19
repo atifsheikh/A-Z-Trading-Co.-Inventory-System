@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 using InventoryManagement.Classes;
+using InventoryManagement.DataSets;
+using Newtonsoft.Json;
 
 namespace InventoryManagement.UI
 {
@@ -16,7 +18,29 @@ namespace InventoryManagement.UI
         public DebitorSummary()
         {
             InitializeComponent();
+            DisplayReport();
         }
+
+        private void DisplayReport()
+        {
+            try
+            {
+                string jsonstring = DatabaseCalls.GET_String("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetDebitorSummary");
+                DebitSummary debitSummary = JsonConvert.DeserializeObject<DebitSummary>(jsonstring);
+                this.reportViewer1.ProcessingMode = ProcessingMode.Local;
+                this.reportViewer1.Clear();
+                this.reportViewer1.LocalReport.DataSources.Clear();
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DebitSummary", debitSummary.GetDebitorList()));
+
+                this.reportViewer1.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
 
         static DataSet CustomerDataSet = new DataSet();
         private void DebitorSummary_Load(object sender, EventArgs e)

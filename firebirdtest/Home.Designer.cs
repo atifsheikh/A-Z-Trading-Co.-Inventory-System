@@ -69,7 +69,7 @@
             this.vendorStatementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.debitorSummeryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debitorSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.leadgerReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemHistoryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -399,7 +399,7 @@
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listInventoryToolStripMenuItem,
-            this.debitorSummeryToolStripMenuItem,
+            this.debitorSummaryToolStripMenuItem,
             this.leadgerReportToolStripMenuItem,
             this.itemHistoryReportToolStripMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
@@ -413,12 +413,12 @@
             this.listInventoryToolStripMenuItem.Text = "Stock Inventory";
             this.listInventoryToolStripMenuItem.Click += new System.EventHandler(this.listInventoryToolStripMenuItem_Click_1);
             // 
-            // debitorSummeryToolStripMenuItem
+            // debitorSummaryToolStripMenuItem
             // 
-            this.debitorSummeryToolStripMenuItem.Name = "debitorSummeryToolStripMenuItem";
-            this.debitorSummeryToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.debitorSummeryToolStripMenuItem.Text = "Debitor Summery";
-            this.debitorSummeryToolStripMenuItem.Click += new System.EventHandler(this.debitorSummeryToolStripMenuItem_Click);
+            this.debitorSummaryToolStripMenuItem.Name = "debitorSummaryToolStripMenuItem";
+            this.debitorSummaryToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.debitorSummaryToolStripMenuItem.Text = "Debitor Summary";
+            this.debitorSummaryToolStripMenuItem.Click += new System.EventHandler(this.debitorSummaryToolStripMenuItem_Click);
             // 
             // leadgerReportToolStripMenuItem
             // 
@@ -755,7 +755,7 @@
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listInventoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statementToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem debitorSummeryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem debitorSummaryToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;

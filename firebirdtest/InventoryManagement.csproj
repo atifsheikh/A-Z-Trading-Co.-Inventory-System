@@ -175,7 +175,7 @@
     <Compile Include="UI\VendorLedgerStatement.designer.cs">
       <DependentUpon>VendorLedgerStatement.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Reports\CustomerDebitSummeryReport.rdlc">
+    <EmbeddedResource Include="Reports\CustomerDebitSummaryReport.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Report1.rdlc" />
