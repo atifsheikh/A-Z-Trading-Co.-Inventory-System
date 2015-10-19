@@ -2,6 +2,7 @@
 using Starcounter;
 using System.Data;
 using System.Web;
+using System.Text.RegularExpressions;
 
 namespace ThePrimeBaby.Server.Handler
 {
@@ -95,6 +96,12 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemName)).First;
                 if (item != null)
                 {
+                    Regex regex = new Regex("(.*?)0");
+                    Match match = regex.Match("");
+                    
+                    string tokenParsed = "oauth_token: " + match.Groups[1].Value;
+
+
                     QueryResultRows<IObjectView> ShipmentDetails = Db.SQL<IObjectView>("SELECT sd.Shipment.Id, sd.Item.code, sd.Item.model, sd.CTN, sd.QTY_PER_BOX, sd.T_QUANTITY, sd.PRICE, sd.SUBTOTAL, sd.Shipment.DATED from ShipmentDetail sd where sd.Item = ? AND sd.Shipment.Id > ?", item, 0);
                     ItemShipmentHistoryJson itemShipmentHistoryJson = new ItemShipmentHistoryJson();
                     foreach (IObjectView ShipmentDetail in ShipmentDetails)
@@ -107,8 +114,12 @@ namespace ThePrimeBaby.Server.Handler
                         itemShipmentHistory.CTN = long.Parse(ShipmentDetail.GetString(3));
                         itemShipmentHistory.QTY_PER_BOX = long.Parse(ShipmentDetail.GetString(4));
                         itemShipmentHistory.T_QUANTITY = long.Parse(ShipmentDetail.GetString(5));
-                        itemShipmentHistory.PRICE = ShipmentDetail.GetString(6);
-                        itemShipmentHistory.SUBTOTAL = ShipmentDetail.GetString(7);
+                        
+                        match = regex.Match(ShipmentDetail.GetString(6));
+                        itemShipmentHistory.PRICE = match.Groups[1].Value.TrimEnd('.');
+                        
+                        match = regex.Match(ShipmentDetail.GetString(7));
+                        itemShipmentHistory.SUBTOTAL = match.Groups[1].Value.TrimEnd('.');
                         itemShipmentHistory.DATED = ShipmentDetail.GetString(8);
                     }
                     return itemShipmentHistoryJson;
@@ -123,6 +134,9 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemName)).First;
                 if (item != null)
                 {
+                    Regex regex = new Regex("(.*?)0");
+                    Match match = regex.Match("");
+
                     QueryResultRows<IObjectView> billDetails = Db.SQL<IObjectView>("SELECT bd.ID, bd.ctn, bd.Bill.Id, bd.Item.code, bd.Item.model, bd.QTY_PER_BOX, bd.T_QUANTITY, bd.PRICE, bd.SUBTOTAL, bd.bill.Customer.NAME , bd.Bill.DATED FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Item = ? AND bd.Bill.Id > ?", item, 0);
                     ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
                     foreach (IObjectView billDetail in billDetails) 
@@ -136,8 +150,13 @@ namespace ThePrimeBaby.Server.Handler
                         itemSaleHistory.ITEM_NAME= billDetail.GetString(4);
                         itemSaleHistory.PCS_CTN = long.Parse(billDetail.GetString(5));
                         itemSaleHistory.T_QUANTITY = long.Parse(billDetail.GetString(6));
-                        itemSaleHistory.UNITPRICE = billDetail.GetString(7);
-                        itemSaleHistory.SUBTOTAL = billDetail.GetString(8);
+
+                        match = regex.Match(billDetail.GetString(7));
+                        itemSaleHistory.UNITPRICE = match.Groups[1].Value.TrimEnd('.');
+
+                        match = regex.Match(billDetail.GetString(8));
+                        itemSaleHistory.SUBTOTAL = match.Groups[1].Value.TrimEnd('.');
+                        
                         itemSaleHistory.CUSTOMERS_NAME = billDetail.GetString(9);
                         itemSaleHistory.DATED = billDetail.GetString(10);
                     }

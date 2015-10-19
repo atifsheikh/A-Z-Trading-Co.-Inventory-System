@@ -58,6 +58,7 @@ namespace InventoryManagement.UI
                 }
 
                 ConsignmentDataGridView.DataSource = ConsignmentDataSet.Tables[0];
+                ConsignmentDataGridView.Sort(ConsignmentDataGridView.Columns["DATED"], ListSortDirection.Descending);
                 ConsignmentDataGridView.CurrentCell = null;
                 ConsignmentDataGridView.Columns[0].HeaderText = "Consignment Number";
 

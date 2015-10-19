@@ -59,14 +59,14 @@ namespace InventoryManagement.UI
                     {
                         //costumer name / item code / item name / qty per ctn / t qty / price / amount
                         SaleHistoryDataGridView.Columns["ID"].Visible = false;
+                        SaleHistoryDataGridView.Columns["QTY"].Visible = false;
+                        SaleHistoryDataGridView.Columns["PCS_CTN"].Visible = false;
                         SaleHistoryDataGridView.Columns["BILL_ID"].DisplayIndex = 0;
                         SaleHistoryDataGridView.Columns["BILL_ID"].HeaderText = "BILL #";
                         SaleHistoryDataGridView.Columns["CUSTOMERS_NAME"].DisplayIndex = 1;
                         SaleHistoryDataGridView.Columns["CUSTOMERS_NAME"].HeaderText = "Customer Name";
                         SaleHistoryDataGridView.Columns["ITEM_CODE"].DisplayIndex = 2;
                         SaleHistoryDataGridView.Columns["ITEM_NAME"].DisplayIndex = 3;
-                        SaleHistoryDataGridView.Columns["QTY"].DisplayIndex = 4;
-                        SaleHistoryDataGridView.Columns["PCS_CTN"].DisplayIndex = 5;
                         SaleHistoryDataGridView.Columns["T_QUANTITY"].DisplayIndex = 6;
                         SaleHistoryDataGridView.Columns["UNITPRICE"].DisplayIndex = 7;
                         SaleHistoryDataGridView.Columns["SUBTOTAL"].DisplayIndex = 8;
