@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.Customer_Strip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Consignment_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -99,6 +99,7 @@
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
             this.leadgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditorSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Consignment_strip.SuspendLayout();
             this.Inventory_Strio.SuspendLayout();
             this.Sales_Strip.SuspendLayout();
@@ -400,6 +401,7 @@
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listInventoryToolStripMenuItem,
             this.debitorSummaryToolStripMenuItem,
+            this.creditorSummaryToolStripMenuItem,
             this.leadgerReportToolStripMenuItem,
             this.itemHistoryReportToolStripMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
@@ -470,9 +472,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource2.Name = "DataSet1";
+            reportDataSource2.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "InventoryManagement.Reports.CustomerBill.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(1052, 481);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
@@ -687,6 +689,13 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // creditorSummaryToolStripMenuItem
+            // 
+            this.creditorSummaryToolStripMenuItem.Name = "creditorSummaryToolStripMenuItem";
+            this.creditorSummaryToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.creditorSummaryToolStripMenuItem.Text = "Creditor Summary";
+            this.creditorSummaryToolStripMenuItem.Click += new System.EventHandler(this.creditorSummaryToolStripMenuItem_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -794,6 +803,7 @@
         private System.Windows.Forms.ToolStripMenuItem printConsignmentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vendorStatementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCustomerToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem creditorSummaryToolStripMenuItem;
         public static System.Windows.Forms.Panel Home_pnl;
     }
 }

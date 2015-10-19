@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataSets\BillInvoice.cs" />
+    <Compile Include="DataSets\CreditorSummaryDataSet.cs" />
     <Compile Include="DataSets\DebitorSummaryDataSet.cs" />
     <Compile Include="Classes\Demo.cs" />
     <Compile Include="Classes\RandomAlgos.cs" />
@@ -99,6 +100,12 @@
     </Compile>
     <Compile Include="UI\ConsignmentPrint.Designer.cs">
       <DependentUpon>ConsignmentPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CreditorSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CreditorSummary.Designer.cs">
+      <DependentUpon>CreditorSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\DialogueBoxes\SelectVendorName.cs">
       <SubType>Form</SubType>
@@ -179,6 +186,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Report1.rdlc" />
+    <EmbeddedResource Include="Reports\VendorCreditSummaryReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Add Consignment.resx">
       <DependentUpon>Add Consignment.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ConsignmentPrint.resx">
       <DependentUpon>ConsignmentPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CreditorSummary.resx">
+      <DependentUpon>CreditorSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DialogueBoxes\SelectVendorName.resx">
       <DependentUpon>SelectVendorName.cs</DependentUpon>

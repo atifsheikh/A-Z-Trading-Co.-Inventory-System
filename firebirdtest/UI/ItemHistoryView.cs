@@ -115,13 +115,13 @@ namespace InventoryManagement.UI
                 SaleCtn_txt.Text = "0";
                 for (int loop = 0; loop < SaleHistoryDataGridView.Rows.Count; loop++)
                 {
-                    SaleCtn_txt.Text = (Convert.ToInt32(SaleCtn_txt.Text) + Convert.ToInt32(SaleHistoryDataGridView.Rows[loop].Cells["QTY"].Value)).ToString();
+                    SaleCtn_txt.Text = (Convert.ToInt32(SaleCtn_txt.Text) + Convert.ToInt32(SaleHistoryDataGridView.Rows[loop].Cells["T_QUANTITY"].Value)).ToString();
                 }
 
                 PurchaseCTN_txt.Text = "0";
                 for (int loop = 0; loop < ShipmentHistoryDataGridView.Rows.Count; loop++)
                 {
-                    PurchaseCTN_txt.Text = (Convert.ToInt32(PurchaseCTN_txt.Text) + Convert.ToInt32(ShipmentHistoryDataGridView.Rows[loop].Cells["CTN"].Value)).ToString();
+                    PurchaseCTN_txt.Text = (Convert.ToInt32(PurchaseCTN_txt.Text) + Convert.ToInt32(ShipmentHistoryDataGridView.Rows[loop].Cells["T_QUANTITY"].Value)).ToString();
                 }
             }
             catch (Exception ex)

@@ -91,6 +91,15 @@ namespace ThePrimeBaby.Server.Handler
                 return billJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
+            Handle.GET("/ThePrimeBaby/GetCreditorSummary", (Request r) =>
+            {
+                QueryResultRows<Database.Vendor> vendors = Db.SQL<Database.Vendor>("SELECT b FROM ThePrimeBaby.Database.Vendor b");
+                //QueryResultRows<Database.Shipment> shipment = Db.SQL<Database.Shipment>("SELECT b FROM ThePrimeBaby.Database.Shipment b WHERE b.Id = ?", Convert.ToInt32(ShipmentID));
+                CreditorSummary creditorSummaryJson = new CreditorSummary();
+                creditorSummaryJson.Vendor.Data = vendors;
+                //shipmentInvoiceJson.Shipment.Data = shipment.First;
+                return creditorSummaryJson;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetDebitorSummary", (Request r) =>
             {

@@ -152,6 +152,9 @@
     <TypedJSON Include="Server\Partials\DebitorSummary.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
+    <TypedJSON Include="Server\Partials\CreditorSummary.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
     <None Include="weaver.ignore" />
     <TypedJSON Include="Server\Partials\CategoryJson.json">
       <Generator>MsBuild:Compile</Generator>

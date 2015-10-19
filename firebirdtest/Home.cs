@@ -268,7 +268,9 @@ namespace InventoryManagement
                 if (_AddItems!= null && !_AddItems.IsDisposed)
                     _AddItems.Dispose();
                 if (_DebitorSummary!= null && !_DebitorSummary.IsDisposed)
-                    _DebitorSummary.Dispose();           
+                    _DebitorSummary.Dispose();
+                if (_CreditorSummary != null && !_CreditorSummary.IsDisposed)
+                    _CreditorSummary.Dispose();           
                 //if (_DeleteBill!= null && !_DeleteBill.IsDisposed)
                 //    _DeleteBill.Dispose();
                 if (_ItemHistoryReport != null && !_ItemHistoryReport.IsDisposed)
@@ -642,6 +644,7 @@ namespace InventoryManagement
         }
 
         DebitorSummary _DebitorSummary = new DebitorSummary();
+        CreditorSummary _CreditorSummary = new CreditorSummary();
         private void debitorSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1115,6 +1118,8 @@ namespace InventoryManagement
                     _AddItems.Dispose();
                 if (_DebitorSummary != null && !_DebitorSummary.IsDisposed)
                     _DebitorSummary.Dispose();
+                if (_CreditorSummary != null && !_CreditorSummary.IsDisposed)
+                    _CreditorSummary.Dispose();
                 //if (_DeleteBill != null && !_DeleteBill.IsDisposed)
                 //    _DeleteBill.Dispose();
                 if (_ItemHistoryReport != null && !_ItemHistoryReport.IsDisposed)
@@ -1200,6 +1205,25 @@ namespace InventoryManagement
             {
                 notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
             }
+        }
+
+        private void creditorSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_CreditorSummary.IsDisposed == true)
+                    _CreditorSummary = new CreditorSummary();
+                Home.Home_pnl.Visible = false;
+                _CreditorSummary.MdiParent = this;
+                _CreditorSummary.WindowState = FormWindowState.Maximized;
+                _CreditorSummary.Show();
+                _CreditorSummary.Focus();
+            }
+            catch (Exception ex)
+            {
+                notifyIcon1.ShowBalloonTip(1000, this.Name, ex.Message, ToolTipIcon.Info); ;
+            }
+
         }
     }
 }

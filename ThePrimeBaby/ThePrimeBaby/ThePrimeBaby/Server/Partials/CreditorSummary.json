@@ -1,0 +1,13 @@
+{
+    "Vendor": [{
+        "ID": 0,
+        "NAME": "",
+		"BUSINESS_NAME":"",
+        "EMAIL": "",
+        "PHONE": "",
+        "ADDRESS": "",
+        "AMOUNT": 0,
+        "OPENING_BALANCE": 0,
+        "BALANCE_LIMIT": 0
+    }]
+}

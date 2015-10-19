@@ -5,6 +5,19 @@ using System.Text;
 
 namespace InventoryManagement.DataSets
 {
+    public class Vendor
+    {
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public string BUSINESS_NAME { get; set; }
+        public string EMAIL { get; set; }
+        public string PHONE { get; set; }
+        public string ADDRESS { get; set; }
+        public int AMOUNT { get; set; }
+        public int OPENING_BALANCE { get; set; }
+        public int BALANCE_LIMIT { get; set; }
+    }
+    
     public class Customer
     {
         public int ID { get; set; }
