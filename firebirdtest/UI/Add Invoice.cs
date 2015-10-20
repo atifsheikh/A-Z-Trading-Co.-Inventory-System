@@ -123,6 +123,15 @@ namespace InventoryManagement.UI
             try
             {
                 string[] row = { (InvoiceDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_Box_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString() };
+                if (T_QUANTITY_txt.Text == "")
+                {
+                    T_QUANTITY_txt.Text = "0";
+                }
+                if (Quant_txt.Text == "")
+                {
+                    Quant_txt.Text = "0";
+                }
+
                 if (Convert.ToInt32(T_QUANTITY_txt.Text) < Convert.ToInt32(Quant_txt.Text))
                 {
                     MessageBox.Show("Item is not available in stock. Stock = "+T_QUANTITY_txt.Text);
@@ -1556,6 +1565,12 @@ namespace InventoryManagement.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
             }
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            InvoicePrintViewBox invoicePrintViewBox = new InvoicePrintViewBox(InvoiceNumber_txt.Text);
+            invoicePrintViewBox.ShowDialog();
         }
     }
 }

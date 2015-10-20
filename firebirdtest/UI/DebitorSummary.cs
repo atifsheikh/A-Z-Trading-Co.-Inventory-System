@@ -18,7 +18,6 @@ namespace InventoryManagement.UI
         public DebitorSummary()
         {
             InitializeComponent();
-            DisplayReport();
         }
 
         private void DisplayReport()
@@ -55,15 +54,7 @@ namespace InventoryManagement.UI
             //Bills
             try
             {
-                //CustomerDataSet = DatabaseCalls.GetCustomers();
-                //foreach (DataRow GridViewColumn in CustomerDataSet.Tables[0].Rows)
-                //{
-                //    CustomerNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
-                //}
-
-                //BillDataGridView.DataSource = CustomerDataSet.Tables[0];
-                //BillDataGridView.Columns[0].HeaderText = "Bill #";
-
+                DisplayReport(); 
                 reportViewer1.RefreshReport();
             }
             catch (Exception ex)

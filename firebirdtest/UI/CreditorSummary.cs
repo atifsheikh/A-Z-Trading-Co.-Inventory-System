@@ -18,7 +18,6 @@ namespace InventoryManagement.UI
         public CreditorSummary()
         {
             InitializeComponent();
-            DisplayReport();
         }
 
         private void DisplayReport()
@@ -52,18 +51,9 @@ namespace InventoryManagement.UI
             }
             catch (Exception ex)
             { }
-            //Shipments
             try
             {
-                //VendorDataSet = DatabaseCalls.GetVendors();
-                //foreach (DataRow GridViewColumn in VendorDataSet.Tables[0].Rows)
-                //{
-                //    VendorNameSearch_txt.Items.Add(GridViewColumn.ItemArray[1]);
-                //}
-
-                //ShipmentDataGridView.DataSource = VendorDataSet.Tables[0];
-                //ShipmentDataGridView.Columns[0].HeaderText = "Shipment #";
-
+                DisplayReport();
                 reportViewer1.RefreshReport();
             }
             catch (Exception ex)

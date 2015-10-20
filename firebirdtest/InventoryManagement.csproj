@@ -51,6 +51,7 @@
     <ApplicationIcon>primeBaby_short.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -60,6 +61,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -112,6 +114,12 @@
     </Compile>
     <Compile Include="UI\DialogueBoxes\SelectVendorName.Designer.cs">
       <DependentUpon>SelectVendorName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\InvoicePrintViewBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\InvoicePrintViewBox.Designer.cs">
+      <DependentUpon>InvoicePrintViewBox.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ItemHistoryView.cs">
       <SubType>Form</SubType>
@@ -210,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DialogueBoxes\SelectVendorName.resx">
       <DependentUpon>SelectVendorName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InvoicePrintViewBox.resx">
+      <DependentUpon>InvoicePrintViewBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ItemHistoryView.resx">
       <DependentUpon>ItemHistoryView.cs</DependentUpon>

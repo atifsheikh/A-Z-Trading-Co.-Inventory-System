@@ -222,7 +222,6 @@
             this.Text = "Print Bill";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
-            this.Load += new System.EventHandler(this.BillPrint_Load);
             this.Shown += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BillPrint_KeyDown);
             this.panel1.ResumeLayout(false);

@@ -101,21 +101,17 @@ namespace ThePrimeBaby.Server.Handler
 
             Handle.GET("/ThePrimeBaby/GetCreditorSummary", (Request r) =>
             {
-                QueryResultRows<Database.Vendor> vendors = Db.SQL<Database.Vendor>("SELECT b FROM ThePrimeBaby.Database.Vendor b");
-                //QueryResultRows<Database.Shipment> shipment = Db.SQL<Database.Shipment>("SELECT b FROM ThePrimeBaby.Database.Shipment b WHERE b.Id = ?", Convert.ToInt32(ShipmentID));
+                QueryResultRows<Database.Vendor> vendors = Db.SQL<Database.Vendor>("SELECT b FROM ThePrimeBaby.Database.Vendor b WHERE b.AMOUNT > ? ORDER BY b.AMOUNT DESC",0);
                 CreditorSummary creditorSummaryJson = new CreditorSummary();
                 creditorSummaryJson.Vendor.Data = vendors;
-                //shipmentInvoiceJson.Shipment.Data = shipment.First;
                 return creditorSummaryJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetDebitorSummary", (Request r) =>
             {
-                QueryResultRows<Database.Customer> customers = Db.SQL<Database.Customer>("SELECT b FROM ThePrimeBaby.Database.Customer b");
-                //QueryResultRows<Database.Bill> bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.Id = ?", Convert.ToInt32(BillID));
+                QueryResultRows<Database.Customer> customers = Db.SQL<Database.Customer>("SELECT b FROM ThePrimeBaby.Database.Customer b WHERE b.AMOUNT > ? ORDER BY b.AMOUNT DESC",0);
                 DebitorSummary debitorSummaryJson = new DebitorSummary();
                 debitorSummaryJson.Customer.Data = customers;
-                //billInvoiceJson.Bill.Data = bill.First;
                 return debitorSummaryJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 

@@ -43,6 +43,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.T_QUANTITY_txt = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.BusinessName_txt = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
@@ -113,7 +114,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SpeedTest_BGWorker = new System.ComponentModel.BackgroundWorker();
-            this.T_QUANTITY_txt = new System.Windows.Forms.TextBox();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InvoiceDetailDataGridView)).BeginInit();
@@ -193,6 +194,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1296, 812);
             this.panel2.TabIndex = 1;
+            // 
+            // T_QUANTITY_txt
+            // 
+            this.T_QUANTITY_txt.Location = new System.Drawing.Point(867, 196);
+            this.T_QUANTITY_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.T_QUANTITY_txt.Name = "T_QUANTITY_txt";
+            this.T_QUANTITY_txt.Size = new System.Drawing.Size(133, 22);
+            this.T_QUANTITY_txt.TabIndex = 88;
+            this.T_QUANTITY_txt.Visible = false;
             // 
             // label35
             // 
@@ -805,7 +815,8 @@
             this.toolStripButton6,
             this.toolStripButton5,
             this.toolStripButton3,
-            this.toolStripButton4});
+            this.toolStripButton4,
+            this.toolStripButton7});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1296, 27);
@@ -1080,14 +1091,14 @@
             this.SpeedTest_BGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SpeedTest_BGWorker_DoWork);
             this.SpeedTest_BGWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SpeedTest_BGWorker_RunWorkerCompleted);
             // 
-            // T_QUANTITY_txt
+            // toolStripButton7
             // 
-            this.T_QUANTITY_txt.Location = new System.Drawing.Point(867, 196);
-            this.T_QUANTITY_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.T_QUANTITY_txt.Name = "T_QUANTITY_txt";
-            this.T_QUANTITY_txt.Size = new System.Drawing.Size(133, 22);
-            this.T_QUANTITY_txt.TabIndex = 88;
-            this.T_QUANTITY_txt.Visible = false;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(114, 24);
+            this.toolStripButton7.Text = "Print Invoice";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // AddInvoice
             // 
@@ -1196,5 +1207,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.TextBox T_QUANTITY_txt;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
     }
 }

@@ -375,9 +375,5 @@ namespace InventoryManagement.UI
         {
             BillNumberSearch_txt.DroppedDown = true;
         }
-
-        private void BillPrint_Load(object sender, EventArgs e)
-        {
-        }
     }
 }
