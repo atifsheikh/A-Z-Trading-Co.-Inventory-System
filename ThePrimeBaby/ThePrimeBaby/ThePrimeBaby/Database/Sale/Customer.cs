@@ -9,6 +9,8 @@ namespace ThePrimeBaby.Database
         public string ADDRESS;
         public string EMAIL;
         public string PHONE;
+        public decimal OPENING_BALANCE;
+        public decimal BALANCE_LIMIT;
         public decimal AMOUNT
         {
             get
@@ -41,9 +43,6 @@ namespace ThePrimeBaby.Database
                 return (Calc + this.OPENING_BALANCE);
             }
         }
-        public decimal OPENING_BALANCE;
-        public decimal BALANCE_LIMIT;
-
         internal static string PreviousBalance(Database.Customer customer, DateTime dateTime)
         {
             QueryResultRows<Database.Bill> AllBills = Db.SQL<Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE Customer = ? AND DATED < ?", customer, dateTime);
@@ -84,23 +83,6 @@ namespace ThePrimeBaby.Database
                 return false;
             }
         }
-
-        internal static bool ModifyCustomer(string Find, string Replace, Database.Customer customer)
-        {
-            try
-            {
-                //Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.Name = ?", Find).First;
-                Db.Transact(() => {
-                    customer.NAME = Replace.Trim();
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
         internal static bool ModifyCustomer(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, Database.Customer customer, string ReplaceBusiness_name)
         {
             try
@@ -114,22 +96,6 @@ namespace ThePrimeBaby.Database
                     customer.EMAIL = ReplaceEmail.Trim();
                     customer.OPENING_BALANCE = ReplaceOpening_balance;
                     customer.BUSINESS_NAME = ReplaceBusiness_name;
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        internal static bool DeleteCustomer(string Name)
-        {
-            try
-            {
-                Db.Transact(() =>
-                {
-                    Db.SlowSQL("DELETE FROM Customer WHERE Name = ?", Name.Trim());
                 });
                 return true;
             }

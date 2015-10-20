@@ -10,39 +10,38 @@ namespace ThePrimeBaby.Server.Handler
     {
         internal static void Register()
         {
-            ///ThePrimeBaby/GetItemsForShipment
             Handle.GET("/ThePrimeBaby/GetItemsForShipment", (Request r) =>
             {
                 //"SELECT a.ID, a.QTY_BOX, a.PRICE, a.SHIPCTN, a.SALECTN, a.MODEL, a.CODE FROM ITEMINVENTORY a where (a.SHIPCTN-a.SALECTN) > 0"
-                return 200;
+                return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             ///ThePrimeBaby/GetItemsForBill
             Handle.GET("/ThePrimeBaby/GetItemsForBill", (Request r) =>
             {
                 //"SELECT a.ID, a.QTY_BOX, a.PRICE, a.SHIPCTN, a.SALECTN, a.MODEL, a.CODE FROM ITEMINVENTORY a where (a.SHIPCTN-a.SALECTN) > 0"
-                return 200;
+                return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             ///ThePrimeBaby/GetItemsForSale
             Handle.GET("/ThePrimeBaby/GetItemsForSale", (Request r) =>
             {
                 //SELECT a.ID, a.QTY_BOX, a.PRICE, ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)) as Quantity, ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)/a.QTY_BOX) as CTN_LEFT, a.CODE, a.MODEL FROM ITEMINVENTORY a where ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)/a.QTY_BOX) > 0
-                return 200;
+                return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             ///ThePrimeBaby/GetItemHistory/{?}          ItemCode
             Handle.GET("/ThePrimeBaby/GetItemHistory/{?}", (string ItemCode, Request r) =>
             {
                 //"Select * from ITEMHISTORY where ITEM_CODE = '" + ItemCode + "'", myConnection1);
-                return 200;
+                return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             ///ThePrimeBaby/Get_Ctn_Bill
             Handle.GET("/ThePrimeBaby/Get_Ctn_Bill", (Request r) =>
             {
                 //"Select * from CTN_BILL_SUM"
-                return 200;
+                return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
             
             ///ThePrimeBaby/GetInventoryDetails
@@ -82,7 +81,7 @@ namespace ThePrimeBaby.Server.Handler
                 //        int TotalCount = Convert.ToInt32(ShipmentCount) - Convert.ToInt32(SalesCount);
                 //        ItemDataSet.Tables[0].Rows[loop]["Total Quantity"] = TotalCount.ToString();
                 //    }
-                return 200;
+                return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetItemCount/{?}", (string ItemCode, Request r) =>
@@ -96,7 +95,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemName)).First;
                 if (item != null)
                 {
-                    Regex regex = new Regex("(.*?)0");
+                    Regex regex = new Regex("(.*?)\\.");
                     Match match = regex.Match("");
                     
                     string tokenParsed = "oauth_token: " + match.Groups[1].Value;
@@ -116,10 +115,10 @@ namespace ThePrimeBaby.Server.Handler
                         itemShipmentHistory.T_QUANTITY = long.Parse(ShipmentDetail.GetString(5));
                         
                         match = regex.Match(ShipmentDetail.GetString(6));
-                        itemShipmentHistory.PRICE = match.Groups[1].Value.TrimEnd('.');
+                        itemShipmentHistory.PRICE = match.Groups[1].Value;
                         
                         match = regex.Match(ShipmentDetail.GetString(7));
-                        itemShipmentHistory.SUBTOTAL = match.Groups[1].Value.TrimEnd('.');
+                        itemShipmentHistory.SUBTOTAL = match.Groups[1].Value;
                         itemShipmentHistory.DATED = ShipmentDetail.GetString(8);
                     }
                     return itemShipmentHistoryJson;
@@ -134,7 +133,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c WHERE c.Code = ?", HttpUtility.UrlDecode(ItemName)).First;
                 if (item != null)
                 {
-                    Regex regex = new Regex("(.*?)0");
+                    Regex regex = new Regex("(.*?)\\.");
                     Match match = regex.Match("");
 
                     QueryResultRows<IObjectView> billDetails = Db.SQL<IObjectView>("SELECT bd.ID, bd.ctn, bd.Bill.Id, bd.Item.code, bd.Item.model, bd.QTY_PER_BOX, bd.T_QUANTITY, bd.PRICE, bd.SUBTOTAL, bd.bill.Customer.NAME , bd.Bill.DATED FROM ThePrimeBaby.Database.BillDetail bd WHERE bd.Item = ? AND bd.Bill.Id > ?", item, 0);
@@ -152,10 +151,10 @@ namespace ThePrimeBaby.Server.Handler
                         itemSaleHistory.T_QUANTITY = long.Parse(billDetail.GetString(6));
 
                         match = regex.Match(billDetail.GetString(7));
-                        itemSaleHistory.UNITPRICE = match.Groups[1].Value.TrimEnd('.');
+                        itemSaleHistory.UNITPRICE = match.Groups[1].Value;
 
                         match = regex.Match(billDetail.GetString(8));
-                        itemSaleHistory.SUBTOTAL = match.Groups[1].Value.TrimEnd('.');
+                        itemSaleHistory.SUBTOTAL = match.Groups[1].Value;
                         
                         itemSaleHistory.CUSTOMERS_NAME = billDetail.GetString(9);
                         itemSaleHistory.DATED = billDetail.GetString(10);
@@ -229,12 +228,12 @@ namespace ThePrimeBaby.Server.Handler
                     return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/DeleteItemByName", (Request r) =>
-            {
-                string[] Attributes = r.Body.Split('/');
-                Db.Transact(() => { Db.SlowSQL("DELETE FROM Item v WHERE v.Name = ?", Attributes[0]); });
-                return 200;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+            //Handle.POST("/ThePrimeBaby/DeleteItemByName", (Request r) =>
+            //{
+            //    string[] Attributes = r.Body.Split('/');
+            //    Db.Transact(() => { Db.SlowSQL("DELETE FROM Item v WHERE v.Name = ?", Attributes[0]); });
+            //    return 200;
+            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
 
 
             Handle.POST("/ThePrimeBaby/AddItem/8", (Request r) =>

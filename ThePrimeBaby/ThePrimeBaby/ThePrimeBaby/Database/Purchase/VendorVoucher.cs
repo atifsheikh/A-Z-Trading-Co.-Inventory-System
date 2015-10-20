@@ -34,7 +34,6 @@ namespace ThePrimeBaby.Database
         {
             return Convert.ToInt32((Int64)Db.SlowSQL("SELECT MIN(b.ID) FROM ThePrimeBaby.Database.VendorVoucher b").First) - 1;
         }
-
         internal static bool AddVoucherPayment(Vendor VendorID, DateTime BillDate, Decimal BillTotal, string Remarks)
         {
             try
@@ -56,7 +55,6 @@ namespace ThePrimeBaby.Database
                 return false;
             }
         }
-
         internal static bool ModifyVoucherPayment(Vendor VendorID, DateTime BillDate, Decimal BillTotal, string Remarks, int VoucherNumber)
         {
             try

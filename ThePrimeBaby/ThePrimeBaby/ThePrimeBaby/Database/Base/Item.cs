@@ -12,7 +12,7 @@ namespace ThePrimeBaby.Database.Base
         public string IMAGE;
         public string MODEL;
         public string CODE;
-
+        public Category Category;
         public int T_QUANTITY 
         {
             get 
@@ -34,7 +34,6 @@ namespace ThePrimeBaby.Database.Base
                 return (ItemShipmentCount  - ItemBillCount);
             }
         }
-        public Category Category;
         internal static bool AddItem(string Code, string Model, int QTY_Box, decimal Price,decimal CostPrice, string ImagePath, Category ItemCategory,decimal RetailPrice)
         {
             try
@@ -58,42 +57,10 @@ namespace ThePrimeBaby.Database.Base
                 return false;
             }
         }
-        internal static bool DeleteItem(string Name)
-        {
-            try
-            {
-                Db.Transact(() => 
-                {
-                    Db.SlowSQL("DELETE FROM Item Where i.Name = ?", Name.Trim());
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-        internal static bool ModifyItems(string FindName, string ReplaceName, Database.Base.Item item)
-        {
-            try
-            {
-                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", FindName).First;
-                Db.Transact(() => 
-                {
-                    item.NAME = ReplaceName.Trim();
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
         internal static bool ModifyItems(string FindID, string ReplaceCode, string ReplaceModel, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity, Database.Base.Item item, string RetailPrice)
         {
             try
             {
-                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Id = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     item.ID = Convert.ToInt32(FindID);
@@ -121,7 +88,6 @@ namespace ThePrimeBaby.Database.Base
         {
             try
             {
-                //Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Name = ?", ItemName).First;
                 Db.Transact(() =>
                 {
                     item.PRICE = ItemPrice;

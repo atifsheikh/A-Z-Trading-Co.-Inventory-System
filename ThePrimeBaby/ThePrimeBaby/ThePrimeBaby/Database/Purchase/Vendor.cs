@@ -9,6 +9,8 @@ namespace ThePrimeBaby.Database
         public string ADDRESS;
         public string EMAIL;
         public string PHONE;
+        public decimal OPENING_BALANCE;
+        public decimal BALANCE_LIMIT;
         public decimal AMOUNT{ 
             get 
             {
@@ -39,8 +41,6 @@ namespace ThePrimeBaby.Database
                 return (Calc + this.OPENING_BALANCE);
             }
         }
-        public decimal OPENING_BALANCE;
-        public decimal BALANCE_LIMIT;
         internal static string PreviousBalance(Database.Vendor vendor, DateTime dateTime)
         {
             QueryResultRows<Database.Shipment> AllShipments = Db.SQL<Database.Shipment>("SELECT s FROM ThePrimeBaby.Database.Shipment s WHERE Vendor = ? AND DATED < ?", vendor, dateTime);
@@ -58,7 +58,6 @@ namespace ThePrimeBaby.Database
             return ((ShipmentCalc + vendor.OPENING_BALANCE) - VendorCalc).ToString();
 
         }
-
         internal static bool AddVendor(string Name, string address, string phone, string email, decimal balance_limit, decimal opening_balance, string BusinessName)
         {
             try
@@ -81,28 +80,10 @@ namespace ThePrimeBaby.Database
             { return false; }
 
         }
-
-        internal static bool ModifyVendor(string Find, string Replace, ThePrimeBaby.Database.Vendor vendor)
-        {
-            try
-            {
-                Db.Transact(() =>
-                {
-                    vendor.NAME = Replace.Trim();
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
         internal static bool ModifyVendor(int FindID, string ReplaceName, string ReplaceAddress, string ReplacePhone, string ReplaceEmail, decimal ReplaceOpening_balance, ThePrimeBaby.Database.Vendor vendor, string BusinessName)
         {
             try
             {
-                //ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     vendor.NAME = ReplaceName.Trim();
@@ -119,39 +100,5 @@ namespace ThePrimeBaby.Database
                 return false;
             }
         }
-
-        //internal static bool ModifyVendor(int VendorID, decimal NewBalance, ThePrimeBaby.Database.Vendor vendor)
-        //{
-        //    try
-        //    {
-        //        //ThePrimeBaby.Database.Vendor vendor = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c WHERE c.ID = ?", Convert.ToInt32(VendorID)).First;
-        //        Db.Transact(() =>
-        //        {
-        //            vendor.AMOUNT = NewBalance;
-        //        });
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        internal static bool DeleteVendor(string Name)
-        {
-            try
-            {
-                Db.Transact(() =>
-                {
-                    Db.SlowSQL("DELETE FROM Vendor WHERE Name = ?", Name.Trim());
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
     }
 }

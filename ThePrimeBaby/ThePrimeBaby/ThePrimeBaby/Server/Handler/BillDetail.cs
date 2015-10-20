@@ -41,12 +41,12 @@ namespace ThePrimeBaby.Server.Handler
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            Handle.POST("/ThePrimeBaby/DeleteBillDetailsByBillID", (Request r) =>
-            {
-                string[] Attributes = r.Body.Split('/');
-                Db.Transact(() => { Db.SlowSQL("DELETE FROM BillDetail WHERE Bill.ID = ?", Convert.ToInt32(Attributes[0])); });
-                return 200;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+            //Handle.POST("/ThePrimeBaby/DeleteBillDetailsByBillID", (Request r) =>
+            //{
+            //    string[] Attributes = r.Body.Split('/');
+            //    Db.Transact(() => { Db.SlowSQL("DELETE FROM BillDetail WHERE Bill.ID = ?", Convert.ToInt32(Attributes[0])); });
+            //    return 200;
+            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             //Handle.POST("/ThePrimeBaby/AddSale/9", (Request r) =>
             //{

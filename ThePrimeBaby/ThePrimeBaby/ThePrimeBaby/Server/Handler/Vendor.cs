@@ -65,12 +65,12 @@ namespace ThePrimeBaby.Server.Handler
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
 
-            Handle.POST("/ThePrimeBaby/DeleteVendor", (Request r) =>
-            {
-                string[] Attributes = r.Body.Split('/');
-                Db.Transact(() => { Db.SlowSQL("DELETE FROM Vendor v WHERE v.NAME = ?", Attributes[0]); });
-                return 200;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+            //Handle.POST("/ThePrimeBaby/DeleteVendor", (Request r) =>
+            //{
+            //    string[] Attributes = r.Body.Split('/');
+            //    Db.Transact(() => { Db.SlowSQL("DELETE FROM Vendor v WHERE v.NAME = ?", Attributes[0]); });
+            //    return 200;
+            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
 }

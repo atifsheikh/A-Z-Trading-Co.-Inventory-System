@@ -6,7 +6,6 @@ namespace ThePrimeBaby.Database
     public class Bill : Concept
     {
         public DateTime DATED;
-
         public Customer CUSTOMER;
         public string REMARKS;
         public decimal AMOUNT
@@ -43,7 +42,6 @@ namespace ThePrimeBaby.Database
                 return ((customerBalance + this.CUSTOMER.OPENING_BALANCE) - customerVoucher);
             }
         }
-
         public int TOTAL_CTN
         {
             get

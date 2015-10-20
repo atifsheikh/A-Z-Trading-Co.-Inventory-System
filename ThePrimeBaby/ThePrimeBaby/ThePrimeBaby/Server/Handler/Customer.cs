@@ -38,12 +38,12 @@ namespace ThePrimeBaby.Server.Handler
                 return customerJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
             
-            Handle.POST("/ThePrimeBaby/DeleteCustomerByName", (Request r) =>
-            {
-                string[] Attributes = r.Body.Split('/');
-                Db.Transact(() => { Db.SlowSQL("DELETE FROM Customer v WHERE v.Name = ?", Attributes[0]); });
-                return 200;
-            }, new HandlerOptions() { SkipMiddlewareFilters = true });
+            //Handle.POST("/ThePrimeBaby/DeleteCustomerByName", (Request r) =>
+            //{
+            //    string[] Attributes = r.Body.Split('/');
+            //    Db.Transact(() => { Db.SlowSQL("DELETE FROM Customer v WHERE v.Name = ?", Attributes[0]); });
+            //    return 200;
+            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.POST("/ThePrimeBaby/ModifyCustomer/8", (Request r) =>
             {
