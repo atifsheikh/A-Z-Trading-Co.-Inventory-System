@@ -14,7 +14,6 @@ namespace ThePrimeBaby.Database
         public int CTN;
         public decimal PRICE;
         public decimal SUBTOTAL;
-
         internal static bool AddShipmentDetail(Item Item, Shipment Shipment, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
         {
             try
@@ -24,10 +23,11 @@ namespace ThePrimeBaby.Database
                     ShipmentDetail shipmentDetail = new ShipmentDetail();
                     shipmentDetail.ID = Convert.ToInt32((Int64)Db.SlowSQL("SELECT MAX(b.ID) FROM ThePrimeBaby.Database.ShipmentDetail b").First) + 1;
                     shipmentDetail.Item = Item;
+                    shipmentDetail.NAME = Item.CODE;
+                    shipmentDetail.MODEL = Item.MODEL;
                     shipmentDetail.Shipment = Shipment;
                     shipmentDetail.T_QUANTITY = T_QUANTITY;
                     shipmentDetail.QTY_PER_BOX = QTY_PER_BOX;
-                    shipmentDetail.MODEL = MODEL.Trim();
                     shipmentDetail.CTN = CTN;
                     shipmentDetail.PRICE = PRICE;
                     shipmentDetail.SUBTOTAL = SUBTOTAL;

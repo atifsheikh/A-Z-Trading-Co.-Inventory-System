@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.Customer_Strip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Consignment_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -70,6 +70,7 @@
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debitorSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditorSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.leadgerReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemHistoryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,7 +100,6 @@
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
             this.leadgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.creditorSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Consignment_strip.SuspendLayout();
             this.Inventory_Strio.SuspendLayout();
             this.Sales_Strip.SuspendLayout();
@@ -422,6 +422,13 @@
             this.debitorSummaryToolStripMenuItem.Text = "Debitor Summary";
             this.debitorSummaryToolStripMenuItem.Click += new System.EventHandler(this.debitorSummaryToolStripMenuItem_Click);
             // 
+            // creditorSummaryToolStripMenuItem
+            // 
+            this.creditorSummaryToolStripMenuItem.Name = "creditorSummaryToolStripMenuItem";
+            this.creditorSummaryToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.creditorSummaryToolStripMenuItem.Text = "Creditor Summary";
+            this.creditorSummaryToolStripMenuItem.Click += new System.EventHandler(this.creditorSummaryToolStripMenuItem_Click);
+            // 
             // leadgerReportToolStripMenuItem
             // 
             this.leadgerReportToolStripMenuItem.Name = "leadgerReportToolStripMenuItem";
@@ -472,9 +479,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "InventoryManagement.Reports.CustomerBill.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(1052, 481);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
@@ -688,13 +695,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // creditorSummaryToolStripMenuItem
-            // 
-            this.creditorSummaryToolStripMenuItem.Name = "creditorSummaryToolStripMenuItem";
-            this.creditorSummaryToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.creditorSummaryToolStripMenuItem.Text = "Creditor Summary";
-            this.creditorSummaryToolStripMenuItem.Click += new System.EventHandler(this.creditorSummaryToolStripMenuItem_Click);
             // 
             // Home
             // 

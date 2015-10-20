@@ -8,6 +8,17 @@ namespace ThePrimeBaby
     {
         static void Main()
         {
+            Db.Transact(() => 
+            {
+                QueryResultRows<ThePrimeBaby.Database.ShipmentDetail> sds = Db.SQL<ShipmentDetail>("SELECT sd FROM ShipmentDetail sd");
+                foreach (ThePrimeBaby.Database.ShipmentDetail sd in sds)
+                {
+                    if (string.IsNullOrEmpty(sd.NAME))
+                    {
+                        sd.NAME = sd.Item.CODE;
+                    }
+                }
+            });
             ThePrimeBaby.Server.Handler.Category.Register();
             ThePrimeBaby.Server.Handler.Bill.Register();
             ThePrimeBaby.Server.Handler.BillDetail.Register();

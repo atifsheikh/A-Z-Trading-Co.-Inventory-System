@@ -783,7 +783,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>Invoice</DataSetName>
+        <DataSetName>CustomerInvoice</DataSetName>
         <Filters>
           <Filter>
             <FilterExpression>=Fields!NAME.Value</FilterExpression>
@@ -1455,7 +1455,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="Invoice">
+    <DataSet Name="CustomerInvoice">
       <Query>
         <DataSourceName>DummyDataSource</DataSourceName>
         <CommandText />
@@ -1488,8 +1488,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:TableName>Invoice</rd:TableName>
-        <rd:ObjectDataSourceType>Invoice, WindowsApplication2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>CustomerInvoice</rd:TableName>
+        <rd:ObjectDataSourceType>CustomerInvoice, WindowsApplication2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

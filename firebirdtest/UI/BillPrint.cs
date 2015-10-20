@@ -98,57 +98,6 @@ namespace InventoryManagement.UI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-                //DisplayReport();
-        }
-        
-
-        private void BillNumber_Txt_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                button1_Click(sender, e);
-            }
-        }
-
-        private void BillNumberSearch_txt_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (BillNumberSearch_txt.Text != "" && BillNumberSearch_txt.Items.Contains(BillNumberSearch_txt.Text))
-                {
-                    try
-                    {
-                        button1_Click(sender, e);
-                    }
-                    catch (Exception ex)
-                    {
-                        if (ex.Message.Contains("One or more rows contain values violating non-null, ") == false)
-                        {
-                            Variables.NotificationMessageTitle = this.Name;
-                            Variables.NotificationMessageText = ex.Message;
-                            Variables.NotificationStatus = true;
-                        }
-                        else
-                            button1_Click(sender, e);
-                    }
-                }
-                else if (BillNumberSearch_txt.Text != "")
-                {
-                    Variables.NotificationMessageTitle = this.Name;
-                    Variables.NotificationMessageText = "Invalid Bill Number.";
-                    Variables.NotificationStatus = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Variables.NotificationMessageTitle = this.Name;
-                Variables.NotificationMessageText = ex.Message;
-                Variables.NotificationStatus = true;
-            }
-        }
-
 
         private void CustomerNameSearch_txt_TextChanged(object sender, EventArgs e)
         {
@@ -208,23 +157,23 @@ namespace InventoryManagement.UI
             try
             {
                 string jsonstring = DatabaseCalls.GET_String("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillInvoice/" + BillNumberSearch_txt.Text);
-                CustomerInvoice invoice = JsonConvert.DeserializeObject<CustomerInvoice>(jsonstring);
+                CustomerInvoice customerInvoice = JsonConvert.DeserializeObject<CustomerInvoice>(jsonstring);
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.Clear();
                 this.reportViewer1.LocalReport.DataSources.Clear();
-                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Invoice", invoice.GetBillDetail()));
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("CustomerInvoice", customerInvoice.GetBillDetail()));
 
-                DateTime BillDate = Convert.ToDateTime(invoice.Bill.DATED.ToString());
+                DateTime BillDate = Convert.ToDateTime(customerInvoice.Bill.DATED.ToString());
                 string BillDateString = BillDate.ToShortDateString();
 
                 ReportParameter[] param = new ReportParameter[7];
-                param[0] = new ReportParameter("CustomerName", invoice.Customer.NAME);
-                param[1] = new ReportParameter("CustomerBusinessName", invoice.Customer.BUSINESS_NAME);
-                param[2] = new ReportParameter("CustomerPhone", invoice.Customer.PHONE);
-                param[3] = new ReportParameter("CustomerBalance", invoice.Customer.AMOUNT.ToString());
+                param[0] = new ReportParameter("CustomerName", customerInvoice.Customer.NAME);
+                param[1] = new ReportParameter("CustomerBusinessName", customerInvoice.Customer.BUSINESS_NAME);
+                param[2] = new ReportParameter("CustomerPhone", customerInvoice.Customer.PHONE);
+                param[3] = new ReportParameter("CustomerBalance", customerInvoice.Customer.AMOUNT.ToString());
                 param[4] = new ReportParameter("InvoiceDate", BillDateString);
-                param[5] = new ReportParameter("InvoiceNumber", invoice.Bill.ID.ToString());
-                int PreviousBalance = decimal.ToInt32(Convert.ToDecimal(invoice.CustomerPreviousBalance));
+                param[5] = new ReportParameter("InvoiceNumber", customerInvoice.Bill.ID.ToString());
+                int PreviousBalance = decimal.ToInt32(Convert.ToDecimal(customerInvoice.CustomerPreviousBalance));
                 if (PreviousBalance > 0)
                     param[6] = new ReportParameter("PreviousBalance", PreviousBalance.ToString());
                 else

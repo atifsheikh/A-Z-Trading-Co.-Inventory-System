@@ -68,7 +68,6 @@ namespace InventoryManagement.UI
                 ConsignmentDataGridView.Columns["VendorID"].Visible = false;
                 ConsignmentDataGridView.Columns["AMOUNT"].Visible = false;
                 ConsignmentDataGridView.Columns["REMARKS"].Visible = false;
-                ConsignmentDataGridView.Columns["NAME"].Visible = false;
 
                 ConsignmentDataGridView.Columns["Vendor"].DisplayIndex = 1;
                 ConsignmentDataGridView.Update();                

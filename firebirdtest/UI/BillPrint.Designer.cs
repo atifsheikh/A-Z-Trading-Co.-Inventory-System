@@ -141,7 +141,6 @@
             this.BillNumberSearch_txt.Name = "BillNumberSearch_txt";
             this.BillNumberSearch_txt.Size = new System.Drawing.Size(160, 24);
             this.BillNumberSearch_txt.TabIndex = 1;
-            this.BillNumberSearch_txt.TextChanged += new System.EventHandler(this.BillNumberSearch_txt_TextChanged);
             this.BillNumberSearch_txt.Enter += new System.EventHandler(this.BillNumberSearch_txt_Enter);
             this.BillNumberSearch_txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BillNumberSearch_txt_KeyPress);
             // 
