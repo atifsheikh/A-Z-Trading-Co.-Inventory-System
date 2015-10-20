@@ -100,6 +100,7 @@ namespace InventoryManagement.UI
                                 ItemCode_txt.Text = ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString().Trim();
                                 ItemName_txt.Text = ItemsDataGridView.Rows[loop].Cells["Model"].Value.ToString().Trim();
                                 Qty_Box_txt.Text = ItemsDataGridView.Rows[loop].Cells["QTY_BOX"].Value.ToString();
+                                T_QUANTITY_txt.Text = ItemsDataGridView.Rows[loop].Cells["T_QUANTITY"].Value.ToString();
                                 Qty_txt.Focus();
                                 break;
                             }
@@ -122,6 +123,10 @@ namespace InventoryManagement.UI
             try
             {
                 string[] row = { (InvoiceDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_Box_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitPrice_txt.Text)).ToString() };
+                if (Convert.ToInt32(T_QUANTITY_txt.Text) < Convert.ToInt32(Quant_txt.Text))
+                {
+                    MessageBox.Show("Item is not available in stock. Stock = "+T_QUANTITY_txt.Text);
+                }
                 InvoiceDetailDataGridView.Rows.Add(row);
                 InvoiceDetailDataGridView.Update();
                 TOTAL_ITEMS_txt.Text = (Quant_txt.Text == "" ? 0 : (Convert.ToInt32(Quant_txt.Text) + Convert.ToInt32(TOTAL_ITEMS_txt.Text))).ToString();
@@ -1095,6 +1100,19 @@ namespace InventoryManagement.UI
             try
             {
                 ItemsDataGridView.Visible = true;
+                foreach (DataGridViewRow row in ItemsDataGridView.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["T_QUANTITY"].Value) <= 0)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
+                //for (int loop = 0; loop < ItemsDataGridView.Rows.Count; loop++)
+                //{
+                //    {
+                //        ItemsDataGridView.Rows[loop].Cells["T_QUANTITY"].Style.BackColor = Color.Red;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -1342,6 +1360,10 @@ namespace InventoryManagement.UI
                     if (StaticClass.Contain(ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString(),ItemCode_txt.Text,StringComparison.OrdinalIgnoreCase))
                     {
                         ItemsDataGridView.Rows[loop].Visible = true;
+                        if (Convert.ToInt32(ItemsDataGridView.Rows[loop].Cells["T_QUANTITY"].Value) <= 0)
+                        {
+                            ItemsDataGridView.Rows[loop].Cells["T_QUANTITY"].Style.BackColor = Color.Red;
+                        }
                     }
                     else
                     {
