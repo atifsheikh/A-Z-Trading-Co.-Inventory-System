@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>primeBaby_short.ico</ApplicationIcon>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
@@ -190,11 +190,11 @@
     <Compile Include="UI\VendorLedgerStatement.designer.cs">
       <DependentUpon>VendorLedgerStatement.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Reports\CustomerDebitSummaryReport.rdlc">
+    <EmbeddedResource Include="Reports\CustomerDebitSummaryReport.rdlc" />
+    <EmbeddedResource Include="Reports\Report1.rdlc" />
+    <EmbeddedResource Include="Reports\VendorConsignment.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Report1.rdlc" />
-    <EmbeddedResource Include="Reports\VendorConsignment.rdlc" />
     <EmbeddedResource Include="Reports\VendorCreditSummaryReport.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -301,6 +301,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <Content Include="logo.ico" />
     <Content Include="primeBaby_short.ico" />
     <None Include="Resources\home2.jpg" />
   </ItemGroup>
