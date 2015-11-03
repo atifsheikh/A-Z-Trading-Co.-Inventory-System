@@ -341,6 +341,7 @@ namespace InventoryManagement.UI
                 Variables.NotificationMessageTitle = this.Name;
                 Variables.NotificationMessageText = ex.Message;
             }
+            button1_Click(sender, e);
         }
 
         private void textBox3_KeyDown(object sender, KeyEventArgs e)
@@ -463,6 +464,7 @@ namespace InventoryManagement.UI
                     CustomerID_txt.Text = InvoiceDataGridView.Rows[InvoiceDataGridView.CurrentRow.Index].Cells["Customerid"].Value.ToString();
                     CustomerName_txt.Text = DatabaseCalls.GetCustomerName(Convert.ToInt32(CustomerID_txt.Text));
                     InvoiceNumber_txt.Text = InvoiceDataGridView.Rows[InvoiceDataGridView.CurrentRow.Index].Cells["ID"].Value.ToString();
+                    InvoiceDate_txt.Text = InvoiceDataGridView.Rows[InvoiceDataGridView.CurrentRow.Index].Cells["Dated"].Value.ToString();
                     CustomerName_txt_Leave(this, null);
 
 
