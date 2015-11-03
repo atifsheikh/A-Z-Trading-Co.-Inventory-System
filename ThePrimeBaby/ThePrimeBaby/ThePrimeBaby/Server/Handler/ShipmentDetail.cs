@@ -30,14 +30,15 @@ namespace ThePrimeBaby.Server.Handler
             //        return 209;
             //}, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            //Handle.POST("/ThePrimeBaby/DeleteShipmentDetailsByShipmentNumber", (Request r) =>
-            //{
-            //    string[] Attributes = r.Body.Split('/');
-            //    Db.Transact(() => { 
-            //        Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.ShipmentDetail WHERE Shipment.ID = ?", Convert.ToInt32(Attributes[0]));
-            //    });
-            //    return 200;
-            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
+            Handle.POST("/ThePrimeBaby/DeleteShipmentDetailsByShipmentNumber", (Request r) =>
+            {
+                string[] Attributes = r.Body.Split('/');
+                Db.Transact(() =>
+                {
+                    Db.SlowSQL("DELETE FROM ThePrimeBaby.Database.ShipmentDetail WHERE Shipment.ID = ?", Convert.ToInt32(Attributes[0]));
+                });
+                return 200;
+            }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
             Handle.GET("/ThePrimeBaby/GetShipmentDetails", (Request r) =>
             {

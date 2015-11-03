@@ -1427,6 +1427,7 @@ namespace InventoryManagement.UI
                     UnitPrice_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["PRICE"].Value.ToString().Trim();
                     ItemName_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["Model"].Value.ToString().Trim();
                     Qty_Box_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["QTY_BOX"].Value.ToString();
+                    comboBox3_KeyDown_1(sender, e);
                 }
                 else if (e.KeyCode == Keys.Escape)
                 {
