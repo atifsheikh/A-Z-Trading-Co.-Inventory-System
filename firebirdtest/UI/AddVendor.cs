@@ -147,16 +147,17 @@ namespace InventoryManagement.UI
                     //{
                     //    VendorNameSearch_txt.Items.Add(GridViewColumn.ItemArray[0]);
                     //}
-                    //if (VendorsDataGridView.Columns.Count > 0)
-                    //{
-                    //    VendorsDataGridView.Columns["NAME"].DisplayIndex = 0;
-                    //    VendorsDataGridView.Columns["ADDRESS"].DisplayIndex = 1;
-                    //    VendorsDataGridView.Columns["PHONE"].DisplayIndex = 2;
-                    //    VendorsDataGridView.Columns["EMAIL"].DisplayIndex = 3;
-                    //    VendorsDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 4;
-                    //    VendorsDataGridView.Columns["AMOUNT"].Visible = false;
-                    //    VendorsDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
-                    //}
+                    if (VendorsDataGridView.Columns.Count > 0)
+                    {
+                        VendorsDataGridView.Columns["NAME"].DisplayIndex = 0;
+                        VendorsDataGridView.Columns["BUSINESS_NAME"].DisplayIndex = 1;
+                        VendorsDataGridView.Columns["ADDRESS"].DisplayIndex = 2;
+                        VendorsDataGridView.Columns["PHONE"].DisplayIndex = 3;
+                        VendorsDataGridView.Columns["EMAIL"].DisplayIndex = 4;
+                        VendorsDataGridView.Columns["OPENING_BALANCE"].DisplayIndex = 5;
+                        VendorsDataGridView.Columns["AMOUNT"].Visible = false;
+                        VendorsDataGridView.Columns["BALANCE_LIMIT"].Visible = false;
+                    }
                     if (VendorsDataGridView.Columns.Count > 0)
                     {
                         //VendorsDataGridView.Columns["AMOUNT"].Visible = false;
