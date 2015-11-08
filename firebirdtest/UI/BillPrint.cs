@@ -135,7 +135,7 @@ namespace InventoryManagement.UI
             {
                 if (PrintBatch_CB.Checked == false)
                 {
-                    this.reportViewer1.LocalReport.DisplayName = BillDataGridView.CurrentRow.Cells["NAME"].Value.ToString() + " - " + BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
+                    this.reportViewer1.LocalReport.DisplayName = BillDataGridView.CurrentRow.Cells["CustomerName"].Value.ToString() + " - " + BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
                     BillNumberSearch_txt.Text = BillDataGridView.CurrentRow.Cells["ID"].Value.ToString();
 
                     DisplayReport();

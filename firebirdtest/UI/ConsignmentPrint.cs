@@ -160,7 +160,7 @@ namespace InventoryManagement.UI
                     {
                         for (int loop = 0; loop < ConsignmentDataGridView.Rows.Count; loop++)
                         {
-                            if (!StaticClass.Contain(ConsignmentDataGridView.Rows[loop].Cells["CUSTOMERNAME"].Value.ToString(), VendorNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
+                            if (!StaticClass.Contain(ConsignmentDataGridView.Rows[loop].Cells["VENDORNAME"].Value.ToString(), VendorNameSearch_txt.Text, StringComparison.OrdinalIgnoreCase))
                             {
                                 ConsignmentDataGridView.Rows[loop].Visible = false;
                             }

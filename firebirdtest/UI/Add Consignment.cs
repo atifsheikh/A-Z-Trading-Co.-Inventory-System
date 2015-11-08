@@ -1473,12 +1473,12 @@ namespace InventoryManagement.UI
                     Ctn_txt.Focus();
                     if (ItemsDataGridView.CurrentRow != null)
                     {
-                        int RowNumber = ItemsDataGridView.CurrentRow.Index;
-                        ItemCode_txt.Text = ItemsDataGridView.Rows[RowNumber].Cells["CODE"].Value.ToString().Trim();
-                        UnitCostPrice_txt.Text = ItemsDataGridView.Rows[RowNumber].Cells["COSTPRICE"].Value.ToString().Trim();
-                        ItemName_txt.Text = ItemsDataGridView.Rows[RowNumber].Cells["Model"].Value.ToString().Trim();
-                        Qty_Box_txt.Text = ItemsDataGridView.Rows[RowNumber].Cells["QTY_BOX"].Value.ToString();
-                        UnitSalePrice_txt.Text = ItemsDataGridView.Rows[RowNumber].Cells["PRICE"].Value.ToString();
+                        int CurrentRow = ItemsDataGridView.CurrentRow.Index;
+                        ItemCode_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["CODE"].Value.ToString().Trim();
+                        UnitCostPrice_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["COSTPRICE"].Value.ToString().Trim();
+                        ItemName_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["Model"].Value.ToString().Trim();
+                        Qty_Box_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["QTY_BOX"].Value.ToString();
+                        UnitSalePrice_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["PRICE"].Value.ToString();
                     }
                 }
                 else if (e.KeyCode == Keys.Escape)

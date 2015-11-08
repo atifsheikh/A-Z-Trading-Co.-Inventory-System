@@ -1420,14 +1420,17 @@ namespace InventoryManagement.UI
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    int CurrentRow = ItemsDataGridView.CurrentRow.Index;
                     ItemsDataGridView.Visible = false;
                     Qty_txt.Focus();
-                    ItemCode_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["CODE"].Value.ToString().Trim();
-                    UnitPrice_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["PRICE"].Value.ToString().Trim();
-                    ItemName_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["Model"].Value.ToString().Trim();
-                    Qty_Box_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["QTY_BOX"].Value.ToString();
-                    comboBox3_KeyDown_1(sender, e);
+                    if (ItemsDataGridView.CurrentRow != null)
+                    {
+                        int CurrentRow = ItemsDataGridView.CurrentRow.Index;
+                        ItemCode_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["CODE"].Value.ToString().Trim();
+                        UnitPrice_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["PRICE"].Value.ToString().Trim();
+                        ItemName_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["Model"].Value.ToString().Trim();
+                        Qty_Box_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["QTY_BOX"].Value.ToString();
+                        T_QUANTITY_txt.Text = ItemsDataGridView.Rows[CurrentRow].Cells["T_QUANTITY"].Value.ToString();
+                    }
                 }
                 else if (e.KeyCode == Keys.Escape)
                 {
