@@ -17,6 +17,7 @@
         "MODEL":"",
         "CTN":0,
         "PRICE":0.0,
-        "SUBTOTAL":0.0
+		"SUBTOTAL":0.0,
+        "SALEPRICE":0.0
 	}]
 }

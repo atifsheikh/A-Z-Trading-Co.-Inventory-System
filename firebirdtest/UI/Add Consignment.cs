@@ -133,7 +133,7 @@ namespace InventoryManagement.UI
             {
                 if (Quant_txt.Text != "0")
                 {
-                    string[] row = { (ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitCostPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitCostPrice_txt.Text)).ToString() };
+                    string[] row = { (ConsignmentDetailDataGridView.NewRowIndex + 1).ToString(), ItemCode_txt.Text, ItemName_txt.Text, Qty_txt.Text, Ctn_txt.Text, Quant_txt.Text, UnitCostPrice_txt.Text, (Convert.ToInt32(Quant_txt.Text) * Convert.ToDecimal(UnitCostPrice_txt.Text)).ToString(), UnitSalePrice_txt.Text };
                     ConsignmentDetailDataGridView.Rows.Add(row);
                     ConsignmentDetailDataGridView.Update();
                     if (TOTAL_CTN_txt.Text == "")
@@ -532,6 +532,7 @@ namespace InventoryManagement.UI
                             ConsignmentDetailDataGridView.Rows[r].Cells[5].Value = (Convert.ToInt32(Result1.Tables[0].Rows[r].ItemArray[6])).ToString();
                             ConsignmentDetailDataGridView.Rows[r].Cells[6].Value = Result1.Tables[0].Rows[r].ItemArray[10];
                             ConsignmentDetailDataGridView.Rows[r].Cells[7].Value = Result1.Tables[0].Rows[r].ItemArray[11];
+                            ConsignmentDetailDataGridView.Rows[r].Cells[8].Value = Result1.Tables[0].Rows[r].ItemArray[12];
                             
 
 
@@ -1235,7 +1236,7 @@ namespace InventoryManagement.UI
                     Qty_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Ctn"].Value.ToString();
                     Quant_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Quant"].Value.ToString();
                     UnitCostPrice_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["Price"].Value.ToString();
-
+                    UnitSalePrice_txt.Text = ConsignmentDetailDataGridView.Rows[ConsignmentDetailDataGridView.CurrentRow.Index].Cells["SALEPRICE"].Value.ToString();
                     Ctn_txt.Focus();
                 }
             }

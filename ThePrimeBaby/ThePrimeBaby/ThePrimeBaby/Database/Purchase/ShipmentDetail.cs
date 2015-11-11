@@ -13,6 +13,13 @@ namespace ThePrimeBaby.Database
         public string MODEL;
         public int CTN;
         public decimal PRICE;
+        public decimal SALEPRICE 
+        {
+            get 
+            {
+                return Item.RETAILPRICE;
+            } 
+        }
         public decimal SUBTOTAL;
         internal static bool AddShipmentDetail(Item Item, Shipment Shipment, int T_QUANTITY, int QTY_PER_BOX, string MODEL, int CTN, decimal PRICE, decimal SUBTOTAL)
         {

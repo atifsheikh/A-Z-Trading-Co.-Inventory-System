@@ -43,6 +43,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label37 = new System.Windows.Forms.Label();
+            this.Qty_Box_txt = new System.Windows.Forms.TextBox();
             this.AddItemPnl = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
@@ -125,8 +127,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SpeedTest_BGWorker = new System.ComponentModel.BackgroundWorker();
-            this.label37 = new System.Windows.Forms.Label();
-            this.Qty_Box_txt = new System.Windows.Forms.TextBox();
             this.Sr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ITEM_CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -135,6 +135,7 @@
             this.Quant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.AddItemPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).BeginInit();
@@ -218,6 +219,27 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1296, 812);
             this.panel2.TabIndex = 1;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.BackColor = System.Drawing.Color.Transparent;
+            this.label37.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label37.Location = new System.Drawing.Point(544, 180);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(103, 17);
+            this.label37.TabIndex = 87;
+            this.label37.Text = "Quantity/Ctn) +";
+            // 
+            // Qty_Box_txt
+            // 
+            this.Qty_Box_txt.Location = new System.Drawing.Point(545, 196);
+            this.Qty_Box_txt.Margin = new System.Windows.Forms.Padding(4);
+            this.Qty_Box_txt.Name = "Qty_Box_txt";
+            this.Qty_Box_txt.Size = new System.Drawing.Size(89, 22);
+            this.Qty_Box_txt.TabIndex = 86;
+            this.Qty_Box_txt.TabStop = false;
             // 
             // AddItemPnl
             // 
@@ -844,7 +866,8 @@
             this.Qty,
             this.Quant,
             this.Price,
-            this.SubTotal});
+            this.SubTotal,
+            this.SalePrice});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1281,27 +1304,6 @@
             this.SpeedTest_BGWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SpeedTest_BGWorker_DoWork);
             this.SpeedTest_BGWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SpeedTest_BGWorker_RunWorkerCompleted);
             // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.Color.Transparent;
-            this.label37.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label37.Location = new System.Drawing.Point(544, 180);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(103, 17);
-            this.label37.TabIndex = 87;
-            this.label37.Text = "Quantity/Ctn) +";
-            // 
-            // Qty_Box_txt
-            // 
-            this.Qty_Box_txt.Location = new System.Drawing.Point(545, 196);
-            this.Qty_Box_txt.Margin = new System.Windows.Forms.Padding(4);
-            this.Qty_Box_txt.Name = "Qty_Box_txt";
-            this.Qty_Box_txt.Size = new System.Drawing.Size(89, 22);
-            this.Qty_Box_txt.TabIndex = 86;
-            this.Qty_Box_txt.TabStop = false;
-            // 
             // Sr
             // 
             this.Sr.Frozen = true;
@@ -1319,18 +1321,21 @@
             // 
             // ItemName
             // 
+            this.ItemName.Frozen = true;
             this.ItemName.HeaderText = "Item Name";
             this.ItemName.Name = "ItemName";
             this.ItemName.Width = 104;
             // 
             // Ctn
             // 
+            this.Ctn.Frozen = true;
             this.Ctn.HeaderText = "Pcs";
             this.Ctn.Name = "Ctn";
             this.Ctn.Width = 60;
             // 
             // Qty
             // 
+            this.Qty.Frozen = true;
             this.Qty.HeaderText = "Ctn";
             this.Qty.Name = "Qty";
             this.Qty.ReadOnly = true;
@@ -1338,12 +1343,14 @@
             // 
             // Quant
             // 
+            this.Quant.Frozen = true;
             this.Quant.HeaderText = "Quant";
             this.Quant.Name = "Quant";
             this.Quant.Width = 76;
             // 
             // Price
             // 
+            this.Price.Frozen = true;
             this.Price.HeaderText = "UnitPrice";
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
@@ -1351,10 +1358,19 @@
             // 
             // SubTotal
             // 
+            this.SubTotal.Frozen = true;
             this.SubTotal.HeaderText = "SubTotal";
             this.SubTotal.Name = "SubTotal";
             this.SubTotal.ReadOnly = true;
             this.SubTotal.Width = 94;
+            // 
+            // SalePrice
+            // 
+            this.SalePrice.Frozen = true;
+            this.SalePrice.HeaderText = "UnitSalePrice";
+            this.SalePrice.Name = "SalePrice";
+            this.SalePrice.Visible = false;
+            this.SalePrice.Width = 122;
             // 
             // AddConsignment
             // 
@@ -1486,5 +1502,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalePrice;
     }
 }

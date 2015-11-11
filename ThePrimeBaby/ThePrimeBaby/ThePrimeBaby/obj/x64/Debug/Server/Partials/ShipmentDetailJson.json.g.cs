@@ -17,7 +17,6 @@ using _ScTemplate_=Starcounter.Templates.Template;
 #pragma warning disable 1591
 
 using __SSSVeID__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.VendorJson.Input.ID;
-using __SSShID__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.Input.ID;
 using __SShItemJson__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ItemJson;
 using __SShItemJson1__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ItemJson.JsonByExample;
 using __SShItemJson2__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ItemJson.Input;
@@ -32,12 +31,13 @@ using __SShMODEL__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input
 using __SShCTN__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.CTN;
 using __SShPRICE__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.PRICE;
 using __SShSUBTOTAL__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.SUBTOTAL;
+using __SShSALEPRIC__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Input.SALEPRICE;
 using __TArray__ = global::Starcounter.Templates.TArray<global::ShipmentDetailJson.ShipmentDetailsElementJson>;
 using __Shipment1__ = global::ShipmentDetailJson.JsonByExample;
+using __SSShID__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.Input.ID;
 using __SShShipment2__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.Input;
-using __Arr__ = global::Starcounter.Arr<global::ShipmentDetailJson.ShipmentDetailsElementJson>;
 using __Shipment2__ = global::ShipmentDetailJson.Input;
-using __SSShVendorJs1__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.VendorJson.JsonByExample;
+using __SSShVendorJs2__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.VendorJson.Input;
 using __Shipment__ = global::ShipmentDetailJson;
 using __Json__ = global::Starcounter.Json;
 using __TObject__ = global::Starcounter.Templates.TObject;
@@ -46,8 +46,8 @@ using __ShSchema__ = global::ShipmentDetailJson.JsonByExample.Schema;
 using __ShShipment__ = global::ShipmentDetailJson.ShipmentDetailsElementJson;
 using __SShSchema__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.JsonByExample.Schema;
 using __TLong__ = global::Starcounter.Templates.TLong;
+using __Arr__ = global::Starcounter.Arr<global::ShipmentDetailJson.ShipmentDetailsElementJson>;
 using __TString__ = global::Starcounter.Templates.TString;
-using __SSShSchema__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.JsonByExample.Schema;
 using __SSSVeSchema__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.VendorJson.JsonByExample.Schema;
 using __SSItSchema__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ItemJson.JsonByExample.Schema;
 using __TDecimal__ = global::Starcounter.Templates.TDecimal;
@@ -55,7 +55,8 @@ using __ShShipment1__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.Js
 using __SShShipment__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson;
 using __SShShipment1__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.JsonByExample;
 using __SSShVendorJs__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.VendorJson;
-using __SSShVendorJs2__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.VendorJson.Input;
+using __SSShVendorJs1__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.VendorJson.JsonByExample;
+using __SSShSchema__ = global::ShipmentDetailJson.ShipmentDetailsElementJson.ShipmentJson.JsonByExample.Schema;
 
 #line hidden
 [_GEN1_][_GEN2_("Starcounter","2.0")]
@@ -98,11 +99,11 @@ public class ShipmentDetailJson : __Json__ {
     #line default
     [_GEN1_][_GEN2_("Starcounter","2.0")]
     public __Arr__ ShipmentDetails {
-#line 22 "Server\Partials\ShipmentDetailJson.json"
+#line 23 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.ShipmentDetails.Getter(this); }
-#line 22 "Server\Partials\ShipmentDetailJson.json"
+#line 23 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.ShipmentDetails.Setter(this, value); } }
@@ -133,6 +134,7 @@ public class ShipmentDetailJson : __Json__ {
         private System.Int64 __bf__CTN__;
         private System.Decimal __bf__PRICE__;
         private System.Decimal __bf__SUBTOTAL__;
+        private System.Decimal __bf__SALEPRICE__;
         #line default
         
         #line hidden
@@ -174,6 +176,9 @@ public class ShipmentDetailJson : __Json__ {
                     SUBTOTAL = Add<__TDecimal__>("SUBTOTAL");
                     SUBTOTAL.DefaultValue = 0.0m;
                     SUBTOTAL.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__SUBTOTAL__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__SUBTOTAL__ = (System.Decimal)_v_; }, false);
+                    SALEPRICE = Add<__TDecimal__>("SALEPRICE");
+                    SALEPRICE.DefaultValue = 0.0m;
+                    SALEPRICE.SetCustomAccessors((_p_) => { return ((__ShShipment__)_p_).__bf__SALEPRICE__; }, (_p_, _v_) => { ((__ShShipment__)_p_).__bf__SALEPRICE__ = (System.Decimal)_v_; }, false);
                 }
                 public override object CreateInstance(s.Json parent) { return new __ShShipment__(this) { Parent = parent }; }
                 public __TLong__ ID;
@@ -186,6 +191,7 @@ public class ShipmentDetailJson : __Json__ {
                 public __TLong__ CTN;
                 public __TDecimal__ PRICE;
                 public __TDecimal__ SUBTOTAL;
+                public __TDecimal__ SALEPRICE;
             }
             #line default
         }
@@ -300,14 +306,26 @@ public class ShipmentDetailJson : __Json__ {
 
         [_GEN1_][_GEN2_("Starcounter","2.0")]
         public System.Decimal SUBTOTAL {
-#line 21 "Server\Partials\ShipmentDetailJson.json"
+#line 20 "Server\Partials\ShipmentDetailJson.json"
     get {
 #line hidden
         return Template.SUBTOTAL.Getter(this); }
-#line 21 "Server\Partials\ShipmentDetailJson.json"
+#line 20 "Server\Partials\ShipmentDetailJson.json"
     set {
 #line hidden
         Template.SUBTOTAL.Setter(this, value); } }
+#line default
+
+        [_GEN1_][_GEN2_("Starcounter","2.0")]
+        public System.Decimal SALEPRICE {
+#line 22 "Server\Partials\ShipmentDetailJson.json"
+    get {
+#line hidden
+        return Template.SALEPRICE.Getter(this); }
+#line 22 "Server\Partials\ShipmentDetailJson.json"
+    set {
+#line hidden
+        Template.SALEPRICE.Setter(this, value); } }
 #line default
 
         
@@ -585,6 +603,11 @@ public class ShipmentDetailJson : __Json__ {
             
             #line hidden
             public class SUBTOTAL : Input<__ShShipment__, __TDecimal__, Decimal> {
+            }
+            #line default
+            
+            #line hidden
+            public class SALEPRICE : Input<__ShShipment__, __TDecimal__, Decimal> {
             }
             #line default
         }
