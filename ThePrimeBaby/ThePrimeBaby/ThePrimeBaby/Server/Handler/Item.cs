@@ -221,7 +221,7 @@ namespace ThePrimeBaby.Server.Handler
                 Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT i FROM ThePrimeBaby.Database.Base.Item i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
                 if (item != null)
                 {
-                    bool Result = Database.Base.Item.ModifyItems(Attributes[0], Attributes[1], Attributes[2], Attributes[4], Attributes[5], Attributes[6], Attributes[7], Convert.ToInt32(Attributes[8]), item, Attributes[9]);
+                    bool Result = Database.Base.Item.ModifyItems(Attributes[0], Attributes[1], Attributes[2], Attributes[4], Attributes[5], Attributes[6], Attributes[7], Convert.ToInt32(Attributes[8]), item, Attributes[9], Convert.ToBoolean(Attributes[10]));
                     return 200;
                 }
                 else
@@ -251,7 +251,7 @@ namespace ThePrimeBaby.Server.Handler
                             category.NAME = Attributes[6];
                         });
                     }
-                    bool Result = ThePrimeBaby.Database.Base.Item.AddItem(Attributes[0], Attributes[1], Convert.ToInt32(Attributes[2]), Convert.ToDecimal(Attributes[3]), Convert.ToDecimal(Attributes[4]), Attributes[5], category,Convert.ToDecimal(Attributes[7]));
+                    bool Result = ThePrimeBaby.Database.Base.Item.AddItem(Attributes[0], Attributes[1], Convert.ToInt32(Attributes[2]), Convert.ToDecimal(Attributes[3]), Convert.ToDecimal(Attributes[4]), Attributes[5], category, Convert.ToDecimal(Attributes[7]), Convert.ToBoolean(Attributes[8]));
                     if (Result == true)
                         return 200;
                 }

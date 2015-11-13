@@ -260,9 +260,9 @@ namespace InventoryManagement
         }
 
         //Item
-        internal static string AddItem(string Code, String Model, int QTY_Box, decimal Price, decimal CostPrice, String ImagePath, string ItemCategory, decimal RetailPrice)
+        internal static string AddItem(string Code, String Model, int QTY_Box, decimal Price, decimal CostPrice, String ImagePath, string ItemCategory, decimal RetailPrice,bool Disabled)
         {
-            return POST("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddItem/8", Code + "/" + Model + "/" + QTY_Box + "/" + Price + "/" + CostPrice + "/" + ImagePath + "/" + ItemCategory + "/" + RetailPrice);
+            return POST("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/AddItem/8", Code + "/" + Model + "/" + QTY_Box + "/" + Price + "/" + CostPrice + "/" + ImagePath + "/" + ItemCategory + "/" + RetailPrice + "/" + Disabled);
         }
         internal static string DeleteItem(string Name)
         {
@@ -272,9 +272,9 @@ namespace InventoryManagement
         {
             return POST("http://"+global::InventoryManagement.Properties.Settings.Default.SC_Server+"/ThePrimeBaby/ModifyItemsByName/2", FindName + "/" + ReplaceName);
         }
-        internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity, string RetailPrice)
+        internal static string ModifyItems(string FindID, string ReplaceName, string ReplaceModel, string ReplaceQuantity, string ReplacePrice, string ReplaceCostPrice, string ReplaceImage, string ItemCategory, int T_Quantity, string RetailPrice,bool Disabled)
         {
-            return POST("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyItemsById/10", FindID + "/" + ReplaceName + "/" + ReplaceModel + "/" + ReplaceQuantity + "/" + ReplacePrice + "/" + ReplaceCostPrice + "/" + ReplaceImage + "/" + ItemCategory + "/" + T_Quantity + "/" + RetailPrice);
+            return POST("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/ModifyItemsById/10", FindID + "/" + ReplaceName + "/" + ReplaceModel + "/" + ReplaceQuantity + "/" + ReplacePrice + "/" + ReplaceCostPrice + "/" + ReplaceImage + "/" + ItemCategory + "/" + T_Quantity + "/" + RetailPrice+"/"+Disabled);
         }
         internal static string AddCategory(string ItemCategory)
         {

@@ -1538,7 +1538,7 @@ namespace InventoryManagement.UI
                     AddItemPnl.Visible = false;
                     return;
                 }
-                Result = DatabaseCalls.AddItem(ItemCodeCons_txt.Text, ItemModelCons_txt.Text, Convert.ToInt32(ItemQuantityCons_txt.Text), Convert.ToDecimal(ItemPriceCons_txt.Text), Convert.ToDecimal(ItemCostPriceCons_txt.Text), "", ItemCategoryCons_txt.Text, Convert.ToDecimal(RetailPrice_txt.Text));
+                Result = DatabaseCalls.AddItem(ItemCodeCons_txt.Text, ItemModelCons_txt.Text, Convert.ToInt32(ItemQuantityCons_txt.Text), Convert.ToDecimal(ItemPriceCons_txt.Text), Convert.ToDecimal(ItemCostPriceCons_txt.Text), "", ItemCategoryCons_txt.Text, Convert.ToDecimal(RetailPrice_txt.Text),Disable_cbx.Checked);
                 ItemCodeCons_txt.Text = "";
                 ItemModelCons_txt.Text= "";
                 ItemQuantityCons_txt.Text= "";

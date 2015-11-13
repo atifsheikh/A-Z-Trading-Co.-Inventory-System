@@ -12,6 +12,7 @@
         "Category":{
 			"NAME":""
 		},
-		"RETAILPRICE" : 0.0
+		"RETAILPRICE" : 0.0,
+		"Disabled":false,
 	}]
 }

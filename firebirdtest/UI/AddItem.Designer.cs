@@ -61,6 +61,7 @@
             this.ItemCode_txt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
+            this.Disable_cbx = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -68,7 +69,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(184, 262);
+            this.button1.Location = new System.Drawing.Point(184, 289);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
@@ -194,7 +195,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(76, 262);
+            this.button2.Location = new System.Drawing.Point(76, 289);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
@@ -284,6 +285,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.Controls.Add(this.Disable_cbx);
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.RetailPrice_txt);
             this.panel2.Controls.Add(this.label13);
@@ -396,9 +398,9 @@
             this.label11.Location = new System.Drawing.Point(41, 234);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 17);
+            this.label11.Size = new System.Drawing.Size(73, 17);
             this.label11.TabIndex = 44;
-            this.label11.Text = "Category";
+            this.label11.Text = "Category :";
             // 
             // label10
             // 
@@ -442,6 +444,16 @@
             this.button8.TabIndex = 7;
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // Disable_cbx
+            // 
+            this.Disable_cbx.AutoSize = true;
+            this.Disable_cbx.Location = new System.Drawing.Point(127, 261);
+            this.Disable_cbx.Name = "Disable_cbx";
+            this.Disable_cbx.Size = new System.Drawing.Size(77, 21);
+            this.Disable_cbx.TabIndex = 55;
+            this.Disable_cbx.Text = "Disable";
+            this.Disable_cbx.UseVisualStyleBackColor = true;
             // 
             // AddItem
             // 
@@ -501,6 +513,7 @@
         private System.Windows.Forms.TextBox ItemCostPrice_txt;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox RetailPrice_txt;
+        private System.Windows.Forms.CheckBox Disable_cbx;
 
     }
 }

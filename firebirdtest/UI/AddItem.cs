@@ -30,7 +30,7 @@ namespace InventoryManagement.UI
             {
                 if (ItemCode_txt.Text == "")
                     return;
-                Result = DatabaseCalls.AddItem(ItemCode_txt.Text, ItemName_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), "", ItemCategory_txt.Text,Convert.ToDecimal(RetailPrice_txt.Text));
+                Result = DatabaseCalls.AddItem(ItemCode_txt.Text, ItemName_txt.Text, Convert.ToInt32(ItemQuantity_txt.Text), Convert.ToDecimal(ItemPrice_txt.Text), Convert.ToDecimal(ItemCostPrice_txt.Text), "", ItemCategory_txt.Text,Convert.ToDecimal(RetailPrice_txt.Text),Disable_cbx.Checked);
 
                 if (Result!="")
                 {
@@ -136,6 +136,7 @@ namespace InventoryManagement.UI
                     ItemCostPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["COSTPRICE"].Value.ToString();
                     ItemCategory_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["CATEGORYNAME"].Value.ToString();
                     RetailPrice_txt.Text = ItemsDataGridView.Rows[currentRow].Cells["RETAILPRICE"].Value.ToString();
+                    Disable_cbx.Checked = Convert.ToBoolean(ItemsDataGridView.Rows[currentRow].Cells["Disabled"].Value.ToString());
                 }
             }
             catch (Exception ex)
@@ -148,7 +149,7 @@ namespace InventoryManagement.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemCode_txt.Text, ItemName_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, "Image Blob String", ItemCategory_txt.Text, Convert.ToInt32("0"), RetailPrice_txt.Text);
+            string Result = DatabaseCalls.ModifyItems(ItemsDataGridView.Rows[currentRow].Cells["ID"].Value.ToString(), ItemCode_txt.Text, ItemName_txt.Text, ItemQuantity_txt.Text, ItemPrice_txt.Text, ItemCostPrice_txt.Text, "Image Blob String", ItemCategory_txt.Text, Convert.ToInt32("0"), RetailPrice_txt.Text,Disable_cbx.Checked);
             if (Result != "")
             {
                 Variables.NotificationStatus = true;

@@ -217,6 +217,7 @@ namespace InventoryManagement.UI
                     {
                         ItemsDataGridView.Columns["NAME"].Visible = false;
                         ItemsDataGridView.Columns["IMAGE"].Visible = false;
+                        ItemsDataGridView.Columns["Disabled"].Visible = false; 
                         ItemsDataGridView.Columns[0].Visible = false;
                         ItemsDataGridView.Columns["CODE"].DisplayIndex = 0;
                         ItemsDataGridView.Columns["MODEL"].DisplayIndex = 1;
@@ -1368,7 +1369,7 @@ namespace InventoryManagement.UI
             {
                 for (int loop = 0; loop < ItemsDataGridView.Rows.Count; loop++)
                 {
-                    if (StaticClass.Contain(ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString(),ItemCode_txt.Text,StringComparison.OrdinalIgnoreCase))
+                    if (StaticClass.Contain(ItemsDataGridView.Rows[loop].Cells["CODE"].Value.ToString(), ItemCode_txt.Text, StringComparison.OrdinalIgnoreCase) && !Convert.ToBoolean(ItemsDataGridView.Rows[loop].Cells["Disabled"].Value.ToString()))
                     {
                         ItemsDataGridView.Rows[loop].Visible = true;
                         if (Convert.ToInt32(ItemsDataGridView.Rows[loop].Cells["T_QUANTITY"].Value) <= 0)
