@@ -16,71 +16,66 @@ namespace ThePrimeBaby.Server.Handler
                 return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            ///ThePrimeBaby/GetItemsForBill
             Handle.GET("/ThePrimeBaby/GetItemsForBill", (Request r) =>
             {
                 //"SELECT a.ID, a.QTY_BOX, a.PRICE, a.SHIPCTN, a.SALECTN, a.MODEL, a.CODE FROM ITEMINVENTORY a where (a.SHIPCTN-a.SALECTN) > 0"
                 return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            ///ThePrimeBaby/GetItemsForSale
             Handle.GET("/ThePrimeBaby/GetItemsForSale", (Request r) =>
             {
                 //SELECT a.ID, a.QTY_BOX, a.PRICE, ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)) as Quantity, ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)/a.QTY_BOX) as CTN_LEFT, a.CODE, a.MODEL FROM ITEMINVENTORY a where ((a.SHIPMENTQUANTITY+a.SALEQUANTITY)/a.QTY_BOX) > 0
                 return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            ///ThePrimeBaby/GetItemHistory/{?}          ItemCode
             Handle.GET("/ThePrimeBaby/GetItemHistory/{?}", (string ItemCode, Request r) =>
             {
                 //"Select * from ITEMHISTORY where ITEM_CODE = '" + ItemCode + "'", myConnection1);
                 return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-            ///ThePrimeBaby/Get_Ctn_Bill
             Handle.GET("/ThePrimeBaby/Get_Ctn_Bill", (Request r) =>
             {
                 //"Select * from CTN_BILL_SUM"
                 return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
             
-            ///ThePrimeBaby/GetInventoryDetails
             Handle.GET("/ThePrimeBaby/GetInventoryDetails", (Request r) =>
             {
-                //string Result = FunctionsVariables.GET("http://localhost:8080/ThePrimeBaby/GetItems");
-                //DataSet ItemDataSet = FunctionsVariables.JsonToDataSet(Result);
+                /*string Result = FunctionsVariables.GET("http://localhost:8080/ThePrimeBaby/GetItems");
+                DataSet ItemDataSet = FunctionsVariables.JsonToDataSet(Result);
 
-                //Database.BillDetail sale = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c").First;
-                //Database.ShipmentDetail shipmentDetail = Db.SQL<Database.ShipmentDetail>("SELECT c FROM ThePrimeBaby.Database.ShipmentDetail c").First;
-                ////Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c ").First;
-                //try
-                //{
-                //    //FbDataAdapter ItemDataAdapter = new FbDataAdapter("Select * from ITEM", myConnection1);
-                //    ItemDataSet.Tables[0].Columns.Add("Total Quantity", typeof(string));
-                //    ItemDataSet.Tables[0].Columns[7].SetOrdinal(2);
+                Database.BillDetail sale = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c").First;
+                Database.ShipmentDetail shipmentDetail = Db.SQL<Database.ShipmentDetail>("SELECT c FROM ThePrimeBaby.Database.ShipmentDetail c").First;
+                Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c ").First;
+                try
+                {
+                    FbDataAdapter ItemDataAdapter = new FbDataAdapter("Select * from ITEM", myConnection1);
+                    ItemDataSet.Tables[0].Columns.Add("Total Quantity", typeof(string));
+                    ItemDataSet.Tables[0].Columns[7].SetOrdinal(2);
 
-                //    //FbDataAdapter SaleDataAdapter = new FbDataAdapter("Select ITEM_CODE, QTY from SALE", myConnection1);// WHERE ITEM_CODE = '" + asdf.ItemArray[1] + "'", myConnection1);
-                //    //FbDataAdapter ShipmentDataAdapter = new FbDataAdapter("Select ITEM_CODE, T_QUANTITY from SHIPMENT_DETAIL", myConnection1);// WHERE ITEM_CODE = '" + asdf.ItemArray[1] + "'", myConnection1);
+                    FbDataAdapter SaleDataAdapter = new FbDataAdapter("Select ITEM_CODE, QTY from SALE", myConnection1);
+                    FbDataAdapter ShipmentDataAdapter = new FbDataAdapter("Select ITEM_CODE, T_QUANTITY from SHIPMENT_DETAIL", myConnection1);
 
-                //    for (int loop = 0; loop < ItemDataSet.Tables[0].Rows.Count; loop++)// DataRow ItemDataRow in ItemDataSet.Tables[0].Rows)
-                //    {
-                //        string SalesCount = "0";
-                //        foreach (DataRow SalesRow in SaleDataSet.Tables[0].Rows)
-                //        {
-                //            if (SalesRow["ITEM_CODE"].Equals(ItemDataSet.Tables[0].Rows[loop]["CODE"]))
-                //                SalesCount = SalesRow["QTY"].ToString();
-                //        }
+                    for (int loop = 0; loop < ItemDataSet.Tables[0].Rows.Count; loop++)
+                    {
+                        string SalesCount = "0";
+                        foreach (DataRow SalesRow in SaleDataSet.Tables[0].Rows)
+                        {
+                            if (SalesRow["ITEM_CODE"].Equals(ItemDataSet.Tables[0].Rows[loop]["CODE"]))
+                                SalesCount = SalesRow["QTY"].ToString();
+                        }
 
-                //        string ShipmentCount = "0";
-                //        foreach (DataRow ShipmentRow in ShipmentDataSet.Tables[0].Rows)
-                //        {
-                //            if (ShipmentRow["ITEM_CODE"].Equals(ItemDataSet.Tables[0].Rows[loop]["CODE"]))
-                //                ShipmentCount = ShipmentRow["T_QUANTITY"].ToString();
-                //        }
+                        string ShipmentCount = "0";
+                        foreach (DataRow ShipmentRow in ShipmentDataSet.Tables[0].Rows)
+                        {
+                            if (ShipmentRow["ITEM_CODE"].Equals(ItemDataSet.Tables[0].Rows[loop]["CODE"]))
+                                ShipmentCount = ShipmentRow["T_QUANTITY"].ToString();
+                        }
 
-                //        int TotalCount = Convert.ToInt32(ShipmentCount) - Convert.ToInt32(SalesCount);
-                //        ItemDataSet.Tables[0].Rows[loop]["Total Quantity"] = TotalCount.ToString();
-                //    }
+                        int TotalCount = Convert.ToInt32(ShipmentCount) - Convert.ToInt32(SalesCount);
+                        ItemDataSet.Tables[0].Rows[loop]["Total Quantity"] = TotalCount.ToString();
+                    }*/
                 return 444;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
@@ -105,8 +100,7 @@ namespace ThePrimeBaby.Server.Handler
                     ItemShipmentHistoryJson itemShipmentHistoryJson = new ItemShipmentHistoryJson();
                     foreach (IObjectView ShipmentDetail in ShipmentDetails)
                     {
-                        var itemShipmentHistory = itemShipmentHistoryJson.ItemShipmentHistory.Add();//.Data = billDetails;
-                        //itemSaleHistory.Data = billDetail;
+                        var itemShipmentHistory = itemShipmentHistoryJson.ItemShipmentHistory.Add();
                         itemShipmentHistory.SHIP_ID = long.Parse(ShipmentDetail.GetString(0));
                         itemShipmentHistory.ITEM_CODE = ShipmentDetail.GetString(1);
                         itemShipmentHistory.MODEL = ShipmentDetail.GetString(2);
@@ -140,8 +134,7 @@ namespace ThePrimeBaby.Server.Handler
                     ItemSaleHistoryJson itemSaleHistoryJson = new ItemSaleHistoryJson();
                     foreach (IObjectView billDetail in billDetails) 
                     {
-                        var itemSaleHistory = itemSaleHistoryJson.ItemSaleHistory.Add();//.Data = billDetails;
-                        //itemSaleHistory.Data = billDetail;
+                        var itemSaleHistory = itemSaleHistoryJson.ItemSaleHistory.Add();
                         itemSaleHistory.ID = long.Parse(billDetail.GetString(0));
                         itemSaleHistory.QTY = long.Parse(billDetail.GetString(1));
                         itemSaleHistory.BILL_ID = long.Parse(billDetail.GetString(2));
@@ -227,14 +220,6 @@ namespace ThePrimeBaby.Server.Handler
                 else
                     return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
-            //Handle.POST("/ThePrimeBaby/DeleteItemByName", (Request r) =>
-            //{
-            //    string[] Attributes = r.Body.Split('/');
-            //    Db.Transact(() => { Db.SlowSQL("DELETE FROM Item v WHERE v.Name = ?", Attributes[0]); });
-            //    return 200;
-            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
-
 
             Handle.POST("/ThePrimeBaby/AddItem/8", (Request r) =>
             {

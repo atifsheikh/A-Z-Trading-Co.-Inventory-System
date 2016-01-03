@@ -1,7 +1,7 @@
 {
 	Bills : [{
 		"ID" : 0,
-		"NAME" : "",
+		//"NAME" : "",
 		"CUSTOMER":{
 			"ID":0,
 			"NAME":""

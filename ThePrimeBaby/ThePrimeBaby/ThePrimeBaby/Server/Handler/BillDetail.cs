@@ -47,23 +47,6 @@ namespace ThePrimeBaby.Server.Handler
                 Db.Transact(() => { Db.SlowSQL("DELETE FROM BillDetail WHERE Bill.ID = ?", Convert.ToInt32(Attributes[0])); });
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
-            //Handle.POST("/ThePrimeBaby/AddSale/9", (Request r) =>
-            //{
-            //    string[] Attributes = r.Body.Split('/');
-            //    Database.BillDetail billDetail = Db.SQL<Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c WHERE c.NAME = ?", Attributes[0]).First;
-            //    if (billDetail == null)
-            //    {
-            //        Database.Bill bill = Db.SQL<Database.Bill>("SELECT b FROM ThePrimeBaby.Database.Bill b WHERE b.Id = ?", Convert.ToInt32(Attributes[2])).First;
-            //        Database.Base.Item item = Db.SQL<Database.Base.Item>("SELECT b FROM ThePrimeBaby.Database.Base.Item b WHERE b.Code = ?", Attributes[4]).First;
-            //        Database.Customer customer = Db.SQL<Database.Customer>("SELECT b FROM ThePrimeBaby.Database.Customer b WHERE b.Id = ?", Convert.ToInt32(Attributes[8])).First;
-            //        bool Result = ThePrimeBaby.Database.BillDetail.AddSale(Convert.ToDecimal(Attributes[0]), Convert.ToInt32(Attributes[1]), bill,Convert.ToDecimal(Attributes[3]),item, Convert.ToInt32(Attributes[6]), Convert.ToInt32(Attributes[7]),customer);
-            //        if (Result == true )
-            //            return 200;
-            //    }
-            //    return 209;
-            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
-
         }
     }
 }

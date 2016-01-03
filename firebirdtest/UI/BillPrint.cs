@@ -62,7 +62,7 @@ namespace InventoryManagement.UI
                 BillDataGridView.DataSource = BillDataSet.Tables[0];
                 BillDataGridView.Sort(BillDataGridView.Columns["DATED"], ListSortDirection.Descending);
                 BillDataGridView.CurrentCell = null;
-                BillDataGridView.Columns[0].HeaderText = "Bill Number";
+                BillDataGridView.Columns["ID"].HeaderText = "Bill Number";
 
 
                 BillDataGridView.Columns["CustomerID"].Visible = false;

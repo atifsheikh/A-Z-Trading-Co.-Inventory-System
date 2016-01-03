@@ -16,20 +16,6 @@ namespace ThePrimeBaby.Server.Handler
                 return shipmentDetailJson;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
 
-
-            //Handle.POST("/ThePrimeBaby/ModifyShipmentAmmountByShipmentNumber", (Request r) =>
-            //{
-            //    string[] Attributes = r.Body.Split('/');
-            //    Database.Shipment shipment = Db.SQL<Database.Shipment>("SELECT i FROM ThePrimeBaby.Database.Shipment i WHERE i.Id = ?", Convert.ToInt32(Attributes[0])).First;
-            //    if (shipment != null)
-            //    {
-            //        bool Result = Database.Shipment.ModifyShipmentAmmount(Convert.ToInt32(Attributes[0]), Convert.ToDecimal(Attributes[1]), shipment);
-            //        return 200;
-            //    }
-            //    else
-            //        return 209;
-            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
-
             Handle.POST("/ThePrimeBaby/DeleteShipmentDetailsByShipmentNumber", (Request r) =>
             {
                 string[] Attributes = r.Body.Split('/');
@@ -64,15 +50,6 @@ namespace ThePrimeBaby.Server.Handler
                 }
                 return 209;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
-
-            //Same as below function
-            //Handle.GET("/ThePrimeBaby/GetShipmentDetail", (Request r) =>
-            //{
-            //    QueryResultRows<Database.ShipmentDetail> shipmentDetail = Db.SQL<Database.ShipmentDetail>("SELECT c FROM ThePrimeBaby.Database.ShipmentDetail c");
-            //    ShipmentDetailJson shipmentDetailJson = new ShipmentDetailJson();
-            //    shipmentDetailJson.ShipmentDetails.Data = shipmentDetail;
-            //    return shipmentDetailJson;
-            //}, new HandlerOptions() { SkipMiddlewareFilters = true });
         }
     }
 }

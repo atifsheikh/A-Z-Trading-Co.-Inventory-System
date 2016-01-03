@@ -62,8 +62,6 @@ namespace ThePrimeBaby.Database
                 VendorVoucher vendorVoucher = Db.SQL<VendorVoucher>("SELECT vv FROM VendorVoucher vv WHERE vv.ID = ?", VoucherNumber).First;
                 Db.Transact(() =>
                 {
-                    //vendorVoucher.Vendor = VendorID;
-                    //vendorVoucher.DATED = BillDate;
                     vendorVoucher.AMOUNT = BillTotal;
                     vendorVoucher.REMARKS = Remarks.Trim();
                 });

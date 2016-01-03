@@ -8,6 +8,8 @@ namespace ThePrimeBaby
     {
         static void Main()
         {
+            ThePrimeBaby.Database.Base.DatabaseIndexes.CreateIndexes();
+            
             Db.Transact(() => 
             {
                 QueryResultRows<ThePrimeBaby.Database.ShipmentDetail> sds = Db.SQL<ShipmentDetail>("SELECT sd FROM ShipmentDetail sd");
@@ -19,6 +21,7 @@ namespace ThePrimeBaby
                     }
                 }
             });
+
             ThePrimeBaby.Server.Handler.Category.Register();
             ThePrimeBaby.Server.Handler.Bill.Register();
             ThePrimeBaby.Server.Handler.BillDetail.Register();
@@ -33,7 +36,6 @@ namespace ThePrimeBaby
             Handle.GET("/ThePrimeBaby/DeveloperTools", (Request r) =>
             {
                 FunctionsVariables.Register();
-                //ThePrimeBaby.FunctionsVariables.Init_Data();
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
         }

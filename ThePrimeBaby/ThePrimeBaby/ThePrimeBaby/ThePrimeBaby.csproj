@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Database\Base\Category.cs" />
     <Compile Include="Database\Base\Concept.cs" />
+    <Compile Include="Database\Base\DatabaseIndexes.cs" />
     <Compile Include="Database\Sale\BillDetail.cs" />
     <Compile Include="Database\Purchase\Vendor.cs" />
     <Compile Include="Database\Purchase\VendorVoucher.cs" />

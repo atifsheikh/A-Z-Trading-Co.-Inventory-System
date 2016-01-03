@@ -342,26 +342,17 @@ namespace InventoryManagement
             DataSet _BillDataSet = GetBill(BillID);
             try
             {
-                if (_BillDataSet.Tables[0].Rows.Count == 0)
-                {
-                    DataSet _BillbyCustomerDataSet = GetBillsbyCustomer(CustomerID);
-                    foreach (DataRow BillRow in _BillbyCustomerDataSet.Tables[0].Rows)
-                    {
-                        CalulateBalance += Convert.ToInt32(BillRow["AMOUNT"]);
-                    }
-                }
-                else
-                {
-                    DataSet _BillbyCustomerDataSet = GetBillsbyCustomer(CustomerID);
-                    foreach (DataRow BillRow in _BillbyCustomerDataSet.Tables[0].Rows)
-                    {
-                        CalulateBalance += Convert.ToInt32(BillRow["AMOUNT"]);
-                        if (Convert.ToInt32(BillID) == Convert.ToInt32(BillRow["ID"]))
-                        {
-                            break;
-                        }
-                    }
-                }
+                //DataSet _BillbyCustomerDataSet = GetBillsbyCustomer(CustomerID);
+                //foreach (DataRow BillRow in _BillbyCustomerDataSet.Tables[0].Rows)
+                //{
+                //    CalulateBalance += Convert.ToInt32(BillRow["AMOUNT"]);
+                //    if (_BillDataSet.Tables[0].Rows.Count != 0 && Convert.ToInt32(BillID) == Convert.ToInt32(BillRow["ID"]))
+                //    {
+                //        break;
+                //    }
+                //}
+
+                DataSet _BillbyCustomerDataSet = GetTotalAmountOfCustomer(CustomerID);
             }
             catch (Exception ex)
             {
@@ -456,6 +447,11 @@ namespace InventoryManagement
         {
             return GET("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetShipmentByShipmentNumber/" + ShipmentNumber);
         }
+        private static DataSet GetTotalAmountOfCustomer(string CustomerID)
+        {
+            return GET("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetTotalAmountOfCustomer/" + CustomerID);
+        }
+
         internal static DataSet GetBillsbyCustomer(string CustomerID)
         {
             return GET("http://" + global::InventoryManagement.Properties.Settings.Default.SC_Server + "/ThePrimeBaby/GetBillsbyCustomerById/" + CustomerID);

@@ -45,7 +45,7 @@ namespace ThePrimeBaby
                     category = new Database.Base.Category();
                     category.ID = 0;
                 }
-                var item = Db.SQL<ThePrimeBaby.Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c").First;//Item
+                var item = Db.SQL<ThePrimeBaby.Database.Base.Item>("SELECT c FROM ThePrimeBaby.Database.Base.Item c").First;
                 if (item == null)
                 {
                     item = new Database.Base.Item();
@@ -59,7 +59,7 @@ namespace ThePrimeBaby
                     item.Category = category;
                 }
                 {
-                    var DbObject = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT c FROM ThePrimeBaby.Database.Shipment c").First;//Shipment
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.Shipment>("SELECT c FROM ThePrimeBaby.Database.Shipment c").First;
                     if (DbObject == null)
                     {
                         DbObject = new Database.Shipment();
@@ -67,7 +67,7 @@ namespace ThePrimeBaby
                     }
                 }
                 {
-                    var DbObject = Db.SQL<ThePrimeBaby.Database.ShipmentDetail>("SELECT c FROM ThePrimeBaby.Database.ShipmentDetail c").First;//ShipmentDetail
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.ShipmentDetail>("SELECT c FROM ThePrimeBaby.Database.ShipmentDetail c").First;
                     if (DbObject == null)
                     {
                         DbObject = new Database.ShipmentDetail();
@@ -75,7 +75,7 @@ namespace ThePrimeBaby
                     }
                 }
                 {
-                    var DbObject = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c").First;//Vendor
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.Vendor>("SELECT c FROM ThePrimeBaby.Database.Vendor c").First;
                     if (DbObject == null)
                     {
                         DbObject = new Database.Vendor();
@@ -83,7 +83,7 @@ namespace ThePrimeBaby
                     }
                 }
                 {
-                    var DbObject = Db.SQL<ThePrimeBaby.Database.VendorVoucher>("SELECT c FROM ThePrimeBaby.Database.VendorVoucher c").First;//VendorVoucher
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.VendorVoucher>("SELECT c FROM ThePrimeBaby.Database.VendorVoucher c").First;
                     if (DbObject == null)
                     {
                         DbObject = new Database.VendorVoucher();
@@ -91,7 +91,7 @@ namespace ThePrimeBaby
                     }
                 }
                 {
-                    var DbObject = Db.SQL<ThePrimeBaby.Database.Bill>("SELECT c FROM ThePrimeBaby.Database.Bill c").First;//Bill
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.Bill>("SELECT c FROM ThePrimeBaby.Database.Bill c").First;
                     if (DbObject == null)
                     {
                         DbObject = new Database.Bill();
@@ -99,7 +99,7 @@ namespace ThePrimeBaby
                     }
                 }
                 {
-                    var DbObject = Db.SQL<ThePrimeBaby.Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c").First;//BillDetail
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.BillDetail>("SELECT c FROM ThePrimeBaby.Database.BillDetail c").First;
                     if (DbObject == null)
                     {
                         DbObject = new Database.BillDetail();
@@ -107,7 +107,7 @@ namespace ThePrimeBaby
                     }
                 }
                 {
-                    var DbObject = Db.SQL<ThePrimeBaby.Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c").First;//Customer
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c").First;
                     if (DbObject == null)
                     {
                         DbObject = new Database.Customer();
@@ -115,7 +115,7 @@ namespace ThePrimeBaby
                     }
                 }
                 {
-                    var DbObject = Db.SQL<ThePrimeBaby.Database.CustomerVoucher>("SELECT c FROM ThePrimeBaby.Database.CustomerVoucher c").First;//CustomerVoucher
+                    var DbObject = Db.SQL<ThePrimeBaby.Database.CustomerVoucher>("SELECT c FROM ThePrimeBaby.Database.CustomerVoucher c").First;
                     if (DbObject == null)
                     {
                         DbObject = new Database.CustomerVoucher();
@@ -127,7 +127,6 @@ namespace ThePrimeBaby
 
         public static DataSet JsonToDataSet(string jsonText)
         {
-            //Deserialization of Json String to DataSet
             XmlDocument xd1 = new XmlDocument();
             xd1 = (XmlDocument)JsonConvert.DeserializeXmlNode(jsonText);
             DataSet jsonDataSet = new DataSet();
@@ -137,7 +136,6 @@ namespace ThePrimeBaby
 
         public static string DataSetToJson(DataSet dataSet)
         {
-            //Serialization of DataSet to json string
             string json = JsonConvert.SerializeObject(dataSet, new DataSetConverter()); 
             return json;
         }
@@ -155,7 +153,6 @@ namespace ThePrimeBaby
                 postStream.Write(bytes1, 0, bytes1.Length);
                 postStream.Close();
 
-                // Get the response.
                 WebResponse response1 = request.GetResponse();
                 Stream dataStream = response1.GetResponseStream();
                 StreamReader reader = new StreamReader(dataStream);
@@ -207,7 +204,6 @@ namespace ThePrimeBaby
                 postStream.Write(bytes1, 0, bytes1.Length);
                 postStream.Close();
 
-                // Get the response.
                 WebResponse response1 = request.GetResponse();
                 Stream dataStream = response1.GetResponseStream();
                 StreamReader reader = new StreamReader(dataStream);

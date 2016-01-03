@@ -87,7 +87,6 @@ namespace ThePrimeBaby.Database
         {
             try
             {
-                //Database.Customer customer = Db.SQL<Database.Customer>("SELECT c FROM ThePrimeBaby.Database.Customer c WHERE c.ID = ?", Convert.ToInt32(FindID)).First;
                 Db.Transact(() =>
                 {
                     customer.NAME = ReplaceName.Trim();
