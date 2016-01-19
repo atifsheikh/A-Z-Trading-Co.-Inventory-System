@@ -45,7 +45,7 @@ namespace ThePrimeBaby.Database
         }
         internal static string PreviousBalance(Database.Customer customer, DateTime dateTime)
         {
-            QueryResultRows<Database.Bill> AllBills = Db.SQL<Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE Customer = ? AND DATED < ?", customer, dateTime);
+            QueryResultRows<Database.Bill> AllBills = Db.SQL<Database.Bill>("SELECT s FROM ThePrimeBaby.Database.Bill s WHERE Customer = ? AND DATED < ?", customer, dateTime.AddSeconds(-10));
             decimal BillCalc = 0.0m;
             foreach (Database.Bill OneBill in AllBills)
             {
