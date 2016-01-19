@@ -965,7 +965,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Ph:     +92-51-5160660</Value>
+                <Value>Ph:     +92-51-5557478</Value>
                 <Style>
                   <FontFamily>Cambria</FontFamily>
                   <FontWeight>Bold</FontWeight>
@@ -1159,7 +1159,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Customer Name:</Value>
+                <Value />
                 <Style>
                   <FontFamily>Cambria</FontFamily>
                   <FontWeight>Bold</FontWeight>
@@ -1373,7 +1373,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Business Name:</Value>
+                <Value />
                 <Style>
                   <FontFamily>Cambria</FontFamily>
                   <FontWeight>Bold</FontWeight>

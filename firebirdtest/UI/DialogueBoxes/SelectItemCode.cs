@@ -58,7 +58,7 @@ namespace InventoryManagement.UI
                 ItemDetailsDataSet = DatabaseCalls.GetItems();
                 foreach (DataRow asdf in ItemDetailsDataSet.Tables[0].Rows)
                 {
-                    SelectedItemCode_txt.Items.Add(asdf.ItemArray[6]);
+                    SelectedItemCode_txt.Items.Add(asdf.ItemArray[7]);
                 }
             }
             catch (Exception ex)

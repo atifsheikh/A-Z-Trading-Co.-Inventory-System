@@ -32,6 +32,7 @@ namespace ThePrimeBaby
             ThePrimeBaby.Server.Handler.ShipmentDetail.Register();
             ThePrimeBaby.Server.Handler.Vendor.Register();
             ThePrimeBaby.Server.Handler.VendorVoucher.Register();
+            ThePrimeBaby.Server.Handler.GUI.BillInvoice.Register();
             
             Handle.GET("/ThePrimeBaby/DeveloperTools", (Request r) =>
             {

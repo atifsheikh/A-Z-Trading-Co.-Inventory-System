@@ -687,7 +687,7 @@ namespace InventoryManagement.UI
                 {
                     try
                     {
-                        if (CustomerName_txt.Items.Contains(ExcelReader.Variables.Range[0][loop]) == true)
+                        if (CustomerName_txt.Items.Contains(ExcelReader.Variables.Range[loop][0]) == true)
                         {
                             CustomerName_txt.Text = ExcelReader.Variables.Range[0][loop];
                         }
@@ -704,7 +704,7 @@ namespace InventoryManagement.UI
                     catch (Exception ex)
                     {
                     }
-                    for (int loop1 = 1; loop1 < ExcelReader.Variables.Range[loop].Length; loop1++)
+                    for (int loop1 = 1; loop1 < ExcelReader.Variables.Range[loop].Length-1; loop1++)
                     {
                         try
                         {
@@ -717,7 +717,7 @@ namespace InventoryManagement.UI
                                 bool MatchFound = false;
                                 for (int loop2 = 0; loop2 < ItemsDataGridView.Rows.Count; loop2++)
                                 {
-                                    if (ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Equals(ItemCode) == true)
+                                    if (ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().ToLower().Equals(ItemCode.ToLower()) == true)
                                     {
                                         MatchFound = true;
                                         ItemCode_txt.Text = ItemsDataGridView.Rows[loop2].Cells["CODE"].Value.ToString().Trim();

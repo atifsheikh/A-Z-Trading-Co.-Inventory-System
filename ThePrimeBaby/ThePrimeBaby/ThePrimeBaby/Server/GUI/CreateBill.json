@@ -1,0 +1,36 @@
+{
+	"Html":"",
+	"CustomerSearchName$":"",
+	"SelectedCustomerID$":"",
+	"$Customers$":{"Bind":"Customers_"},
+	"Customers$" : [{
+		"ID" : 0,
+		"NAME" : "",
+		"ADDRESS" :"",
+        "EMAIL":"",
+        "PHONE":"",
+        "AMOUNT":0.0,
+        "OPENING_BALANCE" : 0.0,
+        "BALANCE_LIMIT":0.0,
+		"BUSINESS_NAME":""
+	}],
+	"SearchedItemCode":"",
+	"SelectedItemID$":"",
+	"$Items$":{"Bind":"Items_"},
+	"Items$" : [{
+		"ID" : 0,
+		"NAME" : "",
+		"QTY_BOX":0,
+        "COSTPRICE":0.0,
+        "PRICE":0.0,
+        "IMAGE":"",
+        "MODEL":"",
+        "CODE":"",
+        "T_QUANTITY":0,
+        "Category":{
+			"NAME":""
+		},
+		"RETAILPRICE" : 0.0,
+		"Disabled":false,
+	}]
+}
