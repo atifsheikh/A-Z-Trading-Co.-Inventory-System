@@ -8,8 +8,6 @@ namespace ThePrimeBaby
     {
         static void Main()
         {
-            ThePrimeBaby.Database.Base.DatabaseIndexes.CreateIndexes();
-            
             Db.Transact(() => 
             {
                 QueryResultRows<ThePrimeBaby.Database.ShipmentDetail> sds = Db.SQL<ShipmentDetail>("SELECT sd FROM ShipmentDetail sd");
@@ -39,6 +37,8 @@ namespace ThePrimeBaby
                 FunctionsVariables.Register();
                 return 200;
             }, new HandlerOptions() { SkipMiddlewareFilters = true });
+
+            ThePrimeBaby.Database.Base.DatabaseIndexes.CreateIndexes();
         }
     }
 }

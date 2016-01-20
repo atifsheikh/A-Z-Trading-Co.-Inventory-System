@@ -73,7 +73,7 @@ namespace InventoryManagement.UI
                 BillsDataSet.Tables[0].TableName = "Ledger";
                 CustomerVoucherDataSet = DatabaseCalls.GetCustomerVoucher();
                 //CustomerVoucherDataSet.Tables[0].Columns.Remove("REMARKS");
-                BillsDataSet.Tables[0].Columns.Remove("NAME");
+                //BillsDataSet.Tables[0].Columns.Remove("NAME");
                 BillsDataSet.Tables[0].Columns["CUSTOMERID"].ColumnName = "CustomerID";
                 BillsDataSet.Tables[0].Columns["CUSTOMERNAME"].ColumnName = "CustomerNAME";
 
