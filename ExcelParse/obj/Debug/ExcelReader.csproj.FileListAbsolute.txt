@@ -89,3 +89,11 @@ E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelR
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csproj.GenerateResource.Cache
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelParse.exe
 E:\Development\Omer\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelParse.pdb
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csprojAssemblyReference.cache
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csproj.ResolveComReference.cache
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.ExcelTool.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.Properties.Resources.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csproj.GenerateResource.cache
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelReader.csproj.CoreCompileInputs.cache
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelParse.exe
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Debug\ExcelParse.pdb

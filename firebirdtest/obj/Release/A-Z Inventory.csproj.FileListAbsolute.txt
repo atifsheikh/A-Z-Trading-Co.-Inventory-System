@@ -1,0 +1,27 @@
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.AddBill.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.ItemHistoryReport.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.ItemHistoryView.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.AddConsignment.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.AddConsignmentAdvanced.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.AddConsignmentDetail.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.AddCustomer.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.AddItem.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.DebitorSummary.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.DeleteBill.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.EditItem.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.BillPrint.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.Home.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.Properties.Resources.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.ItemHistory.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.LedgerReports.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.LedgerStatement.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.ListConsignmentDetails.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.ListConsignments.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.ListCustomers.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.ListInventory.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.ListItems.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.SelectCustomerName.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.SelectItemCode.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\firebirdtest.UI.VoucherPaymentModification.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\A-Z Inventory.csproj.GenerateResource.cache
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\firebirdtest\obj\Release\A-Z Inventory.csproj.CoreCompileInputs.cache

@@ -1,0 +1,6 @@
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Release\ExcelReader.csprojAssemblyReference.cache
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Release\ExcelReader.csproj.ResolveComReference.cache
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Release\ExcelReader.ExcelTool.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Release\ExcelReader.Properties.Resources.resources
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Release\ExcelReader.csproj.GenerateResource.cache
+C:\adfenix-codebase\A-Z-Trading-Co.-Inventory-System\ExcelParse\obj\Release\ExcelReader.csproj.CoreCompileInputs.cache
